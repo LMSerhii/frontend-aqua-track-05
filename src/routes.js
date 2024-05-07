@@ -1,9 +1,9 @@
 export const routes = {
   HOME: '/',
-  CONTACTS: '/contacts',
+  TRACKER: '/tracker',
   USERS: '/users',
-  REGISTER: '/register',
-  LOGIN: '/login',
+  SIGNUP: '/signup',
+  SIGNIN: '/signin',
   LOGOUT: '/logout',
   CURRENT: '/current',
 };

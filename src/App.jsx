@@ -9,21 +9,21 @@ import Loader from './shared/components/Loader/Loader';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
 
-const HomePage = lazy(() => import('./pages/Home'));
-const LoginPage = lazy(() => import('./pages/SigninPage'));
-const RegisterPage = lazy(() => import('./pages/SignupPage'));
-const ContactsPage = lazy(() => import('./pages/Contacts'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const LoginPage = lazy(() => import('./pages/SignInPage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const Dashboard = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFound'));
 
 export default function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  const { HOME, CONTACTS, REGISTER, LOGIN } = routes;
+  const { HOME, TRACKER, SIGNUP, SIGNIN } = routes;
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(refreshUser());
+  // }, [dispatch]);
 
   return isRefreshing ? (
     <Loader />
@@ -32,24 +32,21 @@ export default function App() {
       <Route path={HOME} element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route
-          path={REGISTER}
+          path={SIGNUP}
           element={
-            <RestrictedRoute
-              redirectTo={CONTACTS}
-              component={<RegisterPage />}
-            />
+            <RestrictedRoute redirectTo={TRACKER} component={<SignUpPage />} />
           }
         />
         <Route
-          path={LOGIN}
+          path={SIGNIN}
           element={
-            <RestrictedRoute redirectTo={CONTACTS} component={<LoginPage />} />
+            <RestrictedRoute redirectTo={TRACKER} component={<LoginPage />} />
           }
         />
         <Route
-          path={CONTACTS}
+          path={TRACKER}
           element={
-            <PrivateRoute redicrectTo={LOGIN} component={<ContactsPage />} />
+            <PrivateRoute redicrectTo={SIGNIN} component={<Dashboard />} />
           }
         />
       </Route>

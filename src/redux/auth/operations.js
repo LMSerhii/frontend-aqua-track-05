@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { routes } from '../../routes';
 
-const { USERS, REGISTER, LOGIN, LOGOUT, CURRENT } = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -16,7 +16,7 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(`${USERS}${REGISTER}`, credentials);
+      const response = await axios.post(`${USERS}${SIGNUP}`, credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -29,7 +29,7 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post(`${USERS}${LOGIN}`, credentials);
+      const response = await axios.post(`${USERS}${SIGNIN}`, credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {

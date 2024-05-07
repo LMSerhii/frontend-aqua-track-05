@@ -7,7 +7,7 @@ export default function SignUp() {
       <Helmet>
         <title>Sign Up</title>
       </Helmet>
-      <SignUp />
+      <RegisterForm />
     </div>
   );
 }

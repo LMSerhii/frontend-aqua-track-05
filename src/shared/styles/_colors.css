@@ -1,9 +1,9 @@
 :root {
-  --light-blue: lightblue;
-  --green: green;
-  --dark-green: #1e5b2a;
-  --dark-green-hover: #043e0f;
-  --light-green: #6ca24a;
-  --text-color-dark: #000;
-  --bg-color: #fff;
+  --dark: #2f2f2f;
+  --dark-blue: #323f47;
+  --lettuce: #9be1a0;
+  --lettuce-secondary: #87d28d;
+  --light-gray: #f0eff4;
+  --white: #ffffff;
+  --secondary-text: #bcbcbc;
 }
