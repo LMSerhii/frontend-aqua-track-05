@@ -1,0 +1,72 @@
+@import url('./_variables.css');
+@import url('./_colors.css');
+@import url('./_breakpoints.css');
+
+#root {
+  font-family: var(--main-font-family), sans-serif;
+  font-weight: 400;
+
+  color: var(--text-color-dark);
+  background-color: var(--bg-color);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  color: currentColor;
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+address {
+  font-style: normal;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

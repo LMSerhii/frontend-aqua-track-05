@@ -1,0 +1,35 @@
+.container {
+  min-height: 100vh;
+  min-width: 320px;
+  padding: 0 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 100px;
+}
+
+@media screen and (min-width: 375px) {
+  .container {
+    max-width: 345px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 738px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    max-width: 1410px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .container {
+    max-width: 2530px;
+  }
+}

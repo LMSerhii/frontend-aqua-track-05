@@ -1,0 +1,38 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: 16px 0;
+
+  transition: color ease;
+
+  transition: transform 250ms ease-out;
+}
+
+.link:hover,
+.link:focus {
+  color: #701515;
+  transform: scale(1.2);
+}
+
+.link.active {
+  color: #b7b3ae;
+  transform: scale(1.2);
+}
+
+.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #646cff;
+}

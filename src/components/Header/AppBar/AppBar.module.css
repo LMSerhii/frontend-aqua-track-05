@@ -1,0 +1,12 @@
+.header {
+  background-color: rgba(65, 65, 138, 0.685);
+  padding: 20px 40px;
+  position: fixed;
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
