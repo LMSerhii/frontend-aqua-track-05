@@ -1,13 +1,13 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import css from './Layout.module.css';
+import s from './SharedLayout.module.css';
 
-export default function Layout() {
+export default function SharedLayout() {
   return (
     <>
       <Suspense fallback={null}>
-        <main className={css.container}>
+        <main className={s.container}>
           <Outlet />
         </main>
       </Suspense>

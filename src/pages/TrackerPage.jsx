@@ -1,7 +1,12 @@
+import { Helmet } from 'react-helmet-async';
+
 const TrackerPage = () => {
   return (
     <>
-      <p>Dashboard</p>
+      <Helmet>
+        <title>Tracker Page</title>
+      </Helmet>
+      <p>Tracker</p>
     </>
   );
 };

@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import LoginForm from '../components/SigninPage/LoginForm/LoginForm';
 
 export default function SignIn() {
   return (
@@ -7,7 +6,6 @@ export default function SignIn() {
       <Helmet>
         <title>Sign In</title>
       </Helmet>
-      <LoginForm />
     </div>
   );
 }
