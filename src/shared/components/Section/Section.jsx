@@ -5,5 +5,4 @@ const Section = ({ className, children, id = '' }) => {
     </section>
   );
 };
-
 export default Section;

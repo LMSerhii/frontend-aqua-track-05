@@ -1,0 +1,12 @@
+ .section {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+@media screen and (min-width: 1440px) {
+    .section {
+        display: flex;
+        gap: 30px;
+        flex-wrap: nowrap;
+    }
+}
