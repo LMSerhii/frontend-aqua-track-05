@@ -1,0 +1,34 @@
+/* UserBarPopover.module.css */
+.wrapper {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  gap: 8px;
+  border-radius: 15px;
+
+  background-color: aqua;
+}
+
+.settingBtn {
+  border: none;
+  display: flex;
+  gap: 8px;
+  color: var(--dark-blue);
+  cursor: pointer;
+}
+.settingBtn svg {
+  fill: var(--dark-blue);
+}
+.logoutBtn {
+  border: none;
+  display: flex;
+  gap: 8px;
+  color: var(--light-grey);
+  cursor: pointer;
+}
+.logoutBtn svg {
+  fill: var(--light-grey);
+}
