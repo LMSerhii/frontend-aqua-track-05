@@ -1,6 +1,5 @@
 import { Helmet } from 'react-helmet-async';
 import Home from '../components/homePage/Home';
-import { WaterForm } from '../components/modals/WaterForm/WaterForm';
 
 export default function HomePage() {
   return (
@@ -9,7 +8,6 @@ export default function HomePage() {
         <title>Home Page</title>
       </Helmet>
       <Home />
-      <WaterForm />
     </>
   );
 }
