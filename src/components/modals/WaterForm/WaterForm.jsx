@@ -1,14 +1,35 @@
 import s from './WaterForm.module.css';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import Button from '../../../shared/components/Button/Button';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { useState } from 'react';
 import { sprite } from '../../../shared/icons/index';
 
 console.log(sprite);
 
 export const WaterForm = () => {
+  const [active, setActive] = useState(true);
   const [count, setCount] = useState(50);
-  const [waterValue, setWaterValue] = useState(count.toString()); // Устанавливаем начальное значение waterValue
+  const [waterValue, setWaterValue] = useState(count.toString());
+
+  const schema = yup.object().shape({
+    water: yup
+      .number()
+      .required('Water value is required')
+      .positive('Water value must be a positive number')
+      .integer('Water value must be an integer')
+      .max(1000, 'Water value must be less than or equal to 1000'),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   const handleWaterChange = event => {
     const value = event.target.value;
@@ -17,31 +38,6 @@ export const WaterForm = () => {
       setCount(parseInt(value, 10));
     }
   };
-
-  const currentTime = new Date().toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-
-  const [time, setTime] = useState(currentTime);
-
-  const handleTimeChange = event => {
-    setTime(event.target.value);
-  };
-
-  // const onAddCount = () => {
-  //   const newCount = count + 50;
-  //   setCount(newCount);
-  //   setWaterValue(newCount.toString());
-  // };
-
-  // const onRemoveCount = () => {
-  //   if (count >= 50) {
-  //     const newCount = count - 50;
-  //     setCount(newCount);
-  //     setWaterValue(newCount.toString());
-  //   }
-  // };
 
   const onAddCount = () => {
     const newValue = Math.min(
@@ -61,12 +57,33 @@ export const WaterForm = () => {
     setWaterValue(newValue.toString());
   };
 
+  const currentTime = new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+
+  const [time, setTime] = useState(currentTime);
+
+  const handleTimeChange = event => {
+    setTime(event.target.value);
+  };
+
+  const onClose = () => {
+    setActive(false);
+  };
+
+  const onSubmit = data => {
+    console.log(data);
+  };
+
   return (
-    <Modal className={s.modal} active={true}>
+    <Modal className={s.modal} active={active}>
       <div className={s.content}>
-        <svg className={s.icon} width="28" height="28">
-          <use xlinkHref={`${sprite}#close`}></use>
-        </svg>
+        <Button className={s.close} onClick={onClose}>
+          <svg className={s.icon} width="28" height="28">
+            <use xlinkHref={`${sprite}#close`}></use>
+          </svg>
+        </Button>
 
         <h3 className={s.title}>Add water</h3>
 
@@ -88,7 +105,7 @@ export const WaterForm = () => {
           </Button>
         </div>
 
-        <form className={s.form} action="">
+        <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
           <label className={s.timeLable} htmlFor="time">
             Recording time:
           </label>
@@ -107,16 +124,18 @@ export const WaterForm = () => {
             Enter the value of the water used:
           </label>
           <br />
+          {errors.water && <p className={s.error}>{errors.water.message}</p>}
           <input
             className={s.waterInput}
-            value={waterValue}
-            onChange={handleWaterChange}
+            {...register('water')}
             type="text"
             name="water"
             id="water"
+            onChange={handleWaterChange}
+            value={waterValue}
           />
 
-          <Button classname={s.btnSubmit} type="submit">
+          <Button className={s.btnSubmit} type="submit">
             Save
           </Button>
         </form>

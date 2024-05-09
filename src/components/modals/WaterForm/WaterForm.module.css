@@ -12,7 +12,7 @@
   top: 20px;
   right: 20px;
   stroke: var(--dark);
-  fill: var(--dark);
+  fill: transparent;
 }
 
 .title {
@@ -108,6 +108,7 @@
 }
 
 .btnSubmit {
+  background-color: var(--lettuce);
   border-radius: 30px;
   padding: 14px 40px;
   font-weight: 700;
@@ -116,4 +117,10 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--dark-blue);
+}
+
+.error {
+  font-size: 14px;
+  color: var(--error);
+  margin-bottom: 5px;
 }
