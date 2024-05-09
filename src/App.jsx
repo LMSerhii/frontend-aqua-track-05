@@ -33,13 +33,13 @@ export default function App() {
       <Route path={HOME} element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route
-          path={SIGNUP}
+          path="/signup"
           element={
             <RestrictedRoute redirectTo={TRACKER} component={<SignUpPage />} />
           }
         />
         <Route
-          path={SIGNIN}
+          path="/signin"
           element={
             <RestrictedRoute redirectTo={TRACKER} component={<SignInPage />} />
           }

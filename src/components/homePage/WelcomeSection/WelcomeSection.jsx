@@ -14,7 +14,7 @@ export default function WelcomeSection() {
           <NavLink to="/signup" className={css.signup}>
             Try tracker
           </NavLink>
-          <NavLink to="/login" className={css.login}>
+          <NavLink to="/signin" className={css.login}>
             Sign In
           </NavLink>
         </div>
