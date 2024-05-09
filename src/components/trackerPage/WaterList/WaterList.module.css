@@ -1,7 +1,12 @@
-.wrap {
+.waterListSection {
+  padding-bottom: 40px;
+}
+
+.waterListSectionHead {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .addWaterBtn {
@@ -17,7 +22,15 @@
   }
 }
 
-.wrapPlusIcon {
+.addWaterBtn:is(:hover, :focus) .plusIconWrap {
+  background-color: var(--dark-blue);
+}
+
+.addWaterBtn:is(:hover, :focus) .plusIcon {
+  stroke: white;
+}
+
+.plusIconWrap {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,10 +53,37 @@
     var(--animation-time-function);
 }
 
-.addWaterBtn:is(:hover, :focus) .wrapPlusIcon {
-  background-color: var(--dark-blue);
+.waterListWrap {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding-bottom: 24px;
+  overflow-x: auto;
 }
 
-.addWaterBtn:is(:hover, :focus) .plusIcon {
-  stroke: white;
+@media screen and (min-width: 768px) {
+  .waterListWrap {
+    gap: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .waterListWrap {
+    gap: 16px;
+  }
+}
+
+.waterListWrap::-webkit-scrollbar {
+  width: 150px;
+  height: 8px;
+}
+
+.waterListWrap::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: var(--white);
+}
+
+.waterListWrap::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--dark-blue);
 }
