@@ -2,10 +2,10 @@
   border-radius: 30px;
   width: 100%;
   height: 353px;
-  background: url(./src/shared/images/homePage/Rectangle.png);
   background-size: cover;
   position: relative;
 }
+
 .div {
   position: absolute;
   left: 15px;
@@ -17,10 +17,12 @@
   height: 48px;
   background: var(--white);
 }
+
 .photo_list {
   display: flex;
   position: relative;
 }
+
 .list_items {
   position: absolute;
   width: 26px;
@@ -28,17 +30,21 @@
   background: var(--white);
   border-radius: 50%;
 }
+
 .list_items:nth-child(1) {
   z-index: 3;
 }
+
 .list_items:nth-child(2) {
   z-index: 2;
   left: 20px;
 }
+
 .list_items:nth-child(3) {
   z-index: 1;
   left: 40px;
 }
+
 .parag {
   font-weight: 700;
   font-size: 12px;
@@ -46,6 +52,7 @@
   position: absolute;
   left: 82px;
 }
+
 .span {
   color: var(--lettuce);
 }
@@ -91,19 +98,19 @@
 }
 .item_trk:nth-child(1) {
   top: 45px;
-  left: 115px;
+  left: 100px;
   background: var(--dark-blue);
 }
 .item_trk:nth-child(2) {
   width: 83px;
   top: 45px;
-  left: 200px;
+  left: 185px;
   background: var(--lettuce);
 }
 .item_trk:nth-child(3) {
   width: 108px;
   top: 75px;
-  left: 115px;
+  left: 100px;
   background: var(--white);
 }
 
@@ -128,7 +135,6 @@
 }
 @media screen and (min-width: 768px) {
   .section {
-    background-image: url(./src/shared/images/homePage/Rectangle2.png);
     height: 446px;
   }
   .div {
@@ -167,7 +173,6 @@
     height: 34px;
     top: 45px;
     left: 490px;
-
   }
   .item_trk:nth-child(3) {
     width: 108px;
@@ -185,25 +190,24 @@
   }
 }
 @media screen and (min-width: 1440px) {
-.section{
-  width: 672px;
-height: 736px;
-background-image: url(./src/shared/images/homePage/Rectangle3.png);
-}
-.div{
-  top: 540px;
-  left: 40px;
-}
-.item_trk:nth-child(1){
-  top:45px;
-  left: 340px;
-}
-.item_trk:nth-child(2){
-  top:45px;
-  left: 465px;
-}
-.item_trk:nth-child(3){
-  top:85px;
-  left: 340px;
-}
+  .section {
+    width: 672px;
+    height: 736px;
+  }
+  .div {
+    top: 540px;
+    left: 40px;
+  }
+  .item_trk:nth-child(1) {
+    top: 45px;
+    left: 340px;
+  }
+  .item_trk:nth-child(2) {
+    top: 45px;
+    left: 465px;
+  }
+  .item_trk:nth-child(3) {
+    top: 85px;
+    left: 340px;
+  }
 }
