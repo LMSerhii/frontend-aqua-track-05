@@ -1,4 +1,4 @@
-import s from './Modal.module.scss';
+import s from './Modal.module.css';
 
 export const Modal = ({ active, setActive, children }) => {
   return (
