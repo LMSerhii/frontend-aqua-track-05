@@ -2,7 +2,9 @@ import s from './WaterForm.module.css';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import Button from '../../../shared/components/Button/Button';
 import { useState } from 'react';
-import { sprite } from '../../../shared/icons';
+import { sprite } from '../../../shared/icons/index';
+
+console.log(sprite);
 
 export const WaterForm = () => {
   const [count, setCount] = useState(50);
