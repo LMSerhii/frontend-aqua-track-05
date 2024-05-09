@@ -5,8 +5,24 @@ import * as yup from 'yup';
 import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
+import { useState } from 'react';
 
 export const UserSettingsForm = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploaded, setUploaded] = useState();
+
+  const handleChange = event => {
+    console.log(event.target.files);
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!selectedFile) {
+      alert('Please selected a file');
+      return;
+    }
+  };
+
   const schema = yup
     .object({
       Your_name: yup.string().required(),
@@ -27,25 +43,26 @@ export const UserSettingsForm = () => {
         <input
           type="file"
           id="avatar"
-          accept="image/*"
-          onChange={e => {
-            // Отримуємо файли, які обрано
-            const file = e.target.files[0];
-            // Якщо файл обрано, використовуємо URL.createObjectURL()
-            if (file) {
-              const imageUrl = URL.createObjectURL(file);
-              // Тут ви можете використати imageUrl для відображення аватарки
-              console.log('Temporary URL for the selected image:', imageUrl);
-            }
-          }}
-          {...register('avatar')}
+          accept="image/*,.png,.jpg,.gif,.web"
+          onChange={handleChange}
+          // onChange={e => {
+          //   // Отримуємо файли, які обрано
+          //   const file = e.target.files[0];
+          //   // Якщо файл обрано, використовуємо URL.createObjectURL()
+          //   if (file) {
+          //     const imageUrl = URL.createObjectURL(file);
+          //     // Тут ви можете використати imageUrl для відображення аватарки
+          //     console.log('Temporary URL for the selected image:', imageUrl);
+          //   }
+          // }}
+          // {...register('avatar')}
         />
-        <label htmlFor="avatar">
+        <button onClick={handleUpload}>
           <svg className={s.uploud} width="18" height="18">
             <use xlinkHref={`${sprite}#upload`}></use>
           </svg>
           Upload a photo
-        </label>
+        </button>
         <br />
         <label htmlFor="gender">Your gender identity</label>
         <br />
