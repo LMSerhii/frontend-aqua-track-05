@@ -1,15 +1,119 @@
 .modal {
-  max-width: 518px;
-  min-height: 555px;
+  max-width: 343px;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  stroke: var(--dark);
   fill: var(--dark);
 }
 
 .title {
   font-weight: 700;
-  font-size: 28px;
-  line-height: 1.14286;
+  font-size: 20px;
+  line-height: 1.2;
   letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  color: var(--dark-blue);
+}
+
+.choose {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--dark-blue);
+  margin-bottom: 20px;
+}
+.amount {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.btnCounter {
+  border: 2px solid var(--dark-blue);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.countValue {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  text-align: center;
+  border-radius: 30px;
+  padding: 11px 20px;
+  color: var(--white);
+  background-color: var(--dark-blue);
+}
+
+.timeLable {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.timeInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 15px;
+  min-width: 303px;
+  height: 46px;
+  margin-bottom: 24px;
+}
+.timeInput[type='time']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.waterLable {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.waterInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 15px;
+  min-width: 303px;
+  height: 46px;
+  margin-bottom: 24px;
+}
+
+.btnSubmit {
+  border-radius: 30px;
+  padding: 14px 40px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--dark-blue);
 }
