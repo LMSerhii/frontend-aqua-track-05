@@ -3,7 +3,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { sprite } from '../../../shared/icons/index';
-import s from './UserSettingsForm.module.scss';
+import s from './UserSettingsForm.module.css';
+import Button from '../../../shared/components/Button/Button';
 
 export const UserSettingsForm = () => {
   const schema = yup
@@ -60,11 +61,11 @@ export const UserSettingsForm = () => {
         <br />
         <label htmlFor="Your_name">Your name</label>
         <br />
-        <input {...register('Your name')} />
+        <input type="text" {...register('Your name')} />
         <p>{errors.Your_name?.message}</p>
         <label htmlFor="Email">Email</label>
         <br />
-        <input {...register('Email')} />
+        <input type="text" {...register('Email')} />
         <p>{errors.Email?.message}</p>
         <div>
           <h3>My daily norma</h3>
@@ -87,13 +88,13 @@ export const UserSettingsForm = () => {
         </div>
         <label htmlFor="Your_weight">Your weight in kilograms:</label>
         <br />
-        <input {...register('Your_weight')} />
+        <input type="number" {...register('Your_weight')} />
         <br />
         <label htmlFor="Your_sports">
           The time of active participation in sports:
         </label>
         <br />
-        <input {...register('Your_sports')} />
+        <input type="number" {...register('Your_sports')} />
         <br />
         <p>The required amount of water in liters per day:</p>
         <p>1.8 L</p>
@@ -101,9 +102,9 @@ export const UserSettingsForm = () => {
           Write down how much water you will drink:
         </label>
         <br />
-        <input {...register('Your_water')} />
+        <input type="number" {...register('Your_water')} />
         <br />
-        <button type="submit">Save</button>
+        <Button>Save</Button>
       </form>
     </>
   );

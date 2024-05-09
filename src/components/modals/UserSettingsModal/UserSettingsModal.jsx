@@ -1,18 +1,14 @@
 // import { useState } from 'react';
 import { sprite } from '../../../shared/icons/index';
 import { UserSettingsForm } from '../UserSettingsForm/UserSettingsForm';
-import s from './UserSettingsModal.module.scss';
+import s from './UserSettingsModal.module.css';
 
 export const UserSettingsModal = () => {
   return (
     <>
       <div>
-        <button>
-          <svg
-            width="24"
-            height="24"
-            style={{ marginRight: '16px', marginLeft: '20px' }}
-          >
+        <button className={s.btnClose}>
+          <svg width="24" height="24">
             <use xlinkHref={`${sprite}#close`}></use>
           </svg>
         </button>
