@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../../../shared/components/Logo/Logo';
 import css from './WelcomeSection.module.css';
+
 export default function WelcomeSection() {
   return (
     <div className={css.section}>

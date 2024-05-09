@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import css from './AdvantagesSection.module.css';
+
 export default function AdvantagesSection() {
   return (
     <div className={css.section}>
