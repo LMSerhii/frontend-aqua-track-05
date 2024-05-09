@@ -18,9 +18,11 @@
   gap: 8px;
   color: var(--dark-blue);
   cursor: pointer;
+  font-weight: bold;
 }
-.settingBtn svg {
-  fill: var(--dark-blue);
+svg {
+  fill: none;
+  stroke: var(--dark-blue);
 }
 .logoutBtn {
   border: none;
@@ -28,7 +30,6 @@
   gap: 8px;
   color: var(--light-grey);
   cursor: pointer;
-}
-.logoutBtn svg {
-  fill: var(--light-grey);
+  font-weight: bold;
+  opacity: 0.5;
 }
