@@ -1,8 +1,13 @@
+import clsx from 'clsx';
 import s from './Button.module.css';
 
-const Button = ({ children, ...props }) => {
+const buildLinkClass = classname => {
+  return clsx(s.button, classname && classname);
+};
+
+const Button = ({ children, classname, ...props }) => {
   return (
-    <button className={s.button} {...props}>
+    <button className={buildLinkClass(classname)} {...props}>
       {children}
     </button>
   );
