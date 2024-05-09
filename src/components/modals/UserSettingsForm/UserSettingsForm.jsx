@@ -24,12 +24,6 @@ export const UserSettingsForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="avatar">
-          <svg className={s.uploud} width="18" height="18">
-            <use xlinkHref={`${sprite}#upload`}></use>
-          </svg>
-          Upload a photo
-        </label>
         <input
           type="file"
           id="avatar"
@@ -46,6 +40,12 @@ export const UserSettingsForm = () => {
           }}
           {...register('avatar')}
         />
+        <label htmlFor="avatar">
+          <svg className={s.uploud} width="18" height="18">
+            <use xlinkHref={`${sprite}#upload`}></use>
+          </svg>
+          Upload a photo
+        </label>
         <br />
         <label htmlFor="gender">Your gender identity</label>
         <br />
@@ -81,7 +81,7 @@ export const UserSettingsForm = () => {
           </p>
           <div>
             <svg className={s.uploud} width="18" height="18">
-              <use xlinkHref={`${sprite}#upload`}></use>
+              <use xlinkHref={`${sprite}#attention`}></use>
             </svg>
             <p>Active time in hours</p>
           </div>
