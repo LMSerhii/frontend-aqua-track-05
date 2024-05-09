@@ -8,7 +8,7 @@ console.log(sprite);
 
 export const WaterForm = () => {
   const [count, setCount] = useState(50);
-  const [waterValue, setWaterValue] = useState('');
+  const [waterValue, setWaterValue] = useState(count.toString()); // Устанавливаем начальное значение waterValue
 
   const handleWaterChange = event => {
     const value = event.target.value;
@@ -30,27 +30,35 @@ export const WaterForm = () => {
   };
 
   // const onAddCount = () => {
-  //   setCount(count + 50);
+  //   const newCount = count + 50;
+  //   setCount(newCount);
+  //   setWaterValue(newCount.toString());
   // };
+
   // const onRemoveCount = () => {
-  //   if (count === 0) {
-  //     setCount(0);
-  //   } else {
-  //     setCount(count - 50);
+  //   if (count >= 50) {
+  //     const newCount = count - 50;
+  //     setCount(newCount);
+  //     setWaterValue(newCount.toString());
   //   }
   // };
+
   const onAddCount = () => {
-    const newCount = count + 50;
-    setCount(newCount);
-    setWaterValue(newCount.toString());
+    const newValue = Math.min(
+      parseInt(waterValue, 10) + (50 - (parseInt(waterValue, 10) % 50)),
+      1000
+    );
+    setCount(newValue);
+    setWaterValue(newValue.toString());
   };
 
   const onRemoveCount = () => {
-    if (count >= 50) {
-      const newCount = count - 50;
-      setCount(newCount);
-      setWaterValue(newCount.toString());
-    }
+    const newValue = Math.max(
+      parseInt(waterValue, 10) - (parseInt(waterValue, 10) % 50 || 50),
+      0
+    );
+    setCount(newValue);
+    setWaterValue(newValue.toString());
   };
 
   return (
