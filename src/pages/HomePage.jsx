@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Home from '../components/homePage/Home';
+import WaterList from '../components/trackerPage/WaterList/WaterList';
 
 export default function HomePage() {
   return (
@@ -8,6 +9,7 @@ export default function HomePage() {
         <title>Home Page</title>
       </Helmet>
       <Home />
+      <WaterList />
     </>
   );
 }
