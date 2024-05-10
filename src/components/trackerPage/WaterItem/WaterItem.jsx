@@ -3,7 +3,7 @@ import { sprite } from '../../../shared/icons/index';
 
 import s from './WaterItem.module.css';
 
-const WaterItem = () => {
+const WaterItem = ({ setActiveEdit }) => {
   return (
     <li className={s.card}>
       <img
@@ -20,7 +20,7 @@ const WaterItem = () => {
       </div>
 
       <div className={s.cardBtnsBlock}>
-        <button className={s.iconBtnWrap}>
+        <button className={s.iconBtnWrap} onClick={() => setActiveEdit(true)}>
           <svg className={s.cardIcon} width="14" height="14">
             <use xlinkHref={`${sprite}#edit-2`}></use>
           </svg>
