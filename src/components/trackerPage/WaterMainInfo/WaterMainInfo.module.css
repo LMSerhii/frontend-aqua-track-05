@@ -4,6 +4,28 @@
     left: 16px;
     top: 24px;
   }
+
+  /*EDIT BUTTON*/
+  .add_water_btn_wrap {
+    position: absolute;
+    bottom: 32px;
+    right: 16px;
+  }
+
+  .add_water_btn {
+    background-color: var(--dark-blue) !important;
+    color: var(--white) !important;
+    width: 140px;
+    height: 46px;
+    font-size: 14px !important;
+    display: flex;
+    flex-wrap: nowrap !important;
+    padding: 14px 20px !important;
+    column-gap: 10px;
+  }
+
+  /*END EDIT BUTTON*/
+
   .bottle_page_wrapper {
     display: flex;
     position: relative;
@@ -16,7 +38,7 @@
   }
 
   .bottle_page_img {
-    margin-left: auto;
+    margin-left: 41px;
     margin-right: auto;
     margin-top: 50px;
     width: 262px;
@@ -46,6 +68,33 @@
     padding: 0;
     font-size: 14px;
   }
+
+  .bottle_page_norm_wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    row-gap: 6px;
+    position: absolute;
+    background-color: var(--white);
+    border-radius: 15px;
+    width: 103px;
+    height: 54px;
+    padding: 12px;
+    left: 16px;
+    top: 122px;
+  }
+
+  .bottle_page_norm_wrapper_text {
+    font-family: var(--main-font-family);
+    font-size: 10px;
+    color: #2f2f2f99;
+  }
+
+  .bottle_page_norm_wrapper_value {
+    font-family: var(--main-font-family);
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -58,6 +107,7 @@
     min-height: 477px;
     min-width: 374px;
     margin-top: 69px;
+    margin-left: 165px;
   }
 
   .bottle_page_logo {
@@ -71,20 +121,73 @@
     height: 106px;
     padding: 20px;
   }
-}
 
+  .logo {
+    left: 32px;
+    top: 32px;
+  }
+
+  .bottle_page_norm_wrapper {
+    top: 157px;
+    left: 32px;
+    padding: 14px;
+    width: 129px;
+    height: 78px;
+    row-gap: 4px;
+    justify-content: space-around;
+  }
+
+  .bottle_page_norm_wrapper_text {
+    font-size: 12px;
+  }
+
+  .bottle_page_norm_wrapper_value {
+    font-size: 15px;
+
+  }
+
+  /*EDIT BUTTON*/
+
+  .add_water_btn_wrap {
+    bottom: 64px;
+    right: 32px;
+  }
+
+  .add_water_btn {
+    width: 178px;
+    height: 60px;
+    font-size: 16px !important;
+    display: flex;
+    padding: 18px 30px !important;
+  }
+
+  /*END EDIT BUTTON*/
+
+}
 
 @media screen and (min-width: 1280px) {
   .bottle_page_wrapper {
-    max-width: 672px;
+    width: 100%;
     min-height: 736px;
   }
   .bottle_page_img {
     min-height: 604px;
     min-width: 472px;
-    margin-top: 92px  ;
+    margin-top: 92px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .bottle_page_slider_wrapper {
     bottom: 180px;
   }
+  .logo {
+    top: 33px;
+    left: 33px;
+  }
+
+  .bottle_page_norm_wrapper {
+    top: 157px;
+    left: 54px;
+  }
+
 }
