@@ -35,7 +35,7 @@
   gap: 8px;
 }
 
-.labelImportan {
+.labelImportanGender {
   font-size: 16px;
   font-weight: 700;
   line-height: 20px;
@@ -48,4 +48,56 @@
   margin-top: 14px;
   display: flex;
   align-items: center;
+  margin-bottom: 24px;
+}
+
+.labelImportan {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.WrapNameEmail {
+  display: flex;
+  flex-direction: column;
+  /* gap: 14px; */
+}
+
+.dailyNormaWrap {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.formula {
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #9be1a0;
+}
+
+.Wrapdesc {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.description {
+  padding: 16px;
+  gap: 10px;
+  border-radius: 15px;
+
+  color: #2f2f2f26 15%;
+  border: 1px solid #2f2f2f26;
+}
+
+.star {
+  color: #9be1a0;
+}
+
+.attention {
+  display: flex;
 }

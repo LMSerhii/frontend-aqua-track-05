@@ -101,7 +101,7 @@ export const UserSettingsForm = () => {
           </label>
         </div>
 
-        <label htmlFor="gender" className={s.labelImportan}>
+        <label htmlFor="gender" className={s.labelImportanGender}>
           Your gender identity
         </label>
         <div className={s.gender}>
@@ -128,37 +128,49 @@ export const UserSettingsForm = () => {
             Male
           </label>
         </div>
-        <label htmlFor="Your_name">Your name</label>
-        <br />
-        <input
-          type="text"
-          {...register('Your name')}
-          onChange={e => setName(e.target.value)}
-          placeholder="Name"
-        />
-        <p>{errors.Your_name?.message}</p>
-        <label htmlFor="Email">Email</label>
-        <br />
-        <input
-          type="text"
-          {...register('Email')}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <p>{errors.Email?.message}</p>
-        <div>
-          <h3>My daily norma</h3>
+
+        <div className={s.WrapNameEmail}>
+          <label htmlFor="Your_name" className={s.labelImportan}>
+            Your name
+          </label>
+
+          <input
+            type="text"
+            {...register('Your name')}
+            onChange={e => setName(e.target.value)}
+            placeholder="Name"
+          />
+          {/* <p>{errors.Your_name?.message}</p> */}
+          <label htmlFor="Email" className={s.labelImportan}>
+            Email
+          </label>
+
+          <input
+            type="text"
+            {...register('Email')}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          {/* <p>{errors.Email?.message}</p> */}
+        </div>
+
+        <div className={s.dailyNormaWrap}>
+          <h3 className={s.labelImportan}>My daily norma</h3>
           <p>For woman:</p>
-          <p>V=(M*0,03) + (T*0,4)</p>
+          <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
           <p>For man:</p>
-          <p>V=(M*0,04) + (T*0,6)</p>
-          <p>
-            * V is the volume of the water norm in liters per day, M is your
-            body weight, T is the time of active sports, or another type of
-            activity commensurate in terms of loads (in the absence of these,
-            you must set 0)
-          </p>
-          <div>
+          <p className={s.formula}>V=(M*0,04) + (T*0,6)</p>
+
+          <div className={s.Wrapdesc}>
+            <p className={s.description}>
+              <span className={s.star}>*</span> V is the volume of the water
+              norm in liters per day, M is your body weight, T is the time of
+              active sports, or another type of activity commensurate in terms
+              of loads (in the absence of these, you must set 0)
+            </p>
+          </div>
+
+          <div className={s.attention}>
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#attention`}></use>
             </svg>
