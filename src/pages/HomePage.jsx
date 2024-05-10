@@ -1,5 +1,5 @@
 import { Helmet } from 'react-helmet-async';
-import { WaterMainInfo } from '../components/trackerPage/WaterMainInfo/WaterMainInfo.jsx';
+import Home from '../components/homePage/Home';
 
 export default function HomePage() {
   return (
@@ -7,8 +7,7 @@ export default function HomePage() {
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <p>Home page</p>
-      <WaterMainInfo />
+      <Home />
     </>
   );
 }
