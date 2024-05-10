@@ -1,0 +1,42 @@
+.addWaterBtn {
+  width: 127px;
+  height: 30px;
+  gap: 10px;
+  background-color: transparent;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+  }
+}
+
+.addWaterBtn:is(:hover, :focus) .plusIconWrap {
+  background-color: var(--dark-blue);
+}
+
+.addWaterBtn:is(:hover, :focus) .plusIcon {
+  stroke: white;
+}
+
+.plusIconWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 24px;
+  font-weight: 300;
+  border-radius: 50%;
+  background-color: var(--lettuce);
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
+}
+
+.plusIcon {
+  stroke: var(--dark-blue);
+  line-height: 0;
+
+  transition: stroke var(--animation-duration) var(--animation-time-function);
+}
