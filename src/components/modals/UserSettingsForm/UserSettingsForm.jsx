@@ -5,22 +5,38 @@ import * as yup from 'yup';
 import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploaded, setUploaded] = useState();
+  const [uploaded, setUploaded] = useState(null);
+  const filePicker = useRef(null);
 
   const handleChange = event => {
-    console.log(event.target.files);
-    setSelectedFile(event.target.files[0]);
+    event.preventDefault();
+    const file = event.target.files[0];
+    console.log(file);
+    const imageUrl = URL.createObjectURL(file);
+    setSelectedFile(file);
+    setUploaded(imageUrl);
   };
 
   const handleUpload = async () => {
-    if (!selectedFile) {
-      alert('Please selected a file');
-      return;
-    }
+    const formData = new FormData();
+    formData.append('avatar', selectedFile);
+
+    const res = await fetch('/upload-avatar', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    setUploaded(data);
+  };
+
+  const handlePick = () => {
+    filePicker.current.click();
   };
 
   const schema = yup
@@ -40,29 +56,26 @@ export const UserSettingsForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="file"
-          id="avatar"
-          accept="image/*,.png,.jpg,.gif,.web"
-          onChange={handleChange}
-          // onChange={e => {
-          //   // Отримуємо файли, які обрано
-          //   const file = e.target.files[0];
-          //   // Якщо файл обрано, використовуємо URL.createObjectURL()
-          //   if (file) {
-          //     const imageUrl = URL.createObjectURL(file);
-          //     // Тут ви можете використати imageUrl для відображення аватарки
-          //     console.log('Temporary URL for the selected image:', imageUrl);
-          //   }
-          // }}
-          // {...register('avatar')}
-        />
-        <button onClick={handleUpload}>
-          <svg className={s.uploud} width="18" height="18">
-            <use xlinkHref={`${sprite}#upload`}></use>
-          </svg>
-          Upload a photo
-        </button>
+        <label htmlFor="avatar" onClick={handlePick}>
+          <input
+            className={s.hidden}
+            type="file"
+            ref={filePicker}
+            id="avatar"
+            accept="image/*,.png,.jpg,.gif,.web"
+            onChange={handleChange}
+          />
+          {uploaded && (
+            <img src={uploaded} className={s.avatar} alt="preview" />
+          )}
+
+          <button type="submit" onClick={handleUpload}>
+            <svg className={s.uploud} width="18" height="18">
+              <use xlinkHref={`${sprite}#upload`}></use>
+            </svg>
+            Upload a photo
+          </button>
+        </label>
         <br />
         <label htmlFor="gender">Your gender identity</label>
         <br />
