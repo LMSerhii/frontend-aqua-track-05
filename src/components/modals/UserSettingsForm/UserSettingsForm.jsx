@@ -10,6 +10,12 @@ import { useState, useRef } from 'react';
 export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState('');
+  const [weight, setWeight] = useState(0);
+  const [timeSport, setTimeSport] = useState(0);
+  const [waterUser, setWaterUser] = useState(0);
   const filePicker = useRef(null);
 
   const handleChange = event => {
@@ -23,7 +29,19 @@ export const UserSettingsForm = () => {
 
   const handleUpload = async () => {
     const formData = new FormData();
+
     formData.append('avatar', selectedFile);
+
+    const userData = {
+      name: name,
+      email: email,
+      gender: gender,
+      weight: weight,
+      timeSport: timeSport,
+      waterUser: waterUser,
+    };
+
+    formData.append('userData', JSON.stringify(userData));
 
     const res = await fetch('/upload-avatar', {
       method: 'POST',
@@ -83,19 +101,38 @@ export const UserSettingsForm = () => {
           type="radio"
           id="female"
           value="female"
-          {...register('gender')}
+          checked={gender === 'female'}
+          onChange={() => setGender('female')}
+          // {...register('gender')}
         />
         <label htmlFor="female">Female</label>
-        <input type="radio" id="male" value="male" {...register('gender')} />
+        <input
+          type="radio"
+          id="male"
+          value="male"
+          checked={gender === 'male'}
+          onChange={() => setGender('male')}
+          // {...register('gender')}
+        />
         <label htmlFor="male">Male</label>
         <br />
         <label htmlFor="Your_name">Your name</label>
         <br />
-        <input type="text" {...register('Your name')} />
+        <input
+          type="text"
+          {...register('Your name')}
+          onChange={e => setName(e.target.value)}
+          placeholder="Name"
+        />
         <p>{errors.Your_name?.message}</p>
         <label htmlFor="Email">Email</label>
         <br />
-        <input type="text" {...register('Email')} />
+        <input
+          type="text"
+          {...register('Email')}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+        />
         <p>{errors.Email?.message}</p>
         <div>
           <h3>My daily norma</h3>
@@ -118,21 +155,36 @@ export const UserSettingsForm = () => {
         </div>
         <label htmlFor="Your_weight">Your weight in kilograms:</label>
         <br />
-        <input type="number" {...register('Your_weight')} />
+        <input
+          type="number"
+          {...register('Your_weight')}
+          onChange={e => setWeight(e.target.value)}
+          placeholder="0.1"
+        />
         <br />
         <label htmlFor="Your_sports">
           The time of active participation in sports:
         </label>
         <br />
-        <input type="number" {...register('Your_sports')} />
+        <input
+          type="number"
+          {...register('Your_sports')}
+          onChange={e => setTimeSport(e.target.value)}
+          placeholder="0.1"
+        />
         <br />
         <p>The required amount of water in liters per day:</p>
-        <p>1.8 L</p>
+        <p>{'1.8 L'}</p>
         <label htmlFor="Your_water">
           Write down how much water you will drink:
         </label>
         <br />
-        <input type="number" {...register('Your_water')} />
+        <input
+          type="number"
+          {...register('Your_water')}
+          onChange={e => setWaterUser(e.target.value)}
+          placeholder="0.1"
+        />
         <br />
         <Button>Save</Button>
       </form>
