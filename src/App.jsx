@@ -21,16 +21,21 @@ export default function App() {
   const { isRefreshing } = useAuth();
 
   const { HOME, TRACKER, SIGNUP, SIGNIN } = routes;
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
   return isRefreshing ? (
     <Loader />
   ) : (
     <Routes>
       <Route path={HOME} element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
+        <Route
+          index
+          element={
+            <RestrictedRoute redirectTo={TRACKER} component={<HomePage />} />
+          }
+        />
         <Route
           path={SIGNUP}
           element={
