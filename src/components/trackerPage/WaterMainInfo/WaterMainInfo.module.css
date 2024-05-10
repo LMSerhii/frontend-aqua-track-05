@@ -143,7 +143,6 @@
 
   .bottle_page_norm_wrapper_value {
     font-size: 15px;
-
   }
 
   /*EDIT BUTTON*/
@@ -162,7 +161,6 @@
   }
 
   /*END EDIT BUTTON*/
-
 }
 
 @media screen and (min-width: 1280px) {
@@ -189,5 +187,4 @@
     top: 157px;
     left: 54px;
   }
-
 }
