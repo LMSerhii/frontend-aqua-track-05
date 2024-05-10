@@ -18,7 +18,7 @@
   }
 
   .bottle_page_logo {
-    /*font-family: FONT;*/
+    font-family: var(--main-font-family);
     position: absolute;
     left: 16px;
     top: 24px;
@@ -62,5 +62,22 @@
     bottom: 150px;
     width: 295px;
     height: 106px;
+    padding: 20px;
+  }
+}
+
+
+@media screen and (min-width: 1280px) {
+  .bottle_page_wrapper {
+    max-width: 672px;
+    min-height: 736px;
+  }
+  .bottle_page_img {
+    min-height: 604px;
+    min-width: 472px;
+    margin-top: 92px  ;
+  }
+  .bottle_page_slider_wrapper {
+    bottom: 180px;
   }
 }
