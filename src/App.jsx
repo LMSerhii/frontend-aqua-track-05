@@ -22,9 +22,9 @@ export default function App() {
 
   const { HOME, TRACKER, SIGNUP, SIGNIN } = routes;
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return isRefreshing ? (
     <Loader />
   ) : (

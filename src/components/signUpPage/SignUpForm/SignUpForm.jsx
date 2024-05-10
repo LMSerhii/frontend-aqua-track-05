@@ -4,10 +4,12 @@ import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register } from '../../../redux/auth/operations';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Please enter valid email').required('Required email'),
-  password: Yup.string().min(6, 'Too short').max(50, 'Too long'),
+  password: Yup.string().min(6, 'Too short').max(50, 'Too long').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/ , 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'),
   repeatPassword: Yup.string().oneOf(
     [Yup.ref('password')],
     'Passwords must match'
@@ -23,6 +25,15 @@ export default function SignUpForm() {
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
+
+  const dispatch = useDispatch();
+
+ const handleSubmit = (values, actions) => {
+  const name = values.email.split('@')[0];
+  const user = {name, email: values.email, password: values.password}; 
+    dispatch(register(user));
+    actions.resetForm();
+ } 
   return (
     <div className={css.section}>
       <div className={css.pad}>
@@ -31,7 +42,7 @@ export default function SignUpForm() {
         </div>
         <div className={css.div}>
           <h2 className={css.h2}>Sign Up</h2>
-          <Formik initialValues={initialValues} validationSchema={CheckSchema}>
+          <Formik initialValues={initialValues} validationSchema={CheckSchema} onSubmit={handleSubmit}>
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
