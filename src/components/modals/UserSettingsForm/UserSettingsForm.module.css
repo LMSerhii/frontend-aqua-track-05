@@ -7,3 +7,45 @@
   padding: 0;
   margin: 0;
 }
+.avatarWrap {
+  display: flex;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgWrap {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.uploudBtn {
+  display: flex;
+  gap: 8px;
+}
+
+.labelImportan {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  display: flex;
+}
+
+.gender {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+}

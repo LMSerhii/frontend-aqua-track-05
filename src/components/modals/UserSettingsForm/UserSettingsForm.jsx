@@ -74,48 +74,60 @@ export const UserSettingsForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="avatar" onClick={handlePick}>
-          <input
-            className={s.hidden}
-            type="file"
-            ref={filePicker}
-            id="avatar"
-            accept="image/*,.png,.jpg,.gif,.web"
-            onChange={handleChange}
-          />
-          {uploaded && (
-            <img src={uploaded} className={s.avatar} alt="preview" />
-          )}
+        <div className={s.avatarWrap}>
+          <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
+            <input
+              className={s.hidden}
+              type="file"
+              ref={filePicker}
+              id="avatar"
+              accept="image/*,.png,.jpg,.gif,.web"
+              onChange={handleChange}
+            />
+            {uploaded && (
+              <img src={uploaded} className={s.avatar} alt="preview" />
+            )}
 
-          <button type="submit" onClick={handleUpload}>
-            <svg className={s.uploud} width="18" height="18">
-              <use xlinkHref={`${sprite}#upload`}></use>
-            </svg>
-            Upload a photo
-          </button>
+            <button
+              type="submit"
+              className={s.uploudBtn}
+              onClick={handleUpload}
+            >
+              <svg className={s.uploud} width="18" height="18">
+                <use xlinkHref={`${sprite}#upload`}></use>
+              </svg>
+              Upload a photo
+            </button>
+          </label>
+        </div>
+
+        <label htmlFor="gender" className={s.labelImportan}>
+          Your gender identity
         </label>
-        <br />
-        <label htmlFor="gender">Your gender identity</label>
-        <br />
-        <input
-          type="radio"
-          id="female"
-          value="female"
-          checked={gender === 'female'}
-          onChange={() => setGender('female')}
-          // {...register('gender')}
-        />
-        <label htmlFor="female">Female</label>
-        <input
-          type="radio"
-          id="male"
-          value="male"
-          checked={gender === 'male'}
-          onChange={() => setGender('male')}
-          // {...register('gender')}
-        />
-        <label htmlFor="male">Male</label>
-        <br />
+        <div className={s.gender}>
+          <input
+            type="radio"
+            id="female"
+            value="female"
+            checked={gender === 'female'}
+            onChange={() => setGender('female')}
+            // {...register('gender')}
+          />
+          <label className={s.labelGender} htmlFor="female">
+            Female
+          </label>
+          <input
+            type="radio"
+            id="male"
+            value="male"
+            checked={gender === 'male'}
+            onChange={() => setGender('male')}
+            // {...register('gender')}
+          />
+          <label className={s.labelGender} htmlFor="male">
+            Male
+          </label>
+        </div>
         <label htmlFor="Your_name">Your name</label>
         <br />
         <input
