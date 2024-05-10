@@ -6,6 +6,7 @@ import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useState, useRef } from 'react';
+import Section from '../../../shared/components/Section/Section';
 
 export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -72,7 +73,7 @@ export const UserSettingsForm = () => {
   const onSubmit = data => console.log(data);
 
   return (
-    <>
+    <Section>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.avatarWrap}>
           <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
@@ -104,29 +105,33 @@ export const UserSettingsForm = () => {
         <label htmlFor="gender" className={s.labelImportanGender}>
           Your gender identity
         </label>
-        <div className={s.gender}>
-          <input
-            type="radio"
-            id="female"
-            value="female"
-            checked={gender === 'female'}
-            onChange={() => setGender('female')}
-            // {...register('gender')}
-          />
-          <label className={s.labelGender} htmlFor="female">
-            Female
-          </label>
-          <input
-            type="radio"
-            id="male"
-            value="male"
-            checked={gender === 'male'}
-            onChange={() => setGender('male')}
-            // {...register('gender')}
-          />
-          <label className={s.labelGender} htmlFor="male">
-            Male
-          </label>
+        <div className={s.genderWrap}>
+          <div className={s.gender}>
+            <input
+              type="radio"
+              id="female"
+              value="female"
+              checked={gender === 'female'}
+              onChange={() => setGender('female')}
+              // {...register('gender')}
+            />
+            <label className={s.labelGender} htmlFor="female">
+              Female
+            </label>
+          </div>
+          <div className={s.gender}>
+            <input
+              type="radio"
+              id="male"
+              value="male"
+              checked={gender === 'male'}
+              onChange={() => setGender('male')}
+              // {...register('gender')}
+            />
+            <label className={s.labelGender} htmlFor="male">
+              Male
+            </label>
+          </div>
         </div>
 
         <div className={s.WrapNameEmail}>
@@ -155,7 +160,7 @@ export const UserSettingsForm = () => {
         </div>
 
         <div className={s.dailyNormaWrap}>
-          <h3 className={s.labelImportan}>My daily norma</h3>
+          <h3 className={s.labelDailyNorma}>My daily norma</h3>
           <p>For woman:</p>
           <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
           <p>For man:</p>
@@ -177,41 +182,49 @@ export const UserSettingsForm = () => {
             <p>Active time in hours</p>
           </div>
         </div>
-        <label htmlFor="Your_weight">Your weight in kilograms:</label>
-        <br />
-        <input
-          type="number"
-          {...register('Your_weight')}
-          onChange={e => setWeight(e.target.value)}
-          placeholder="0.1"
-        />
-        <br />
-        <label htmlFor="Your_sports">
-          The time of active participation in sports:
-        </label>
-        <br />
-        <input
-          type="number"
-          {...register('Your_sports')}
-          onChange={e => setTimeSport(e.target.value)}
-          placeholder="0.1"
-        />
-        <br />
-        <p>The required amount of water in liters per day:</p>
-        <p>{'1.8 L'}</p>
-        <label htmlFor="Your_water">
-          Write down how much water you will drink:
-        </label>
-        <br />
-        <input
-          type="number"
-          {...register('Your_water')}
-          onChange={e => setWaterUser(e.target.value)}
-          placeholder="0.1"
-        />
-        <br />
-        <Button>Save</Button>
+
+        <div className={s.infoUser}>
+          <label htmlFor="Your_weight">Your weight in kilograms:</label>
+
+          <input
+            type="number"
+            {...register('Your_weight')}
+            onChange={e => setWeight(e.target.value)}
+            placeholder="0.1"
+          />
+
+          <label htmlFor="Your_sports">
+            The time of active participation in sports:
+          </label>
+
+          <input
+            type="number"
+            {...register('Your_sports')}
+            onChange={e => setTimeSport(e.target.value)}
+            placeholder="0.1"
+          />
+        </div>
+
+        <div className={s.requiredWater}>
+          <p>The required amount of water in liters per day:</p>
+          <p className={s.formula}>{'1.8 L'}</p>
+        </div>
+
+        <div className={s.waterUser}>
+          <label htmlFor="Your_water" className={s.labelImportan}>
+            Write down how much water you will drink:
+          </label>
+
+          <input
+            type="number"
+            {...register('Your_water')}
+            onChange={e => setWaterUser(e.target.value)}
+            placeholder="0.1"
+          />
+        </div>
+
+        <Button classname={s.btnSetting}>Save</Button>
       </form>
-    </>
+    </Section>
   );
 };
