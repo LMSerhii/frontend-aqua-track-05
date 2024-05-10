@@ -4,15 +4,21 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useState } from 'react';
+import {
+  currentTime,
+  getCurrentDate,
+} from '../../../shared/helpers/dateServices';
+
+const schema = yup.object().shape({
+  water: yup
+    .number()
+    .required('Water value is required')
+    .positive('Water value must be a positive number')
+    .integer('Water value must be an integer'),
+});
 
 export const WaterForm = ({ handleWaterChange, waterValue }) => {
-  const schema = yup.object().shape({
-    water: yup
-      .number()
-      .required('Water value is required')
-      .positive('Water value must be a positive number')
-      .integer('Water value must be an integer'),
-  });
+  const [time, setTime] = useState(currentTime);
 
   const {
     register,
@@ -22,21 +28,22 @@ export const WaterForm = ({ handleWaterChange, waterValue }) => {
     resolver: yupResolver(schema),
   });
 
-  // Текущее время пользователя
-  const currentTime = new Date().toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-
-  const [time, setTime] = useState(currentTime);
-
   const handleTimeChange = event => {
     setTime(event.target.value);
   };
 
   // Вывод объекта с данными о кол-ве воды
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = () => {
+    if (title === 'fdfd') {
+      const data = {
+        id: id,
+        date: getCurrentDate(),
+        amount: parseInt(waterValue),
+        time: currentTime,
+      };
+
+      console.log(data);
+    }
   };
 
   return (

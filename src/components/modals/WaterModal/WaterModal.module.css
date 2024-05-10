@@ -40,30 +40,3 @@
   color: var(--dark);
   margin-bottom: 8px;
 }
-
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.btnCounter {
-  border: 2px solid var(--dark-blue);
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border-radius: 50%;
-  font-weight: 700;
-}
-
-.countValue {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 1.28571;
-  text-align: center;
-  border-radius: 30px;
-  padding: 11px 20px;
-  color: var(--white);
-  background-color: var(--dark-blue);
-}
