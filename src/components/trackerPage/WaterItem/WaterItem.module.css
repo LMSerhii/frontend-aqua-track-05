@@ -46,6 +46,7 @@
   .amountWater {
     font-size: 15px;
     line-height: 1.49em;
+    padding-top: 1px;
   }
 }
 
