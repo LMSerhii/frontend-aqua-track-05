@@ -1,8 +1,8 @@
 import s from './WaterForm.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import {
   currentTime,
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
     .integer('Water value must be an integer'),
 });
 
-export const WaterForm = ({ handleWaterChange, waterValue }) => {
+export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
   const [time, setTime] = useState(currentTime);
 
   const {
@@ -34,15 +34,22 @@ export const WaterForm = ({ handleWaterChange, waterValue }) => {
 
   // Вывод объекта с данными о кол-ве воды
   const onSubmit = () => {
-    if (title === 'fdfd') {
-      const data = {
-        id: id,
+    if (operation === 'add') {
+      const data1 = {
         date: getCurrentDate(),
         amount: parseInt(waterValue),
         time: currentTime,
       };
 
-      console.log(data);
+      console.log(data1);
+    } else {
+      const data2 = {
+        id: id,
+        date: getCurrentDate(),
+        amount: parseInt(waterValue),
+        time: currentTime,
+      };
+      console.log(data2);
     }
   };
 
@@ -79,7 +86,7 @@ export const WaterForm = ({ handleWaterChange, waterValue }) => {
           onChange={handleWaterChange}
           value={waterValue}
         />
-
+        <br />
         <Button className={s.btnSubmit} type="submit">
           Save
         </Button>
