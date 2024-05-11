@@ -1,0 +1,10 @@
+.waterListBlock {
+  padding-bottom: 40px;
+}
+
+.waterListBlockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
