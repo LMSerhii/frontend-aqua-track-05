@@ -9,10 +9,12 @@ import {
   REGISTER,
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
+import { trackerApi, trackerReducer } from './tracker/trackerApi';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    [trackerApi.reducerPath]: trackerReducer,
   },
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({

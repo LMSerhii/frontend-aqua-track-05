@@ -5,6 +5,7 @@ import { BASE_URL, routes } from '../../routes';
 const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
+
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
