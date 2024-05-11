@@ -2,9 +2,7 @@
 import Button from '../../../shared/components/Button/Button';
 import css from './CalendarItem.module.css';
 
-export const CalendarItem = ({ index }) => {
-  const day = index + 1;
-  day.toString();
+export const CalendarItem = ({ day }) => {
   return (
     <>
       <Button className={css.dayBtn}>{day}</Button>
