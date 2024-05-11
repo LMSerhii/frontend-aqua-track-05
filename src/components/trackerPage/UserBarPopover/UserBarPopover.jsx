@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
-import { Modal } from '../../../shared/components/Modal/Modal.jsx';
+// import { Modal } from '../../../shared/components/Modal/Modal.jsx';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal.jsx';
 
 import css from './UserBarPopover.module.css';
@@ -40,9 +40,9 @@ export const UserBarPopover = () => {
         </div>
         {isOpen && (
           <div className="modal-overlay" onClick={closeModal}>
-            <Modal active={isOpen} setActive={setIsOpen}>
-              <UserSettingsModal onClose={closeModal} />
-            </Modal>
+            <UserSettingsModal active={isOpen} setActive={setIsOpen}>
+              {/* <UserSettingsModal onClose={closeModal} /> */}
+            </UserSettingsModal>
           </div>
         )}
         <Button onClick={toggleLogoutModalOpen} className={css.logoutBtn}>
