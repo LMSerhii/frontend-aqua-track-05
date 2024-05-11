@@ -4,6 +4,7 @@ import { WaterForm } from '../WaterForm/WaterForm';
 import { useRef, useState } from 'react';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import Counter from '../Counter/Counter';
+import { WaterFormEdit } from '../WaterFormEdit/WaterFormEdit';
 
 export const WaterModal = ({ title, subTitle, setActive, operation, id }) => {
   const [count, setCount] = useState(50);
@@ -84,12 +85,18 @@ export const WaterModal = ({ title, subTitle, setActive, operation, id }) => {
           onRemoveCount={onRemoveCount}
         />
 
-        <WaterForm
-          operation={operation}
-          id={id}
-          handleWaterChange={handleWaterChange}
-          waterValue={waterValue}
-        />
+        {operation === 'add' ? (
+          <WaterForm
+            handleWaterChange={handleWaterChange}
+            waterValue={waterValue}
+          />
+        ) : (
+          <WaterFormEdit
+            handleWaterChange={handleWaterChange}
+            waterValue={waterValue}
+            id={id}
+          />
+        )}
       </div>
     </div>
   );

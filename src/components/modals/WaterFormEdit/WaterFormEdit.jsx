@@ -1,4 +1,4 @@
-import s from './WaterForm.module.css';
+import s from './WaterFormEdit.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -17,7 +17,7 @@ const schema = yup.object().shape({
     .integer('Water value must be an integer'),
 });
 
-export const WaterForm = ({ handleWaterChange, waterValue }) => {
+export const WaterFormEdit = ({ handleWaterChange, waterValue, id }) => {
   const [time, setTime] = useState(currentTime);
 
   const {
@@ -35,11 +35,11 @@ export const WaterForm = ({ handleWaterChange, waterValue }) => {
   // Вывод объекта с данными о кол-ве воды
   const onSubmit = () => {
     const data = {
+      id: id,
       date: getCurrentDate(),
       amount: parseInt(waterValue),
       time: currentTime,
     };
-
     console.log(data);
   };
 
