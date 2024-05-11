@@ -40,8 +40,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.error = null;
       })
-      .addCase(register.rejected, (state) => {
-        state.error = true; 
+      .addCase(register.rejected, state => {
+        state.error = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;

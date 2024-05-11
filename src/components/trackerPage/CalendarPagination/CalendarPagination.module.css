@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.btn {
+  background-color: transparent;
+}
+.span {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  color: var(--dark-blue);
+}
+.arrow {
+  stroke: var(--dark-blue);
+  stroke-width: 1;
+}
+.pieIcon {
+  stroke-opacity: 0.5;
+}
