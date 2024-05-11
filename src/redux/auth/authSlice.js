@@ -1,16 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import {
-  logIn,
-  logOut,
-  refreshUser,
-  register,
-  waterAmountInPercent,
-} from './operations';
+import { logIn, logOut, refreshUser, register } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
+// Катя: dailyNorma: 1500 треба подадавати в юзера ///
+
 const authInitialState = {
-  user: { name: null, email: null, dailyNorma: 1500 },
+  user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -31,8 +27,8 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.error = null;
       })
-      .addCase(register.rejected, (state) => {
-        state.error = true; 
+      .addCase(register.rejected, state => {
+        state.error = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
@@ -54,10 +50,11 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-      })
-      .addCase(waterAmountInPercent.fulfilled, (state, action) => {
-        state.dailyNorma = action.payload.dailyNorma;
       });
+    // катя накидала ///
+    // .addCase(waterAmountInPercent.fulfilled, (state, action) => {
+    //   state.dailyNorma = action.payload.dailyNorma;
+    // });
   },
 });
 
@@ -75,4 +72,5 @@ export const selectUser = state => state.auth.user;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
-export const selectWaterAmountInPercent = state => state.auth.user.dailyNorma;
+// Катя накидала ///
+// export const selectWaterAmountInPercent = state => state.auth.user.dailyNorma;

@@ -1,4 +1,3 @@
-// CalendarItem. jsx
 import Button from '../../../shared/components/Button/Button';
 import css from './CalendarItem.module.css';
 

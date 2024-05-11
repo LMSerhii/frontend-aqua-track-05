@@ -23,10 +23,10 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      if(error.response.status === 409){
+      if (error.response.status === 409) {
         toast.error('User with this email already exists');
         thunkAPI.rejectWithValue(error.response.data.message);
-        throw error; 
+        throw error;
       }
       thunkAPI.rejectWithValue(error.message);
     }
@@ -75,20 +75,22 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const waterAmountInPercent = createAsyncThunk(
-  'auth/tracker',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(`${USERS}`);
-      console.log(response.data);
-      const dailyNorma = response.data.dailyNorma;
+// Катя накидала щось /////
 
-      const res = await axios.get(`${TRACKER}`);
-      const totalWaterAmountPerDay = res.data.totalAmount;
-      const inPercentage = (totalWaterAmountPerDay * 100) / dailyNorma;
-      return inPercentage;
-    } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const waterAmountInPercent = createAsyncThunk(
+//   'auth/tracker',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.get(`${USERS}`);
+//       console.log(response.data);
+//       const dailyNorma = response.data.dailyNorma;
+
+//       const res = await axios.get(`${TRACKER}`);
+//       const totalWaterAmountPerDay = res.data.totalAmount;
+//       const inPercentage = (totalWaterAmountPerDay * 100) / dailyNorma;
+//       return inPercentage;
+//     } catch (error) {
+//       thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );

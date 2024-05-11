@@ -1,5 +1,3 @@
-// Calendar.jsx
-
 import { CalendarItem } from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
 
