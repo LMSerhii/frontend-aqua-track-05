@@ -4,10 +4,10 @@ import { sprite } from '../../../shared/icons/index';
 import { UserSettingsForm } from '../UserSettingsForm/UserSettingsForm';
 import s from './UserSettingsModal.module.css';
 
-export const UserSettingsModal = () => {
+export const UserSettingsModal = ({ onClose }) => {
   return (
     <Section className={s.settingSection}>
-      <button className={s.btnClose}>
+      <button onClick={onClose} className={s.btnClose}>
         <svg width="24" height="24">
           <use xlinkHref={`${sprite}#close`}></use>
         </svg>
