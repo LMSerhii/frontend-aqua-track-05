@@ -102,7 +102,7 @@ export const UserSettingsForm = () => {
           </label>
         </div>
 
-        <label htmlFor="gender" className={s.labelImportanGender}>
+        {/* <label htmlFor="gender" className={s.labelImportanGender}>
           Your gender identity
         </label>
         <div className={s.genderWrap}>
@@ -129,6 +129,43 @@ export const UserSettingsForm = () => {
               // {...register('gender')}
             />
             <label className={s.labelGender} htmlFor="male">
+              Male
+            </label>
+          </div>
+        </div> */}
+        <label htmlFor="gender" className={s.labelImportanGender}>
+          Your gender identity
+        </label>
+        <div className={s.genderWrap}>
+          <div className={s.gender}>
+            <input
+              type="radio"
+              id="female"
+              value="female"
+              checked={gender === 'female'}
+              onChange={() => setGender('female')}
+              // {...register('gender')}
+            />
+            <label
+              className={`${s.labelGender} ${s.materialRadio}`}
+              htmlFor="female"
+            >
+              Female
+            </label>
+          </div>
+          <div className={s.gender}>
+            <input
+              type="radio"
+              id="male"
+              value="male"
+              checked={gender === 'male'}
+              onChange={() => setGender('male')}
+              // {...register('gender')}
+            />
+            <label
+              className={`${s.labelGender} ${s.materialRadio}`}
+              htmlFor="male"
+            >
               Male
             </label>
           </div>

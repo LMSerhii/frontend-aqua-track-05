@@ -144,56 +144,63 @@ input {
 }
 
 .genderWrap {
+  width: 187px;
   display: flex;
-  align-items: center;
-  width: 166px;
-  gap: 14px;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+/* Стилізація радіокнопок */
+/* Загальні стилі для радіокнопок */
+input[type='radio'] {
+  display: none; /* Приховати стандартну радіокнопку */
 }
 
+/* Зовнішній вигляд контейнера радіокнопки */
 .gender {
-  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.gender input[type='radio'] {
-  display: none;
-}
-
+/* Внутрішня рамка контейнера радіокнопки */
 .gender label {
-  display: flex;
-  align-items: center;
+  display: inline-block;
   position: relative;
+  padding-left: 25px;
   cursor: pointer;
 }
 
+/* Стилі для "псевдо-кнопок" */
 .gender label:before {
   content: '';
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #9be1a0;
-  border-radius: 50%;
-  margin-right: 10px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #9be1a0; /* Лінія рамки */
+  border-radius: 50%; /* Круглий контур */
 }
 
+/* Зміна стилю "псевдо-кнопок" при виборі */
 .gender input[type='radio']:checked + label:before {
-  background-color: transparent;
+  background-color: white; /* Колір заливки при виборі */
 }
 
+/* Додавання маленького кола всередині радіокнопки */
 .gender label:after {
   content: '';
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: #9be1a0;
-  border-radius: 50%;
+  display: none; /* Початково приховати */
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: background-color 0.3s ease;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #9be1a0; /* Колір кола */
+  border-radius: 50%; /* Круглий контур */
 }
 
+/* Показати маленьке коло при виборі */
 .gender input[type='radio']:checked + label:after {
-  background-color: #9be1a0;
+  display: block;
 }
