@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { routes } from '../../routes';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, TRACKER } = routes;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -61,6 +61,24 @@ export const refreshUser = createAsyncThunk(
       setAuthHeader(persistedToken);
       const response = await axios.get(`${USERS}${CURRENT}`);
       return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const waterAmountInPercent = createAsyncThunk(
+  'auth/tracker',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${USERS}`);
+      console.log(response.data);
+      const dailyNorma = response.data.dailyNorma;
+
+      const res = await axios.get(`${TRACKER}`);
+      const totalWaterAmountPerDay = res.data.totalAmount;
+      const inPercentage = (totalWaterAmountPerDay * 100) / dailyNorma;
+      return inPercentage;
     } catch (error) {
       thunkAPI.rejectWithValue(error.message);
     }

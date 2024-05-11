@@ -1,10 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { logIn, logOut, refreshUser, register } from './operations';
+import {
+  logIn,
+  logOut,
+  refreshUser,
+  register,
+  waterAmountInPercent,
+} from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
 const authInitialState = {
-  user: { name: null, email: null },
+  user: { name: null, email: null, dailyNorma: 1500 },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -40,6 +46,9 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(waterAmountInPercent.fulfilled, (state, action) => {
+        state.dailyNorma = action.payload.dailyNorma;
       });
   },
 });
@@ -57,3 +66,5 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectUser = state => state.auth.user;
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+
+export const selectWaterAmountInPercent = state => state.auth.user.dailyNorma;
