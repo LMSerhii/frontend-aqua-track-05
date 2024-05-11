@@ -5,8 +5,12 @@ import bottle2x from '../../../shared/images/bottleImage/water_bottle@2x.png';
 import bottle3x from '../../../shared/images/bottleImage/water_bottle@3x.png';
 import Logo from '../../../shared/components/Logo/Logo.jsx';
 import Button from '../../../shared/components/Button/Button.jsx';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
 
 export const WaterMainInfo = () => {
+
+  const width = window.innerWidth;
+
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
@@ -45,7 +49,10 @@ export const WaterMainInfo = () => {
 
       <div className={css.add_water_btn_wrap}>
         <Button classname={css.add_water_btn} type="submit">
-          <span>+</span> Add Water
+          <SharedSVG  className={css.icon}
+                      width={width < 768 ? "14" : "21"}
+                      height={width < 768 ? "14" : "21"}
+                      svgId={'plus'} /> Add Water
         </Button>
       </div>
       <div className={css.logo}>

@@ -5,6 +5,10 @@
     top: 24px;
   }
 
+  .icon {
+    stroke: var(--white)
+  }
+
   /*EDIT BUTTON*/
   .add_water_btn_wrap {
     position: absolute;
