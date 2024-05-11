@@ -36,8 +36,6 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
         state.error = null;
       })
       .addCase(register.rejected, state => {
@@ -79,9 +77,9 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        const index = state.user.findIndex(
-          item => item.id === action.payload.id
-        );
+        // const index = state.user.findIndex(
+        //   item => item.id === action.payload.id
+        // );
         state.user(...action.payload);
         state.isLoggedIn = true;
       })
