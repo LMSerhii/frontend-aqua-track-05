@@ -66,3 +66,43 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+// export const currentUser = createAsyncThunk(
+//   'current/upload',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.get(`${USERS}${CURRENT}`);
+//       return response.data;
+//     } catch (error) {
+//       thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const uploadPhoto = createAsyncThunk(
+  'uploadPhoto',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'updateUser',
+  async ({ body: formData }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`${USERS}${CURRENT}`, {
+        body: formData,
+      });
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

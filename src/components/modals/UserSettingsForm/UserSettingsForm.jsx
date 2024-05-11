@@ -5,8 +5,9 @@ import * as yup from 'yup';
 import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Section from '../../../shared/components/Section/Section';
+import axios from 'axios';
 
 export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,39 +20,69 @@ export const UserSettingsForm = () => {
   const [waterUser, setWaterUser] = useState(0);
   const filePicker = useRef(null);
 
-  const handleChange = event => {
-    event.preventDefault();
-    const file = event.target.files[0];
-    console.log(file);
-    const imageUrl = URL.createObjectURL(file);
-    setSelectedFile(file);
-    setUploaded(imageUrl);
+  //  useEffect(() => {
+  //     // Имитация асинхронного запроса
+  //     const fetchData = async () => {
+  //       try {
+  //         // Загрузка данных
+  //         const response = await fetch('https://api.example.com/data');
+  //         const result = await response.json();
+  //         // Установка загруженных данных в состояние
+  //         setData(result);
+  //       } catch (error) {
+  //         console.error('Failed to fetch data:', error);
+  //       }
+  //     });
+
+  const handleUpload = async event => {
+    try {
+      event.preventDefault();
+      const file = event.target.files[0];
+      console.log(file);
+      // const imageUrl = URL.createObjectURL(file);
+      setSelectedFile(file);
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      // formData.append('upload_preset', 'Upload_Preset');
+      formData.append('upload_preset', 'ylx3q541');
+
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+        formData
+      );
+
+      console.log('URL загруженного изображения:', response.data.secure_url);
+      setUploaded(response.data.secure_url);
+    } catch (error) {
+      console.error('Ошибка загрузки изображения:', error);
+    }
   };
 
-  const handleUpload = async () => {
-    const formData = new FormData();
+  const handleSaveSettings = async () => {
+    try {
+      const formData = new FormData();
+      // formData.append('avatar', selectedFile);
+      // formData.append('upload_preset', 'Upload_Preset');
+      const userData = {
+        avatar: uploaded,
+        name: name,
+        email: email,
+        gender: gender,
+        weight: weight,
+        timeSport: timeSport,
+        waterUser: waterUser,
+      };
+      formData.append('userData', JSON.stringify(userData));
 
-    formData.append('avatar', selectedFile);
-
-    const userData = {
-      name: name,
-      email: email,
-      gender: gender,
-      weight: weight,
-      timeSport: timeSport,
-      waterUser: waterUser,
-    };
-
-    formData.append('userData', JSON.stringify(userData));
-
-    const res = await fetch('/upload-avatar', {
-      method: 'POST',
-      body: formData,
-    });
-
-    const data = await res.json();
-
-    setUploaded(data);
+      const res = await axios.post('/upload', {
+        body: formData,
+      });
+      console.log('URL upload photo:', res.data);
+      // const data = await res.json();
+      // setUploaded(data);
+    } catch (error) {
+      console.error('Error dowload:', error);
+    }
   };
 
   const handlePick = () => {
@@ -83,7 +114,8 @@ export const UserSettingsForm = () => {
               ref={filePicker}
               id="avatar"
               accept="image/*,.png,.jpg,.gif,.web"
-              onChange={handleChange}
+              // onChange={handleChange}
+              onChange={handleUpload}
             />
             {uploaded && (
               <img src={uploaded} className={s.avatar} alt="preview" />
@@ -92,7 +124,7 @@ export const UserSettingsForm = () => {
             <button
               type="submit"
               className={s.uploudBtn}
-              onClick={handleUpload}
+              // onClick={handleUpload}
             >
               <svg className={s.uploud} width="18" height="18">
                 <use xlinkHref={`${sprite}#upload`}></use>
@@ -102,37 +134,6 @@ export const UserSettingsForm = () => {
           </label>
         </div>
 
-        {/* <label htmlFor="gender" className={s.labelImportanGender}>
-          Your gender identity
-        </label>
-        <div className={s.genderWrap}>
-          <div className={s.gender}>
-            <input
-              type="radio"
-              id="female"
-              value="female"
-              checked={gender === 'female'}
-              onChange={() => setGender('female')}
-              // {...register('gender')}
-            />
-            <label className={s.labelGender} htmlFor="female">
-              Female
-            </label>
-          </div>
-          <div className={s.gender}>
-            <input
-              type="radio"
-              id="male"
-              value="male"
-              checked={gender === 'male'}
-              onChange={() => setGender('male')}
-              // {...register('gender')}
-            />
-            <label className={s.labelGender} htmlFor="male">
-              Male
-            </label>
-          </div>
-        </div> */}
         <label htmlFor="gender" className={s.labelImportanGender}>
           Your gender identity
         </label>
@@ -260,7 +261,9 @@ export const UserSettingsForm = () => {
           />
         </div>
 
-        <Button classname={s.btnSetting}>Save</Button>
+        <Button classname={s.btnSetting} onClick={handleSaveSettings}>
+          Save
+        </Button>
       </form>
     </Section>
   );
