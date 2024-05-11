@@ -21,9 +21,10 @@ const AddWaterBtn = () => {
 
       <Modal active={activeAdd} setActive={setActiveAdd}>
         <WaterModal
-          setActive={setActiveAdd}
+          operation="add"
           title="Add water"
           subTitle="Choose a value"
+          setActive={setActiveAdd}
         />
       </Modal>
     </>

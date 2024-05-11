@@ -29,7 +29,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .cardImg {
+  .glassIcon {
     width: 44px;
     height: 45px;
   }
@@ -46,7 +46,6 @@
   .amountWater {
     font-size: 15px;
     line-height: 1.49em;
-    padding-top: 1px;
   }
 }
 
@@ -59,7 +58,7 @@
 
 @media screen and (min-width: 768px) {
   .time {
-    line-height: 1.86em;
+    line-height: 1.71em;
   }
 }
 
