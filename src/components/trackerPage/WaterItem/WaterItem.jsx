@@ -13,14 +13,9 @@ const WaterItem = ({ item: { id, amount, time } }) => {
   return (
     <>
       <li className={s.card}>
-        <img
-          src={glassImg}
-          alt="Glass of water"
-          width="38"
-          height="38"
-          className={s.cardImg}
-        />
-
+        <svg className={s.glassIcon} width="38" height="38">
+          <use xlinkHref={`${sprite}#glass`}></use>
+        </svg>
         <div className={s.cardInfo}>
           <span className={s.amountWater}>{amount} ml</span>
           <span className={s.time}>{time}</span>
