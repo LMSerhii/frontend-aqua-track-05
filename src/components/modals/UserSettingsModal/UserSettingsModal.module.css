@@ -1,0 +1,18 @@
+.settingSection {
+  position: relative;
+}
+
+.btnClose {
+  position: absolute;
+  top: 20px;
+  right: 16px;
+}
+
+.settingCaption {
+  margin-top: 40px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}

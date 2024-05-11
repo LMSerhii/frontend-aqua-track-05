@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import DailyInfo from '../components/trackerPage/DailyInfo/DailyInfo';
+import Section from '../shared/components/Section/Section';
 
 const TrackerPage = () => {
   return (
@@ -7,8 +8,9 @@ const TrackerPage = () => {
       <Helmet>
         <title>Tracker Page</title>
       </Helmet>
-      <p>tracker</p>
-      <DailyInfo />
+      <Section>
+        <DailyInfo />
+      </Section>
     </>
   );
 };

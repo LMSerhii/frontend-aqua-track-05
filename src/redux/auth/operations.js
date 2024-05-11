@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 import toast from 'react-hot-toast';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, TRACKER } = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -75,7 +75,35 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-// Катя накидала щось /////
+export const uploadPhoto = createAsyncThunk(
+  'uploadPhoto',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
+      );
+      return response.data.secure_url;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  'updateUser',
+  async ({ body: formData }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`${USERS}${CURRENT}`, {
+        body: formData,
+      });
+      return response.data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+// Катя накидала щось, є питання /////
 
 // export const waterAmountInPercent = createAsyncThunk(
 //   'auth/tracker',
@@ -83,12 +111,18 @@ export const refreshUser = createAsyncThunk(
 //     try {
 //       const response = await axios.get(`${USERS}`);
 //       console.log(response.data);
-//       const dailyNorma = response.data.dailyNorma;
+//       const dailyWater = response.data.dailyWater;
 
 //       const res = await axios.get(`${TRACKER}`);
 //       const totalWaterAmountPerDay = res.data.totalAmount;
-//       const inPercentage = (totalWaterAmountPerDay * 100) / dailyNorma;
+//       const inPercentage = (totalWaterAmountPerDay * 100) / dailyWater;
 //       return inPercentage;
+// export const currentUser = createAsyncThunk(
+//   'current/upload',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.get(`${USERS}${CURRENT}`);
+//       return response.data;
 //     } catch (error) {
 //       thunkAPI.rejectWithValue(error.message);
 //     }
