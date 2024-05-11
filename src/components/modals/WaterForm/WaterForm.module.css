@@ -1,0 +1,96 @@
+.timeLable {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.timeInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 15px;
+  min-width: 303px;
+  height: 46px;
+  margin-bottom: 24px;
+}
+.timeInput[type='time']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .timeLable {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .timeInput {
+    min-width: 438px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .timeInput {
+    min-width: 260px;
+    height: 46px;
+  }
+}
+
+.waterLable {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.waterInput {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  padding-left: 16px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 15px;
+  min-width: 303px;
+  height: 46px;
+  margin-bottom: 24px;
+}
+@media screen and (min-width: 768px) {
+  .waterLable {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+  .waterInput {
+    min-width: 438px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .waterInput {
+    min-width: 260px;
+    height: 46px;
+  }
+}
+
+.btnSubmit {
+  background-color: var(--lettuce);
+  border-radius: 30px;
+  padding: 14px 40px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--dark-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .btnSubmit {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+  }
+}
+
+.error {
+  font-size: 14px;
+  color: var(--error);
+  margin-bottom: 5px;
+}

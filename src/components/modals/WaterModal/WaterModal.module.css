@@ -1,0 +1,70 @@
+.form {
+  width: 343px;
+}
+
+.content {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .content {
+    padding-top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  stroke: var(--dark);
+  fill: transparent;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+  color: var(--dark-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+    max-width: 347px;
+  }
+}
+
+.choose {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--dark-blue);
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 768px) {
+  .choose {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
+
+.amount {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+@media screen and (min-width: 768px) {
+  .amount {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}

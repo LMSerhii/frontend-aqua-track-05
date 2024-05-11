@@ -23,6 +23,7 @@ const authInitialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -30,10 +31,17 @@ const authSlice = createSlice({
   initialState: authInitialState,
   extraReducers: builder => {
     builder
+      .addCase(register.pending, state => {
+        state.error = null;
+      })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        state.error = null;
+      })
+      .addCase(register.rejected, (state) => {
+        state.error = true; 
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;

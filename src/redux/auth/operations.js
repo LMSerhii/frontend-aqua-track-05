@@ -1,8 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { routes } from '../../routes';
+import { BASE_URL, routes } from '../../routes';
+import toast from 'react-hot-toast';
 
 const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
+
+axios.defaults.baseURL = `${BASE_URL}`;
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,6 +23,11 @@ export const register = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
+      if(error.response.status === 409){
+        toast.error('User with this email already exists');
+        thunkAPI.rejectWithValue(error.response.data.message);
+        throw error; 
+      }
       thunkAPI.rejectWithValue(error.message);
     }
   }
