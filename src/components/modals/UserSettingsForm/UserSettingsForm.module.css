@@ -1,0 +1,206 @@
+.hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+.avatarWrap {
+  display: flex;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgWrap {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.uploudBtn {
+  display: flex;
+  gap: 8px;
+}
+
+.labelImportanGender {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  text-align: center;
+  display: flex;
+}
+
+.gender {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.labelImportan {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  /* text-align: center; */
+  display: flex;
+}
+
+.WrapNameEmail {
+  display: flex;
+  flex-direction: column;
+  /* gap: 14px; */
+}
+
+.dailyNormaWrap {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.labelDailyNorma {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.formula {
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #9be1a0;
+  margin-bottom: 12px;
+}
+
+.Wrapdesc {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.description {
+  padding: 16px;
+  gap: 10px;
+  border-radius: 15px;
+
+  color: #2f2f2f26 15%;
+  border: 1px solid #2f2f2f26;
+}
+
+.star {
+  color: #9be1a0;
+}
+
+.attention {
+  display: flex;
+}
+
+.infoUser {
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.requiredWater {
+  margin-top: 24px;
+  margin-bottom: 14px;
+}
+
+.waterUser {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 26px;
+}
+
+input {
+  padding: 14px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 50px 0px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  margin-bottom: 14px;
+  margin-top: 8px;
+}
+
+.btnSetting {
+  margin-bottom: 20px;
+}
+
+.genderWrap {
+  width: 187px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+/* Стилізація радіокнопок */
+/* Загальні стилі для радіокнопок */
+input[type='radio'] {
+  display: none; /* Приховати стандартну радіокнопку */
+}
+
+/* Зовнішній вигляд контейнера радіокнопки */
+.gender {
+  margin-bottom: 10px;
+}
+
+/* Внутрішня рамка контейнера радіокнопки */
+.gender label {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+}
+
+/* Стилі для "псевдо-кнопок" */
+.gender label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #9be1a0; /* Лінія рамки */
+  border-radius: 50%; /* Круглий контур */
+}
+
+/* Зміна стилю "псевдо-кнопок" при виборі */
+.gender input[type='radio']:checked + label:before {
+  background-color: white; /* Колір заливки при виборі */
+}
+
+/* Додавання маленького кола всередині радіокнопки */
+.gender label:after {
+  content: '';
+  display: none; /* Початково приховати */
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background-color: #9be1a0; /* Колір кола */
+  border-radius: 50%; /* Круглий контур */
+}
+
+/* Показати маленьке коло при виборі */
+.gender input[type='radio']:checked + label:after {
+  display: block;
+}
