@@ -48,7 +48,7 @@ export const WaterMainInfo = () => {
       </div>
 
       <div className={css.add_water_btn_wrap}>
-        <Button classname={css.add_water_btn} type="submit">
+        <Button classname={css.add_water_btn_section} type="submit">
           <SharedSVG  className={css.icon}
                       width={width < 768 ? "14" : "21"}
                       height={width < 768 ? "14" : "21"}

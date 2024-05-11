@@ -9,6 +9,12 @@
     stroke: var(--white)
   }
 
+
+  .add_water_btn_section:hover .icon {
+    transition: stroke 300ms ease-in-out;
+    stroke: var(--lettuce-secondary); /* Змінює колір fill у SVG при наведенні */
+  }
+
   /*EDIT BUTTON*/
   .add_water_btn_wrap {
     position: absolute;
@@ -16,7 +22,7 @@
     right: 16px;
   }
 
-  .add_water_btn {
+  .add_water_btn_section {
     background-color: var(--dark-blue) !important;
     color: var(--white) !important;
     width: 140px;
@@ -26,6 +32,11 @@
     flex-wrap: nowrap !important;
     padding: 14px 20px !important;
     column-gap: 10px;
+  }
+
+  .add_water_btn_section:hover {
+    transition: color 300ms ease-in-out !important;
+    color: var(--lettuce-secondary) !important;
   }
 
   /*END EDIT BUTTON*/
@@ -156,7 +167,7 @@
     right: 32px;
   }
 
-  .add_water_btn {
+  .add_water_btn_section {
     width: 178px;
     height: 60px;
     font-size: 16px !important;
