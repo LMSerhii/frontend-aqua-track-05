@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../../redux/auth/operations';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Pls valid email').required('Required email'),
@@ -17,6 +19,21 @@ const initialValues = {
 export default function SignInForm() {
   const idEmail = useId();
   const idPassword = useId();
+  const dispatch = useDispatch(); 
+
+  const handleSubmit = (values, actions) => {
+    const user = { 
+      email: values.email, 
+      password: values.password 
+    }
+    dispatch(logIn(user)).unwrap().then(() => { 
+      actions.resetForm(); 
+     console.log('User is logged in');
+    }).catch((error) => { 
+      console.log(error);
+    }); 
+  } 
+
   return (
     <div className={css.section}>
       <div className={css.pad}>
@@ -25,7 +42,7 @@ export default function SignInForm() {
         </div>
         <div className={css.div}>
           <h2 className={css.h2}>Sign in</h2>
-          <Formik initialValues={initialValues} validationSchema={CheckSchema}>
+          <Formik initialValues={initialValues} validationSchema={CheckSchema} onSubmit={handleSubmit}>
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
