@@ -1,4 +1,3 @@
-import glassImg from '../../../shared/images/trackerPage/glass@1x.png';
 import { sprite } from '../../../shared/icons/index';
 
 import s from './WaterItem.module.css';
@@ -37,12 +36,11 @@ const WaterItem = ({ item: { id, amount, time } }) => {
 
       <Modal active={activeEdit} setActive={setActiveEdit}>
         <WaterModal
-          setActive={setActiveEdit}
-          id={id}
-          waterValue={amount}
-          time={time}
+          operation="edit"
           title="Edit the entered amount of water"
           subTitle="Correct entered data:"
+          id={id}
+          setActive={setActiveEdit}
         />
       </Modal>
 
