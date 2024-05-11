@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import DailyInfo from '../components/trackerPage/DailyInfo/DailyInfo';
 
 const TrackerPage = () => {
   return (
@@ -6,7 +7,8 @@ const TrackerPage = () => {
       <Helmet>
         <title>Tracker Page</title>
       </Helmet>
-      <p>Tracker</p>
+      <p>tracker</p>
+      <DailyInfo />
     </>
   );
 };
