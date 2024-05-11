@@ -22,9 +22,20 @@
   padding: 20px;
   border-radius: 12px;
   background-color: white;
-  width: 50vw;
+  /* width: 50vw; */
+  width: 343px;
   transform: scale(0.5);
   transition: 0.4s all;
+}
+@media screen and (min-width: 768px) {
+  .modalContent {
+    width: 518px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .modalContent {
+    width: 300px;
+  }
 }
 
 .modalContent.active {

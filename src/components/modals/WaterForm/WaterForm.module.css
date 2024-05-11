@@ -18,6 +18,22 @@
 .timeInput[type='time']::-webkit-calendar-picker-indicator {
   display: none;
 }
+@media screen and (min-width: 768px) {
+  .timeLable {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .timeInput {
+    min-width: 438px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .timeInput {
+    min-width: 260px;
+    height: 46px;
+  }
+}
 
 .waterLable {
   font-weight: 700;
@@ -36,6 +52,22 @@
   height: 46px;
   margin-bottom: 24px;
 }
+@media screen and (min-width: 768px) {
+  .waterLable {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+  .waterInput {
+    min-width: 438px;
+    height: 56px;
+  }
+}
+@media screen and (max-width: 350px) {
+  .waterInput {
+    min-width: 260px;
+    height: 46px;
+  }
+}
 
 .btnSubmit {
   background-color: var(--lettuce);
@@ -47,6 +79,14 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--dark-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .btnSubmit {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+  }
 }
 
 .error {
