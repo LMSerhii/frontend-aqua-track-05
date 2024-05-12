@@ -5,7 +5,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 import css from './SignUpForm.module.css';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
-import { sprite } from '../../../shared/icons/index.js';
 import toast from 'react-hot-toast';
 
 import { useDispatch } from 'react-redux';
@@ -13,6 +12,7 @@ import { useId,  } from 'react';
 
 import Logo from '../../../shared/components/Logo/Logo';
 import { register } from '../../../redux/auth/operations';
+import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string()
@@ -58,22 +58,6 @@ export default function SignUpForm() {
         }
         toast.error('Something went wrong. Please try again later.');
       });
-  };
-
-  const onClickIcon = (name, iconId) => {
-    if (document.getElementById(name).type === 'password') {
-      document.getElementById(name).type = 'text';
-      document
-        .getElementById(iconId)
-        .querySelector('use')
-        .setAttribute('xlink:href', `${sprite}#eye-password-open`);
-    } else {
-      document.getElementById(name).type = 'password';
-      document
-        .getElementById(iconId)
-        .querySelector('use')
-        .setAttribute('xlink:href', `${sprite}#eye-password-close`);
-    }
   };
 
   return (
@@ -123,15 +107,7 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
-                <button className={css.divIcon} type="button">
-                  <SharedSVG
-                    id="firstIconPassword"
-                    svgId="eye-password-close"
-                    width={30}
-                    height={30}
-                    onClick={() => onClickIcon(idPassword, 'firstIconPassword')}
-                  />
-                </button>
+                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
@@ -149,17 +125,7 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
-                <button className={css.divIcon} type="button">
-                  <SharedSVG
-                    id="SecondIconPassword"
-                    svgId="eye-password-close"
-                    width={30}
-                    height={30}
-                    onClick={() =>
-                      onClickIcon(idRepeatPassword, 'SecondIconPassword')
-                    }
-                  />
-                </button>
+                <ShareIconPassword name={idRepeatPassword} iconId="SecondIconPassword" css={css} /> 
               </div>
               <button type="submit" className={css.button}>
                 Sign up

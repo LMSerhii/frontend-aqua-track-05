@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Pls valid email').required('Required email'),
@@ -111,6 +112,8 @@ export default function SignInForm() {
                   component="span"
                   className={css.error}
                 />
+                
+                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
               </div>
               <button type="submit" className={css.button}>
                 Sign in
