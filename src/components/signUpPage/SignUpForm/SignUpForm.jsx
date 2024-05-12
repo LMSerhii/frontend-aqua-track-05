@@ -1,14 +1,19 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import css from './SignUpForm.module.css';
 import * as Yup from 'yup';
-import { useId, useState } from 'react';
-import Logo from '../../../shared/components/Logo/Logo';
+
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { register } from '../../../redux/auth/operations';
-import toast from 'react-hot-toast';
+
+import css from './SignUpForm.module.css';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import { sprite } from '../../../shared/icons/index.js';
+import toast from 'react-hot-toast';
+
+import { useDispatch } from 'react-redux';
+import { useId,  } from 'react';
+
+import Logo from '../../../shared/components/Logo/Logo';
+import { register } from '../../../redux/auth/operations';
+
 const CheckSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter valid email')
@@ -54,7 +59,7 @@ export default function SignUpForm() {
         toast.error('Something went wrong. Please try again later.');
       });
   };
-  
+
   const onClickIcon = (name, iconId) => {
     if (document.getElementById(name).type === 'password') {
       document.getElementById(name).type = 'text';
