@@ -3,10 +3,10 @@ import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 import s from './DailyInfo.module.css';
-
+import { useTranslation } from 'react-i18next';
 const DailyInfo = () => {
   const [isWaterAdd, setIsWaterAdd] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>
@@ -18,7 +18,7 @@ const DailyInfo = () => {
       ) : (
         <div className={s.emptyListWaterTextWrap}>
           <p className={s.emptyListWaterText}>
-            Start tracking your water intake by clicking the Add water button.
+            {t('DailyInfo.startTrackingText')}
           </p>
         </div>
       )}

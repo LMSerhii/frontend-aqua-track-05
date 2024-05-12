@@ -42,6 +42,7 @@
     "passwoedRequired": "Потрібний пароль",
     "repeatPasswordOneOf": "Паролі мають збігатися",
     "repeatPasswordRequired": "Потрібний пароль",
+    "passwordRequired": "Потрібний пароль",
     "emailPlace": "Введіть свою електронну адресу",
     "passwordPlace": "Введіть свій пароль",
     "passwordRepeatPlace": "Повторити пароль"
@@ -84,5 +85,28 @@
   "UserBarPopover": {
     "settingsBtn": "Налаштування",
     "logOutBtn": "Вийти"
+  },
+
+  "MonthInfo": {
+    "month": "Місяць"
+  },
+
+  "DailyInfo": {
+    "startTrackingText": "Почніть відстежувати споживання води, натиснувши кнопку Додати воду."
+  },
+
+  "ChooseDate": {
+    "january": "Січень",
+    "february": "Лютий",
+    "march": "Березень",
+    "april": "Квітень",
+    "may": "Травень",
+    "june": "Червень",
+    "july": "Липень",
+    "august": "Серпень",
+    "september": "Вересень",
+    "october": "Жовтень",
+    "november": "Листопад",
+    "december": "Грудень"
   }
 }

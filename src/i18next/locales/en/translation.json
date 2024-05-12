@@ -44,7 +44,7 @@
     "passwordMin": "Too short",
     "passwordMax": "Too long",
     "passwordMatches": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
-    "passwordRequired": "Required password",
+    "passwordRequired": "Required password9999",
     "repeatPasswordOneOf": "Passwords must match",
     "repeatPasswordRequired": "Required password",
     "emailPlace": "Enter your email",
@@ -89,5 +89,30 @@
   "UserBarPopover": {
     "settingsBtn": "Setting",
     "logOutBtn": "Log out"
+  },
+
+  "MonthInfo": {
+    "month": "Month"
+  },
+
+  "DailyInfo": {
+    "startTrackingText": "Start tracking your water intake by clicking the Add water button."
+  },
+
+  "ChooseDate": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "today": "Today",
+    "en": "uk-UA"
   }
 }
