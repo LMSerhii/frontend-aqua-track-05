@@ -1,12 +1,12 @@
 {
-  "WelcomeSection": {
+  "welcomeSection": {
     "logo": "AQUATRACK",
     "title": "Water consumption tracker",
     "recordPparag": "Record daily water intake and track",
     "tryTrackerBtn": "Try tracker",
     "signIn": "Sign In"
   },
-  "AdvantagesSection": {
+  "advantagesSection": {
     "ourParag": "Our",
     "happySpan": "happy",
     "customersParag": "customers",
@@ -14,7 +14,8 @@
     "textView": "View statistics",
     "textPersonal": "Personal rate setting"
   },
-  "dailyNormaModal": {
+
+  "singInForm": {
     "forField1": "For girl",
     "forField2": "For man",
     "forField3": "For woman",

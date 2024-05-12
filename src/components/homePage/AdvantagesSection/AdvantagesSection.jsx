@@ -70,22 +70,22 @@ export default function AdvantagesSection() {
         </ul>
         {/* <h1 className={css.h1}>{t('WelcomeSection.title')}</h1> */}
         <p className={css.parag}>
-          {t('AdvantagesSection.ourParag')}{' '}
-          <span className={css.span}>{t('AdvantagesSection.happySpan')}</span>{' '}
-          {t('AdvantagesSection.customersParag')}
+          {t('advantagesSection.ourParag')}{' '}
+          <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
+          {t('advantagesSection.customersParag')}
         </p>
         <ul className={css.list_trk}>
           <li className={css.item_trk}>
             <div className={css.flex}>
               <div className={css.cycle}></div>
-              <p className={css.text}>{t('AdvantagesSection.ourParag')}</p>
+              <p className={css.text}>{t('advantagesSection.ourParag')}</p>
             </div>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('AdvantagesSection.happySpan')}</p>
+            <p className={css.text2}>{t('advantagesSection.happySpan')}</p>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('AdvantagesSection.customersParag')}</p>
+            <p className={css.text2}>{t('advantagesSection.customersParag')}</p>
           </li>
         </ul>
       </div>

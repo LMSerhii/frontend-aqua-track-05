@@ -12,11 +12,11 @@ export default function Logo() {
     <div>
       {!isLoggedIn ? (
         <NavLink to="/" className={css.logo}>
-          {t('WelcomeSection.logo')}
+          {t('welcomeSection.logo')}
         </NavLink>
       ) : (
         <NavLink to="tracker" className={css.logo}>
-          {t('WelcomeSection.logo')}
+          {t('welcomeSection.logo')}
         </NavLink>
       )}
     </div>
