@@ -1,4 +1,4 @@
-import css from './Header.module.css';
+import css from './Head.module.css';
 import { useTranslation } from 'react-i18next';
 
 const UserAuth = () => {
