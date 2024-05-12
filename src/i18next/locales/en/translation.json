@@ -6,6 +6,7 @@
     "tryTrackerBtn": "Try tracker",
     "signIn": "Sign In"
   },
+
   "advantagesSection": {
     "ourParag": "Our",
     "happySpan": "happy",
@@ -16,14 +17,15 @@
   },
 
   "singInForm": {
-    "forField1": "For girl",
-    "forField2": "For man",
-    "forField3": "For woman",
-    "formName": "Calculate your rate",
-    "formulaDescSymbol": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
-    "questionText1": "Your weight in kilograms",
-    "questionText2": "The time of active participation in sports or other activities with a high physical. Load in hours",
-    "requiredAmountText": "The required amount of water in liters per day",
+    "signIn": "Sing In",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "enterPassword": "Enter your password",
+    "sigIn": "Sign",
+    "textDont": "Don’t have an account?",
+    "sigUn": "Sign Up",
+
     "howMuchText": "Write down how much water you will drink",
     "save": "Save",
     "errors": {

@@ -17,7 +17,6 @@ const initialValues = {
   email: '',
   password: '',
 };
-const { t } = useTranslation();
 
 export default function SignInForm() {
   const idEmail = useId();
@@ -41,6 +40,7 @@ export default function SignInForm() {
       });
   };
 
+  const { t } = useTranslation();
   return (
     <div className={css.section}>
       <div className={css.pad}>
@@ -48,8 +48,8 @@ export default function SignInForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>Sign in</h2>
-          {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+          <h2 className={css.h2}>{t('singInForm.signIn')}</h2>
+
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -58,15 +58,14 @@ export default function SignInForm() {
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
-                  Email
-                  {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+                  {t('singInForm.email')}
                 </label>
                 <Field
                   type="text"
                   name="email"
                   id={idEmail}
                   className={css.input}
-                  placeholder="Enter your email"
+                  placeholder={t('singInForm.emailPlaceholder')}
                 />
                 <ErrorMessage
                   name="email"
@@ -76,15 +75,14 @@ export default function SignInForm() {
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
-                  Password
-                  {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+                  {t('singInForm.password')}
                 </label>
                 <Field
                   type="password"
                   name="password"
                   id={idPassword}
                   className={css.input}
-                  placeholder="Enter your password"
+                  placeholder={t('singInForm.enterPassword')}
                 />
                 <ErrorMessage
                   name="password"
@@ -93,18 +91,15 @@ export default function SignInForm() {
                 />
               </div>
               <button type="submit" className={css.button}>
-                Sign in
-                {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+                {t('singInForm.sigIn')}
               </button>
             </Form>
           </Formik>
         </div>
         <p className={css.text}>
-          Don’t have an account?
-          {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+          {t('singInForm.textDont')}
           <NavLink to="/signup" className={css.link}>
-            Sign Up
-            {/* <p className={css.parag}>{t('WelcomeSection.recordPparag')}</p> */}
+            {t('singInForm.sigUn')}
           </NavLink>
         </p>
       </div>
