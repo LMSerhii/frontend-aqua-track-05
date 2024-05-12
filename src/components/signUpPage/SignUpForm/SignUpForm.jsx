@@ -54,6 +54,7 @@ export default function SignUpForm() {
         toast.error('Something went wrong. Please try again later.');
       });
   };
+  
   const onClickIcon = (name, iconId) => {
     if (document.getElementById(name).type === 'password') {
       document.getElementById(name).type = 'text';
