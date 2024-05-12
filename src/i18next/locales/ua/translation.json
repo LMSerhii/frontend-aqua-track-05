@@ -1,19 +1,14 @@
 {
-  "welcomePage": {
+  "WelcomeSection": {
+    "logo": "AQUATRACK",
     "title": "Відстеження споживання води",
-    "subtitle": "Записуйте щоденне споживання води та відстежуйте",
-    "benefitsTitle": "Переваги трекера",
-    "benefitsHabit": "Потяг до звички",
-    "benefitsView": "Перегляд статистики",
-    "benefitsPersonal": "Індивідуальне налаштування норми",
+    "recordPparag": "Записуйте щоденне споживання води та відстежуйте",
     "tryTrackerBtn": "Спробуйте трекер",
-    "whyTitle": "Навіщо пити воду",
-    "whyItemSupply": "Забезпечення поживними речовинами всіх органів",
-    "whyItemProviding": "Забезпечення легень киснем",
-    "whyItemHeart": "Підтримка роботи серця",
-    "whyItemRelease": "Вивільнення оброблених речовин",
-    "whyItemEnsuring": "Забезпечення стабільності внутрішнього середовища",
-    "whyItemTemperature": "Підтримка в межах нормальної температури",
-    "whyItemDisease": "Підтримка імунної системи, здатної протистояти хворобам"
+    "signIn": "Логін"
+  },
+  "AdvantagesSection": {
+    "ourParag": "наші",
+    "happySpan": "щасливі",
+    "customersParag": "клієнти"
   }
 }

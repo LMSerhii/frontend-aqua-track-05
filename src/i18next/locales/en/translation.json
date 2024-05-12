@@ -1,25 +1,18 @@
 {
-  "welcomePage": {
+  "WelcomeSection": {
+    "logo": "AQUATRACK",
     "title": "Water consumption tracker",
-    "subtitle": "Record daily water intake and track",
-    "benefitsTitle": "Tracker Benefits",
-    "benefitsHabit": "Habit drive",
-    "benefitsView": "View statistics",
-    "benefitsPersonal": "Personal rate setting",
+    "recordPparag": "Record daily water intake and track",
     "tryTrackerBtn": "Try tracker",
-    "whyTitle": "Why drink water",
-    "whyItemSupply": "Supply of nutrients to all organs",
-    "whyItemProviding": "Providing oxygen to the lungs",
-    "whyItemHeart": "Maintaining the work of the heart",
-    "whyItemRelease": "Release of processed substances",
-    "whyItemEnsuring": "Ensuring the stability of the internal environment",
-    "whyItemTemperature": "Maintaining within the normal temperature",
-    "whyItemDisease": "Maintaining an immune system capable of resisting disease"
+    "signIn": "Sign In"
   },
-  "dailyNorma": {
-    "normaTitle": "My daily norma",
-    "l": "L",
-    "edit": "Edit"
+  "AdvantagesSection": {
+    "ourParag": "Our",
+    "happySpan": "happy",
+    "customersParag": "customers",
+    "textHabit": "Habit drive",
+    "textView": "View statistics",
+    "textPersonal": "Personal rate setting"
   },
   "dailyNormaModal": {
     "forField1": "For girl",
