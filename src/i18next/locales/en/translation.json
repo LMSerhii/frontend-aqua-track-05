@@ -30,14 +30,28 @@
     "passwordMin": "Too short",
     "passwordMax": "Too long"
   },
-  "monthStatsTable": {
-    "title": "Month",
-    "btnChart": "See monthly statistic",
-    "en": "en-US",
-    "l": "L",
-    "statistic": "Monthly statistic",
-    "text": "Statistic"
+
+  "singUnForm": {
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat Password",
+    "sigmUp": "Sign up",
+    "textAlready": "Already have account?",
+    "signIn": "Sign In",
+    "emailVelid": "Please enter valid email",
+    "emailRequired": "Required email",
+    "passwordMin": "Too short",
+    "passwordMax": "Too long",
+    "passwordMatches": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    "passwoedRequired": "Required password",
+    "repeatPasswordOneOf": "Passwords must match",
+    "repeatPasswordRequired": "Required password",
+    "emailPlace": "Enter your email",
+    "passwordPlace": "Enter your password",
+    "passwordRepeatPlace": "Repeat password"
   },
+
   "addWaterModal": {
     "ml": "ml",
     "headlineEdit": "Correct entered data",
