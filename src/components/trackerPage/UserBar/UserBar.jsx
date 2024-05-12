@@ -18,7 +18,7 @@ export const UserBar = () => {
   return (
     <>
       <Button className={css.button} onClick={togglePopover}>
-        <div className={css.userName}>Nadia{user.name}</div>
+        <div className={css.userName}>{user.name}</div>
         <img src={user.avatar} alt="User avatar" className={css.img} />
         {isPopoverOpen ? (
           <BiChevronUp size="16px" color="white" />

@@ -1,19 +1,23 @@
 // CalendarPagination.jsx
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
 
 import css from './CalendarPagination.module.css';
+import { setFilterDate } from '../../../redux/tracker/dateSlice';
 // import { Calendar } from '../Calendar/Calendar';
 
 export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
+  const dispatch = useDispatch();
+  // getCurrentDate
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
       selectedDate.getFullYear(),
       selectedDate.getMonth() - 1,
       1
-    );
+    ).toLocaleDateString();
     setSelectedDate(prevoiusMonth);
     // updateNumberOfDays(prevoiusMonth);
   };
@@ -23,7 +27,7 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
       selectedDate.getFullYear(),
       selectedDate.getMonth() + 1,
       1
-    );
+    ).toLocaleDateString();
     setSelectedDate(nextMonth);
     // updateNumberOfDays(nextMonth);
   };
@@ -33,17 +37,17 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   //     const daysInMonth = lastDayOfMonth.getDate();
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
-
-  //   useEffect(() => {
-  //     updateNumberOfDays(selectedDate);
-  //   }, [selectedDate]);
-
+  console.log(selectedDate);
   const formattedDate = selectedDate
     .toLocaleString('en-GB', {
       month: 'long',
       year: 'numeric',
     })
     .replace(/(\w+) (\d+)/, '$1, $2');
+
+  //   useEffect(() => {
+  //     dispatch(setFilterDate(selectedDate));
+  //   }, [selectedDate, dispatch]);
 
   return (
     <div className={css.wrapper}>

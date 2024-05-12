@@ -2,8 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY} = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY } = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -22,7 +21,7 @@ export const register = createAsyncThunk(
       const response = await axios.post(`${USERS}${SIGNUP}`, credentials);
       return response.data;
     } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -35,7 +34,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-     return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -90,7 +89,7 @@ export const uploadPhoto = createAsyncThunk(
       );
       return response.data.secure_url;
     } catch (error) {
-     return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -104,33 +103,7 @@ export const updateUser = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-    return  thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// Катя накидала щось, є питання /////
-
-// export const waterAmountInPercent = createAsyncThunk(
-//   'auth/tracker',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`${USERS}`);
-//       console.log(response.data);
-//       const dailyWater = response.data.dailyWater;
-
-//       const res = await axios.get(`${TRACKER}`);
-//       const totalWaterAmountPerDay = res.data.totalAmount;
-//       const inPercentage = (totalWaterAmountPerDay * 100) / dailyWater;
-//       return inPercentage;
-// export const currentUser = createAsyncThunk(
-//   'current/upload',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`${USERS}${CURRENT}`);
-//       return response.data;
-//     } catch (error) {
-//       thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
