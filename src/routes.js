@@ -6,6 +6,7 @@ export const routes = {
   SIGNIN: '/signin',
   LOGOUT: '/logout',
   CURRENT: '/current',
+  VERIFY: '/verify',
 };
 
 export const BASE_URL = 'http://localhost:3001/api/v1';

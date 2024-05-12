@@ -3,7 +3,7 @@ import css from './SignUpForm.module.css';
 import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
@@ -29,8 +29,8 @@ const initialValues = {
   password: '',
   repeatPassword: '',
 };
-
 export default function SignUpForm() {
+  const navigate = useNavigate();
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
@@ -44,9 +44,14 @@ export default function SignUpForm() {
       .unwrap()
       .then(() => {
         toast.success('You have successfully registered!');
+        navigate('/signin');
       })
       .catch(error => {
-        throw error.message;
+       if(error === 'Email already in use') {
+         toast.error(error);
+         return;
+       }  
+       toast.error('Something went wrong. Please try again later.');
       });
   };
   return (
