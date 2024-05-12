@@ -45,5 +45,20 @@
     "emailPlace": "Введіть свою електронну адресу",
     "passwordPlace": "Введіть свій пароль",
     "passwordRepeatPlace": "Повторити пароль"
+  },
+
+  "waterModal": {
+    "ml": "мл",
+    "WaterForm": {
+      "waterRequired": "Потрібне значення води",
+      "waterPositive": "Значення води має бути додатним числом",
+      "waterInteger": "Значення води має бути цілим числом"
+    },
+    "timeRecording": "Час запису:",
+    "waterValue": "Введіть вартість використаної води:",
+    "btnSubmit": "Зберегти",
+    "addWaterBtn": "Додати воду",
+    "addWaterTitle": "Додати воду",
+    "addWaterSubTitle": "Виберіть значення"
   }
 }

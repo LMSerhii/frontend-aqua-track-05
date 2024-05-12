@@ -54,13 +54,17 @@
 
   "waterModal": {
     "ml": "ml",
-
-    "headlineEdit": "Correct entered data",
-    "headlines": "Choose a value",
-    "paragraphs": "Amount of water",
-    "recording": "Recording time",
-    "enter": "Enter the value of the water used",
-    "save": "Save"
+    "WaterForm": {
+      "waterRequired": "Water value is required",
+      "waterPositive": "Water value must be a positive number",
+      "waterInteger": "Water value must be an integer"
+    },
+    "timeRecording": "Recording time:",
+    "waterValue": "Enter the value of the water used:",
+    "btnSubmit": "Save",
+    "addWaterBtn": "Add water",
+    "addWaterTitle": "Add water",
+    "addWaterSubTitle": "Choose a value"
   },
   "popUpDay": {
     "norma": "Daily norma",

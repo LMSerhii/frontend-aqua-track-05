@@ -50,11 +50,11 @@ export default function SignUpForm() {
         navigate('/signin');
       })
       .catch(error => {
-       if(error === 'Email already in use') {
-         toast.error(error);
-         return;
-       }  
-       toast.error('Something went wrong. Please try again later.');
+        if (error === 'Email already in use') {
+          toast.error(error);
+          return;
+        }
+        toast.error('Something went wrong. Please try again later.');
       });
   };
   return (
