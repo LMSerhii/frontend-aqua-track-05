@@ -5,6 +5,7 @@ import {
   logOut,
   refreshUser,
   register,
+  resendEmail,
   updateUser,
   uploadPhoto,
   forgotPassword,
@@ -53,6 +54,16 @@ const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
+      .addCase(resendEmail.pending, state => {
+        state.error = null;
+      })
+      .addCase(resendEmail.fulfilled, state => {
+        state.error = null;
+      })
+      .addCase(resendEmail.rejected, state => {
+        state.error = true;
+      }
+      )
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
