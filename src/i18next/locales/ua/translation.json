@@ -59,6 +59,22 @@
     "btnSubmit": "Зберегти",
     "addWaterBtn": "Додати воду",
     "addWaterTitle": "Додати воду",
-    "addWaterSubTitle": "Виберіть значення"
+    "addWaterSubTitle": "Виберіть значення",
+    "AmountWater": "Кількість води:"
+  },
+  "WaterProgressBar": {
+    "today": "Сьогодні"
+  },
+
+  "WaterMainInfo": {
+    "normaDaily": "Моя щоденна норма",
+    "addWater": "Додати воду",
+    "liters": "1.5 Л"
+  },
+
+  "WaterItem": {
+    "woterMl": "мл",
+    "correctData": "Правильно введені дані:",
+    "editTheEntered": "Редагувати введену кількість води"
   }
 }

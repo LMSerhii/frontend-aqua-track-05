@@ -6,11 +6,11 @@ import bottle3x from '../../../shared/images/bottleImage/water_bottle@3x.png';
 import Logo from '../../../shared/components/Logo/Logo.jsx';
 import Button from '../../../shared/components/Button/Button.jsx';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
+import { useTranslation } from 'react-i18next';
 
 export const WaterMainInfo = () => {
-
   const width = window.innerWidth;
-
+  const { t } = useTranslation();
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
@@ -41,18 +41,23 @@ export const WaterMainInfo = () => {
       </picture>
 
       <div className={css.bottle_page_norm_wrapper}>
-        <span className={css.bottle_page_norm_wrapper_value}>1.5 L</span>
+        <span className={css.bottle_page_norm_wrapper_value}>
+          {t('WaterMainInfo.liters')}
+        </span>
         <span className={css.bottle_page_norm_wrapper_text}>
-          My Daily Norma
+          {t('WaterMainInfo.normaDaily')}
         </span>
       </div>
 
       <div className={css.add_water_btn_wrap}>
         <Button classname={css.add_water_btn} type="submit">
-          <SharedSVG  className={css.icon}
-                      width={width < 768 ? "14" : "21"}
-                      height={width < 768 ? "14" : "21"}
-                      svgId={'plus'} /> Add Water
+          <SharedSVG
+            className={css.icon}
+            width={width < 768 ? '14' : '21'}
+            height={width < 768 ? '14' : '21'}
+            svgId={'plus'}
+          />{' '}
+          {t('WaterMainInfo.addWater')}
         </Button>
       </div>
       <div className={css.logo}>

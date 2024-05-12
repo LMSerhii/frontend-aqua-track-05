@@ -4,11 +4,12 @@ import s from './WaterItem.module.css';
 import { useState } from 'react';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
+import { useTranslation } from 'react-i18next';
 
 const WaterItem = ({ item: { id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
   // const [activeDelete, setActiveDelete] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <>
       <li className={s.card}>
@@ -16,7 +17,9 @@ const WaterItem = ({ item: { id, amount, time } }) => {
           <use xlinkHref={`${sprite}#glass`}></use>
         </svg>
         <div className={s.cardInfo}>
-          <span className={s.amountWater}>{amount} ml</span>
+          <span className={s.amountWater}>
+            {amount} {t('WaterItem.woterMl')}
+          </span>
           <span className={s.time}>{time}</span>
         </div>
 
@@ -37,8 +40,8 @@ const WaterItem = ({ item: { id, amount, time } }) => {
       <Modal active={activeEdit} setActive={setActiveEdit}>
         <WaterModal
           operation="edit"
-          title="Edit the entered amount of water"
-          subTitle="Correct entered data:"
+          title={t('WaterItem.editTheEntered')}
+          subTitle={t('WaterItem.correctData')}
           id={id}
           setActive={setActiveEdit}
         />
