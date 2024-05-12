@@ -2,15 +2,23 @@
   display: flex;
   flex-wrap: wrap;
   gap: 18px;
-  margin: 0 auto;
   padding: 24px 0 24px 0;
 }
 .item {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+  margin-bottom: 20px;
   text-align: center;
-  background-color: white;
+  background-color: lightgray;
   border-radius: 30px;
   line-height: 28px;
   height: 28px;
   padding: 0;
   width: calc((100% - 6 * 18px) / 7);
+}
+.percentage {
+  font-family: inherit;
+  font-size: 10px;
+  color: var(--light-grey);
 }
