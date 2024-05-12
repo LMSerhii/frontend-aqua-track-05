@@ -1,6 +1,6 @@
 import UserAuth from './UserAuth';
 
-const Header = () => {
+const Head = () => {
   return (
     <header>
       <nav>
@@ -10,4 +10,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Head;

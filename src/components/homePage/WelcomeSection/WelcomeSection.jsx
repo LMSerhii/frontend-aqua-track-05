@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../../../shared/components/Logo/Logo';
-import Header from '../../header/Header';
+
 import css from './WelcomeSection.module.css';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,6 @@ export default function WelcomeSection() {
   const { t } = useTranslation();
   return (
     <div className={css.section}>
-      <Header />
       <div className={css.pad}>
         <div className={css.logo}>
           <Logo />
