@@ -20,19 +20,19 @@ export const UserSettingsForm = () => {
   const [waterUser, setWaterUser] = useState(0);
   const filePicker = useRef(null);
 
-  //  useEffect(() => {
-  //     // Имитация асинхронного запроса
-  //     const fetchData = async () => {
-  //       try {
-  //         // Загрузка данных
-  //         const response = await fetch('https://api.example.com/data');
-  //         const result = await response.json();
-  //         // Установка загруженных данных в состояние
-  //         setData(result);
-  //       } catch (error) {
-  //         console.error('Failed to fetch data:', error);
-  //       }
-  //     });
+   useEffect(() => {
+      // Имитация асинхронного запроса
+      const fetchData = async () => {
+        try {
+          // Загрузка данных
+          const response = await axios('https://api.example.com/data');
+          const result = await response.json();
+          // Установка загруженных данных в состояние
+          setData(result);
+        } catch (error) {
+          console.error('Failed to fetch data:', error);
+        }
+      });
 
   const handleUpload = async event => {
     try {

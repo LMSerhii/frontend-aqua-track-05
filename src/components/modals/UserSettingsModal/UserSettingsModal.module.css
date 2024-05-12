@@ -34,7 +34,7 @@
 }
 
 .modal.active {
-  opacity: 1;
+  opacity: 10000;
   pointer-events: all;
 }
 
