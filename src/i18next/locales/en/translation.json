@@ -22,19 +22,13 @@
     "emailPlaceholder": "Enter your email",
     "password": "Password",
     "enterPassword": "Enter your password",
-    "sigIn": "Sign",
+    "sigIn": "Sign In",
     "textDont": "Don’t have an account?",
     "sigUn": "Sign Up",
-
-    "howMuchText": "Write down how much water you will drink",
-    "save": "Save",
-    "errors": {
-      "min1": "Min weight amount is 1",
-      "min0": "Min weight amount is 0",
-      "waterAmountReq": "WaterAmount is required.",
-      "minWater0": "Min water amount is 0.1 L",
-      "maxWater": "Max water amount is 15 L"
-    }
+    "emailVelid": "Pls valid email",
+    "emailRequired": "Required email",
+    "passwordMin": "Too short",
+    "passwordMax": "Too long"
   },
   "monthStatsTable": {
     "title": "Month",

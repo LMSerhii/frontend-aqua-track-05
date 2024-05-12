@@ -9,10 +9,6 @@ import { logIn } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const CheckSchema = Yup.object().shape({
-  email: Yup.string().email('Pls valid email').required('Required email'),
-  password: Yup.string().min(6, 'Too short').max(50, 'Too long'),
-});
 const initialValues = {
   email: '',
   password: '',
@@ -22,6 +18,16 @@ export default function SignInForm() {
   const idEmail = useId();
   const idPassword = useId();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
+  const CheckSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t('singInForm.emailVelid'))
+      .required(t('singInForm.emailRequired')),
+    password: Yup.string()
+      .min(6, t('singInForm.passwordMin'))
+      .max(50, t('singInForm.passwordMax')),
+  });
 
   const handleSubmit = (values, actions) => {
     const user = {
@@ -40,7 +46,6 @@ export default function SignInForm() {
       });
   };
 
-  const { t } = useTranslation();
   return (
     <div className={css.section}>
       <div className={css.pad}>

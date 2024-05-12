@@ -10,5 +10,19 @@
     "ourParag": "наші",
     "happySpan": "щасливі",
     "customersParag": "клієнти"
+  },
+  "singInForm": {
+    "signIn": "Увійти",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "Введіть свою електронну адресу",
+    "password": "Пароль",
+    "enterPassword": "Введіть свій пароль",
+    "sigIn": "Увійти",
+    "textDont": "Не маєте облікового запису?",
+    "sigUn": "Зареєструватися",
+    "emailVelid": "Будь ласка, дійсна електронна адреса",
+    "emailRequired": "Обов'язкова електронна адреса",
+    "passwordMin": "Занадто короткий",
+    "passwordMax": "Занадто довгий"
   }
 }
