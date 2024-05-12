@@ -81,15 +81,15 @@
   }
 }
 @media screen and (min-width: 1440px) {
-.section{
-  width: 672px;
-height: 736px;
-}
-.logo{
-  padding-bottom: 135px;
-}
-.h1{
-  padding-bottom: 75px;
-  font-size: 80px;
-}
+  .section {
+    width: 672px;
+    height: 736px;
+  }
+  .logo {
+    padding-bottom: 135px;
+  }
+  .h1 {
+    padding-bottom: 75px;
+    font-size: 80px;
+  }
 }

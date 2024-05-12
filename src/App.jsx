@@ -16,13 +16,15 @@ import {
   SignInPage,
   SignUpPage,
   TrackerPage,
+  ForgotPasswordPage,
+  ResetPasswordPage,
 } from './pages';
 
 export default function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  const { HOME, TRACKER, SIGNUP, SIGNIN } = routes;
+  const { HOME, TRACKER, SIGNUP, SIGNIN, FORGOT, RESET } = routes;
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -54,6 +56,18 @@ export default function App() {
           path={TRACKER}
           element={
             <PrivateRoute redirectTo={SIGNIN} component={<TrackerPage />} />
+          }
+        />
+        <Route
+          path={FORGOT}
+          element={
+            <RestrictedRoute redirectTo={TRACKER} component={<ForgotPasswordPage />} />
+          }
+        />
+        <Route
+          path={RESET}
+          element={
+            <RestrictedRoute redirectTo={TRACKER} component={<ResetPasswordPage />} />
           }
         />
       </Route>

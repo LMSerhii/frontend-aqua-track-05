@@ -1,23 +1,13 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import css from '../signInPage/SignInForm/SingInForm.module.css';
 import * as Yup from 'yup';
-
-import { NavLink, useNavigate } from 'react-router-dom';
-
-import css from './SignUpForm.module.css';
-import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
+import { useId } from 'react';
+import Logo from '../../shared/components/Logo/Logo';
+import { useDispatch } from 'react-redux';
+import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 
-import { useDispatch } from 'react-redux';
-import { useId,  } from 'react';
-
-import Logo from '../../../shared/components/Logo/Logo';
-import { register } from '../../../redux/auth/operations';
-import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
-
 const CheckSchema = Yup.object().shape({
-  email: Yup.string()
-    .email('Please enter valid email')
-    .required('Required email'),
   password: Yup.string()
     .min(6, 'Too short')
     .max(50, 'Too long')
@@ -31,32 +21,49 @@ const CheckSchema = Yup.object().shape({
     .required('Required password'),
 });
 const initialValues = {
-  email: '',
   password: '',
   repeatPassword: '',
 };
-export default function SignUpForm() {
-  const navigate = useNavigate();
-  const idEmail = useId();
+
+export default function ResetForm() {
   const idPassword = useId();
   const idRepeatPassword = useId();
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, _) => {
-    const name = values.email.split('@')[0];
-    const user = { name, email: values.email, password: values.password };
-    dispatch(register(user))
+  const handleSubmit = (values, actions) => {
+    const user = {
+      password: values.password,
+    };
+
+    const pathSegments = window.location.pathname.split('/');
+    const otp = pathSegments[pathSegments.length - 1];
+
+    dispatch(resetPassword({ password: user.password, otp }))
       .unwrap()
       .then(() => {
-        toast.success('You have successfully registered!');
-        navigate('/signin');
+        actions.resetForm();
+        console.log('The password has been successfully changed!');
+        toast.success('The password has been successfully changed!');
+
+        setTimeout(() => {
+          toast.success('Redirect to login page after 2s');
+        }, 1000);
+
+        setTimeout(() => {
+          toast.success('Redirect to login page after 1s');
+        }, 2000);
+
+        setTimeout(() => {
+          toast.success('Redirect to login page...');
+        }, 3000);
+
+        setTimeout(() => {
+          window.location.href = '/signin';
+        }, 3000);
       })
       .catch(error => {
-        if (error === 'Email already in use') {
-          toast.error(error);
-          return;
-        }
-        toast.error('Something went wrong. Please try again later.');
+        toast.error('Something is wrong, please try again...');
+        console.log(error);
       });
   };
 
@@ -67,7 +74,7 @@ export default function SignUpForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>Sign Up</h2>
+          <h2 className={css.h2}>Make a new password</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -75,46 +82,28 @@ export default function SignUpForm() {
           >
             <Form className={css.form}>
               <div className={css.field}>
-                <label htmlFor={idEmail} className={css.label}>
-                  Email
+                <label htmlFor={idPassword} className={css.label}>
+                  New password
                 </label>
                 <Field
                   type="text"
-                  name="email"
-                  id={idEmail}
+                  name="password"
+                  id={idPassword}
                   className={css.input}
-                  placeholder="Enter your email"
+                  placeholder="Enter your new password"
                 />
                 <ErrorMessage
-                  name="email"
+                  name="password"
                   component="span"
                   className={css.error}
                 />
               </div>
               <div className={css.field}>
                 <label htmlFor={idPassword} className={css.label}>
-                  Password
-                </label>
-                <Field
-                  type="password"
-                  name="password"
-                  id={idPassword}
-                  className={css.input}
-                  placeholder="Enter your password"
-                />
-                <ErrorMessage
-                  name="password"
-                  component="span"
-                  className={css.error}
-                />
-                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
-              </div>
-              <div className={css.field3}>
-                <label htmlFor={idPassword} className={css.label}>
                   Repeat Password
                 </label>
                 <Field
-                  type="password"
+                  type="text"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
@@ -125,20 +114,13 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
-                <ShareIconPassword name={idRepeatPassword} iconId="SecondIconPassword" css={css} /> 
               </div>
               <button type="submit" className={css.button}>
-                Sign up
+                Confirm
               </button>
             </Form>
           </Formik>
         </div>
-        <p className={css.text}>
-          Already have account?
-          <NavLink to="/signin" className={css.link}>
-            Sign In
-          </NavLink>
-        </p>
       </div>
     </div>
   );

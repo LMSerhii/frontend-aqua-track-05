@@ -8,3 +8,30 @@
   justify-content: space-between;
   margin-bottom: 24px;
 }
+
+.emptyListWaterTextWrap {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .emptyListWaterTextWrap {
+    width: fit-content;
+  }
+}
+
+.emptyListWaterText {
+  font-size: 16px;
+  line-height: 1.3em;
+  color: var(--dark-blue);
+}
+
+@media screen and (min-width: 1440px) {
+  .emptyListWaterText {
+    font-size: 20px;
+  }
+}
