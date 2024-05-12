@@ -5,11 +5,13 @@ import { sprite } from '../../../shared/icons/index';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal.jsx';
 
 import css from './UserBarPopover.module.css';
+import { useTranslation } from 'react-i18next';
 
 export const UserBarPopover = () => {
   const [isUserSettingsModalOpen, setIsUserSettingsModalOpen] = useState(false);
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
   console.log(isUserSettingsModalOpen, isLogOutModalOpen);
 
   const toggleModal = () => {
@@ -35,7 +37,7 @@ export const UserBarPopover = () => {
             <svg width="16" height="16">
               <use xlinkHref={`${sprite}#settings`}></use>
             </svg>
-            Setting
+            {t('UserBarPopover.settingsBtn')}
           </Button>
         </div>
         {isOpen && (
@@ -49,7 +51,7 @@ export const UserBarPopover = () => {
           <svg width="16" height="16" className={css.svg}>
             <use xlinkHref={`${sprite}#log_out`}></use>
           </svg>
-          Log out
+          {t('UserBarPopover.logOutBtn')}
         </Button>
       </div>
     </>

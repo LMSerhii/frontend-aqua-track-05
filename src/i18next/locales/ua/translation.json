@@ -79,5 +79,10 @@
   },
   "UserPanel": {
     "helloText": "Привіт, "
+  },
+
+  "UserBarPopover": {
+    "settingsBtn": "Налаштування",
+    "logOutBtn": "Вийти"
   }
 }
