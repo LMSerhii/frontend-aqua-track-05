@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Section from '../../../shared/components/Section/Section';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,39 +17,19 @@ export const UserSettingsForm = () => {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
-  const [data, setData] = useState({
-    avatar: uploaded,
-    name: userData.name,
-    email: email,
-    gender: gender,
-    weight: weight,
-    timeSport: timeSport,
-    waterUser,
-  });
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [gender, setGender] = useState('');
-  const [weight, setWeight] = useState(0);
-  const [timeSport, setTimeSport] = useState(0);
-  const [waterUser, setWaterUser] = useState(0);
+  const [data, setData] = useState({
+    avatar: userData.avatar,
+    name: userData.name,
+    email: userData.email,
+    gender: userData.gender,
+    weight: userData.weight,
+    timeSport: userData.timeSport,
+    dailyWater: userData.dailyWater,
+  });
 
   const dispatch = useDispatch();
   const filePicker = useRef(null);
-
-  //  useEffect(() => {
-  //     // Имитация асинхронного запроса
-  //     const fetchData = async () => {
-  //       try {
-  //         // Загрузка данных
-  //         const response = await axios('https://api.example.com/data');
-  //         const result = await response.json();
-  //         // Установка загруженных данных в состояние
-  //         setData(result);
-  //       } catch (error) {
-  //         console.error('Failed to fetch data:', error);
-  //       }
-  //     });
 
   const handleUpload = async event => {
     try {
@@ -60,13 +40,9 @@ export const UserSettingsForm = () => {
       setSelectedFile(file);
       const formData = new FormData();
       formData.append('file', selectedFile);
-      // formData.append('upload_preset', 'Upload_Preset');
+
       formData.append('upload_preset', 'ylx3q541');
       dispatch(uploadPhoto());
-      // const response = await axios.post(
-      //   'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-      //   formData
-      // );
 
       console.log('URL загруженного изображения:', response.data.secure_url);
       setUploaded(response.data.secure_url);
@@ -81,16 +57,16 @@ export const UserSettingsForm = () => {
       const formData = new FormData();
       // formData.append('avatar', selectedFile);
       // formData.append('upload_preset', 'Upload_Preset');
-      const userData = {
+      const dataUser = {
         avatar: uploaded,
-        name: name,
-        email: email,
-        gender: gender,
-        weight: weight,
-        timeSport: timeSport,
-        waterUser: waterUser,
+        name: userData.name,
+        email: userData.email,
+        gender: userData.gender,
+        weight: userData.weight,
+        timeSport: userData.timeSport,
+        waterUser: userData.waterUser,
       };
-      formData.append('userData', JSON.stringify(userData));
+      formData.append('dataUser', JSON.stringify(dataUser));
 
       const res = await axios.post('/upload', {
         body: formData,
@@ -115,7 +91,7 @@ export const UserSettingsForm = () => {
     .required();
 
   const {
-    register,
+    // register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
@@ -159,33 +135,31 @@ export const UserSettingsForm = () => {
           <div className={s.gender}>
             <input
               type="radio"
-              id="female"
-              value="female"
-              checked={gender === 'female'}
-              onChange={() => setGender('female')}
-              // {...register('gender')}
+              id="woman"
+              value={userData.gender}
+              checked={userData.gender === 'woman'}
+              onChange={e => setData({ ...data, gender: e.target.value })}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
-              htmlFor="female"
+              htmlFor="woman"
             >
-              Female
+              Woman
             </label>
           </div>
           <div className={s.gender}>
             <input
               type="radio"
-              id="male"
-              value="male"
-              checked={gender === 'male'}
-              onChange={() => setGender('male')}
-              // {...register('gender')}
+              id="man"
+              value={userData.gender}
+              checked={userData.gender === 'man'}
+              onChange={e => setData({ ...data, gender: e.target.value })}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
-              htmlFor="male"
+              htmlFor="man"
             >
-              Male
+              Man
             </label>
           </div>
         </div>
@@ -199,19 +173,17 @@ export const UserSettingsForm = () => {
             type="text"
             value={userData.name}
             onChange={e => setData({ ...data, name: e.target.value })}
-            // {...register('Your name')}
-            // onChange={e => setName(e.target.value)}
             placeholder="Name"
           />
-          {/* <p>{errors.Your_name?.message}</p> */}
+          <p>{errors.Your_name?.message}</p>
           <label htmlFor="Email" className={s.labelImportan}>
             Email
           </label>
 
           <input
             type="text"
-            {...register('Email')}
-            onChange={e => setEmail(e.target.value)}
+            value={userData.email}
+            onChange={e => setData({ ...data, email: e.target.value })}
             placeholder="Email"
           />
           {/* <p>{errors.Email?.message}</p> */}
@@ -246,8 +218,8 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
-            {...register('Your_weight')}
-            onChange={e => setWeight(e.target.value)}
+            value={userData.weight}
+            onChange={e => setData({ ...data, weight: e.target.value })}
             placeholder="0.1"
           />
 
@@ -257,15 +229,15 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
-            {...register('Your_sports')}
-            onChange={e => setTimeSport(e.target.value)}
+            value={userData.timeSport}
+            onChange={e => setData({ ...data, timeSport: e.target.value })}
             placeholder="0.1"
           />
         </div>
 
         <div className={s.requiredWater}>
           <p>The required amount of water in liters per day:</p>
-          <p className={s.formula}>{'1.8 L'}</p>
+          <p className={s.formula}>{userData.dailyWater}</p>
         </div>
 
         <div className={s.waterUser}>
@@ -275,8 +247,8 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
-            {...register('Your_water')}
-            onChange={e => setWaterUser(e.target.value)}
+            value={userData.dailyWater}
+            onChange={e => setData({ ...data, dailyWater: e.target.value })}
             placeholder="0.1"
           />
         </div>
