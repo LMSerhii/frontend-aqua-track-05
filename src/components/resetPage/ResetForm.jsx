@@ -3,7 +3,6 @@ import css from '../signInPage/SignInForm/SingInForm.module.css';
 import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../shared/components/Logo/Logo';
-import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
@@ -17,13 +16,18 @@ const CheckSchema = Yup.object().shape({
       'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
     )
     .required('Required password'),
+  repeatPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Required password'),
 });
 const initialValues = {
   password: '',
+  repeatPassword: '',
 };
 
 export default function ResetForm() {
   const idPassword = useId();
+  const idRepeatPassword = useId();
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
@@ -34,12 +38,28 @@ export default function ResetForm() {
     const pathSegments = window.location.pathname.split('/');
     const otp = pathSegments[pathSegments.length - 1];
 
-    dispatch(resetPassword({password: user.password, otp}))
+    dispatch(resetPassword({ password: user.password, otp }))
       .unwrap()
       .then(() => {
         actions.resetForm();
         console.log('The password has been successfully changed!');
         toast.success('The password has been successfully changed!');
+
+        setTimeout(() => {
+          toast.success('Redirect to login page after 2s');
+        }, 1000);
+
+        setTimeout(() => {
+          toast.success('Redirect to login page after 1s');
+        }, 2000);
+
+        setTimeout(() => {
+          toast.success('Redirect to login page...');
+        }, 3000);
+
+        setTimeout(() => {
+          window.location.href = '/signin';
+        }, 3000);
       })
       .catch(error => {
         toast.error('Something is wrong, please try again...');
@@ -78,18 +98,29 @@ export default function ResetForm() {
                   className={css.error}
                 />
               </div>
+              <div className={css.field}>
+                <label htmlFor={idPassword} className={css.label}>
+                  Repeat Password
+                </label>
+                <Field
+                  type="text"
+                  name="repeatPassword"
+                  id={idRepeatPassword}
+                  className={css.input}
+                  placeholder="Repeat password"
+                />
+                <ErrorMessage
+                  name="repeatPassword"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
               <button type="submit" className={css.button}>
                 Confirm
               </button>
             </Form>
           </Formik>
         </div>
-        <p className={css.text}>
-          Remember your password?
-          <NavLink to="/signin" className={css.link}>
-            Sign In
-          </NavLink>
-        </p>
       </div>
     </div>
   );
