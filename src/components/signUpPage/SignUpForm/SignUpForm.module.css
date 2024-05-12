@@ -10,6 +10,13 @@
   padding-top: 20px;
   padding-bottom: 125px;
 }
+.divIcon{ 
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 40px;
+  right: 30px;
+}
 .h2 {
   font-size: 32px;
   line-height: 1;
@@ -28,9 +35,11 @@
 }
 .field {
   padding-bottom: 10px;
+  position: relative;
 }
 .field3 {
   padding-bottom: 32px;
+  position: relative;
 }
 .input {
   background: var(--light-gray);
@@ -106,6 +115,7 @@
     padding: 16px 0 16px 16px;
     width: 435px;
     height: 56px;
+    margin-bottom: 5px;
   }
   .button {
     display: flex;
@@ -116,6 +126,10 @@
     padding: 18px 0px;
     height: 60px;
   }
+  .divIcon{ 
+    top: 48px;
+
+  }
 }
 @media screen and (min-width: 1440px) {
   .section {
@@ -124,6 +138,10 @@ height: 736px;
   }
     .logo {
         padding-bottom: 100px;
+    }
+    .divIcon{ 
+      top: 48px;
+
     }
   
     

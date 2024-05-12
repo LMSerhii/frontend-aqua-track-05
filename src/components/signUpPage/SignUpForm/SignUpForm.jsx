@@ -1,13 +1,14 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import css from './SignUpForm.module.css';
 import * as Yup from 'yup';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
-
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
+import { sprite } from '../../../shared/icons/index.js';
 const CheckSchema = Yup.object().shape({
   email: Yup.string()
     .email('Please enter valid email')
@@ -34,7 +35,6 @@ export default function SignUpForm() {
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
-
   const dispatch = useDispatch();
 
   const handleSubmit = (values, _) => {
@@ -47,13 +47,29 @@ export default function SignUpForm() {
         navigate('/signin');
       })
       .catch(error => {
-       if(error === 'Email already in use') {
-         toast.error(error);
-         return;
-       }  
-       toast.error('Something went wrong. Please try again later.');
+        if (error === 'Email already in use') {
+          toast.error(error);
+          return;
+        }
+        toast.error('Something went wrong. Please try again later.');
       });
   };
+  const onClickIcon = (name, iconId) => {
+    if (document.getElementById(name).type === 'password') {
+      document.getElementById(name).type = 'text';
+      document
+        .getElementById(iconId)
+        .querySelector('use')
+        .setAttribute('xlink:href', `${sprite}#eye-password-open`);
+    } else {
+      document.getElementById(name).type = 'password';
+      document
+        .getElementById(iconId)
+        .querySelector('use')
+        .setAttribute('xlink:href', `${sprite}#eye-password-close`);
+    }
+  };
+
   return (
     <div className={css.section}>
       <div className={css.pad}>
@@ -101,13 +117,22 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
+                <button className={css.divIcon} type="button">
+                  <SharedSVG
+                    id="firstIconPassword"
+                    svgId="eye-password-close"
+                    width={30}
+                    height={30}
+                    onClick={() => onClickIcon(idPassword, 'firstIconPassword')}
+                  />
+                </button>
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
                   Repeat Password
                 </label>
                 <Field
-                  type="repeatPassword"
+                  type="password"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
@@ -118,6 +143,17 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
+                <button className={css.divIcon} type="button">
+                  <SharedSVG
+                    id="SecondIconPassword"
+                    svgId="eye-password-close"
+                    width={30}
+                    height={30}
+                    onClick={() =>
+                      onClickIcon(idRepeatPassword, 'SecondIconPassword')
+                    }
+                  />
+                </button>
               </div>
               <button type="submit" className={css.button}>
                 Sign up
