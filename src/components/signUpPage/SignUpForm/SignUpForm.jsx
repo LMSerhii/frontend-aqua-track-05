@@ -1,12 +1,18 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import css from './SignUpForm.module.css';
 import * as Yup from 'yup';
-import { useId } from 'react';
-import Logo from '../../../shared/components/Logo/Logo';
+
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { register } from '../../../redux/auth/operations';
+
+import css from './SignUpForm.module.css';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import toast from 'react-hot-toast';
+
+import { useDispatch } from 'react-redux';
+import { useId,  } from 'react';
+
+import Logo from '../../../shared/components/Logo/Logo';
+import { register } from '../../../redux/auth/operations';
+import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string()
@@ -34,7 +40,6 @@ export default function SignUpForm() {
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
-
   const dispatch = useDispatch();
 
   const handleSubmit = (values, _) => {
@@ -47,13 +52,14 @@ export default function SignUpForm() {
         navigate('/signin');
       })
       .catch(error => {
-       if(error === 'Email already in use') {
-         toast.error(error);
-         return;
-       }  
-       toast.error('Something went wrong. Please try again later.');
+        if (error === 'Email already in use') {
+          toast.error(error);
+          return;
+        }
+        toast.error('Something went wrong. Please try again later.');
       });
   };
+
   return (
     <div className={css.section}>
       <div className={css.pad}>
@@ -101,13 +107,14 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
+                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
                   Repeat Password
                 </label>
                 <Field
-                  type="repeatPassword"
+                  type="password"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
@@ -118,6 +125,7 @@ export default function SignUpForm() {
                   component="span"
                   className={css.error}
                 />
+                <ShareIconPassword name={idRepeatPassword} iconId="SecondIconPassword" css={css} /> 
               </div>
               <button type="submit" className={css.button}>
                 Sign up
