@@ -1,11 +1,11 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import css from './SingInForm.module.css';
 import * as Yup from 'yup';
-import { useId } from 'react';
+import { useId, useState } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../../redux/auth/operations';
+import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
@@ -18,6 +18,7 @@ export default function SignInForm() {
   const idEmail = useId();
   const idPassword = useId();
   const dispatch = useDispatch();
+
   const { t } = useTranslation();
 
   const CheckSchema = Yup.object().shape({
@@ -29,6 +30,9 @@ export default function SignInForm() {
       .max(50, t('singInForm.passwordMax')),
   });
 
+  const [verify, setVerify] = useState(false);
+  const [email, setEmail] = useState('');
+
   const handleSubmit = (values, actions) => {
     const user = {
       email: values.email,
@@ -37,12 +41,32 @@ export default function SignInForm() {
     dispatch(logIn(user))
       .unwrap()
       .then(() => {
+        toast.success('You have successfully logged in!');
+        setEmail('');
+        setVerify(false);
         actions.resetForm();
-        console.log('User is logged in');
       })
       .catch(error => {
-        toast.error('User not fined or not verify');
-        console.log(error);
+        if (error === 'Account is not verified') {
+          toast.error(error);
+          setEmail(values.email);
+          setVerify(true);
+          return;
+        }
+        toast.error(error);
+      });
+  };
+
+  const handleResendEmail = () => {
+    dispatch(resendEmail({ email }))
+      .unwrap()
+      .then(() => {
+        toast.success('Email sent successfully');
+        setEmail('');
+        setVerify(false);
+      })
+      .catch(error => {
+        toast.error(error);
       });
   };
 
@@ -77,6 +101,15 @@ export default function SignInForm() {
                   component="span"
                   className={css.error}
                 />
+                {verify && (
+                  <button
+                    type="button"
+                    onClick={handleResendEmail}
+                    className={css.btn}
+                  >
+                    Resend email
+                  </button>
+                )}
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>

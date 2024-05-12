@@ -1,23 +1,62 @@
 // import { useState } from 'react';
+import { useState } from 'react';
 import Section from '../../../shared/components/Section/Section';
 import { sprite } from '../../../shared/icons/index';
 import { UserSettingsForm } from '../UserSettingsForm/UserSettingsForm';
 import s from './UserSettingsModal.module.css';
 
-export const UserSettingsModal = () => {
-  return (
-    <Section className={s.settingSection}>
-      <button className={s.btnClose}>
-        <svg width="24" height="24">
-          <use xlinkHref={`${sprite}#close`}></use>
-        </svg>
-      </button>
+export const UserSettingsModal = ({ active, setActive }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-      <h2 className={s.settingCaption}>Setting</h2>
-      <UserSettingsForm />
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <Section onClick={toggleModal} className={s.settingSection}>
+      <div
+        className={active ? `${s.modal} ${s.active}` : `${s.modal}`}
+        onClick={() => setActive(false)}
+      >
+        <div
+          className={
+            active ? `${s.modalContent} ${s.active}` : `${s.modalContent}`
+          }
+          onClick={e => e.stopPropagation()}
+          // onClick={handleModalClick}
+        >
+          <button onClick={() => setActive(false)} className={s.btnClose}>
+            <svg width="24" height="24">
+              <use xlinkHref={`${sprite}#close`}></use>
+            </svg>
+          </button>
+          <h2 className={s.settingCaption}>Setting</h2>
+          <UserSettingsForm />
+        </div>
+      </div>
     </Section>
   );
 };
+
+// import s from './Modal.module.css';
+
+// export const Modal = ({ active, setActive, children }) => {
+//   return (
+//     <div
+//       className={active ? `${s.modal} ${s.active}` : `${s.modal}`}
+//       onClick={() => setActive(false)}
+//     >
+//       <div
+//         className={
+//           active ? `${s.modalContent} ${s.active}` : `${s.modalContent}`
+//         }
+//         onClick={e => e.stopPropagation()}
+//       >
+//         {children}
+//       </div>
+//     </div>
+//   );
+// };
 
 // import { useState } from 'react';
 // import { Helmet } from 'react-helmet-async';
