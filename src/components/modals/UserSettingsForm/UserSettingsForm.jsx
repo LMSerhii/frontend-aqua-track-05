@@ -8,6 +8,7 @@ import Button from '../../../shared/components/Button/Button';
 import { useState, useRef, useEffect } from 'react';
 import Section from '../../../shared/components/Section/Section';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -19,7 +20,7 @@ export const UserSettingsForm = () => {
   const [timeSport, setTimeSport] = useState(0);
   const [waterUser, setWaterUser] = useState(0);
   const filePicker = useRef(null);
-
+  const { t } = useTranslation();
   //  useEffect(() => {
   //     // Имитация асинхронного запроса
   //     const fetchData = async () => {
@@ -129,13 +130,13 @@ export const UserSettingsForm = () => {
               <svg className={s.uploud} width="18" height="18">
                 <use xlinkHref={`${sprite}#upload`}></use>
               </svg>
-              Upload a photo
+              {t('UserSettingsForm.uploadPhotoBtn')}
             </button>
           </label>
         </div>
 
         <label htmlFor="gender" className={s.labelImportanGender}>
-          Your gender identity
+          {t('UserSettingsForm.yourGenderLabel')}
         </label>
         <div className={s.genderWrap}>
           <div className={s.gender}>
@@ -151,7 +152,7 @@ export const UserSettingsForm = () => {
               className={`${s.labelGender} ${s.materialRadio}`}
               htmlFor="female"
             >
-              Female
+              {t('UserSettingsForm.femaleGenderLabel')}
             </label>
           </div>
           <div className={s.gender}>
@@ -167,14 +168,14 @@ export const UserSettingsForm = () => {
               className={`${s.labelGender} ${s.materialRadio}`}
               htmlFor="male"
             >
-              Male
+              {t('UserSettingsForm.femaleGenderMale')}
             </label>
           </div>
         </div>
 
         <div className={s.WrapNameEmail}>
           <label htmlFor="Your_name" className={s.labelImportan}>
-            Your name
+            {t('UserSettingsForm.yourNameLabel')}
           </label>
 
           <input

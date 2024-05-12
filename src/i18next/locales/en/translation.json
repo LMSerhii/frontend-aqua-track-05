@@ -120,5 +120,22 @@
     "december": "December",
     "today": "Today",
     "en": "uk-UA"
+  },
+
+  "UserSettingsForm": {
+    "uploadPhotoBtn": "Upload a photo",
+    "yourGenderLabel": "Your gender identity",
+    "femaleGenderLabel": "Female",
+    "femaleGenderMale": "Male",
+    "yourNameLabel": "Your name",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "today": "Today",
+    "en": "uk-UA"
   }
 }
