@@ -1,40 +1,48 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import css from './SingInForm.module.css';
+import css from '../signInPage/SignInForm/SingInForm.module.css';
 import * as Yup from 'yup';
 import { useId } from 'react';
-import Logo from '../../../shared/components/Logo/Logo';
+import Logo from '../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../../redux/auth/operations';
+import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 
 const CheckSchema = Yup.object().shape({
-  email: Yup.string().email('Pls valid email').required('Required email'),
-  password: Yup.string().min(6, 'Too short').max(50, 'Too long'),
+  password: Yup.string()
+    .min(6, 'Too short')
+    .max(50, 'Too long')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
+      'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+    )
+    .required('Required password'),
 });
 const initialValues = {
-  email: '',
   password: '',
 };
 
-export default function SignInForm() {
-  const idEmail = useId();
+export default function ResetForm() {
   const idPassword = useId();
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
     const user = {
-      email: values.email,
       password: values.password,
     };
-    dispatch(logIn(user))
+
+    const pathSegments = window.location.pathname.split('/');
+    const otp = pathSegments[pathSegments.length - 1];
+
+    dispatch(resetPassword({password: user.password, otp}))
       .unwrap()
       .then(() => {
         actions.resetForm();
-        console.log('User is logged in');
+        console.log('The password has been successfully changed!');
+        toast.success('The password has been successfully changed!');
       })
       .catch(error => {
-        toast.error('User not fined or not verify');
+        toast.error('Something is wrong, please try again...');
         console.log(error);
       });
   };
@@ -46,7 +54,7 @@ export default function SignInForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>Sign in</h2>
+          <h2 className={css.h2}>Make a new password</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -54,32 +62,15 @@ export default function SignInForm() {
           >
             <Form className={css.form}>
               <div className={css.field}>
-                <label htmlFor={idEmail} className={css.label}>
-                  Email
+                <label htmlFor={idPassword} className={css.label}>
+                  New password
                 </label>
                 <Field
                   type="text"
-                  name="email"
-                  id={idEmail}
-                  className={css.input}
-                  placeholder="Enter your email"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className={css.error}
-                />
-              </div>
-              <div className={css.field3}>
-                <label htmlFor={idPassword} className={css.label}>
-                  Password
-                </label>
-                <Field
-                  type="password"
                   name="password"
                   id={idPassword}
                   className={css.input}
-                  placeholder="Enter your password"
+                  placeholder="Enter your new password"
                 />
                 <ErrorMessage
                   name="password"
@@ -88,20 +79,17 @@ export default function SignInForm() {
                 />
               </div>
               <button type="submit" className={css.button}>
-                Sign in
+                Confirm
               </button>
             </Form>
           </Formik>
         </div>
         <p className={css.text}>
-          Don’t have an account?
-          <NavLink to="/signup" className={css.link}>
-            Sign Up
+          Remember your password?
+          <NavLink to="/signin" className={css.link}>
+            Sign In
           </NavLink>
         </p>
-          <NavLink to="/forgot-password-form" className={css.forgotLink}>
-            Forgot password?
-          </NavLink>
       </div>
     </div>
   );

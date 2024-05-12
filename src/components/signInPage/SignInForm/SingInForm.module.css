@@ -79,6 +79,15 @@
   text-decoration-skip-ink: none;
   color: var(--dark);
 }
+
+.forgotLink {
+  font-weight: 700;
+  margin-left: 2px;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--dark);
+}
+
 @media screen and (min-width: 768px) {
   .section {
     height: 960px;

@@ -6,6 +6,8 @@ export const routes = {
   SIGNIN: '/signin',
   LOGOUT: '/logout',
   CURRENT: '/current',
+  FORGOT: '/forgot-password-form',
+  RESET: '/reset-password-form/:otp',
 };
 
 export const BASE_URL = 'http://localhost:3001/api/v1';
