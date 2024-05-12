@@ -28,7 +28,13 @@
     "emailVelid": "Pls valid email",
     "emailRequired": "Required email",
     "passwordMin": "Too short",
-    "passwordMax": "Too long"
+    "passwordMax": "Too long",
+    "resendEmailBtn": "Resend email",
+    "forgotPassword": "Forgot password?",
+
+    "googleButton": {
+      "googleBtn": "Sign in with Google"
+    }
   },
 
   "singUnForm": {

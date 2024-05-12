@@ -23,7 +23,13 @@
     "emailVelid": "Будь ласка, дійсна електронна адреса",
     "emailRequired": "Обов'язкова електронна адреса",
     "passwordMin": "Занадто короткий",
-    "passwordMax": "Занадто довгий"
+    "passwordMax": "Занадто довгий",
+    "resendEmailBtn": "Повторно надіслати електронний лист",
+    "forgotPassword": "Забули пароль?",
+
+    "googleButton": {
+      "googleBtn": "Увійти за допомогою Google"
+    }
   },
 
   "singUnForm": {
