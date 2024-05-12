@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
-import toast from 'react-hot-toast';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT } = routes;
+
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY} = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -22,12 +22,7 @@ export const register = createAsyncThunk(
       const response = await axios.post(`${USERS}${SIGNUP}`, credentials);
       return response.data;
     } catch (error) {
-      if (error.response.status === 409) {
-        toast.error('User with this email already exists');
-        thunkAPI.rejectWithValue(error.response.data.message);
-        throw error;
-      }
-      thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -40,7 +35,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+     return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -50,9 +45,21 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post(`${USERS}${LOGOUT}`);
     clearAuthHeader();
   } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const resendEmail = createAsyncThunk(
+  'auth/verify',
+  async (email, thunkAPI) => {
+    try {
+      const response = await axios.post(`${USERS}${VERIFY}`, email);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
@@ -69,7 +76,7 @@ export const refreshUser = createAsyncThunk(
       const response = await axios.get(`${USERS}${CURRENT}`);
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -83,7 +90,7 @@ export const uploadPhoto = createAsyncThunk(
       );
       return response.data.secure_url;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+     return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -97,7 +104,7 @@ export const updateUser = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+    return  thunkAPI.rejectWithValue(error.message);
     }
   }
 );
