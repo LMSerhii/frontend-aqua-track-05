@@ -131,6 +131,9 @@ export default function SignInForm() {
             Sign Up
           </NavLink>
         </p>
+          <NavLink to="/forgot-password-form" className={css.forgotLink}>
+            Forgot password?
+          </NavLink>
         <GoogleButton />
       </div>
     </div>
