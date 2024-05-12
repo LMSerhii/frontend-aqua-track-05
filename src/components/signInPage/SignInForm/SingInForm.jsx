@@ -7,6 +7,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Pls valid email').required('Required email'),
@@ -38,7 +39,7 @@ export default function SignInForm() {
         actions.resetForm();
       })
       .catch(error => {
-        if (error === 'Account is not verified'){ 
+        if (error === 'Account is not verified') {
           toast.error(error);
           setEmail(values.email);
           setVerify(true);
@@ -48,18 +49,18 @@ export default function SignInForm() {
       });
   };
 
-  const handleResendEmail =() =>{ 
-    dispatch(resendEmail({email}))
-    .unwrap()
-    .then(() => {
-      toast.success('Email sent successfully');
-      setEmail('');
-      setVerify(false);
-    })
-    .catch(error => {
-      toast.error(error);
-    });
-  }
+  const handleResendEmail = () => {
+    dispatch(resendEmail({ email }))
+      .unwrap()
+      .then(() => {
+        toast.success('Email sent successfully');
+        setEmail('');
+        setVerify(false);
+      })
+      .catch(error => {
+        toast.error(error);
+      });
+  };
 
   return (
     <div className={css.section}>
@@ -91,9 +92,15 @@ export default function SignInForm() {
                   component="span"
                   className={css.error}
                 />
-                {
-                  verify && <button type="button" onClick={handleResendEmail} className={css.btn}>Resend email</button>
-                }
+                {verify && (
+                  <button
+                    type="button"
+                    onClick={handleResendEmail}
+                    className={css.btn}
+                  >
+                    Resend email
+                  </button>
+                )}
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
@@ -127,6 +134,7 @@ export default function SignInForm() {
           <NavLink to="/forgot-password-form" className={css.forgotLink}>
             Forgot password?
           </NavLink>
+        <GoogleButton />
       </div>
     </div>
   );
