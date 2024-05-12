@@ -34,7 +34,7 @@ export default function SignUpForm() {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
         t('singUnForm.passwordMatches')
       )
-      .required(t('singUnForm.passwoedRequired')),
+      .required(t('singUnForm.passwordRequired')),
     repeatPassword: Yup.string()
       .oneOf([Yup.ref('password')], t('singUnForm.repeatPasswordOneOf'))
       .required(t('singUnForm.repeatPasswordRequired')),

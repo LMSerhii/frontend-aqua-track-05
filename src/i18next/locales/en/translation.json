@@ -44,7 +44,7 @@
     "passwordMin": "Too short",
     "passwordMax": "Too long",
     "passwordMatches": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
-    "passwoedRequired": "Required password",
+    "passwordRequired": "Required password",
     "repeatPasswordOneOf": "Passwords must match",
     "repeatPasswordRequired": "Required password",
     "emailPlace": "Enter your email",
@@ -52,8 +52,9 @@
     "passwordRepeatPlace": "Repeat password"
   },
 
-  "addWaterModal": {
+  "waterModal": {
     "ml": "ml",
+
     "headlineEdit": "Correct entered data",
     "headlines": "Choose a value",
     "paragraphs": "Amount of water",
