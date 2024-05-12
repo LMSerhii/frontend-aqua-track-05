@@ -8,31 +8,48 @@ import Button from '../../../shared/components/Button/Button';
 import { useState, useRef, useEffect } from 'react';
 import Section from '../../../shared/components/Section/Section';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSlice';
 
 export const UserSettingsForm = () => {
+  const userData = useSelector(selectUser);
+  console.log(userData);
+
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
+  const [data, setData] = useState({
+    avatar: uploaded,
+    name: userData.name,
+    email: email,
+    gender: gender,
+    weight: weight,
+    timeSport: timeSport,
+    waterUser,
+  });
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [weight, setWeight] = useState(0);
   const [timeSport, setTimeSport] = useState(0);
   const [waterUser, setWaterUser] = useState(0);
+
+  const dispatch = useDispatch();
   const filePicker = useRef(null);
 
-   useEffect(() => {
-      // Имитация асинхронного запроса
-      const fetchData = async () => {
-        try {
-          // Загрузка данных
-          const response = await axios('https://api.example.com/data');
-          const result = await response.json();
-          // Установка загруженных данных в состояние
-          setData(result);
-        } catch (error) {
-          console.error('Failed to fetch data:', error);
-        }
-      });
+  //  useEffect(() => {
+  //     // Имитация асинхронного запроса
+  //     const fetchData = async () => {
+  //       try {
+  //         // Загрузка данных
+  //         const response = await axios('https://api.example.com/data');
+  //         const result = await response.json();
+  //         // Установка загруженных данных в состояние
+  //         setData(result);
+  //       } catch (error) {
+  //         console.error('Failed to fetch data:', error);
+  //       }
+  //     });
 
   const handleUpload = async event => {
     try {
@@ -45,11 +62,11 @@ export const UserSettingsForm = () => {
       formData.append('file', selectedFile);
       // formData.append('upload_preset', 'Upload_Preset');
       formData.append('upload_preset', 'ylx3q541');
-
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-        formData
-      );
+      dispatch(uploadPhoto());
+      // const response = await axios.post(
+      //   'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+      //   formData
+      // );
 
       console.log('URL загруженного изображения:', response.data.secure_url);
       setUploaded(response.data.secure_url);
@@ -59,6 +76,7 @@ export const UserSettingsForm = () => {
   };
 
   const handleSaveSettings = async () => {
+    dispatch();
     try {
       const formData = new FormData();
       // formData.append('avatar', selectedFile);
@@ -179,8 +197,10 @@ export const UserSettingsForm = () => {
 
           <input
             type="text"
-            {...register('Your name')}
-            onChange={e => setName(e.target.value)}
+            value={userData.name}
+            onChange={e => setData({ ...data, name: e.target.value })}
+            // {...register('Your name')}
+            // onChange={e => setName(e.target.value)}
             placeholder="Name"
           />
           {/* <p>{errors.Your_name?.message}</p> */}
