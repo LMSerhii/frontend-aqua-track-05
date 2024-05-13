@@ -36,8 +36,6 @@ export const Calendar = ({ selectedDate }) => {
     Math.round((item.totalAmount * 100) / 1500)
   );
 
-  console.log(ArrayOfWaterInPercent);
-
   return (
     <>
       {/* {isLoading && <Loader />}

@@ -38,8 +38,6 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
 
-  console.log(selectedDate);
-
   const formattedDate = selectedDate
     .toLocaleString('en-GB', {
       month: 'long',

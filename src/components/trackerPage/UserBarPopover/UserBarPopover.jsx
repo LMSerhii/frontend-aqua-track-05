@@ -10,7 +10,6 @@ export const UserBarPopover = () => {
   const [isUserSettingsModalOpen, setIsUserSettingsModalOpen] = useState(false);
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isUserSettingsModalOpen, isLogOutModalOpen);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
