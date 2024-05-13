@@ -80,19 +80,19 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const uploadPhoto = createAsyncThunk(
-  'auth/uploadPhoto',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
+// export const uploadPhoto = createAsyncThunk(
+//   'auth/uploadPhoto',
+//   async (_, thunkAPI) => {
+//     try {
+//       const response = await axios.post(
+//         'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
+//       );
+//       return response.data.secure_url;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',

@@ -34,18 +34,32 @@ export const UserSettingsForm = () => {
   const handleUpload = async event => {
     try {
       event.preventDefault();
+      const getToken = JSON.parse(localStorage.getItem('persist:auth'));
+      const token = getToken.token;
+      console.log(token);
+
       const file = event.target.files[0];
       console.log(file);
-      // const imageUrl = URL.createObjectURL(file);
-      setSelectedFile(file);
+
       const formData = new FormData();
-      formData.append('file', selectedFile);
+      formData.append('file', file);
 
-      formData.append('upload_preset', 'ylx3q541');
-      dispatch(uploadPhoto());
+      formData.append('upload_preset', 'ml_default');
 
-      console.log('URL загруженного изображения:', response.data.secure_url);
+      const response = await axios.post(
+        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log('URL загруженного изображения:', response.secure_url);
       setUploaded(response.data.secure_url);
+      console.log('cloudinaryLink', uploaded);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
@@ -77,6 +91,10 @@ export const UserSettingsForm = () => {
     } catch (error) {
       console.error('Error dowload:', error);
     }
+  };
+
+  const handleGenderChange = event => {
+    setData({ ...userData, gender: event.target.value });
   };
 
   const handlePick = () => {
@@ -135,9 +153,9 @@ export const UserSettingsForm = () => {
             <input
               type="radio"
               id="woman"
+              name="gender"
               value="woman"
-              checked={userData.gender === 'woman'}
-              onChange={() => setData({ ...data, gender: 'woman' })}
+              onChange={handleGenderChange}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
@@ -150,9 +168,9 @@ export const UserSettingsForm = () => {
             <input
               type="radio"
               id="man"
+              name="gender"
               value="man"
-              checked={userData.gender === 'man'}
-              onChange={() => setData({ ...userData, gender: 'man' })}
+              onChange={handleGenderChange}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}

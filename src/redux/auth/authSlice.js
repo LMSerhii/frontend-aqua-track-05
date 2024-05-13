@@ -7,7 +7,7 @@ import {
   register,
   resendEmail,
   updateUser,
-  uploadPhoto,
+  // uploadPhoto,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -60,8 +60,7 @@ const authSlice = createSlice({
       })
       .addCase(resendEmail.rejected, state => {
         state.error = true;
-      }
-      )
+      })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -73,17 +72,17 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(uploadPhoto.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(uploadPhoto.fulfilled, (state, action) => {
-        state.user.push(action.payload);
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(uploadPhoto.rejected, state => {
-        state.isRefreshing = false;
-      })
+      // .addCase(uploadPhoto.pending, state => {
+      //   state.isRefreshing = true;
+      // })
+      // .addCase(uploadPhoto.fulfilled, (state, action) => {
+      //   state.user.push(action.payload);
+      //   state.isLoggedIn = true;
+      //   state.isRefreshing = false;
+      // })
+      // .addCase(uploadPhoto.rejected, state => {
+      //   state.isRefreshing = false;
+      // })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
       })
