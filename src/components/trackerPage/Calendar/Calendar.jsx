@@ -24,6 +24,7 @@ export const Calendar = ({ selectedDate }) => {
     { totalAmount: 1500 },
     { totalAmount: 1200 },
     { totalAmount: 1000 },
+    { totalAmount: 2500 },
   ];
   // тут потрібен ще dailyWater з документа Юзера
   //   const { user } = useAuth();
@@ -43,7 +44,7 @@ export const Calendar = ({ selectedDate }) => {
       <ul className={css.list}>
         {daysArray.map((day, index) => (
           <li key={day} className={css.item}>
-            <CalendarItem day={day} />
+            <CalendarItem day={day} amount={ArrayOfWaterInPercent[index]} />
             <div className={css.percentage}>
               {ArrayOfWaterInPercent[index] !== undefined
                 ? `${ArrayOfWaterInPercent[index]}%`

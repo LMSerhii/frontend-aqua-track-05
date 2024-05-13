@@ -1,3 +1,12 @@
+.userPanel {
+  margin-bottom: 40px;
+}
+
 .text {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.01em;
   color: var(--dark-blue);
+  margin-bottom: 20px;
 }

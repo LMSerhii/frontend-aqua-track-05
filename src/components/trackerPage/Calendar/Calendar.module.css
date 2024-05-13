@@ -1,24 +1,25 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  column-gap: 18px;
+  row-gap: 20px;
+
   padding: 24px 0 24px 0;
 }
 .item {
   display: flex;
   gap: 6px;
   flex-direction: column;
-  margin-bottom: 20px;
-  text-align: center;
-  background-color: lightgray;
+  align-items: center;
   border-radius: 30px;
   line-height: 28px;
-  height: 28px;
-  padding: 0;
   width: calc((100% - 6 * 18px) / 7);
 }
 .percentage {
-  font-family: inherit;
+  width: 100%;
+  font-weight: 400;
   font-size: 10px;
-  color: var(--light-grey);
+  line-height: 1;
+  text-align: center;
+  color: var(--grey-text);
 }
