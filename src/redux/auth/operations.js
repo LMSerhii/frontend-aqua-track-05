@@ -2,8 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY} = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY } = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -22,7 +21,7 @@ export const register = createAsyncThunk(
       const response = await axios.post(`${USERS}${SIGNUP}`, credentials);
       return response.data;
     } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -35,7 +34,7 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-     return thunkAPI.rejectWithValue(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -82,7 +81,7 @@ export const refreshUser = createAsyncThunk(
 );
 
 export const uploadPhoto = createAsyncThunk(
-  'uploadPhoto',
+  'auth/uploadPhoto',
   async (_, thunkAPI) => {
     try {
       const response = await axios.post(
@@ -90,21 +89,21 @@ export const uploadPhoto = createAsyncThunk(
       );
       return response.data.secure_url;
     } catch (error) {
-     return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const updateUser = createAsyncThunk(
-  'updateUser',
+  'auth/updateUser',
   async ({ body: formData }, thunkAPI) => {
     try {
-      const response = await axios.patch(`${USERS}${CURRENT}`, {
+      const response = await axios.patch('http://localhost:5000/api/v1/users', {
         body: formData,
       });
       return response.data;
     } catch (error) {
-    return  thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

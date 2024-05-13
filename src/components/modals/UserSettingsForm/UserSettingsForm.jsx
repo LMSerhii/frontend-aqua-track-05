@@ -108,11 +108,12 @@ export const UserSettingsForm = () => {
               ref={filePicker}
               id="avatar"
               accept="image/*,.png,.jpg,.gif,.web"
-              // onChange={handleChange}
               onChange={handleUpload}
             />
-            {uploaded && (
+            {uploaded ? (
               <img src={uploaded} className={s.avatar} alt="preview" />
+            ) : (
+              <img src={userData.avatar} className={s.avatar} alt="preview" />
             )}
 
             <button
@@ -136,9 +137,9 @@ export const UserSettingsForm = () => {
             <input
               type="radio"
               id="woman"
-              value={userData.gender}
+              value="woman"
               checked={userData.gender === 'woman'}
-              onChange={e => setData({ ...data, gender: e.target.value })}
+              onChange={() => setData({ ...userData, gender: 'woman' })}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
@@ -151,9 +152,9 @@ export const UserSettingsForm = () => {
             <input
               type="radio"
               id="man"
-              value={userData.gender}
+              value="man"
               checked={userData.gender === 'man'}
-              onChange={e => setData({ ...data, gender: e.target.value })}
+              onChange={() => setData({ ...userData, gender: 'man' })}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
