@@ -15,7 +15,7 @@ export const UserSettingsForm = () => {
   const userData = useSelector(selectUser);
   console.log(userData);
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  // const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
 
   const [data, setData] = useState({
@@ -33,11 +33,9 @@ export const UserSettingsForm = () => {
 
   const handleUpload = async event => {
     try {
-      event.preventDefault();
       const getToken = JSON.parse(localStorage.getItem('persist:auth'));
       const token = getToken.token;
       console.log(token);
-
       const file = event.target.files[0];
       console.log(file);
 
@@ -46,20 +44,20 @@ export const UserSettingsForm = () => {
 
       formData.append('upload_preset', 'ml_default');
 
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios
+        .post(
+          'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
+              'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
+            },
+          }
+        )
+        .then(res => setUploaded(res.data.secure_url));
 
       console.log('URL загруженного изображения:', response.secure_url);
-      setUploaded(response.data.secure_url);
-      console.log('cloudinaryLink', uploaded);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
