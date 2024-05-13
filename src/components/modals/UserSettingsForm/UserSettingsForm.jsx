@@ -129,9 +129,7 @@ export const UserSettingsForm = () => {
           </label>
         </div>
 
-        <label htmlFor="gender" className={s.labelImportanGender}>
-          Your gender identity
-        </label>
+        <label className={s.labelImportanGender}>Your gender identity</label>
         <div className={s.genderWrap}>
           <div className={s.gender}>
             <input
@@ -139,7 +137,7 @@ export const UserSettingsForm = () => {
               id="woman"
               value="woman"
               checked={userData.gender === 'woman'}
-              onChange={() => setData({ ...userData, gender: 'woman' })}
+              onChange={() => setData({ ...data, gender: 'woman' })}
             />
             <label
               className={`${s.labelGender} ${s.materialRadio}`}
@@ -172,6 +170,7 @@ export const UserSettingsForm = () => {
 
           <input
             type="text"
+            id="Your_name"
             value={userData.name}
             onChange={e => setData({ ...data, name: e.target.value })}
             placeholder="Name"
@@ -183,6 +182,7 @@ export const UserSettingsForm = () => {
 
           <input
             type="text"
+            id="Email"
             value={userData.email}
             onChange={e => setData({ ...data, email: e.target.value })}
             placeholder="Email"
@@ -219,6 +219,7 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
+            id="Your_weight"
             value={userData.weight}
             onChange={e => setData({ ...data, weight: e.target.value })}
             placeholder="0.1"
@@ -230,6 +231,7 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
+            id="Your_sports"
             value={userData.timeSport}
             onChange={e => setData({ ...data, timeSport: e.target.value })}
             placeholder="0.1"
@@ -248,6 +250,7 @@ export const UserSettingsForm = () => {
 
           <input
             type="number"
+            id="Your_water"
             value={userData.dailyWater}
             onChange={e => setData({ ...data, dailyWater: e.target.value })}
             placeholder="0.1"
