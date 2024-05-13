@@ -1,4 +1,8 @@
 .wrapper {
+  position: absolute;
+  top: 54px;
+  right: 120px;
+  width: 137px;
   margin-top: 4px;
   display: flex;
   flex-direction: column;
@@ -18,7 +22,7 @@
   cursor: pointer;
   font-weight: bold;
 }
-svg {
+.icon {
   fill: none;
   stroke: var(--dark-blue);
 }

@@ -6,12 +6,12 @@ export const UserPanel = () => {
   const { isLoggedIn, user } = useAuth();
   if (isLoggedIn) {
     return (
-      <>
+      <div className={css.userPanel}>
         <p className={css.text}>
-          Hello, <strong>{user.name}!</strong>
+          Hello, <strong>{user ? user.name : 'Anonymous'}!</strong>
         </p>
         <UserBar />
-      </>
+      </div>
     );
   }
 };
