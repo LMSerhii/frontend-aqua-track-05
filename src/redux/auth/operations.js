@@ -107,3 +107,33 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async email => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/v1/users/forgot-password',
+        { email }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  'auth/reserPassword',
+  async ({ password, otp }) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:3000/api/v1/users/reset-password/${otp}`,
+        { password }
+      );
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);

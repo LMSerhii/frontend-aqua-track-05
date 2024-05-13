@@ -1,9 +1,8 @@
-import { sprite } from '../../../shared/icons/index';
-
-import s from './WaterItem.module.css';
 import { useState } from 'react';
+import { sprite } from '../../../shared/icons/index';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
+import s from './WaterItem.module.css';
 
 const WaterItem = ({ item: { id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);

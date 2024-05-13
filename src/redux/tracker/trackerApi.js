@@ -14,22 +14,26 @@ export const trackerApi = createApi({
       query: () => `/water`,
       providesTags: ['Trackers'],
     }),
+
     getAllEntyiesByDay: builder.query({
       query: id => `/water/${id}`,
       providesTags: ['Trackers'],
     }),
+
     getAllEntyiesByMonth: builder.query({
       query: id => `/water/${id}`,
       providesTags: ['Trackers'],
     }),
+
     createEntry: builder.mutation({
-      query: contact => ({
+      query: data => ({
         url: `/water/add`,
         method: 'POST',
-        body: contact,
+        body: data,
       }),
       invalidatesTags: ['Trackers'],
     }),
+
     updateEntry: builder.mutation({
       query: ({ id, ...entry }) => ({
         url: `/water/${id}`,
