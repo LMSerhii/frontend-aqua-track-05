@@ -32,7 +32,7 @@ export const UserBarPopover = () => {
       <div onClick={toggleModal} className={css.wrapper}>
         <div>
           <Button onClick={toggleSettingsModalOpen} className={css.settingBtn}>
-            <svg width="16" height="16">
+            <svg width="16" height="16" className={css.icon}>
               <use xlinkHref={`${sprite}#settings`}></use>
             </svg>
             Setting
@@ -46,7 +46,7 @@ export const UserBarPopover = () => {
           </div>
         )}
         <Button onClick={toggleLogoutModalOpen} className={css.logoutBtn}>
-          <svg width="16" height="16" className={css.svg}>
+          <svg width="16" height="16" className={css.icon}>
             <use xlinkHref={`${sprite}#log_out`}></use>
           </svg>
           Log out
