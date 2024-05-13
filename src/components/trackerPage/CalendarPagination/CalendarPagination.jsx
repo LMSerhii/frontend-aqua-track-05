@@ -37,7 +37,9 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   //     const daysInMonth = lastDayOfMonth.getDate();
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
+
   console.log(selectedDate);
+
   const formattedDate = selectedDate
     .toLocaleString('en-GB', {
       month: 'long',
@@ -46,7 +48,9 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
     .replace(/(\w+) (\d+)/, '$1, $2');
 
   //   useEffect(() => {
-  //     dispatch(setFilterDate(selectedDate));
+  // formattedDate.toLocaleDateString()
+  // console.log(formattedDate);
+  //     dispatch(setFilterDate(formattedDate));
   //   }, [selectedDate, dispatch]);
 
   return (
