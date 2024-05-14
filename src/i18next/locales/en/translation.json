@@ -128,14 +128,22 @@
     "femaleGenderLabel": "Female",
     "femaleGenderMale": "Male",
     "yourNameLabel": "Your name",
-    "june": "June",
-    "july": "July",
-    "august": "August",
-    "september": "September",
-    "october": "October",
-    "november": "November",
-    "december": "December",
-    "today": "Today",
-    "en": "uk-UA"
+    "placeYourName": "Name",
+    "labelEmail": "Email",
+    "placeEmail": "Email",
+    "dailyNormah3": "My daily norma",
+    "forWomanP": "For woman:",
+    "forManP": "For man:",
+    "starText": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
+    "activeText": "Active time in hours",
+    "infoUser": "Your weight in kilograms:",
+    "TheTimeSportsLabel": "The time of active participation in sports:",
+    "requiredWater": "The required amount of water in liters per day:",
+    "writeDownLabel": "Write down how much water you will drink:",
+    "saveBtn": "Save"
+  },
+
+  "UserSettingsModal": {
+    "setting": "Setting"
   }
 }

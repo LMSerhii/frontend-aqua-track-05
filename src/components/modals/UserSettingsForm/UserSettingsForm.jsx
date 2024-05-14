@@ -182,35 +182,35 @@ export const UserSettingsForm = () => {
             type="text"
             {...register('Your name')}
             onChange={e => setName(e.target.value)}
-            placeholder="Name"
+            placeholder={t('UserSettingsForm.placeYourName')}
           />
           {/* <p>{errors.Your_name?.message}</p> */}
           <label htmlFor="Email" className={s.labelImportan}>
-            Email
+            {t('UserSettingsForm.labelEmail')}
           </label>
 
           <input
             type="text"
             {...register('Email')}
             onChange={e => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder={t('UserSettingsForm.placeEmail')}
           />
           {/* <p>{errors.Email?.message}</p> */}
         </div>
 
         <div className={s.dailyNormaWrap}>
-          <h3 className={s.labelDailyNorma}>My daily norma</h3>
-          <p>For woman:</p>
+          <h3 className={s.labelDailyNorma}>
+            {t('UserSettingsForm.dailyNormah3')}
+          </h3>
+          <p>{t('UserSettingsForm.forWomanP')}</p>
           <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
-          <p>For man:</p>
+          <p>{t('UserSettingsForm.forManP')}</p>
           <p className={s.formula}>V=(M*0,04) + (T*0,6)</p>
 
           <div className={s.Wrapdesc}>
             <p className={s.description}>
-              <span className={s.star}>*</span> V is the volume of the water
-              norm in liters per day, M is your body weight, T is the time of
-              active sports, or another type of activity commensurate in terms
-              of loads (in the absence of these, you must set 0)
+              <span className={s.star}>*</span>
+              {t('UserSettingsForm.starText')}
             </p>
           </div>
 
@@ -218,12 +218,12 @@ export const UserSettingsForm = () => {
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#attention`}></use>
             </svg>
-            <p>Active time in hours</p>
+            <p>{t('UserSettingsForm.activeText')}</p>
           </div>
         </div>
 
         <div className={s.infoUser}>
-          <label htmlFor="Your_weight">Your weight in kilograms:</label>
+          <label htmlFor="Your_weight">{t('UserSettingsForm.infoUser')}</label>
 
           <input
             type="number"
@@ -233,7 +233,7 @@ export const UserSettingsForm = () => {
           />
 
           <label htmlFor="Your_sports">
-            The time of active participation in sports:
+            {t('UserSettingsForm.TheTimeSportsLabel')}
           </label>
 
           <input
@@ -245,13 +245,13 @@ export const UserSettingsForm = () => {
         </div>
 
         <div className={s.requiredWater}>
-          <p>The required amount of water in liters per day:</p>
+          <p>{t('UserSettingsForm.requiredWater')}</p>
           <p className={s.formula}>{'1.8 L'}</p>
         </div>
 
         <div className={s.waterUser}>
           <label htmlFor="Your_water" className={s.labelImportan}>
-            Write down how much water you will drink:
+            {t('UserSettingsForm.writeDownLabel')}
           </label>
 
           <input
@@ -263,7 +263,7 @@ export const UserSettingsForm = () => {
         </div>
 
         <Button classname={s.btnSetting} onClick={handleSaveSettings}>
-          Save
+          {t('UserSettingsForm.saveBtn')}
         </Button>
       </form>
     </Section>
