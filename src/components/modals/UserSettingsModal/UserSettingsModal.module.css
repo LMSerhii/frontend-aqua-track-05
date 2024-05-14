@@ -34,7 +34,7 @@
 }
 
 .modal.active {
-  opacity: 1;
+  opacity: 10000;
   pointer-events: all;
 }
 
@@ -62,4 +62,8 @@
 
 .modalContent.active {
   transform: scale(1);
+}
+
+.icon {
+  stroke: black;
 }

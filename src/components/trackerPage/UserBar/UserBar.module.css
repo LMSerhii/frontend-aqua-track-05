@@ -1,20 +1,27 @@
+.dropdown {
+  position: relative;
+}
+
 .button {
   padding: 6px 12px;
   background-color: #323f47;
   border-radius: 30px;
-  display: flex;
-  justify-content: space-around;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
   cursor: pointer;
-  align-items: center;
 }
+
 .userName {
-  color: #ffffff;
+  font-weight: 700;
   font-size: 14px;
-  font-weight: bold;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #fff;
 }
-.img {
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
+
+.iconChevron {
+  /* fill: var(--white); */
+  stroke: var(--white);
 }

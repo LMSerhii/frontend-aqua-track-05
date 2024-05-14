@@ -28,7 +28,7 @@ export const UserSettingsModal = ({ active, setActive }) => {
           // onClick={handleModalClick}
         >
           <button onClick={() => setActive(false)} className={s.btnClose}>
-            <svg width="24" height="24">
+            <svg className={s.icon} width="24" height="24">
               <use xlinkHref={`${sprite}#close`}></use>
             </svg>
           </button>
@@ -60,24 +60,28 @@ export const UserSettingsModal = ({ active, setActive }) => {
 //   );
 // };
 
-// import { useState } from 'react';
-// import { Helmet } from 'react-helmet-async';
-// import { Modal } from '../shared/components/Modal/Modal';
-// import { UserSettingsModal } from '../components/modals/UserSettingsModal/UserSettingsModal.jsx';
-
-// export default function HomePage() {
-//   const [isOpen, setIsOpen] = useState(true);
-
-//   return (
-//     <>
-//       <Helmet>
-//         <title>Home Page</title>
-//       </Helmet>
-//       <p>Home page</p>
-//       <button onClick={() => setIsOpen(true)}>Open modalSetting</button>
-//       <Modal active={isOpen} setActive={setIsOpen}>
-//         <UserSettingsModal />
-//       </Modal>
-//     </>
-//   );
-// }
+{
+  /* <>
+  <div onClick={toggleModal} className={css.wrapper}>
+    <div>
+      <Button onClick={toggleSettingsModalOpen} className={css.settingBtn}>
+        <svg width="16" height="16">
+          <use xlinkHref={`${sprite}#settings`}></use>
+        </svg>
+        Setting
+      </Button>
+    </div>
+    {isOpen && (
+      <div className="modal-overlay" onClick={closeModal}>
+        <UserSettingsModal active={isOpen} setActive={setIsOpen} />
+      </div>
+    )}
+    <Button onClick={toggleLogoutModalOpen} className={css.logoutBtn}>
+      <svg width="16" height="16" className={css.svg}>
+        <use xlinkHref={`${sprite}#log_out`}></use>
+      </svg>
+      Log out
+    </Button>
+  </div>
+</>; */
+}

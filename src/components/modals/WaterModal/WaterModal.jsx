@@ -90,6 +90,7 @@ export const WaterModal = ({ title, subTitle, setActive, operation, id }) => {
           id={id}
           handleWaterChange={handleWaterChange}
           waterValue={waterValue}
+          setActive={setActive}
         />
       </div>
     </div>

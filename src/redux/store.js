@@ -10,10 +10,12 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
 import { trackerApi, trackerReducer } from './tracker/trackerApi';
+import { dateReducer } from './date/dateSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
+    date: dateReducer,
     [trackerApi.reducerPath]: trackerReducer,
   },
   middleware: getDefaultMiddleware => [
@@ -22,6 +24,7 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+    trackerApi.middleware,
   ],
 });
 
