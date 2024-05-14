@@ -3,11 +3,12 @@
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
-
+import { useTranslation } from 'react-i18next';
 import css from './CalendarPagination.module.css';
 // import { Calendar } from '../Calendar/Calendar';
 
 export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
+  const { t } = useTranslation();
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
       selectedDate.getFullYear(),
@@ -45,12 +46,14 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
     })
     .replace(/(\w+) (\d+)/, '$1, $2');
 
+  const translatedMonth = t(`months.${selectedDate.getMonth()}`);
+
   return (
     <div className={css.wrapper}>
       <Button onClick={goToPrevoiusMonth} className={css.btn}>
         <BsChevronLeft size="12" className={css.arrow} />
       </Button>
-      <span className={css.span}>{formattedDate}</span>
+      <span className={css.span}>{translatedMonth}</span>
       <Button onClick={goToNextMonth} className={css.btn}>
         <BsChevronRight size="12" className={css.arrow} />
       </Button>
