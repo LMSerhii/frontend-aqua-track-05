@@ -8,6 +8,13 @@
   right: 16px;
 }
 
+@media screen and (min-width: 768px) {
+  .btnClose {
+    top: 40px;
+    right: 40px;
+  }
+}
+
 .settingCaption {
   margin-top: 40px;
   font-size: 20px;
@@ -15,6 +22,14 @@
   line-height: 24px;
   letter-spacing: -0.01em;
   text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .settingCaption {
+    margin-top: 0px;
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 .modal {
@@ -49,21 +64,22 @@
   transform: scale(0.5);
   transition: 0.4s all;
 }
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .modalContent {
-    width: 518px;
+    width: 648px;
+    padding: 40px;
   }
 }
-@media screen and (max-width: 350px) {
+@media screen and (min-width: 1440px) {
   .modalContent {
-    width: 300px;
+    width: 920px;
   }
-} */
+}
 
 .modalContent.active {
   transform: scale(1);
 }
 
 .icon {
-  stroke: black;
+  stroke: #2f2f2f;
 }
