@@ -7,7 +7,6 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { forgotPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
-import { useTranslation } from 'react-i18next';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Pls valid email').required('Required email'),
@@ -19,7 +18,6 @@ const initialValues = {
 export default function ForgotForm() {
   const idEmail = useId();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const handleSubmit = (values, actions) => {
     const user = {
@@ -45,9 +43,7 @@ export default function ForgotForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>
-            {t('ForgotPasswordForm.recoverYourPassword')}
-          </h2>
+          <h2 className={css.h2}>Recover your password</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -56,14 +52,14 @@ export default function ForgotForm() {
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
-                  {t('ForgotPasswordForm.email')}
+                  Email
                 </label>
                 <Field
                   type="text"
                   name="email"
                   id={idEmail}
                   className={css.input}
-                  placeholder={t('ForgotPasswordForm.enterPlace')}
+                  placeholder="Enter your email"
                 />
                 <ErrorMessage
                   name="email"
@@ -72,16 +68,15 @@ export default function ForgotForm() {
                 />
               </div>
               <button type="submit" className={css.button}>
-                {t('ForgotPasswordForm.sendLinkBtn')}
+                Send link
               </button>
             </Form>
           </Formik>
         </div>
         <p className={css.text}>
-          {t('ForgotPasswordForm.rememberPasswordText')}
-
+          Remember your password?
           <NavLink to="/signin" className={css.link}>
-            {t('ForgotPasswordForm.signIn')}
+            Sign In
           </NavLink>
         </p>
       </div>

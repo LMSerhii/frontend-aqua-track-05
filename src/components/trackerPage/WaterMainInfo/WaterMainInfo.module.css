@@ -6,7 +6,7 @@
   }
 
   .icon {
-    stroke: var(--white);
+    stroke: var(--white)
   }
 
   /*EDIT BUTTON*/
@@ -77,7 +77,7 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    row-gap: 2px;
+    row-gap: 6px;
     position: absolute;
     background-color: var(--white);
     border-radius: 15px;

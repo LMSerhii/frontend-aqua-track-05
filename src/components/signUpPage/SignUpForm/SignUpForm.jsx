@@ -8,43 +8,39 @@ import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import toast from 'react-hot-toast';
 
 import { useDispatch } from 'react-redux';
-import { useId } from 'react';
+import { useId,  } from 'react';
 
 import Logo from '../../../shared/components/Logo/Logo';
 import { register } from '../../../redux/auth/operations';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
-import { useTranslation } from 'react-i18next';
 
+const CheckSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Please enter valid email')
+    .required('Required email'),
+  password: Yup.string()
+    .min(6, 'Too short')
+    .max(50, 'Too long')
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
+      'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+    )
+    .required('Required password'),
+  repeatPassword: Yup.string()
+    .oneOf([Yup.ref('password')], 'Passwords must match')
+    .required('Required password'),
+});
 const initialValues = {
   email: '',
   password: '',
   repeatPassword: '',
 };
 export default function SignUpForm() {
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
   const dispatch = useDispatch();
-
-  //перенес для const { t } = useTranslation();
-  const CheckSchema = Yup.object().shape({
-    email: Yup.string()
-      .email(t('singUnForm.emailVelid'))
-      .required(t('singUnForm.emailRequired')),
-    password: Yup.string()
-      .min(6, t('singUnForm.passwordMin'))
-      .max(50, t('singUnForm.passwordMax'))
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
-        t('singUnForm.passwordMatches')
-      )
-      .required(t('singUnForm.passwordRequired')),
-    repeatPassword: Yup.string()
-      .oneOf([Yup.ref('password')], t('singUnForm.repeatPasswordOneOf'))
-      .required(t('singUnForm.repeatPasswordRequired')),
-  });
 
   const handleSubmit = (values, _) => {
     const name = values.email.split('@')[0];
@@ -71,7 +67,7 @@ export default function SignUpForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>{t('singUnForm.signUp')}</h2>
+          <h2 className={css.h2}>Sign Up</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -80,14 +76,14 @@ export default function SignUpForm() {
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
-                  {t('singUnForm.email')}
+                  Email
                 </label>
                 <Field
                   type="text"
                   name="email"
                   id={idEmail}
                   className={css.input}
-                  placeholder={t('singUnForm.passwordPlace')}
+                  placeholder="Enter your email"
                 />
                 <ErrorMessage
                   name="email"
@@ -97,58 +93,50 @@ export default function SignUpForm() {
               </div>
               <div className={css.field}>
                 <label htmlFor={idPassword} className={css.label}>
-                  {t('singUnForm.password')}
+                  Password
                 </label>
                 <Field
                   type="password"
                   name="password"
                   id={idPassword}
                   className={css.input}
-                  placeholder={t('singUnForm.passwordPlace')}
+                  placeholder="Enter your password"
                 />
                 <ErrorMessage
                   name="password"
                   component="span"
                   className={css.error}
                 />
-                <ShareIconPassword
-                  name={idPassword}
-                  iconId="FirstIconPassword"
-                  css={css}
-                />
+                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
-                  {t('singUnForm.repeatPassword')}
+                  Repeat Password
                 </label>
                 <Field
                   type="password"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
-                  placeholder={t('singUnForm.passwordRepeatPlace')}
+                  placeholder="Repeat password"
                 />
                 <ErrorMessage
                   name="repeatPassword"
                   component="span"
                   className={css.error}
                 />
-                <ShareIconPassword
-                  name={idRepeatPassword}
-                  iconId="SecondIconPassword"
-                  css={css}
-                />
+                <ShareIconPassword name={idRepeatPassword} iconId="SecondIconPassword" css={css} /> 
               </div>
               <button type="submit" className={css.button}>
-                {t('singUnForm.sigmUp')}
+                Sign up
               </button>
             </Form>
           </Formik>
         </div>
         <p className={css.text}>
-          {t('singUnForm.textAlready')}
+          Already have account?
           <NavLink to="/signin" className={css.link}>
-            {t('singUnForm.signIn')}
+            Sign In
           </NavLink>
         </p>
       </div>

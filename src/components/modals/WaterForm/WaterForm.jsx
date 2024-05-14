@@ -8,11 +8,6 @@ import {
   currentTime,
   getCurrentDate,
 } from '../../../shared/helpers/dateServices';
-
-import { useTranslation } from 'react-i18next';
-
-export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
-
 import {
   useCreateEntryMutation,
   // useUpdateEntryMutation,
@@ -34,21 +29,10 @@ export const WaterForm = ({
   id,
   handleSetAmountData,
 }) => {
-
   const [time, setTime] = useState(currentTime);
-  const { t } = useTranslation();
-
-  const schema = yup.object().shape({
-    water: yup
-      .number()
-      .required(t('waterModal.WaterForm.waterRequired'))
-      .positive(t('waterModal.WaterForm.waterPositive'))
-      .integer(t('waterModal.WaterForm.waterInteger')),
-  });
 
   const [createEntry] = useCreateEntryMutation();
   // const [updateEntry] = useUpdateEntryMutation();
-
 
   const {
     register,
@@ -83,24 +67,12 @@ export const WaterForm = ({
           time: currentTime,
         };
 
-
-      console.log(data1);
-    } else {
-      const data2 = {
-        id: id,
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
-      console.log(data2);
-
         console.log(data2);
         setActive(false);
       }
     } catch (error) {
       console.error('Error:', error);
       // Обработка ошибки (если нужно)
-
     }
   };
 
@@ -109,7 +81,7 @@ export const WaterForm = ({
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
         {/* поле ввода времени */}
         <label className={s.timeLable} htmlFor="time">
-          {t('waterModal.timeRecording')}
+          Recording time:
         </label>
         <br />
         <input
@@ -124,7 +96,7 @@ export const WaterForm = ({
 
         {/* поле ввода для воды */}
         <label className={s.waterLable} htmlFor="water">
-          {t('waterModal.waterValue')}
+          Enter the value of the water used:
         </label>
         <br />
         {errors.water && <p className={s.error}>{errors.water.message}</p>}
@@ -139,7 +111,7 @@ export const WaterForm = ({
         />
         <br />
         <Button className={s.btnSubmit} type="submit">
-          {t('waterModal.btnSubmit')}
+          Save
         </Button>
       </form>
     </>

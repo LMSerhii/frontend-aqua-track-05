@@ -14,10 +14,7 @@ import male2x from '../../../shared/images/homePage/Male2x-min.png';
 import male22x from '../../../shared/images/homePage/Male22x-min.png';
 import male32x from '../../../shared/images/homePage/Male32x-min.png';
 
-import { useTranslation } from 'react-i18next';
-
 export default function AdvantagesSection() {
-  const { t } = useTranslation();
   return (
     <div className={css.section}>
       <Picture
@@ -68,24 +65,21 @@ export default function AdvantagesSection() {
             />
           </li>
         </ul>
-
         <p className={css.parag}>
-          {t('advantagesSection.ourParag')}{' '}
-          <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
-          {t('advantagesSection.customersParag')}
+          Our <span className={css.span}>happy</span> customers
         </p>
         <ul className={css.list_trk}>
           <li className={css.item_trk}>
             <div className={css.flex}>
               <div className={css.cycle}></div>
-              <p className={css.text}>{t('advantagesSection.ourParag')}</p>
+              <p className={css.text}>Habit drive</p>
             </div>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.happySpan')}</p>
+            <p className={css.text2}>View statistics</p>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.customersParag')}</p>
+            <p className={css.text2}>Personal rate setting</p>
           </li>
         </ul>
       </div>
