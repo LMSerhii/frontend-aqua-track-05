@@ -1,8 +1,5 @@
-import { useGetAllEntyiesByMonthQuery } from '../../../redux/tracker/trackerApi';
 import { CalendarItem } from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
-import { useAuth } from '../../../hooks/useAuth';
-import Loader from '../../../shared/components/Loader/Loader';
 
 export const Calendar = ({ selectedDate }) => {
   const daysInMonth = new Date(
@@ -50,8 +47,6 @@ export const Calendar = ({ selectedDate }) => {
                 ? `${ArrayOfWaterInPercent[index]}%`
                 : '0%'}
             </div>
-
-            {/* {console.log(day)} */}
           </li>
         ))}
       </ul>

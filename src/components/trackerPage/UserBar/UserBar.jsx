@@ -1,42 +1,48 @@
 import { useState } from 'react';
-import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
 import { useAuth } from '../../../hooks/useAuth';
-import Button from '../../../shared/components/Button/Button';
 import { UserBarPopover } from '../UserBarPopover/UserBarPopover';
-import girl from '../../../shared/images/homePage/Rectangle22x-min.png';
 
 import css from './UserBar.module.css';
+import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
-export const UserBar = () => {
+export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
   const { user } = useAuth();
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const togglePopover = () => {
-    setIsPopoverOpen(!isPopoverOpen);
-  };
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className={css.useMenu}>
-      <Button className={css.button} onClick={togglePopover}>
+    <div className={css.dropdown}>
+      <div className={css.button} onClick={() => setIsActive(!isActive)}>
         <span className={css.userName}>{user ? user.name : 'Anonymous'}</span>
 
-        <div className={css.thumb}>
-          <img
-            src={user ? user.avatar : girl}
-            alt="User avatar"
-            className={css.img}
+        <UserPanelAvatar user={user} />
+
+        {isActive ? (
+          <SharedSVG
+            className={css.iconChevron}
+            width={16}
+            height={16}
+            svgId="icon-chevron-down"
           />
-        </div>
-
-        {isPopoverOpen ? (
-          <BiChevronUp size="16px" color="white" />
         ) : (
-          <BiChevronDown size="16px" color="white" />
+          <SharedSVG
+            className={css.iconChevron}
+            width={16}
+            height={16}
+            svgId="icon-chevron-up"
+          />
         )}
-      </Button>
+      </div>
 
-      {isPopoverOpen && <UserBarPopover />}
+      {isActive && (
+        <UserBarPopover
+          isActive={isActive}
+          setIsActive={setIsActive}
+          setIsActiveSettings={setIsActiveSettings}
+          setIsActiveLogout={setIsActiveLogout}
+        />
+      )}
     </div>
   );
 };
