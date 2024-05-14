@@ -1,7 +1,7 @@
-import css from './Head.module.css';
+import css from './UserAuth.module.css';
 import { useTranslation } from 'react-i18next';
 
-const UserAuth = () => {
+const UsserAuth = () => {
   const { i18n } = useTranslation();
 
   const changeLanguage = lng => {
@@ -34,4 +34,4 @@ const UserAuth = () => {
   );
 };
 
-export default UserAuth;
+export default UsserAuth;

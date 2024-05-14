@@ -1,10 +1,10 @@
-import UserAuth from './UserAuth';
+import UsserAuth from '../UserAuth/UsserAuth';
 
 const Head = () => {
   return (
     <header>
       <nav>
-        <UserAuth />
+        <UsserAuth />
       </nav>
     </header>
   );

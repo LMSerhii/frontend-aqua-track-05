@@ -8,8 +8,8 @@ export default function SharedLayout() {
   return (
     <>
       <Suspense fallback={null}>
-        <Head />
         <main className={s.container}>
+          <Head />
           <Outlet />
         </main>
       </Suspense>
