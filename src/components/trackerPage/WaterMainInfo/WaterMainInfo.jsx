@@ -8,13 +8,42 @@ import Button from '../../../shared/components/Button/Button.jsx';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
 import { WaterModal } from '../../modals/WaterModal/WaterModal.jsx';
 import { Modal } from '../../../shared/components/Modal/Modal.jsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectDailyWater } from '../../../redux/auth/authSlice.js';
+import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi.js';
+import { selectDate } from '../../../redux/date/dateSlice.js';
 
 export const WaterMainInfo = () => {
-
   const [activeAdd, setActiveAdd] = useState(false);
+  const dayOfWeek = useSelector(selectDate);
+
+  const [getAllEntyiesByDay, { data }] =
+    useGetAllEntyiesByDayMutation(dayOfWeek);
+
+  useEffect(() => {
+    getAllEntyiesByDay(dayOfWeek);
+  }, [getAllEntyiesByDay, dayOfWeek]);
+
+  const water = data && data.data
+
+  let drinkedWater = 0;
+
+  water?.forEach(item => drinkedWater += item.amount)
+
+
+
 
   const width = window.innerWidth;
+  const getDailyWater = useSelector(selectDailyWater);
+  const dailyWater = getDailyWater === null ? "1.5L" : `${getDailyWater / 1000}`
+
+  const dailyWaterMl = dailyWater.split(("L"))[0] * 1000
+
+  const percentage = (drinkedWater / dailyWaterMl) * 100;
+
+
+
 
   return (
     <div className={css.bottle_page_wrapper}>
@@ -46,7 +75,7 @@ export const WaterMainInfo = () => {
       </picture>
 
       <div className={css.bottle_page_norm_wrapper}>
-        <span className={css.bottle_page_norm_wrapper_value}>1.5 L</span>
+        <span className={css.bottle_page_norm_wrapper_value}>{Number(dailyWater).toFixed(2)} L</span>
         <span className={css.bottle_page_norm_wrapper_text}>
           My Daily Norma
         </span>
@@ -64,7 +93,7 @@ export const WaterMainInfo = () => {
         <Logo />
       </div>
       <div className={css.bottle_page_slider_wrapper}>
-        <WaterProgressBar className={css.bottle_page_progress_bar} />
+        <WaterProgressBar className={css.bottle_page_progress_bar} percentage={percentage.toFixed(1)} />
       </div>
 
       <Modal active={activeAdd} setActive={setActiveAdd}>
