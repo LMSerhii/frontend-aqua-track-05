@@ -11,45 +11,47 @@ export const trackerApi = createApi({
     baseUrl: BASE_URL,
     prepareHeaders(headers, { getState }) {
       const token = getState().auth.token;
+
+      if (token) headers.set(`Authorization`, `Bearer ${token}`);
     },
   }),
+
   tagTypes: ['Trackers'],
   endpoints: builder => ({
-    getAllEntyies: builder.query({
-      query: () => `/water`,
-      providesTags: ['Trackers'],
-    }),
-
     getAllEntyiesByDay: builder.mutation({
-      query: data => ({
+      query: body => ({
         url: `/water/daily_count`,
         method: 'POST',
-        body: data,
+        body,
       }),
       invalidatesTags: ['Trackers'],
     }),
+<<<<<<< HEAD
     getAllEntyiesByMonth: builder.query({
       query: id => `/water/${id}`,
       providesTags: ['Trackers'],
     }),
+=======
+>>>>>>> main
 
     createEntry: builder.mutation({
-      query: data => ({
+      query: body => ({
         url: `/water/add`,
         method: 'POST',
-        body: data,
+        body,
       }),
       invalidatesTags: ['Trackers'],
     }),
 
     updateEntry: builder.mutation({
       query: ({ id, ...entry }) => ({
-        url: `/water/${id}`,
+        url: `/water/edit/${id}`,
         method: 'PUT',
         body: entry,
       }),
       invalidatesTags: ['Trackers'],
     }),
+
     deleteEntry: builder.mutation({
       query: id => ({
         url: `/water/${id}`,
@@ -61,9 +63,13 @@ export const trackerApi = createApi({
 });
 
 export const {
+<<<<<<< HEAD
   useGetAllEntyiesQuery,
   useGetAllEntriesByDayMutation,
   useGetAllEntyiesByMonthQuery,
+=======
+  useGetAllEntyiesByDayMutation,
+>>>>>>> main
   useCreateEntryMutation,
   useUpdateEntryMutation,
   useDeleteEntryMutation,

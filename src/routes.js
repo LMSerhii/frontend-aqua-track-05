@@ -10,6 +10,7 @@ export const routes = {
   FORGOT_REQUEST: '/forgot-password',
   RESET: '/reset-password-form/:otp',
   RESET_REQUEST: '/reset-password',
+  SUCCESS_VERIFY_NOTIFY: "/notify"
 };
 
 export const BASE_URL = 'http://localhost:3001/api/v1';

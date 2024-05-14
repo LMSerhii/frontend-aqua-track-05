@@ -4,7 +4,7 @@ import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './WaterItem.module.css';
 
-const WaterItem = ({ item: { id, amount, time } }) => {
+const WaterItem = ({ item: { _id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
   // const [activeDelete, setActiveDelete] = useState(false);
 
@@ -38,7 +38,7 @@ const WaterItem = ({ item: { id, amount, time } }) => {
           operation="edit"
           title="Edit the entered amount of water"
           subTitle="Correct entered data:"
-          id={id}
+          id={_id}
           setActive={setActiveEdit}
         />
       </Modal>

@@ -3,6 +3,7 @@ import { useAuth } from '../../../hooks';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { UserBar } from '../UserBar/UserBar';
 import s from './UserPanel.module.css';
+import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
 
 export const UserPanel = () => {
   const { user } = useAuth();
@@ -26,11 +27,10 @@ export const UserPanel = () => {
         setIsActiveLogout={setIsActiveLogout}
       />
 
-      {/* setting  */}
-      <Modal active={isActiveSettings} setActive={setIsActiveSettings}>
-        <p>Setting</p>
-      </Modal>
-      {/* setting  */}
+      <UserSettingsModal
+        active={isActiveSettings}
+        setActive={setIsActiveSettings}
+      />
 
       <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
         <p>LOGOUT</p>

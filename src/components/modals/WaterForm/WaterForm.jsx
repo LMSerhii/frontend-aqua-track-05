@@ -8,6 +8,10 @@ import {
   currentTime,
   getCurrentDate,
 } from '../../../shared/helpers/dateServices';
+import {
+  useCreateEntryMutation,
+  // useUpdateEntryMutation,
+} from '../../../redux/tracker/trackerApi';
 
 const schema = yup.object().shape({
   water: yup
@@ -17,8 +21,18 @@ const schema = yup.object().shape({
     .integer('Water value must be an integer'),
 });
 
-export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
+export const WaterForm = ({
+  handleWaterChange,
+  waterValue,
+  operation,
+  setActive,
+  id,
+  handleSetAmountData,
+}) => {
   const [time, setTime] = useState(currentTime);
+
+  const [createEntry] = useCreateEntryMutation();
+  // const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -33,23 +47,32 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
   };
 
   // Вывод объекта с данными о кол-ве воды
-  const onSubmit = () => {
-    if (operation === 'add') {
-      const data1 = {
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
+  const onSubmit = async () => {
+    try {
+      if (operation === 'add') {
+        const data1 = {
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
+        const response = await createEntry(data1);
+        const amountsList = response.data.data.amounts;
+        handleSetAmountData(amountsList);
+        setActive(false);
+      } else {
+        const data2 = {
+          id: id,
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
 
-      console.log(data1);
-    } else {
-      const data2 = {
-        id: id,
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
-      console.log(data2);
+        console.log(data2);
+        setActive(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Обработка ошибки (если нужно)
     }
   };
 
