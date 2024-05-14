@@ -6,7 +6,7 @@ import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './AddWaterBtn.module.css';
 import { useTranslation } from 'react-i18next';
 
-const AddWaterBtn = () => {
+const AddWaterBtn = ({ handleSetAmountData }) => {
   const [activeAdd, setActiveAdd] = useState(false);
   const { t } = useTranslation();
 
@@ -27,6 +27,7 @@ const AddWaterBtn = () => {
           title={t('waterModal.addWaterTitle')}
           subTitle={t('waterModal.addWaterSubTitle')}
           setActive={setActiveAdd}
+          handleSetAmountData={handleSetAmountData}
         />
       </Modal>
     </>

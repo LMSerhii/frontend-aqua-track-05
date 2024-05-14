@@ -6,7 +6,14 @@ import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import Counter from '../Counter/Counter';
 import { useTranslation } from 'react-i18next';
 
-export const WaterModal = ({ title, subTitle, setActive, operation, id }) => {
+export const WaterModal = ({
+  title,
+  subTitle,
+  setActive,
+  operation,
+  id,
+  handleSetAmountData,
+}) => {
   const [count, setCount] = useState(50);
   const [waterValue, setWaterValue] = useState(count.toString());
 
@@ -91,6 +98,7 @@ export const WaterModal = ({ title, subTitle, setActive, operation, id }) => {
           handleWaterChange={handleWaterChange}
           waterValue={waterValue}
           setActive={setActive}
+          handleSetAmountData={handleSetAmountData}
         />
       </div>
     </div>

@@ -5,13 +5,34 @@ import WaterList from '../WaterList/WaterList';
 import s from './DailyInfo.module.css';
 import { useTranslation } from 'react-i18next';
 const DailyInfo = () => {
+
   const [isWaterAdd, setIsWaterAdd] = useState(false);
   const { t } = useTranslation();
+
+  const date = useSelector(selectDate);
+  const [amountData, setAmountData] = useState([]);
+
+  const handleSetAmountData = data => {
+    setAmountData(data);
+  };
+
+  const [getAllEntyiesByDay, { data, isLoading, isError }] =
+    useGetAllEntyiesByDayMutation();
+
+  useEffect(() => {
+    getAllEntyiesByDay(date);
+  }, [getAllEntyiesByDay, date]);
+
+  useEffect(() => {
+    if (data) setAmountData(data.data);
+  }, [data]);
+
+
   return (
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>
         <ChooseDate />
-        <AddWaterBtn />
+        <AddWaterBtn handleSetAmountData={handleSetAmountData} />
       </div>
       {isWaterAdd ? (
         <WaterList />
