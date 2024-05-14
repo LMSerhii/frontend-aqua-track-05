@@ -1,0 +1,33 @@
+.dropdown {
+  width: 200px;
+  position: relative;
+}
+
+.dropdownBtn {
+  padding: 10px;
+  user-select: none;
+  background-color: #4c8a647c;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  color: #333;
+  width: 100%;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: orange;
+}
