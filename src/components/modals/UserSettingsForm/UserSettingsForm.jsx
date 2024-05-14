@@ -69,7 +69,6 @@ export const UserSettingsForm = () => {
   const handleSubmitSetting = () => {
     try {
       const formData = new FormData();
-      console.log(formData);
 
       const dataUser = {
         avatar: uploaded,
@@ -82,10 +81,10 @@ export const UserSettingsForm = () => {
       };
       formData.append('dataUser', JSON.stringify(dataUser));
 
+      // const data = Object.fromEntries(formData);
+      // console.log(data);
       dispatch(updateUser(formData));
-
-      const data = Object.fromEntries(formData);
-      console.log(data);
+      console.log(formData);
     } catch (error) {
       console.error('Error dowload:', error);
     }
