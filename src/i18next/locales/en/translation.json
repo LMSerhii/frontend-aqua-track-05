@@ -171,5 +171,19 @@
     "8": "September",
     "9": "October",
     "10": "November"
+  },
+
+  "ResetForm": {
+    "minTooShort": "Too short",
+    "maxTooLong": "Too long",
+    "matchesPassword": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    "requiredPassword": "Required password",
+    "oneOfPassword": "Passwords must match",
+    "requiredPasswordrepeat": "Required password",
+    "makeTexth2": "Make a new password",
+    "newPasswordLabel": " New password",
+    "enterPlace": "Enter your new password",
+    "repeatPassword": "Repeat Password",
+    "confirmBtn": "Confirm"
   }
 }
