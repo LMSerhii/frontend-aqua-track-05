@@ -9,10 +9,17 @@ export const UserPanel = () => {
   const [isActiveSettings, setIsActiveSettings] = useState(false);
   const [isActiveLogout, setIsActiveLogout] = useState(false);
 
+  const croppName = str => {
+    if (str.length > 8) {
+      str = str.slice(0, 8) + '...';
+    }
+    return str;
+  };
+
   return (
     <div className={s.userPanel}>
       <p className={s.text}>
-        Hello, <strong>{user ? user.name : 'Anonymous'}!</strong>
+        Hello, <strong>{user ? croppName(user.name) : 'Anonymous'}!</strong>
       </p>
       <UserBar
         setIsActiveSettings={setIsActiveSettings}

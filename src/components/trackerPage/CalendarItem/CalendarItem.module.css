@@ -2,11 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
   border-radius: 100%;
   width: 28px;
   height: 28px;
-
   font-weight: 700;
   font-size: 14px;
   line-height: 1.29;
@@ -20,4 +18,17 @@
 
 .notfullColor {
   background-color: var(--calendarItemColor);
+}
+@media screen and (min-width: 768px) {
+  .dayBtn {
+    font-size: 16px;
+    /* width: 38px;
+    height: 38px; */
+  }
+}
+@media screen and (min-width: 1440px) {
+  .dayBtn {
+    width: 38px;
+    height: 38px;
+  }
 }

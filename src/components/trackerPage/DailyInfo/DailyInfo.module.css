@@ -19,6 +19,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .waterListBlock {
+    padding: 0 32px;
+  }
   .emptyListWaterTextWrap {
     width: fit-content;
   }

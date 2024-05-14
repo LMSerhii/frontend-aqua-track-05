@@ -10,8 +10,7 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    padding-right: 32px;
-    padding-left: 32px;
+    padding: 0 32px;
   }
   .month {
     font-size: 28px;
