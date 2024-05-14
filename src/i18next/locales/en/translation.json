@@ -153,7 +153,9 @@
     "enterPlace": "Enter your email",
     "sendLinkBtn": "Send link",
     "rememberPasswordText": "Remember your password?",
-    "signIn": "Sign In"
+    "signIn": "Sign In",
+    "emailVelid": "Pls valid email",
+    "emailRequired": "Required email"
   },
 
   "months": {
