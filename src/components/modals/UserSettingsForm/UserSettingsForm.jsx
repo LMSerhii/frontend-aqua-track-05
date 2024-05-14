@@ -14,7 +14,7 @@ import { updateUser } from '../../../redux/auth/operations';
 
 export const UserSettingsForm = () => {
   const userData = useSelector(selectUser);
-  console.log(userData);
+  // console.log(userData);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
