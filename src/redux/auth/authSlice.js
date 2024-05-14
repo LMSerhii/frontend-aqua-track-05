@@ -62,8 +62,7 @@ const authSlice = createSlice({
       })
       .addCase(resendEmail.rejected, state => {
         state.error = true;
-      }
-      )
+      })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -103,7 +102,7 @@ const authSlice = createSlice({
       .addCase(forgotPassword.pending, state => {
         state.error = null;
       })
-      .addCase(forgotPassword.fulfilled, (state) => {
+      .addCase(forgotPassword.fulfilled, state => {
         state.error = null;
       })
       .addCase(forgotPassword.rejected, state => {
@@ -112,12 +111,12 @@ const authSlice = createSlice({
       .addCase(resetPassword.pending, state => {
         state.error = null;
       })
-      .addCase(resetPassword.fulfilled, (state) => {
+      .addCase(resetPassword.fulfilled, state => {
         state.error = null;
       })
       .addCase(resetPassword.rejected, state => {
         state.error = true;
-      })
+      });
   },
 });
 
