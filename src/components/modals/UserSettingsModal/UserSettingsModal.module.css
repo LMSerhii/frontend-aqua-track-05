@@ -8,6 +8,13 @@
   right: 16px;
 }
 
+@media screen and (min-width: 768px) {
+  .btnClose {
+    top: 40px;
+    right: 40px;
+  }
+}
+
 .settingCaption {
   margin-top: 40px;
   font-size: 20px;
@@ -15,6 +22,14 @@
   line-height: 24px;
   letter-spacing: -0.01em;
   text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .settingCaption {
+    margin-top: 0px;
+    font-size: 28px;
+    line-height: 32px;
+  }
 }
 
 .modal {
@@ -52,7 +67,7 @@
 @media screen and (min-width: 768px) {
   .modalContent {
     width: 648px;
-    padding: 20px;
+    padding: 40px;
   }
 }
 @media screen and (min-width: 1440px) {
@@ -66,5 +81,5 @@
 }
 
 .icon {
-  stroke: black;
+  stroke: #2f2f2f;
 }
