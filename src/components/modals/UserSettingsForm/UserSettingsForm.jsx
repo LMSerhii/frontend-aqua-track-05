@@ -34,33 +34,34 @@ export const UserSettingsForm = () => {
 
   const handleUpload = async event => {
     try {
-      // const getToken = JSON.parse(localStorage.getItem('persist:auth'));
-      // const token = getToken.token;
-      // console.log(token);
+      const getToken = JSON.parse(localStorage.getItem('persist:auth'));
+      const token = getToken.token;
+      console.log(token);
       const file = event.target.files[0];
       console.log(file);
       const imageURL = URL.createObjectURL(file);
+      console.log('imageURL', imageURL);
       setSelectedFile(imageURL);
       setUploaded(file);
-      // const formData = new FormData();
-      // formData.append('file', file);
 
-      // formData.append('upload_preset', 'ml_default');
+      //     const formData = new FormData();
+      //     formData.append('file', file);
 
-      // const response = await axios
-      //   .post(
-      //     'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-      //     formData,
-      //     {
-      //       headers: {
-      //         Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
-      //         'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
-      //       },
-      //     }
-      //   )
-      //   .then(res => setUploaded(res.data.secure_url));
+      //     formData.append('upload_preset', 'ml_default');
 
-      // console.log('URL загруженного изображения:', response.secure_url);
+      //     const response = await axios.post(
+      //       'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+      //       formData,
+      //       {
+      //         headers: {
+      //           Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
+      //           'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
+      //         },
+      //       }
+      //     );
+      //     setUploaded(response.data.secure_url);
+
+      //     console.log('URL загруженного изображения:', response.secure_url);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
@@ -69,9 +70,9 @@ export const UserSettingsForm = () => {
   const handleSubmitSetting = () => {
     try {
       const formData = new FormData();
-
+      // formData.append('data', JSON.stringify(data));
       const dataUser = {
-        avatar: uploaded,
+        avatar: selectedFile,
         name: userData.name,
         email: userData.email,
         gender: userData.gender,
@@ -80,10 +81,7 @@ export const UserSettingsForm = () => {
         waterUser: userData.waterUser,
       };
       formData.append('dataUser', JSON.stringify(dataUser));
-
-      // const data = Object.fromEntries(formData);
-      // console.log(data);
-      dispatch(updateUser(formData));
+      dispatch(updateUser(dataUser));
       console.log(formData);
     } catch (error) {
       console.error('Error dowload:', error);

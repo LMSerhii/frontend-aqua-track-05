@@ -72,29 +72,15 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-      // .addCase(uploadPhoto.pending, state => {
-      //   state.isRefreshing = true;
-      // })
-      // .addCase(uploadPhoto.fulfilled, (state, action) => {
-      //   state.user.push(action.payload);
-      //   state.isLoggedIn = true;
-      //   state.isRefreshing = false;
-      // })
-      // .addCase(uploadPhoto.rejected, state => {
-      //   state.isRefreshing = false;
-      // })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        // const index = state.user.findIndex(
-        //   item => item.id === action.payload.id
-        // );
-        state.user(...action.payload);
+        state.user = action.payload;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(updateUser.rejected, state => {
-        state.isRefreshing = false;
         state.isRefreshing = false;
       });
   },

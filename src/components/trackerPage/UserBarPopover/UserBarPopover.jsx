@@ -40,9 +40,7 @@ export const UserBarPopover = () => {
         </div>
         {isOpen && (
           <div className="modal-overlay" onClick={closeModal}>
-            <UserSettingsModal active={isOpen} setActive={setIsOpen}>
-              {/* <UserSettingsModal onClose={closeModal} /> */}
-            </UserSettingsModal>
+            <UserSettingsModal active={isOpen} setActive={setIsOpen} />
           </div>
         )}
         <Button onClick={toggleLogoutModalOpen} className={css.logoutBtn}>
