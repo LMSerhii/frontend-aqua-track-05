@@ -17,36 +17,37 @@ import { selectDate } from '../../../redux/date/dateSlice.js';
 export const WaterMainInfo = () => {
   const [activeAdd, setActiveAdd] = useState(false);
   const dayOfWeek = useSelector(selectDate);
+  const getDailyWater = useSelector(selectDailyWater);
+  const [amountData, setAmountData] = useState([]);
 
-  const [getAllEntyiesByDay, { data }] =
+  const [getAllEntyiesByDay, { data, isLoading }] =
     useGetAllEntyiesByDayMutation(dayOfWeek);
 
   useEffect(() => {
     getAllEntyiesByDay(dayOfWeek);
-  }, [getAllEntyiesByDay, dayOfWeek]);
+  }, [getAllEntyiesByDay, dayOfWeek, getDailyWater]);
 
-  const water = data && data.data
+  useEffect(() => {
+    if (data) setAmountData(data.data);
+  }, [data,getDailyWater]);
+
+  const water = amountData
 
   let drinkedWater = 0;
 
   water?.forEach(item => drinkedWater += item.amount)
 
-
-
-
   const width = window.innerWidth;
-  const getDailyWater = useSelector(selectDailyWater);
-  const dailyWater = getDailyWater === null ? "1.5L" : `${getDailyWater / 1000}`
-
-  const dailyWaterMl = dailyWater.split(("L"))[0] * 1000
-
-  const percentage = (drinkedWater / dailyWaterMl) * 100;
 
 
+  const dailyWater = getDailyWater === null ? 1.5 : `${getDailyWater / 1000}`
+
+  const dailyWaterMl = parseFloat(dailyWater) * 1000;
+
+  const percentage = (drinkedWater / dailyWaterMl ) * 100;
 
 
-  return (
-    <div className={css.bottle_page_wrapper}>
+  return (<div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
         {/*dekstop*/}
         <source
@@ -75,25 +76,25 @@ export const WaterMainInfo = () => {
       </picture>
 
       <div className={css.bottle_page_norm_wrapper}>
-        <span className={css.bottle_page_norm_wrapper_value}>{Number(dailyWater).toFixed(2)} L</span>
+        <span className={css.bottle_page_norm_wrapper_value}>{isNaN(dailyWater) ? 0 : Number(dailyWater).toFixed(2)} L</span>
         <span className={css.bottle_page_norm_wrapper_text}>
           My Daily Norma
         </span>
       </div>
 
       <div className={css.add_water_btn_wrap}>
-        <Button classname={css.add_water_btn} type="submit" onClick={() =>  setActiveAdd(true)}>
-          <SharedSVG  className={css.icon}
-                      width={width < 768 ? "14" : "21"}
-                      height={width < 768 ? "14" : "21"}
-                      svgId={'plus'} /> Add Water
+        <Button classname={css.add_water_btn} type="submit" onClick={() => setActiveAdd(true)}>
+          <SharedSVG className={css.icon}
+                     width={width < 768 ? "14" : "21"}
+                     height={width < 768 ? "14" : "21"}
+                     svgId={'plus'} /> Add Water
         </Button>
       </div>
       <div className={css.logo}>
         <Logo />
       </div>
       <div className={css.bottle_page_slider_wrapper}>
-        <WaterProgressBar className={css.bottle_page_progress_bar} percentage={percentage.toFixed(1)} />
+        <WaterProgressBar className={css.bottle_page_progress_bar} percentage={isNaN(dailyWater) ? 0 : percentage.toFixed(1)} />
       </div>
 
       <Modal active={activeAdd} setActive={setActiveAdd}>
@@ -105,5 +106,6 @@ export const WaterMainInfo = () => {
         />
       </Modal>
     </div>
+
   );
 };
