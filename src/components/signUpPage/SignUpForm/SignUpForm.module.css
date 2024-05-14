@@ -67,6 +67,7 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--dark);
+  transition: 0.3s;
   background: var(--lettuce);
 }
 .button:hover,

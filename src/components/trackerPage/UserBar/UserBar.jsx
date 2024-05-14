@@ -1,32 +1,48 @@
 import { useState } from 'react';
-import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
 import { useAuth } from '../../../hooks/useAuth';
-import Button from '../../../shared/components/Button/Button';
 import { UserBarPopover } from '../UserBarPopover/UserBarPopover';
 
-import s from './UserBar.module.css';
+import css from './UserBar.module.css';
+import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
-export const UserBar = () => {
+export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
   const { user } = useAuth();
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-  const togglePopover = () => {
-    setIsPopoverOpen(prev => !prev);
-  };
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <>
-      <Button className={s.button} onClick={togglePopover}>
-        <div className={s.userName}>{user.name}</div>
-        <img src={user.avatar} alt="User avatar" className={s.img} />
-        {isPopoverOpen ? (
-          <BiChevronUp size="16px" color="white" />
+    <div className={css.dropdown}>
+      <div className={css.button} onClick={() => setIsActive(!isActive)}>
+        <span className={css.userName}>{user ? user.name : 'Anonymous'}</span>
+
+        <UserPanelAvatar user={user} />
+
+        {isActive ? (
+          <SharedSVG
+            className={css.iconChevron}
+            width={16}
+            height={16}
+            svgId="icon-chevron-down"
+          />
         ) : (
-          <BiChevronDown size="16px" color="white" />
+          <SharedSVG
+            className={css.iconChevron}
+            width={16}
+            height={16}
+            svgId="icon-chevron-up"
+          />
         )}
-      </Button>
-      {isPopoverOpen && <UserBarPopover />}
-    </>
+      </div>
+
+      {isActive && (
+        <UserBarPopover
+          isActive={isActive}
+          setIsActive={setIsActive}
+          setIsActiveSettings={setIsActiveSettings}
+          setIsActiveLogout={setIsActiveLogout}
+        />
+      )}
+    </div>
   );
 };

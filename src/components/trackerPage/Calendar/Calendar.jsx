@@ -1,7 +1,5 @@
-import { useGetAllEntyiesByMonthQuery } from '../../../redux/tracker/trackerApi';
+import { useAuth } from '../../../hooks';
 import { CalendarItem } from '../CalendarItem/CalendarItem';
-import { useAuth } from '../../../hooks/useAuth';
-import Loader from '../../../shared/components/Loader/Loader';
 import s from './Calendar.module.css';
 
 export const Calendar = ({ selectedDate }) => {
@@ -24,6 +22,7 @@ export const Calendar = ({ selectedDate }) => {
     { totalAmount: 1500 },
     { totalAmount: 1200 },
     { totalAmount: 1000 },
+    { totalAmount: 2500 },
   ];
   // тут потрібен ще dailyWater з документа Юзера
   const { user } = useAuth();
@@ -47,18 +46,13 @@ export const Calendar = ({ selectedDate }) => {
       {isError && (<span>Ooops, smth went wrong</span>)} */}
       <ul className={s.list}>
         {daysArray.map((day, index) => (
-          <li
-            key={day}
-            className={`${s.item} ${
-              ArrayOfWaterInPercent[index] === 100 ? s.whiteBackground : ''
-            }`}
-          >
-            <CalendarItem day={day} />
-            <span className={s.percentage}>
+          <li key={day} className={s.item}>
+            <CalendarItem day={day} amount={ArrayOfWaterInPercent[index]} />
+            <div className={s.percentage}>
               {ArrayOfWaterInPercent[index] !== undefined
                 ? `${ArrayOfWaterInPercent[index]}%`
                 : '0%'}
-            </span>
+            </div>
           </li>
         ))}
       </ul>

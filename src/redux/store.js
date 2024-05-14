@@ -42,7 +42,7 @@ import {
 } from 'redux-persist';
 import { authReducer } from './auth/authSlice';
 import { trackerApi, trackerReducer } from './tracker/trackerApi';
-import { dateReducer } from './tracker/dateSlice';
+import { dateReducer } from './date/dateSlice';
 
 export const store = configureStore({
   reducer: {

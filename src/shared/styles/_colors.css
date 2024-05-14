@@ -4,7 +4,10 @@
   --lettuce: #9be1a0;
   --lettuce-secondary: #87d28d;
   --light-gray: #f0eff4;
+  --light-gray-transparent: #f0eff466;
   --white: #ffffff;
   --secondary-text: #bcbcbc;
   --error: #ef5050;
+  --grey-text: rgba(47, 47, 47, 0.6);
+  --calendarItemColor: rgba(50, 63, 71, 0.2);
 }

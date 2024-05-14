@@ -1,18 +1,23 @@
 .dayBtn {
   display: flex;
+  align-items: center;
   justify-content: center;
-  line-height: 28px;
-  font-weight: 500;
-  cursor: pointer;
-  /* border-radius: 30px;
-  background-color: rgb(148, 146, 146); */
-}
-.whiteBackground {
-  background-color: white;
+  font-size: 16px;
+  border-radius: 100%;
+  width: 28px;
+  height: 28px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--dark-blue);
 }
 
-@media screen and (min-width: 768px) {
-  .dayBtn {
-    line-height: 38px;
-  }
+.fullColor {
+  background-color: var(--white);
+}
+
+.notfullColor {
+  background-color: var(--calendarItemColor);
 }

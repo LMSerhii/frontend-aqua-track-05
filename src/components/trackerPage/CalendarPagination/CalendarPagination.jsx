@@ -1,17 +1,11 @@
 // CalendarPagination.jsx
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
-import { setDate } from '../../../redux/tracker/dateSlice';
+
 import s from './CalendarPagination.module.css';
 
 export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
-  const dispatch = useDispatch();
-  const [formattedDate, setFormattedDate] = useState('');
-  const [formattedDateString, setFormattedDateString] = useState('');
-
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
       selectedDate.getFullYear(),
@@ -38,11 +32,10 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
   // *************
-  //   const formattedDate = selectedDate
-  //     .toLocaleString('en-GB', {
-  //       month: 'long',
-  //       year: 'numeric',
-  //     })
+  const formattedDate = selectedDate.toLocaleString('en-GB', {
+    month: 'long',
+    year: 'numeric',
+  });
   //     .replace(/(\w+) (\d+)/, '$1, $2');
   //   console.log(formattedDate);
   //   useEffect(() => {
@@ -53,28 +46,28 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   // *************
 
   // ********* варіант з двома useEffect() ******
-  useEffect(() => {
-    const monthYear = selectedDate.toLocaleString('en-GB', {
-      month: 'long',
-      year: 'numeric',
-    });
-    setFormattedDate(monthYear);
-    const dateString = selectedDate
-      .toLocaleString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      })
-      .split('/')
-      .join('-');
-    setFormattedDateString(dateString);
-  }, [selectedDate]);
+  // useEffect(() => {
+  //   const monthYear = selectedDate.toLocaleString('en-GB', {
+  //     month: 'long',
+  //     year: 'numeric',
+  //   });
+  //   setFormattedDate(monthYear);
+  //   const dateString = selectedDate
+  //     .toLocaleString('en-GB', {
+  //       day: '2-digit',
+  //       month: '2-digit',
+  //       year: 'numeric',
+  //     })
+  //     .split('/')
+  //     .join('-');
+  //   setFormattedDateString(dateString);
+  // }, [selectedDate]);
 
-  useEffect(() => {
-    dispatch(setDate(formattedDateString));
-  }, [formattedDateString, dispatch]);
+  // useEffect(() => {
+  //   dispatch(setDate(formattedDateString));
+  // }, [formattedDateString, dispatch]);
   // *********
-  console.log(formattedDateString);
+  // console.log(formattedDateString);
 
   return (
     <div className={s.wrapper}>

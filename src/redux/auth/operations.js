@@ -2,7 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY } = routes;
+const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY, FORGOT_REQUEST, RESET_REQUEST } =
+  routes;
 
 axios.defaults.baseURL = 'http://localhost:3001/api/v1';
 
@@ -112,10 +113,7 @@ export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
   async email => {
     try {
-      const response = await axios.post(
-        'http://localhost:3000/api/v1/users/forgot-password',
-        { email }
-      );
+      const response = await axios.post(`${USERS}${FORGOT_REQUEST}`, { email });
       return response.data;
     } catch (error) {
       throw error.response.data;
@@ -127,10 +125,9 @@ export const resetPassword = createAsyncThunk(
   'auth/reserPassword',
   async ({ password, otp }) => {
     try {
-      const response = await axios.post(
-        `http://localhost:3000/api/v1/users/reset-password/${otp}`,
-        { password }
-      );
+      const response = await axios.post(`${USERS}${RESET_REQUEST}/${otp}`, {
+        password,
+      });
       return response.data;
     } catch (error) {
       throw error.response.data;
