@@ -2,8 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY, FORGOT_REQUEST, RESET_REQUEST } =
-  routes;
+const {
+  USERS,
+  SIGNUP,
+  SIGNIN,
+  LOGOUT,
+  CURRENT,
+  VERIFY,
+  FORGOT_REQUEST,
+  RESET_REQUEST,
+} = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -81,27 +89,14 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const uploadPhoto = createAsyncThunk(
-  'uploadPhoto',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const updateUser = createAsyncThunk(
-  'updateUser',
-  async ({ body: formData }, thunkAPI) => {
+  'auth/updateUser',
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.patch(`${USERS}${CURRENT}`, {
-        body: formData,
-      });
+      const response = await axios.put(
+        'http://localhost:3001/api/v1/users/update',
+        formData
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

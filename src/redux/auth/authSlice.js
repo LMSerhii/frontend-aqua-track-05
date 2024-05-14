@@ -7,7 +7,6 @@ import {
   register,
   resendEmail,
   updateUser,
-  uploadPhoto,
   forgotPassword,
   resetPassword,
 } from './operations';
@@ -62,8 +61,7 @@ const authSlice = createSlice({
       })
       .addCase(resendEmail.rejected, state => {
         state.error = true;
-      }
-      )
+      })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
@@ -75,35 +73,21 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(uploadPhoto.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(uploadPhoto.fulfilled, (state, action) => {
-        state.user.push(action.payload);
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(uploadPhoto.rejected, state => {
-        state.isRefreshing = false;
-      })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        // const index = state.user.findIndex(
-        //   item => item.id === action.payload.id
-        // );
-        state.user(...action.payload);
+        state.user = action.payload;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(updateUser.rejected, state => {
-        state.isRefreshing = false;
         state.isRefreshing = false;
       })
       .addCase(forgotPassword.pending, state => {
         state.error = null;
       })
-      .addCase(forgotPassword.fulfilled, (state) => {
+      .addCase(forgotPassword.fulfilled, state => {
         state.error = null;
       })
       .addCase(forgotPassword.rejected, state => {
@@ -112,12 +96,12 @@ const authSlice = createSlice({
       .addCase(resetPassword.pending, state => {
         state.error = null;
       })
-      .addCase(resetPassword.fulfilled, (state) => {
+      .addCase(resetPassword.fulfilled, state => {
         state.error = null;
       })
       .addCase(resetPassword.rejected, state => {
         state.error = true;
-      })
+      });
   },
 });
 
