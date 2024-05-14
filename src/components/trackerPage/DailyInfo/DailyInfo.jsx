@@ -11,6 +11,10 @@ const DailyInfo = () => {
   const date = useSelector(selectDate);
   const [amountData, setAmountData] = useState([]);
 
+  const handleSetAmountData = data => {
+    setAmountData(data);
+  };
+
   const [getAllEntyiesByDay, { data, isLoading, isError }] =
     useGetAllEntyiesByDayMutation();
 
@@ -26,7 +30,7 @@ const DailyInfo = () => {
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>
         <ChooseDate />
-        <AddWaterBtn />
+        <AddWaterBtn handleSetAmountData={handleSetAmountData} />
       </div>
       {isError && <p>Error</p>}
       {!isError && isLoading && <p>Loading ...</p>}

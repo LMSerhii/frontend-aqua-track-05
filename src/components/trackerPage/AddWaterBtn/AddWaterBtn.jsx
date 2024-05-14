@@ -5,7 +5,7 @@ import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './AddWaterBtn.module.css';
 
-const AddWaterBtn = () => {
+const AddWaterBtn = ({ handleSetAmountData }) => {
   const [activeAdd, setActiveAdd] = useState(false);
 
   return (
@@ -25,6 +25,7 @@ const AddWaterBtn = () => {
           title="Add water"
           subTitle="Choose a value"
           setActive={setActiveAdd}
+          handleSetAmountData={handleSetAmountData}
         />
       </Modal>
     </>
