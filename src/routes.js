@@ -9,4 +9,4 @@ export const routes = {
   VERIFY: '/verify',
 };
 
-export const BASE_URL = 'http://localhost:5000/api/v1';
+export const BASE_URL = 'http://localhost:3001/api/v1';
