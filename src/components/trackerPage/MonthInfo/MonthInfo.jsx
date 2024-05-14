@@ -9,7 +9,7 @@ export const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
-    <>
+    <div>
       <div className={css.wrapper}>
         <h3 className={css.month}>Month</h3>
         <CalendarPagination
@@ -18,6 +18,6 @@ export const MonthInfo = () => {
         />
       </div>
       <Calendar selectedDate={selectedDate} />
-    </>
+    </div>
   );
 };

@@ -7,7 +7,8 @@ import {
   register,
   resendEmail,
   updateUser,
-  // uploadPhoto,
+  forgotPassword,
+  resetPassword,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -82,6 +83,24 @@ const authSlice = createSlice({
       })
       .addCase(updateUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(forgotPassword.pending, state => {
+        state.error = null;
+      })
+      .addCase(forgotPassword.fulfilled, state => {
+        state.error = null;
+      })
+      .addCase(forgotPassword.rejected, state => {
+        state.error = true;
+      })
+      .addCase(resetPassword.pending, state => {
+        state.error = null;
+      })
+      .addCase(resetPassword.fulfilled, state => {
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected, state => {
+        state.error = true;
       });
   },
 });

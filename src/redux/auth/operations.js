@@ -2,7 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY } = routes;
+const {
+  USERS,
+  SIGNUP,
+  SIGNIN,
+  LOGOUT,
+  CURRENT,
+  VERIFY,
+  FORGOT_REQUEST,
+  RESET_REQUEST,
+} = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -95,28 +104,28 @@ export const updateUser = createAsyncThunk(
   }
 );
 
-// Катя накидала щось, є питання /////
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async email => {
+    try {
+      const response = await axios.post(`${USERS}${FORGOT_REQUEST}`, { email });
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
 
-// export const waterAmountInPercent = createAsyncThunk(
-//   'auth/tracker',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`${USERS}`);
-//       console.log(response.data);
-//       const dailyWater = response.data.dailyWater;
-
-//       const res = await axios.get(`${TRACKER}`);
-//       const totalWaterAmountPerDay = res.data.totalAmount;
-//       const inPercentage = (totalWaterAmountPerDay * 100) / dailyWater;
-//       return inPercentage;
-// export const currentUser = createAsyncThunk(
-//   'current/upload',
-//   async (_, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`${USERS}${CURRENT}`);
-//       return response.data;
-//     } catch (error) {
-//       thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
+export const resetPassword = createAsyncThunk(
+  'auth/reserPassword',
+  async ({ password, otp }) => {
+    try {
+      const response = await axios.post(`${USERS}${RESET_REQUEST}/${otp}`, {
+        password,
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  }
+);
