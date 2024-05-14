@@ -80,6 +80,7 @@ export const UserSettingsForm = () => {
         timeSport: userData.timeSport,
         waterUser: userData.waterUser,
       };
+
       formData.append('dataUser', JSON.stringify(dataUser));
       dispatch(updateUser(dataUser));
       console.log(formData);
@@ -233,7 +234,7 @@ export const UserSettingsForm = () => {
           <input
             type="number"
             id="Your_weight"
-            value={userData.weight}
+            value={userData.weight || ''}
             onChange={e => setData({ ...data, weight: e.target.value })}
             placeholder="0.1"
           />
@@ -245,7 +246,7 @@ export const UserSettingsForm = () => {
           <input
             type="number"
             id="Your_sports"
-            value={userData.timeSport}
+            value={userData.timeSport || ''}
             onChange={e => setData({ ...data, timeSport: e.target.value })}
             placeholder="0.1"
           />
@@ -264,7 +265,7 @@ export const UserSettingsForm = () => {
           <input
             type="number"
             id="Your_water"
-            value={userData.dailyWater}
+            value={userData.dailyWater || ''}
             onChange={e => setData({ ...data, dailyWater: e.target.value })}
             placeholder="0.1"
           />
