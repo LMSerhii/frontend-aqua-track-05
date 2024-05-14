@@ -238,7 +238,7 @@ export const UserSettingsForm = () => {
               <input
                 type="number"
                 id="Your_weight"
-                value={userData.weight}
+                value={userData.weight || ''}
                 onChange={e => setData({ ...data, weight: e.target.value })}
                 placeholder="0.1"
               />
@@ -250,7 +250,7 @@ export const UserSettingsForm = () => {
               <input
                 type="number"
                 id="Your_sports"
-                value={userData.timeSport}
+                value={userData.timeSport || ''}
                 onChange={e => setData({ ...data, timeSport: e.target.value })}
                 placeholder="0.1"
               />
@@ -269,55 +269,12 @@ export const UserSettingsForm = () => {
               <input
                 type="number"
                 id="Your_water"
-                value={userData.dailyWater}
+                value={userData.dailyWater || ''}
                 onChange={e => setData({ ...data, dailyWater: e.target.value })}
                 placeholder="0.1"
               />
             </div>
           </div>
-        </div>
-
-        <div className={s.infoUser}>
-          <label htmlFor="Your_weight">Your weight in kilograms:</label>
-
-          <input
-            type="number"
-            id="Your_weight"
-            value={userData.weight || ''}
-            onChange={e => setData({ ...data, weight: e.target.value })}
-            placeholder="0.1"
-          />
-
-          <label htmlFor="Your_sports">
-            The time of active participation in sports:
-          </label>
-
-          <input
-            type="number"
-            id="Your_sports"
-            value={userData.timeSport || ''}
-            onChange={e => setData({ ...data, timeSport: e.target.value })}
-            placeholder="0.1"
-          />
-        </div>
-
-        <div className={s.requiredWater}>
-          <p>The required amount of water in liters per day:</p>
-          <p className={s.formula}>{userData.dailyWater}</p>
-        </div>
-
-        <div className={s.waterUser}>
-          <label htmlFor="Your_water" className={s.labelImportan}>
-            Write down how much water you will drink:
-          </label>
-
-          <input
-            type="number"
-            id="Your_water"
-            value={userData.dailyWater || ''}
-            onChange={e => setData({ ...data, dailyWater: e.target.value })}
-            placeholder="0.1"
-          />
         </div>
 
         <Button
