@@ -55,6 +55,7 @@ export const WaterForm = ({
       };
 
       createEntry(data1);
+      console.log('data1', data1);
       setActive(false);
     } else {
       const data2 = {
