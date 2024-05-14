@@ -114,6 +114,7 @@ const authPersistConfig = {
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
 

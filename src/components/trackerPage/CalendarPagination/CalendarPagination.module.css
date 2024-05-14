@@ -19,3 +19,8 @@
 .pieIcon {
   stroke-opacity: 0.5;
 }
+
+.pieChart {
+  background-color: transparent;
+  padding: 0;
+}
