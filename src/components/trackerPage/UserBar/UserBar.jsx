@@ -5,7 +5,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import Button from '../../../shared/components/Button/Button';
 import { UserBarPopover } from '../UserBarPopover/UserBarPopover';
 
-import css from './UserBar.module.css';
+import s from './UserBar.module.css';
 
 export const UserBar = () => {
   const { user } = useAuth();
@@ -17,9 +17,9 @@ export const UserBar = () => {
 
   return (
     <>
-      <Button className={css.button} onClick={togglePopover}>
-        <div className={css.userName}>{user.name}</div>
-        <img src={user.avatar} alt="User avatar" className={css.img} />
+      <Button className={s.button} onClick={togglePopover}>
+        <div className={s.userName}>{user.name}</div>
+        <img src={user.avatar} alt="User avatar" className={s.img} />
         {isPopoverOpen ? (
           <BiChevronUp size="16px" color="white" />
         ) : (

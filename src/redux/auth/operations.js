@@ -4,7 +4,7 @@ import { BASE_URL, routes } from '../../routes';
 
 const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY } = routes;
 
-axios.defaults.baseURL = `${BASE_URL}`;
+axios.defaults.baseURL = 'http://localhost:3001/api/v1';
 
 const setAuthHeader = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;

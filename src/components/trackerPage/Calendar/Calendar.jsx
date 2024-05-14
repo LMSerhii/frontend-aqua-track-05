@@ -1,8 +1,8 @@
 import { useGetAllEntyiesByMonthQuery } from '../../../redux/tracker/trackerApi';
 import { CalendarItem } from '../CalendarItem/CalendarItem';
-import css from './Calendar.module.css';
 import { useAuth } from '../../../hooks/useAuth';
 import Loader from '../../../shared/components/Loader/Loader';
+import s from './Calendar.module.css';
 
 export const Calendar = ({ selectedDate }) => {
   const daysInMonth = new Date(
@@ -26,31 +26,39 @@ export const Calendar = ({ selectedDate }) => {
     { totalAmount: 1000 },
   ];
   // тут потрібен ще dailyWater з документа Юзера
-  //   const { user } = useAuth();
-  //   console.log(user);
-  //   console.log(user.dailyNorma);
+  const { user } = useAuth();
+  console.log(user);
+  console.log(user.dailyWater);
+  const dailyWater = user.dailyWater * 1000;
+  console.log(dailyWater);
+  // якщо реалізовано автоматичний запис"0" в totalAmount по
+  // закінченню дня, якщо юзер не записав свою випиту воду:
   //   const ArrayOfWaterInPercent = data.map(item =>
-  //     Math.round((item.totalAmount * 100) / user.dailyNorma)
+  //     Math.round((item.totalAmount * 100) / dailyWater)
   //     );
   const ArrayOfWaterInPercent = data.map(item =>
     Math.round((item.totalAmount * 100) / 1500)
   );
+  console.log(ArrayOfWaterInPercent);
 
   return (
     <>
       {/* {isLoading && <Loader />}
       {isError && (<span>Ooops, smth went wrong</span>)} */}
-      <ul className={css.list}>
+      <ul className={s.list}>
         {daysArray.map((day, index) => (
-          <li key={day} className={css.item}>
+          <li
+            key={day}
+            className={`${s.item} ${
+              ArrayOfWaterInPercent[index] === 100 ? s.whiteBackground : ''
+            }`}
+          >
             <CalendarItem day={day} />
-            <div className={css.percentage}>
+            <span className={s.percentage}>
               {ArrayOfWaterInPercent[index] !== undefined
                 ? `${ArrayOfWaterInPercent[index]}%`
                 : '0%'}
-            </div>
-
-            {/* {console.log(day)} */}
+            </span>
           </li>
         ))}
       </ul>

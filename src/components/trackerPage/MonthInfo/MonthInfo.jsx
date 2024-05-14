@@ -1,17 +1,16 @@
 // MonthInfo.jsx
 import { Calendar } from '../Calendar/Calendar';
 import { CalendarPagination } from '../CalendarPagination/CalendarPagination';
-
-import css from './MonthInfo.module.css';
 import { useState } from 'react';
+import s from './MonthInfo.module.css';
 
 export const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
-    <div className={css.container}>
-      <div className={css.wrapper}>
-        <h3 className={css.month}>Month</h3>
+    <div className={s.container}>
+      <div className={s.wrapper}>
+        <h3 className={s.month}>Month</h3>
         <CalendarPagination
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}

@@ -1,7 +1,7 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  gap: 18px;
+  gap: 20px 18px;
   padding: 24px 0 24px 0;
 }
 .item {
@@ -10,15 +10,30 @@
   flex-direction: column;
   margin-bottom: 20px;
   text-align: center;
-  background-color: lightgray;
+  background-color: rgb(145, 143, 143);
   border-radius: 30px;
-  line-height: 28px;
   height: 28px;
-  padding: 0;
   width: calc((100% - 6 * 18px) / 7);
+}
+.whiteBackground {
+  background-color: white;
 }
 .percentage {
   font-family: inherit;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--light-grey);
+}
+@media screen and (min-width: 768px) {
+  .list {
+    gap: 15px 48px;
+  }
+  .item {
+    height: 38px;
+    width: calc((100% - 7 * 48px) / 8);
+  }
+  /* .item:last-child {
+    margin-right: 0;
+  } */
+}
+@media screen and (min-width: 1440px) {
 }

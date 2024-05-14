@@ -1,3 +1,5 @@
+// trackerApi.js (в папці redux/tracker)
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../../routes';
 import storage from 'redux-persist/lib/storage';
@@ -15,11 +17,14 @@ export const trackerApi = createApi({
       providesTags: ['Trackers'],
     }),
 
-    getAllEntyiesByDay: builder.query({
-      query: id => `/water/${id}`,
-      providesTags: ['Trackers'],
+    getAllEntriesByDay: builder.mutation({
+      query: data => ({
+        url: `/water/daily_count`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Trackers'],
     }),
-
     getAllEntyiesByMonth: builder.query({
       query: id => `/water/${id}`,
       providesTags: ['Trackers'],
@@ -54,7 +59,7 @@ export const trackerApi = createApi({
 
 export const {
   useGetAllEntyiesQuery,
-  useLazyGetAllEntyiesByDayQuery,
+  useGetAllEntriesByDayMutation,
   useGetAllEntyiesByMonthQuery,
   useCreateEntryMutation,
   useUpdateEntryMutation,
