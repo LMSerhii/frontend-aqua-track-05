@@ -39,12 +39,12 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   //     updateNumberOfDays(selectedDate);
   //   }, [selectedDate]);
 
-  const formattedDate = selectedDate
-    .toLocaleString('en-GB', {
-      month: 'long',
-      year: 'numeric',
-    })
-    .replace(/(\w+) (\d+)/, '$1, $2');
+  // const formattedDate = selectedDate
+  //   .toLocaleString('en-GB', {
+  //     month: 'long',
+  //     year: 'numeric',
+  //   })
+  //   .replace(/(\w+) (\d+)/, '$1, $2');
 
   const translatedMonth = t(`months.${selectedDate.getMonth()}`);
 
