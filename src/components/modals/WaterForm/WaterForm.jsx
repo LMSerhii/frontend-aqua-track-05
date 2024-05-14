@@ -10,7 +10,7 @@ import {
 } from '../../../shared/helpers/dateServices';
 import {
   useCreateEntryMutation,
-  useUpdateEntryMutation,
+  // useUpdateEntryMutation,
 } from '../../../redux/tracker/trackerApi';
 
 const schema = yup.object().shape({
@@ -27,11 +27,12 @@ export const WaterForm = ({
   operation,
   setActive,
   id,
+  handleSetAmountData,
 }) => {
   const [time, setTime] = useState(currentTime);
 
   const [createEntry] = useCreateEntryMutation();
-  const [updateEntry] = useUpdateEntryMutation();
+  // const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -46,26 +47,32 @@ export const WaterForm = ({
   };
 
   // Вывод объекта с данными о кол-ве воды
-  const onSubmit = () => {
-    if (operation === 'add') {
-      const data1 = {
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
+  const onSubmit = async () => {
+    try {
+      if (operation === 'add') {
+        const data1 = {
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
+        const response = await createEntry(data1);
+        const amountsList = response.data.data.amounts;
+        handleSetAmountData(amountsList);
+        setActive(false);
+      } else {
+        const data2 = {
+          id: id,
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
 
-      createEntry(data1);
-      setActive(false);
-    } else {
-      const data2 = {
-        id: id,
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
-
-      console.log(data2);
-      setActive(false);
+        console.log(data2);
+        setActive(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Обработка ошибки (если нужно)
     }
   };
 
