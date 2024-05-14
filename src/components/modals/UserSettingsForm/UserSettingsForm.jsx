@@ -66,10 +66,10 @@ export const UserSettingsForm = () => {
     }
   };
 
-  const handleSubmitSetting = async () => {
-    dispatch(updateUser());
+  const handleSubmitSetting = () => {
     try {
       const formData = new FormData();
+      console.log(formData);
 
       const dataUser = {
         avatar: uploaded,
@@ -81,6 +81,11 @@ export const UserSettingsForm = () => {
         waterUser: userData.waterUser,
       };
       formData.append('dataUser', JSON.stringify(dataUser));
+
+      dispatch(updateUser(formData));
+
+      const data = Object.fromEntries(formData);
+      console.log(data);
     } catch (error) {
       console.error('Error dowload:', error);
     }
@@ -270,7 +275,7 @@ export const UserSettingsForm = () => {
 
         <Button
           classname={s.btnSetting}
-          type="Submit"
+          type="button"
           onClick={handleSubmitSetting}
         >
           Save

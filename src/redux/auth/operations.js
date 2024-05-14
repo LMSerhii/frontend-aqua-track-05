@@ -96,11 +96,14 @@ export const refreshUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'auth/updateUser',
-  async ({ body: formData }, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.patch('http://localhost:5000/api/v1/users', {
-        body: formData,
-      });
+      const response = await axios.patch(
+        'http://localhost:5000/api/v1/users/update',
+        {
+          body: formData,
+        }
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
