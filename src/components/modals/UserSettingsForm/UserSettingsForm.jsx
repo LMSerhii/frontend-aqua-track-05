@@ -10,12 +10,13 @@ import Section from '../../../shared/components/Section/Section';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
+import { updateUser } from '../../../redux/auth/operations';
 
 export const UserSettingsForm = () => {
   const userData = useSelector(selectUser);
   console.log(userData);
 
-  // const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
 
   const [data, setData] = useState({
@@ -33,42 +34,43 @@ export const UserSettingsForm = () => {
 
   const handleUpload = async event => {
     try {
-      const getToken = JSON.parse(localStorage.getItem('persist:auth'));
-      const token = getToken.token;
-      console.log(token);
+      // const getToken = JSON.parse(localStorage.getItem('persist:auth'));
+      // const token = getToken.token;
+      // console.log(token);
       const file = event.target.files[0];
       console.log(file);
+      const imageURL = URL.createObjectURL(file);
+      setSelectedFile(imageURL);
+      setUploaded(file);
+      // const formData = new FormData();
+      // formData.append('file', file);
 
-      const formData = new FormData();
-      formData.append('file', file);
+      // formData.append('upload_preset', 'ml_default');
 
-      formData.append('upload_preset', 'ml_default');
+      // const response = await axios
+      //   .post(
+      //     'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
+      //     formData,
+      //     {
+      //       headers: {
+      //         Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
+      //         'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
+      //       },
+      //     }
+      //   )
+      //   .then(res => setUploaded(res.data.secure_url));
 
-      const response = await axios
-        .post(
-          'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
-              'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
-            },
-          }
-        )
-        .then(res => setUploaded(res.data.secure_url));
-
-      console.log('URL загруженного изображения:', response.secure_url);
+      // console.log('URL загруженного изображения:', response.secure_url);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
   };
 
-  const handleSaveSettings = async () => {
-    dispatch();
+  const handleSubmit = async () => {
+    dispatch(updateUser());
     try {
       const formData = new FormData();
-      // formData.append('avatar', selectedFile);
-      // formData.append('upload_preset', 'Upload_Preset');
+
       const dataUser = {
         avatar: uploaded,
         name: userData.name,
@@ -79,13 +81,6 @@ export const UserSettingsForm = () => {
         waterUser: userData.waterUser,
       };
       formData.append('dataUser', JSON.stringify(dataUser));
-
-      const res = await axios.post('/upload', {
-        body: formData,
-      });
-      console.log('URL upload photo:', res.data);
-      // const data = await res.json();
-      // setUploaded(data);
     } catch (error) {
       console.error('Error dowload:', error);
     }
@@ -108,14 +103,14 @@ export const UserSettingsForm = () => {
 
   const {
     // register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const onSubmit = data => console.log(data);
+  // const onSubmit = data => console.log(data);
 
   return (
     <Section>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit}>
         <div className={s.avatarWrap}>
           <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
             <input
@@ -127,7 +122,7 @@ export const UserSettingsForm = () => {
               onChange={handleUpload}
             />
             {uploaded ? (
-              <img src={uploaded} className={s.avatar} alt="preview" />
+              <img src={selectedFile} className={s.avatar} alt="preview" />
             ) : (
               <img src={userData.avatar} className={s.avatar} alt="preview" />
             )}
@@ -273,7 +268,7 @@ export const UserSettingsForm = () => {
           />
         </div>
 
-        <Button classname={s.btnSetting} onClick={handleSaveSettings}>
+        <Button classname={s.btnSetting} type="Submit">
           Save
         </Button>
       </form>
