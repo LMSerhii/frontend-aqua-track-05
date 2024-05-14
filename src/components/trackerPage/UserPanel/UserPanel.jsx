@@ -18,9 +18,13 @@ export const UserPanel = () => {
         setIsActiveSettings={setIsActiveSettings}
         setIsActiveLogout={setIsActiveLogout}
       />
+
+      {/* setting  */}
       <Modal active={isActiveSettings} setActive={setIsActiveSettings}>
-        <p>SETTING</p>
+        <p>Setting</p>
       </Modal>
+      {/* setting  */}
+
       <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
         <p>LOGOUT</p>
       </Modal>

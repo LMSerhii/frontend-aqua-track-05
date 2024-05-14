@@ -7,6 +7,9 @@ export const trackerApi = createApi({
   reducerPath: 'trackers',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
+    prepareHeaders(headers, { getState }) {
+      const token = getState().auth.token;
+    },
   }),
   tagTypes: ['Trackers'],
   endpoints: builder => ({
@@ -15,9 +18,13 @@ export const trackerApi = createApi({
       providesTags: ['Trackers'],
     }),
 
-    getAllEntyiesByDay: builder.query({
-      query: id => `/water/${id}`,
-      providesTags: ['Trackers'],
+    getAllEntyiesByDay: builder.mutation({
+      query: data => ({
+        url: `/water/daily_count`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Trackers'],
     }),
 
     getAllEntyiesByMonth: builder.query({
