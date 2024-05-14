@@ -26,7 +26,7 @@ export const UserSettingsModal = ({ active, setActive }) => {
           // onClick={handleModalClick}
         >
           <button onClick={() => setActive(false)} className={s.btnClose}>
-            <svg width="24" height="24">
+            <svg className={s.icon} width="24" height="24">
               <use xlinkHref={`${sprite}#close`}></use>
             </svg>
           </button>

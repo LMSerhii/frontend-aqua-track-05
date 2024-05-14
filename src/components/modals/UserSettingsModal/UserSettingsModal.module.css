@@ -63,3 +63,7 @@
 .modalContent.active {
   transform: scale(1);
 }
+
+.icon {
+  stroke: black;
+}
