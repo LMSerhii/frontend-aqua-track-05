@@ -8,6 +8,10 @@ import {
   currentTime,
   getCurrentDate,
 } from '../../../shared/helpers/dateServices';
+import {
+  useCreateEntryMutation,
+  useUpdateEntryMutation,
+} from '../../../redux/tracker/trackerApi';
 
 const schema = yup.object().shape({
   water: yup
@@ -17,8 +21,17 @@ const schema = yup.object().shape({
     .integer('Water value must be an integer'),
 });
 
-export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
+export const WaterForm = ({
+  handleWaterChange,
+  waterValue,
+  operation,
+  setActive,
+  id,
+}) => {
   const [time, setTime] = useState(currentTime);
+
+  const [createEntry] = useCreateEntryMutation();
+  const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -41,7 +54,8 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
         time: currentTime,
       };
 
-      console.log(data1);
+      createEntry(data1);
+      setActive(false);
     } else {
       const data2 = {
         id: id,
@@ -49,7 +63,9 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
         amount: parseInt(waterValue),
         time: currentTime,
       };
+
       console.log(data2);
+      setActive(false);
     }
   };
 
