@@ -23,14 +23,14 @@ export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
             className={css.iconChevron}
             width={16}
             height={16}
-            svgId="icon-chevron-up"
+            svgId="icon-chevron-down"
           />
         ) : (
           <SharedSVG
             className={css.iconChevron}
             width={16}
             height={16}
-            svgId="icon-chevron-down"
+            svgId="icon-chevron-up"
           />
         )}
       </div>
