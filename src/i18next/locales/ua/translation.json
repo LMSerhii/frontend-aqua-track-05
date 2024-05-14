@@ -1,0 +1,166 @@
+{
+  "welcomeSection": {
+    "logo": "AQUATRACK",
+    "title": "Відстеження споживання води",
+    "recordPparag": "Записуйте щоденне споживання води та відстежуйте",
+    "tryTrackerBtn": "Спробуйте трекер",
+    "signIn": "Логін"
+  },
+  "advantagesSection": {
+    "ourParag": "наші",
+    "happySpan": "щасливі",
+    "customersParag": "клієнти"
+  },
+  "singInForm": {
+    "signIn": "Увійти",
+    "email": "Електронна пошта",
+    "emailPlaceholder": "Введіть свою електронну адресу",
+    "password": "Пароль",
+    "enterPassword": "Введіть свій пароль",
+    "sigIn": "Увійти",
+    "textDont": "Не маєте облікового запису?",
+    "sigUn": "Зареєструватися",
+    "emailVelid": "Будь ласка, дійсна електронна адреса",
+    "emailRequired": "Обов'язкова електронна адреса",
+    "passwordMin": "Занадто короткий",
+    "passwordMax": "Занадто довгий",
+    "resendEmailBtn": "Повторно надіслати електронний лист",
+    "forgotPassword": "Забули пароль?",
+
+    "googleButton": {
+      "googleBtn": "Увійти за допомогою Google"
+    }
+  },
+
+  "singUnForm": {
+    "signUp": "Зареєструватися",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "repeatPassword": "Повторити пароль",
+    "sigmUp": "Зареєструватися",
+    "textAlready": "Вже є обліковий запис?",
+    "signIn": "Увійти",
+    "emailVelid": "Будь ласка, введіть дійсну адресу електронної пошти",
+    "emailRequired": "Обов'язкова електронна адреса",
+    "passwordMin": "Занадто короткий",
+    "passwordMax": "Занадто довгий",
+    "passwordMatches": "Пароль має містити принаймні одну велику літеру, одну малу літеру, одну цифру та один спеціальний символ",
+    "passwoedRequired": "Потрібний пароль",
+    "repeatPasswordOneOf": "Паролі мають збігатися",
+    "repeatPasswordRequired": "Потрібний пароль",
+    "passwordRequired": "Потрібний пароль",
+    "emailPlace": "Введіть свою електронну адресу",
+    "passwordPlace": "Введіть свій пароль",
+    "passwordRepeatPlace": "Повторити пароль"
+  },
+
+  "waterModal": {
+    "ml": "мл",
+    "WaterForm": {
+      "waterRequired": "Потрібне значення води",
+      "waterPositive": "Значення води має бути додатним числом",
+      "waterInteger": "Значення води має бути цілим числом"
+    },
+    "timeRecording": "Час запису:",
+    "waterValue": "Введіть вартість використаної води:",
+    "btnSubmit": "Зберегти",
+    "addWaterBtn": "Додати воду",
+    "addWaterTitle": "Додати воду",
+    "addWaterSubTitle": "Виберіть значення",
+    "AmountWater": "Кількість води:"
+  },
+  "WaterProgressBar": {
+    "today": "Сьогодні"
+  },
+
+  "WaterMainInfo": {
+    "normaDaily": "Моя щоденна норма",
+    "addWater": "Додати воду",
+    "liters": "1.5 Л"
+  },
+
+  "WaterItem": {
+    "woterMl": "мл",
+    "correctData": "Правильно введені дані:",
+    "editTheEntered": "Редагувати введену кількість води"
+  },
+  "UserPanel": {
+    "helloText": "Привіт, "
+  },
+
+  "UserBarPopover": {
+    "settingsBtn": "Налаштування",
+    "logOutBtn": "Вийти"
+  },
+
+  "MonthInfo": {
+    "month": "Місяць"
+  },
+
+  "DailyInfo": {
+    "startTrackingText": "Почніть відстежувати споживання води, натиснувши кнопку Додати воду."
+  },
+
+  "ChooseDate": {
+    "january": "Січень",
+    "february": "Лютий",
+    "march": "Березень",
+    "april": "Квітень",
+    "may": "Травень",
+    "june": "Червень",
+    "july": "Липень",
+    "august": "Серпень",
+    "september": "Вересень",
+    "october": "Жовтень",
+    "november": "Листопад",
+    "december": "Грудень"
+  },
+
+  "UserSettingsForm": {
+    "uploadPhotoBtn": "Завантажити фото",
+    "yourGenderLabel": "Ваша гендерна ідентичність",
+    "femaleGenderLabel": "Жінка",
+    "femaleGenderMale": "Чоловік",
+    "yourNameLabel": "Ваше ім'я",
+    "placeYourName": "Ім'я",
+    "labelEmail": "Електронна пошта",
+    "placeEmail": "Електронна пошта",
+    "dailyNormah3": "Моя денна норма",
+    "forWomanP": "Для жінки:",
+    "forManP": "Для чоловіка:",
+    "starText": "V - об'єм норми води в літрах на добу, M - маса вашого тіла, T - час активних занять спортом або іншим видом діяльності, співмірним за навантаженнями (за їх відсутності ви потрібно встановити 0)",
+    "activeText": "Час активності в годинах",
+    "infoUser": "Ваша вага в кілограмах:",
+    "TheTimeSportsLabel": "Час активного заняття спортом:",
+    "requiredWater": "Необхідна кількість води в літрах на день:",
+    "writeDownLabel": "Запишіть, скільки води ви будете пити:",
+    "saveBtn": "Зберегти"
+  },
+
+  "UserSettingsModal": {
+    "setting": "Налаштування"
+  },
+
+  "ForgotPasswordForm": {
+    "recoverYourPassword": "Відновити свій пароль",
+    "email": "Електронна пошта",
+    "enterPlace": "Введіть свою електронну адресу",
+    "sendLinkBtn": "Надіслати посилання",
+    "rememberPasswordText": "Пам'ятаєте свій пароль?",
+    "signIn": "Увійти"
+  },
+  "months": {
+    "11": "Грудень",
+    "0": "Січень",
+    "1": "Лютий",
+    "2": "Березень",
+    "3": "Квітень",
+    "4": "Травень",
+    "5": "Червень",
+    "6": "Липень",
+    "7": "Серпень",
+    "8": "Вересень",
+    "9": "Жовтень",
+    "10": "Листопад"
+  }
+}

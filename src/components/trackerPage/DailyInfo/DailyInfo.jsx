@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 import s from './DailyInfo.module.css';
-import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi';
-import { useSelector } from 'react-redux';
-import { selectDate } from '../../../redux/date/dateSlice';
-
+import { useTranslation } from 'react-i18next';
 const DailyInfo = () => {
+
+  const [isWaterAdd, setIsWaterAdd] = useState(false);
+  const { t } = useTranslation();
+
   const date = useSelector(selectDate);
   const [amountData, setAmountData] = useState([]);
 
@@ -26,15 +27,22 @@ const DailyInfo = () => {
     if (data) setAmountData(data.data);
   }, [data]);
 
+
   return (
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>
         <ChooseDate />
         <AddWaterBtn handleSetAmountData={handleSetAmountData} />
       </div>
-      {isError && <p>Error</p>}
-      {!isError && isLoading && <p>Loading ...</p>}
-      {!isError && !isLoading && <WaterList array={amountData} />}
+      {isWaterAdd ? (
+        <WaterList />
+      ) : (
+        <div className={s.emptyListWaterTextWrap}>
+          <p className={s.emptyListWaterText}>
+            {t('DailyInfo.startTrackingText')}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

@@ -4,9 +4,11 @@ import Button from '../../../shared/components/Button/Button';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './AddWaterBtn.module.css';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = ({ handleSetAmountData }) => {
   const [activeAdd, setActiveAdd] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
@@ -16,14 +18,14 @@ const AddWaterBtn = ({ handleSetAmountData }) => {
             <use xlinkHref={`${sprite}#plus`}></use>
           </svg>
         </span>
-        <span>Add water</span>
+        <span>{t('waterModal.addWaterBtn')}</span>
       </Button>
 
       <Modal active={activeAdd} setActive={setActiveAdd}>
         <WaterModal
           operation="add"
-          title="Add water"
-          subTitle="Choose a value"
+          title={t('waterModal.addWaterTitle')}
+          subTitle={t('waterModal.addWaterSubTitle')}
           setActive={setActiveAdd}
           handleSetAmountData={handleSetAmountData}
         />
