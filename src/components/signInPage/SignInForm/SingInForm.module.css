@@ -65,6 +65,7 @@
   line-height: 1.28571;
   letter-spacing: -0.01em;
   text-align: center;
+  transition: 0.3s;
   color: var(--dark);
   background: var(--lettuce);
 }
@@ -91,7 +92,9 @@
 
 .forgotLink {
   font-weight: 700;
-  margin-left: 2px;
+  display: block;
+  text-align: center;
+  margin-top: 10px;
   text-decoration: underline;
   text-decoration-skip-ink: none;
   color: var(--dark);

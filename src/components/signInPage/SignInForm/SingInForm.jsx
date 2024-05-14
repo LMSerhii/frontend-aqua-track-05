@@ -9,6 +9,7 @@ import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
 const CheckSchema = Yup.object().shape({
   email: Yup.string().email('Pls valid email').required('Required email'),
