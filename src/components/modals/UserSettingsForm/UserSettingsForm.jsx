@@ -7,7 +7,7 @@ import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useState, useRef } from 'react';
 import Section from '../../../shared/components/Section/Section';
-import axios from 'axios';
+// import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
