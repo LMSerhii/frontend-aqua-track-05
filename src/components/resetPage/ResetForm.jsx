@@ -25,7 +25,7 @@ const initialValues = {
   repeatPassword: '',
 };
 
-export default function ResetForm() {
+export default function ResetForm({ onVerification }) {
   const idPassword = useId();
   const idRepeatPassword = useId();
   const dispatch = useDispatch();
@@ -41,25 +41,14 @@ export default function ResetForm() {
     dispatch(resetPassword({ password: user.password, otp }))
       .unwrap()
       .then(() => {
+        onVerification();
         actions.resetForm();
         console.log('The password has been successfully changed!');
         toast.success('The password has been successfully changed!');
 
         setTimeout(() => {
-          toast.success('Redirect to login page after 2s');
-        }, 1000);
-
-        setTimeout(() => {
-          toast.success('Redirect to login page after 1s');
-        }, 2000);
-
-        setTimeout(() => {
-          toast.success('Redirect to login page...');
-        }, 3000);
-
-        setTimeout(() => {
           window.location.href = '/signin';
-        }, 3000);
+        }, 8000);
       })
       .catch(error => {
         toast.error('Something is wrong, please try again...');
