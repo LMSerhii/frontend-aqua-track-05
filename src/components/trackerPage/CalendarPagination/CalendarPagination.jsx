@@ -4,6 +4,7 @@ import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
 
 import css from './CalendarPagination.module.css';
+import { useTranslation } from 'react-i18next';
 
 export const CalendarPagination = ({
   selectedDate,
@@ -21,7 +22,7 @@ export const CalendarPagination = ({
     setSelectedDate(prevoiusMonth);
     // updateNumberOfDays(prevoiusMonth);
   };
-
+  const { t } = useTranslation();
   const goToNextMonth = () => {
     const nextMonth = new Date(
       selectedDate.getFullYear(),
@@ -37,7 +38,7 @@ export const CalendarPagination = ({
   //     const daysInMonth = lastDayOfMonth.getDate();
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
-
+  const translatedMonth = t(`months.${selectedDate.getMonth()}`);
   const formattedDate = selectedDate
     .toLocaleString('en-GB', {
       month: 'long',
@@ -56,7 +57,7 @@ export const CalendarPagination = ({
       <Button onClick={goToPrevoiusMonth} className={css.btn}>
         <BsChevronLeft size="12" className={css.arrow} />
       </Button>
-      <span className={css.span}>{formattedDate}</span>
+      <span className={css.span}>{translatedMonth}</span>
       <Button onClick={goToNextMonth} className={css.btn}>
         <BsChevronRight size="12" className={css.arrow} />
       </Button>
