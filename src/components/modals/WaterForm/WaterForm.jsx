@@ -8,9 +8,11 @@ import {
   currentTime,
   getCurrentDate,
 } from '../../../shared/helpers/dateServices';
+
+import { useTranslation } from 'react-i18next';
 import {
   useCreateEntryMutation,
-  useUpdateEntryMutation,
+  // useUpdateEntryMutation,
 } from '../../../redux/tracker/trackerApi';
 
 const schema = yup.object().shape({
@@ -27,11 +29,13 @@ export const WaterForm = ({
   operation,
   setActive,
   id,
+  handleSetAmountData,
 }) => {
   const [time, setTime] = useState(currentTime);
+  const { t } = useTranslation();
 
   const [createEntry] = useCreateEntryMutation();
-  const [updateEntry] = useUpdateEntryMutation();
+  // const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -46,27 +50,37 @@ export const WaterForm = ({
   };
 
   // Вывод объекта с данными о кол-ве воды
-  const onSubmit = () => {
-    if (operation === 'add') {
-      const data1 = {
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
+  const onSubmit = async () => {
+    try {
+      if (operation === 'add') {
+        const data1 = {
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
+        const response = await createEntry(data1);
+        const amountsList = response.data.data.amounts;
+        handleSetAmountData(amountsList);
+        setActive(false);
 
-      createEntry(data1);
-      console.log('data1', data1);
-      setActive(false);
-    } else {
-      const data2 = {
-        id: id,
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
+        createEntry(data1);
+        console.log('data1', data1);
+        setActive(false);
+      } else {
+        const data2 = {
+          id: id,
+          date: getCurrentDate(),
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
+        console.log(data2);
 
-      console.log(data2);
-      setActive(false);
+        console.log(data2);
+        setActive(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Обработка ошибки (если нужно)
     }
   };
 
@@ -75,7 +89,7 @@ export const WaterForm = ({
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
         {/* поле ввода времени */}
         <label className={s.timeLable} htmlFor="time">
-          Recording time:
+          {t('waterModal.timeRecording')}
         </label>
         <br />
         <input
@@ -90,7 +104,7 @@ export const WaterForm = ({
 
         {/* поле ввода для воды */}
         <label className={s.waterLable} htmlFor="water">
-          Enter the value of the water used:
+          {t('waterModal.waterValue')}
         </label>
         <br />
         {errors.water && <p className={s.error}>{errors.water.message}</p>}
@@ -105,7 +119,7 @@ export const WaterForm = ({
         />
         <br />
         <Button className={s.btnSubmit} type="submit">
-          Save
+          {t('waterModal.btnSubmit')}
         </Button>
       </form>
     </>
