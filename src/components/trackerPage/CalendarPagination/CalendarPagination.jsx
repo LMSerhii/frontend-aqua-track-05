@@ -5,7 +5,12 @@ import { sprite } from '../../../shared/icons/index';
 
 import css from './CalendarPagination.module.css';
 
-export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
+export const CalendarPagination = ({
+  selectedDate,
+  setSelectedDate,
+  setIsActive,
+  isActive,
+}) => {
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
       selectedDate.getFullYear(),
@@ -55,9 +60,11 @@ export const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
       <Button onClick={goToNextMonth} className={css.btn}>
         <BsChevronRight size="12" className={css.arrow} />
       </Button>
-      <svg width="20" height="20" className={css.pieIcon}>
-        <use xlinkHref={`${sprite}#pie_chart`}></use>
-      </svg>
+      <Button className={css.pieChart} onClick={() => setIsActive(!isActive)}>
+        <svg width="20" height="20" className={css.pieIcon}>
+          <use xlinkHref={`${sprite}#pie_chart`}></use>
+        </svg>
+      </Button>
 
       {/* <Calendar numberOfDaysInMonth={numberOfDaysInMonth} /> */}
     </div>
