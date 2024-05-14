@@ -17,12 +17,13 @@ import {
   ForgotPasswordPage,
   ResetPasswordPage,
 } from './pages';
+import SuccessVerifyPage from './pages/SuccessVerifyPage';
 
 export default function App() {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  const { HOME, TRACKER, SIGNUP, SIGNIN, FORGOT, RESET } = routes;
+  const { HOME, TRACKER, SIGNUP, SIGNIN, FORGOT, RESET, SUCCESS_VERIFY_NOTIFY } = routes;
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
@@ -66,6 +67,12 @@ export default function App() {
           path={RESET}
           element={
             <RestrictedRoute redirectTo={TRACKER} component={<ResetPasswordPage />} />
+          }
+        />
+        <Route
+          path={SUCCESS_VERIFY_NOTIFY}
+          element={
+            <RestrictedRoute redirectTo={TRACKER} component={<SuccessVerifyPage />} />
           }
         />
       </Route>
