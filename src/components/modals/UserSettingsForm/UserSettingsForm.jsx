@@ -66,7 +66,7 @@ export const UserSettingsForm = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmitSetting = async () => {
     dispatch(updateUser());
     try {
       const formData = new FormData();
@@ -103,14 +103,14 @@ export const UserSettingsForm = () => {
 
   const {
     // register,
-    // handleSubmit,
+    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  // const onSubmit = data => console.log(data);
+  const onSubmit = data => console.log(data);
 
   return (
     <Section>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={s.avatarWrap}>
           <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
             <input
@@ -128,7 +128,7 @@ export const UserSettingsForm = () => {
             )}
 
             <button
-              type="submit"
+              // type="submit"
               className={s.uploudBtn}
               // onClick={handleUpload}
             >
@@ -268,7 +268,11 @@ export const UserSettingsForm = () => {
           />
         </div>
 
-        <Button classname={s.btnSetting} type="Submit">
+        <Button
+          classname={s.btnSetting}
+          type="Submit"
+          onClick={handleSubmitSetting}
+        >
           Save
         </Button>
       </form>
