@@ -49,16 +49,17 @@
   transform: scale(0.5);
   transition: 0.4s all;
 }
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .modalContent {
-    width: 518px;
+    width: 648px;
+    padding: 20px;
   }
 }
-@media screen and (max-width: 350px) {
+@media screen and (min-width: 1440px) {
   .modalContent {
-    width: 300px;
+    width: 920px;
   }
-} */
+}
 
 .modalContent.active {
   transform: scale(1);
