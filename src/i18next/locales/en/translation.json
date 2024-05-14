@@ -145,5 +145,14 @@
 
   "UserSettingsModal": {
     "setting": "Setting"
+  },
+
+  "ForgotPasswordForm": {
+    "recoverYourPassword": "Recover your password",
+    "email": "Email",
+    "enterPlace": "Enter your email",
+    "sendLinkBtn": "Send link",
+    "rememberPasswordText": "Remember your password?",
+    "signIn": "Sign In"
   }
 }

@@ -139,5 +139,14 @@
 
   "UserSettingsModal": {
     "setting": "Налаштування"
+  },
+
+  "ForgotPasswordForm": {
+    "recoverYourPassword": "Відновити свій пароль",
+    "email": "Електронна пошта",
+    "enterPlace": "Введіть свою електронну адресу",
+    "sendLinkBtn": "Надіслати посилання",
+    "rememberPasswordText": "Пам'ятаєте свій пароль?",
+    "signIn": "Увійти"
   }
 }
