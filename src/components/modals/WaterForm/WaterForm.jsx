@@ -12,14 +12,7 @@ import {
   useCreateEntryMutation,
   // useUpdateEntryMutation,
 } from '../../../redux/tracker/trackerApi';
-
-const schema = yup.object().shape({
-  water: yup
-    .number()
-    .required('Water value is required')
-    .positive('Water value must be a positive number')
-    .integer('Water value must be an integer'),
-});
+import { useTranslation } from 'react-i18next';
 
 export const WaterForm = ({
   handleWaterChange,
@@ -30,7 +23,14 @@ export const WaterForm = ({
   handleSetAmountData,
 }) => {
   const [time, setTime] = useState(currentTime);
-
+  const { t } = useTranslation();
+  const schema = yup.object().shape({
+    water: yup
+      .number()
+      .required(t('waterModal.WaterForm.waterRequired'))
+      .positive(t('waterModal.WaterForm.waterPositive'))
+      .integer(t('waterModal.WaterForm.waterInteger')),
+  });
   const [createEntry] = useCreateEntryMutation();
   // const [updateEntry] = useUpdateEntryMutation();
 
@@ -81,7 +81,7 @@ export const WaterForm = ({
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
         {/* поле ввода времени */}
         <label className={s.timeLable} htmlFor="time">
-          Recording time:
+          {t('waterModal.timeRecording')}
         </label>
         <br />
         <input
@@ -96,7 +96,7 @@ export const WaterForm = ({
 
         {/* поле ввода для воды */}
         <label className={s.waterLable} htmlFor="water">
-          Enter the value of the water used:
+          {t('waterModal.waterValue')}
         </label>
         <br />
         {errors.water && <p className={s.error}>{errors.water.message}</p>}
@@ -111,7 +111,7 @@ export const WaterForm = ({
         />
         <br />
         <Button className={s.btnSubmit} type="submit">
-          Save
+          {t('waterModal.btnSubmit')}
         </Button>
       </form>
     </>
