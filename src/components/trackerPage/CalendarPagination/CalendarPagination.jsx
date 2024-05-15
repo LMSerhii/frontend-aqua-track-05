@@ -12,6 +12,8 @@ export const CalendarPagination = ({
   setIsActive,
   isActive,
 }) => {
+  const { t } = useTranslation();
+
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
       selectedDate.getFullYear(),
@@ -20,7 +22,7 @@ export const CalendarPagination = ({
     );
     setSelectedDate(prevoiusMonth);
   };
-  const { t } = useTranslation();
+
   const goToNextMonth = () => {
     const nextMonth = new Date(
       selectedDate.getFullYear(),
@@ -45,7 +47,9 @@ export const CalendarPagination = ({
       <Button onClick={goToPrevoiusMonth} className={css.btn}>
         <BsChevronLeft size="12" className={css.arrow} />
       </Button>
-      <span className={css.span}>{translatedMonth}</span>
+      <span className={css.span}>
+        {translatedMonth}, {selectedDate.getFullYear()}
+      </span>
       <Button onClick={goToNextMonth} className={css.btn}>
         <BsChevronRight size="12" className={css.arrow} />
       </Button>

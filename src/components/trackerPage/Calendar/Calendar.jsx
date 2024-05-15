@@ -26,10 +26,10 @@ export const Calendar = ({ selectedDate }) => {
   ];
   // тут потрібен ще dailyWater з документа Юзера
   const { user } = useAuth();
-  console.log(user);
-  console.log(user.dailyWater);
+  // console.log(user);
+  // console.log(user.dailyWater);
   const dailyWater = user.dailyWater * 1000;
-  console.log(dailyWater);
+  // console.log(dailyWater);
   // якщо реалізовано автоматичний запис"0" в totalAmount по
   // закінченню дня, якщо юзер не записав свою випиту воду:
   //   const ArrayOfWaterInPercent = data.map(item =>
@@ -38,7 +38,7 @@ export const Calendar = ({ selectedDate }) => {
   const ArrayOfWaterInPercent = data.map(item =>
     Math.round((item.totalAmount * 100) / 1500)
   );
-  console.log(ArrayOfWaterInPercent);
+  // console.log(ArrayOfWaterInPercent);
 
   return (
     <>
