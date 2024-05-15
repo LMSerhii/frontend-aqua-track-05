@@ -10,6 +10,14 @@ const WaterItem = ({ item: { _id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
   const [activeDelete, setActiveDelete] = useState(false);
   const { t } = useTranslation();
+
+  const formattedAmount =
+    amount >= 1000
+      ? `${(amount / 1000).toFixed(1).replace('.0', '')}${t(
+          'WaterItem.woterL'
+        )}`
+      : `${amount}${t('WaterItem.woterMl')}`;
+
   return (
     <>
       <li className={s.card}>
@@ -17,9 +25,7 @@ const WaterItem = ({ item: { _id, amount, time } }) => {
           <use xlinkHref={`${sprite}#glass`}></use>
         </svg>
         <div className={s.cardInfo}>
-          <span className={s.amountWater}>
-            {amount} {t('WaterItem.woterMl')}
-          </span>
+          <span className={s.amountWater}>{formattedAmount}</span>
           <span className={s.time}>{time}</span>
         </div>
 
