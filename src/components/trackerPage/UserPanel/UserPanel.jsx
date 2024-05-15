@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAuth } from '../../../hooks';
-import { Modal } from '../../../shared/components/Modal/Modal';
 import { UserBar } from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
@@ -27,9 +26,7 @@ export const UserPanel = () => {
         setActive={setIsActiveSettings}
       />
 
-      <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
-        <LogOutModal />
-      </Modal>
+      <LogOutModal active={isActiveLogout} setActive={setIsActiveLogout} />
     </div>
   );
 };
