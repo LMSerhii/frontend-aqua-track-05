@@ -25,6 +25,8 @@
 @media screen and (min-width: 768px) {
   .settingCaption {
     margin-top: 0px;
+    font-size: 28px;
+    line-height: 32px;
   }
 }
 .modal {
@@ -45,7 +47,8 @@
 }
 
 .modal.active {
-  z-index: 999;
+  /* z-index: 999; */
+  opacity: 10000;
   pointer-events: all;
 }
 
@@ -54,23 +57,35 @@
   padding: 20px;
   border-radius: 12px;
   background-color: white;
+  min-width: 270px;
   /* width: 50vw; */
   max-height: 80vh; /* Встановлюємо максимальну висоту */
   overflow-y: auto; /* Додаємо смужки прокрутки по вертикалі */
   margin-right: -16px;
   transform: scale(0.5);
   transition: 0.4s all;
-  z-index: 999;
+  /* z-index: 999; */
+}
+@media screen and (min-width: 375px) {
+  .modalContent {
+    width: 343px;
+  }
 }
 @media screen and (min-width: 768px) {
   .modalContent {
+    width: 648px;
     padding: 40px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .modalContent {
+    width: 920px;
   }
 }
 
 .modalContent.active {
   transform: scale(1);
-  z-index: 999;
+  /* z-index: 999; */
 }
 
 .icon {
