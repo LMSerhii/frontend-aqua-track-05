@@ -85,6 +85,7 @@
 
   "WaterItem": {
     "woterMl": "мл",
+    "woterL": "л",
     "correctData": "Правильно введені дані:",
     "editTheEntered": "Редагувати введену кількість води"
   },
