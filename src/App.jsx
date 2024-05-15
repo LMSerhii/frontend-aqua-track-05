@@ -32,7 +32,7 @@ export default function App() {
     const email = searchParams.get('email');
 
     let name = searchParams.get('email');
-    name = name ? name : email.split('@')[0];
+    name = name ? name : email && email.split('@')[0];
 
     const token = searchParams.get('token');
     const refreshToken = searchParams.get('refreshToken');
