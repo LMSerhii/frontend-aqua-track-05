@@ -20,22 +20,23 @@ export const UserPanel = () => {
   };
 
   return (
-    <div className={css.userPanel}>
-      <p className={css.text}>
-        {t('UserPanel.helloText')}
-        <strong>{user ? croppName(user.name) : 'Anonymous'}!</strong>
-      </p>
-      <UserBar
-        setIsActiveSettings={setIsActiveSettings}
-        setIsActiveLogout={setIsActiveLogout}
-      />
-
+    <>
+      <div className={css.userPanel}>
+        <p className={css.text}>
+          {t('UserPanel.helloText')}
+          <strong>{user ? croppName(user.name) : 'Anonymous'}!</strong>
+        </p>
+        <UserBar
+          setIsActiveSettings={setIsActiveSettings}
+          setIsActiveLogout={setIsActiveLogout}
+        />
+      </div>
       <UserSettingsModal
         active={isActiveSettings}
         setActive={setIsActiveSettings}
       />
 
       <LogOutModal active={isActiveLogout} setActive={setIsActiveLogout} />
-    </div>
+    </>
   );
 };

@@ -4,3 +4,9 @@
   padding: 40px 20px;
   overflow: hidden;
 }
+
+@media screen and (min-width: 768px) {
+  .waterDetailedInfo {
+    padding: 32px;
+  }
+}
