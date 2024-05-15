@@ -4,10 +4,11 @@ import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './WaterItem.module.css';
 import { useTranslation } from 'react-i18next';
+import { DeleteWaterModal } from '../../modals/DeleteWaterModal/DeleteWaterModal';
 
 const WaterItem = ({ item: { _id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
-  // const [activeDelete, setActiveDelete] = useState(false);
+  const [activeDelete, setActiveDelete] = useState(false);
   const { t } = useTranslation();
   return (
     <>
@@ -28,7 +29,10 @@ const WaterItem = ({ item: { _id, amount, time } }) => {
               <use xlinkHref={`${sprite}#edit-2`}></use>
             </svg>
           </button>
-          <button className={s.iconBtnWrap}>
+          <button
+            className={s.iconBtnWrap}
+            onClick={() => setActiveDelete(true)}
+          >
             <svg className={s.cardIcon} width="14" height="14">
               <use xlinkHref={`${sprite}#trash2`}></use>
             </svg>
@@ -46,12 +50,9 @@ const WaterItem = ({ item: { _id, amount, time } }) => {
         />
       </Modal>
 
-      {/* <Modal active={activeDelete} setActive={setActiveDelete}>
-        <WaterModal
-          setActive={setActiveDelete}
-          id={id}
-        />
-      </Modal> */}
+      <Modal active={activeDelete} setActive={setActiveDelete}>
+        <DeleteWaterModal setActive={setActiveDelete} id={_id} />
+      </Modal>
     </>
   );
 };
