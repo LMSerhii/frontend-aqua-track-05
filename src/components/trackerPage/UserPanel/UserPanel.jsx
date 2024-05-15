@@ -4,16 +4,17 @@ import { Modal } from '../../../shared/components/Modal/Modal';
 import { UserBar } from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
-
+import { useTranslation } from 'react-i18next';
 export const UserPanel = () => {
   const { user } = useAuth();
   const [isActiveSettings, setIsActiveSettings] = useState(false);
   const [isActiveLogout, setIsActiveLogout] = useState(false);
-
+  const { t } = useTranslation();
   return (
     <div className={css.userPanel}>
       <p className={css.text}>
-        Hello, <strong>{user ? user.name : 'Anonymous'}!</strong>
+        {t('UserPanel.helloText')}
+        <strong>{user ? user.name : 'Anonymous'}!</strong>
       </p>
       <UserBar
         setIsActiveSettings={setIsActiveSettings}
@@ -26,7 +27,7 @@ export const UserPanel = () => {
       />
 
       <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
-        <p>LOGOUT</p>
+        <p>{t('UserPanel.logout')}</p>
       </Modal>
     </div>
   );

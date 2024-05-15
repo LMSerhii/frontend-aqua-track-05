@@ -70,13 +70,17 @@
     "AmountWater": "Кількість води:"
   },
   "WaterProgressBar": {
-    "today": "Сьогодні"
+    "today": "Сьогодні",
+    "it": "Це",
+    "norma": "добова норма"
   },
 
   "WaterMainInfo": {
     "normaDaily": "Моя щоденна норма",
     "addWater": "Додати воду",
-    "liters": "1.5 Л"
+    "liters": "Л",
+    "subTitle": "Виберіть значення",
+    "title": "Додати воду"
   },
 
   "WaterItem": {
@@ -183,5 +187,9 @@
   "SuccessVerify": {
     "goTo": "Перейти до",
     "signIn": "Увійти"
+  },
+
+  "WaterList": {
+    "statrTrackingText": "Почніть відстежувати споживання води, натиснувши кнопку «Додати воду»."
   }
 }

@@ -75,13 +75,17 @@
   },
 
   "WaterProgressBar": {
-    "today": "Today"
+    "today": "Today",
+    "it": "It'st",
+    "norma": "of daily norma"
   },
 
   "WaterMainInfo": {
     "normaDaily": "My Daily Norma",
     "addWater": "Add Water",
-    "liters": "1.5 L"
+    "liters": "L",
+    "subTitle": "Choose a value",
+    "title": "Add water"
   },
   "WaterItem": {
     "woterMl": "ml",
@@ -89,7 +93,8 @@
     "editTheEntered": "Edit the entered amount of water"
   },
   "UserPanel": {
-    "helloText": "Hello, "
+    "helloText": "Hello, ",
+    "logout": "logout"
   },
 
   "UserBarPopover": {
@@ -189,5 +194,9 @@
   "SuccessVerify": {
     "goTo": "Go to",
     "signIn": "Sign In"
+  },
+
+  "WaterList": {
+    "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
   }
 }
