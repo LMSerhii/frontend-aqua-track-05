@@ -133,15 +133,16 @@ export const refreshToken = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const refreshTokens = state.auth.refreshToken;
-    console.log('refreshTokens', refreshTokens);
+
     if (refreshTokens === null) {
       return thunkAPI.rejectWithValue('Unable to refresh token');
     }
+
     try {
       const response = await axios.post(`${USERS}/refresh`, {
         refreshToken: refreshTokens,
       });
-   
+
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
