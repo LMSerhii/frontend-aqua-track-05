@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import s from './ChooseDate.module.css';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectDate } from '../../../redux/date/dateSlice';
+import { getCurrentDate } from '../../../shared/helpers/dateServices';
+import { formatDate } from '../../../shared/helpers/formatDate';
 
 const ChooseDate = () => {
+  const date = useSelector(selectDate);
+  // const date = '05-05-2024';
+  const [isToday, setIsToday] = useState(false);
   const { t } = useTranslation();
-  const date = '05.05.2024';
-  const [day, month, year] = date.split('.');
+
+  useEffect(() => {
+    const today = getCurrentDate();
+
+    if (date === today) setIsToday(true);
+  }, [date]);
+
+  const [day, month, year] = date.split('-');
+
   const months = [
     t('ChooseDate.january'),
     t('ChooseDate.february'),
@@ -21,9 +35,7 @@ const ChooseDate = () => {
     t('ChooseDate.december'),
   ];
 
-  const formattedDate = `${day}, ${months[parseInt(month) - 1]}, ${year}`;
-
-  const [isToday, setIsToday] = useState(false);
+  const { formattedDate } = formatDate(date);
 
   return (
     <p className={s.date}>{isToday ? t('ChooseDate.today') : formattedDate}</p>
