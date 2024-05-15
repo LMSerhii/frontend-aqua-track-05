@@ -26,13 +26,10 @@ export const trackerApi = createApi({
       }),
       invalidatesTags: ['Trackers'],
     }),
-<<<<<<< HEAD
     getAllEntyiesByMonth: builder.query({
       query: id => `/water/${id}`,
       providesTags: ['Trackers'],
     }),
-=======
->>>>>>> main
 
     createEntry: builder.mutation({
       query: body => ({
@@ -63,13 +60,7 @@ export const trackerApi = createApi({
 });
 
 export const {
-<<<<<<< HEAD
-  useGetAllEntyiesQuery,
-  useGetAllEntriesByDayMutation,
-  useGetAllEntyiesByMonthQuery,
-=======
   useGetAllEntyiesByDayMutation,
->>>>>>> main
   useCreateEntryMutation,
   useUpdateEntryMutation,
   useDeleteEntryMutation,

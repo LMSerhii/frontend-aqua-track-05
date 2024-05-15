@@ -83,16 +83,11 @@ export const CalendarPagination = ({
       <Button onClick={goToNextMonth} className={s.btn}>
         <BsChevronRight size="12" className={s.arrow} />
       </Button>
-      <svg width="20" height="20" className={s.pieIcon}>
-        <use xlinkHref={`${sprite}#pie_chart`}></use>
-      </svg>
       <Button className={s.pieChart} onClick={() => setIsActive(!isActive)}>
         <svg width="20" height="20" className={s.pieIcon}>
           <use xlinkHref={`${sprite}#pie_chart`}></use>
         </svg>
       </Button>
-
-      {/* <Calendar numberOfDaysInMonth={numberOfDaysInMonth} /> */}
     </div>
   );
 };
