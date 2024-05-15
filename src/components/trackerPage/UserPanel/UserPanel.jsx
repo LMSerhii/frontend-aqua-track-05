@@ -5,6 +5,7 @@ import css from './UserPanel.module.css';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
 import { useTranslation } from 'react-i18next';
 import { LogOutModal } from '../../modals/LogOutModal/LogOutModal';
+
 export const UserPanel = () => {
   const { user } = useAuth();
   const [isActiveSettings, setIsActiveSettings] = useState(false);
