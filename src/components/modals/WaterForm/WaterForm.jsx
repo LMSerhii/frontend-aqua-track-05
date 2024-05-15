@@ -56,8 +56,11 @@ export const WaterForm = ({
           time: currentTime,
         };
         const response = await createEntry(data1);
+
         const amountsList = response.data.data.amounts;
+
         handleSetAmountData(amountsList);
+
         setActive(false);
       } else {
         const data2 = {
