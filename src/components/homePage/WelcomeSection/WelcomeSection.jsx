@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../../../shared/components/Logo/Logo';
-
 import css from './WelcomeSection.module.css';
 import { useTranslation } from 'react-i18next';
 

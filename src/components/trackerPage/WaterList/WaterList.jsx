@@ -1,7 +1,8 @@
 import WaterItem from '../WaterItem/WaterItem';
 import s from './WaterList.module.css';
-
+import { useTranslation } from 'react-i18next';
 const WaterList = ({ array }) => {
+  const { t } = useTranslation();
   return (
     <>
       {array.length ? (
@@ -13,7 +14,7 @@ const WaterList = ({ array }) => {
       ) : (
         <div className={s.emptyListWaterTextWrap}>
           <p className={s.emptyListWaterText}>
-            Start tracking your water intake by clicking the Add water button.
+            {t('WaterList.statrTrackingText')}
           </p>
         </div>
       )}

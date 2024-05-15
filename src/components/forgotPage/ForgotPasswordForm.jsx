@@ -9,17 +9,20 @@ import { forgotPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
-const CheckSchema = Yup.object().shape({
-  email: Yup.string().email('Pls valid email').required('Required email'),
-});
 const initialValues = {
   email: '',
 };
 
 export default function ForgotForm() {
+  const { t } = useTranslation();
+  const CheckSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t('ForgotPasswordForm.emailVelid'))
+      .required(t('ForgotPasswordForm.emailRequired')),
+  });
+
   const idEmail = useId();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
   const handleSubmit = (values, actions) => {
     const user = {

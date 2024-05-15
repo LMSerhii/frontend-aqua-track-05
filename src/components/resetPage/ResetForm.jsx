@@ -6,26 +6,30 @@ import Logo from '../../shared/components/Logo/Logo';
 import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
-const CheckSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(6, 'Too short')
-    .max(50, 'Too long')
-    .matches(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
-      'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
-    )
-    .required('Required password'),
-  repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Required password'),
-});
 const initialValues = {
   password: '',
   repeatPassword: '',
 };
 
 export default function ResetForm({ onVerification }) {
+  const { t } = useTranslation();
+  const CheckSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(6, t('ResetForm.minTooShort'))
+      .max(50, t('ResetForm.maxTooLong'))
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#_\\$%\\^&\\*])(?=.{8,128})/,
+
+        t('ResetForm.matchesPassword')
+      )
+      .required(t('ResetForm.requiredPassword')),
+    repeatPassword: Yup.string()
+      .oneOf([Yup.ref('password')], t('ResetForm.oneOfPassword'))
+      .required(t('ResetForm.requiredPasswordrepeat')),
+  });
+
   const idPassword = useId();
   const idRepeatPassword = useId();
   const dispatch = useDispatch();
@@ -63,7 +67,7 @@ export default function ResetForm({ onVerification }) {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>Make a new password</h2>
+          <h2 className={css.h2}>{t('ResetForm.makeTexth2')}</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -72,14 +76,14 @@ export default function ResetForm({ onVerification }) {
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idPassword} className={css.label}>
-                  New password
+                  {t('ResetForm.newPasswordLabel')}
                 </label>
                 <Field
                   type="text"
                   name="password"
                   id={idPassword}
                   className={css.input}
-                  placeholder="Enter your new password"
+                  placeholder={t('ResetForm.enterPlace')}
                 />
                 <ErrorMessage
                   name="password"
@@ -89,14 +93,14 @@ export default function ResetForm({ onVerification }) {
               </div>
               <div className={css.field}>
                 <label htmlFor={idPassword} className={css.label}>
-                  Repeat Password
+                  {t('ResetForm.repeatPassword')}
                 </label>
                 <Field
                   type="text"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
-                  placeholder="Repeat password"
+                  placeholder={t('ResetForm.repeatPassword')}
                 />
                 <ErrorMessage
                   name="repeatPassword"
@@ -105,7 +109,7 @@ export default function ResetForm({ onVerification }) {
                 />
               </div>
               <button type="submit" className={css.button}>
-                Confirm
+                {t('ResetForm.confirmBtn')}
               </button>
             </Form>
           </Formik>

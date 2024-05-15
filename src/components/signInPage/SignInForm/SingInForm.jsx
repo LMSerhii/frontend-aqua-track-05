@@ -9,6 +9,7 @@ import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import { useTranslation } from 'react-i18next';
 
 const initialValues = {
@@ -17,14 +18,13 @@ const initialValues = {
 };
 
 export default function SignInForm() {
+  const { t } = useTranslation();
   const idEmail = useId();
   const idPassword = useId();
   const dispatch = useDispatch();
   const [verify, setVerify] = useState(false);
   const [email, setEmail] = useState('');
 
-  const { t } = useTranslation();
-  //перенес для const { t } = useTranslation();
   const CheckSchema = Yup.object().shape({
     email: Yup.string()
       .email(t('singInForm.emailVelid'))

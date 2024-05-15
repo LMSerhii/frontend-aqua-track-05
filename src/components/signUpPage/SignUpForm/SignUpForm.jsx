@@ -22,12 +22,6 @@ const initialValues = {
 };
 export default function SignUpForm() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const idEmail = useId();
-  const idPassword = useId();
-  const idRepeatPassword = useId();
-  const dispatch = useDispatch();
-
   //перенес для const { t } = useTranslation();
   const CheckSchema = Yup.object().shape({
     email: Yup.string()
@@ -45,6 +39,11 @@ export default function SignUpForm() {
       .oneOf([Yup.ref('password')], t('singUnForm.repeatPasswordOneOf'))
       .required(t('singUnForm.repeatPasswordRequired')),
   });
+  const navigate = useNavigate();
+  const idEmail = useId();
+  const idPassword = useId();
+  const idRepeatPassword = useId();
+  const dispatch = useDispatch();
 
   const handleSubmit = (values, _) => {
     const name = values.email.split('@')[0];

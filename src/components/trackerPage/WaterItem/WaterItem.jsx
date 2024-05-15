@@ -4,7 +4,8 @@ import { Modal } from '../../../shared/components/Modal/Modal';
 import { WaterModal } from '../../modals/WaterModal/WaterModal';
 import s from './WaterItem.module.css';
 import { useTranslation } from 'react-i18next';
-const WaterItem = ({ item: { id, amount, time } }) => {
+
+const WaterItem = ({ item: { _id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
   // const [activeDelete, setActiveDelete] = useState(false);
   const { t } = useTranslation();
@@ -16,8 +17,7 @@ const WaterItem = ({ item: { id, amount, time } }) => {
         </svg>
         <div className={s.cardInfo}>
           <span className={s.amountWater}>
-            {amount}
-            {t('WaterItem.woterMl')}
+            {amount} {t('WaterItem.woterMl')}
           </span>
           <span className={s.time}>{time}</span>
         </div>
@@ -41,7 +41,7 @@ const WaterItem = ({ item: { id, amount, time } }) => {
           operation="edit"
           title="Edit the entered amount of water"
           subTitle="Correct entered data:"
-          id={id}
+          id={_id}
           setActive={setActiveEdit}
         />
       </Modal>
