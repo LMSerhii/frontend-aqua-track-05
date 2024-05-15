@@ -16,7 +16,6 @@ import { useTranslation } from 'react-i18next';
 export const UserSettingsForm = () => {
   const { t } = useTranslation();
   const userData = useSelector(selectUser);
-  console.log(userData);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
