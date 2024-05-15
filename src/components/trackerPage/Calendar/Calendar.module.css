@@ -23,3 +23,22 @@
   text-align: center;
   color: var(--grey-text);
 }
+@media screen and (min-width: 768px) {
+  .list {
+    column-gap: 48px;
+    row-gap: 15px;
+    padding: 0 32px;
+  }
+  .item {
+    width: calc((100% - 7 * 48px) / 8);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .list {
+    column-gap: 43px;
+  }
+
+  .item {
+    width: calc((100% - 7 * 43px) / 8);
+  }
+}

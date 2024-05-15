@@ -204,3 +204,7 @@ input[type='radio'] {
 .gender input[type='radio']:checked + label:after {
   display: block;
 }
+.uploud {
+  fill: none;
+  stroke: var(--dark-blue);
+}

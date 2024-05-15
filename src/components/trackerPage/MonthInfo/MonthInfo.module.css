@@ -6,5 +6,12 @@
 }
 .month {
   color: var(--dark-blue);
-  margin-right: 58px;
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 24px 32px;
+  }
+  .month {
+    font-size: 28px;
+  }
 }
