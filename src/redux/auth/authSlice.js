@@ -9,6 +9,7 @@ import {
   updateUser,
   forgotPassword,
   resetPassword,
+  refreshToken,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -56,6 +57,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.refreshToken = action.payload.refreshToken;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -83,6 +85,11 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
+        state.isLoggedIn = true;
       })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
@@ -119,7 +126,7 @@ const authSlice = createSlice({
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken'],
 };
 
 export const { setDateFromGoogle } = authSlice.actions;

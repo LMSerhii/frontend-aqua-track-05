@@ -8,13 +8,13 @@ export const ShareIconPassword = ({ name, iconId, css}) => {
       document
         .getElementById(iconId)
         .querySelector('use')
-        .setAttribute('xlink:href', `${sprite}#eye-password-open`);
+        .setAttribute('href', `${sprite}#eye-password-open`);
     } else {
       document.getElementById(name).type = 'password';
       document
         .getElementById(iconId)
         .querySelector('use')
-        .setAttribute('xlink:href', `${sprite}#eye-password-close`);
+        .setAttribute('href', `${sprite}#eye-password-close`);
     }
   };
 
