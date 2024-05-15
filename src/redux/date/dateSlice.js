@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { format } from 'date-fns';
+import { getCurrentDate } from '../../shared/helpers/dateServices';
 
 const dateSlice = createSlice({
   name: 'date',
   initialState: {
-    date: format(new Date(), 'dd-MM-yyyy'),
+    date: getCurrentDate(),
   },
   reducers: {
     setDate(state, action) {

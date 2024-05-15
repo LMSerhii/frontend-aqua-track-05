@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { useAuth } from '../../../hooks';
-import { Modal } from '../../../shared/components/Modal/Modal';
 import { UserBar } from '../UserBar/UserBar';
 import css from './UserPanel.module.css';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
 import { useTranslation } from 'react-i18next';
-
+import { LogOutModal } from '../../modals/LogOutModal/LogOutModal';
 export const UserPanel = () => {
   const { user } = useAuth();
   const [isActiveSettings, setIsActiveSettings] = useState(false);
@@ -35,9 +34,7 @@ export const UserPanel = () => {
         setActive={setIsActiveSettings}
       />
 
-      <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
-        <p>{t('UserPanel.logout')}</p>
-      </Modal>
+      <LogOutModal active={isActiveLogout} setActive={setIsActiveLogout} />
     </div>
   );
 };

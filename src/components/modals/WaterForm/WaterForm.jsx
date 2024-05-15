@@ -4,15 +4,15 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import {
-  currentTime,
-  getCurrentDate,
-} from '../../../shared/helpers/dateServices';
+import { currentTime } from '../../../shared/helpers/dateServices';
 import {
   useCreateEntryMutation,
+  useUpdateEntryMutation,
   // useUpdateEntryMutation,
 } from '../../../redux/tracker/trackerApi';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectDate } from '../../../redux/date/dateSlice';
 
 export const WaterForm = ({
   handleWaterChange,
@@ -22,8 +22,10 @@ export const WaterForm = ({
   id,
   handleSetAmountData,
 }) => {
+  const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
   const { t } = useTranslation();
+
   const schema = yup.object().shape({
     water: yup
       .number()
@@ -31,8 +33,9 @@ export const WaterForm = ({
       .positive(t('waterModal.WaterForm.waterPositive'))
       .integer(t('waterModal.WaterForm.waterInteger')),
   });
+
   const [createEntry] = useCreateEntryMutation();
-  // const [updateEntry] = useUpdateEntryMutation();
+  const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -51,18 +54,21 @@ export const WaterForm = ({
     try {
       if (operation === 'add') {
         const data1 = {
-          date: getCurrentDate(),
+          date: date,
           amount: parseInt(waterValue),
           time: currentTime,
         };
         const response = await createEntry(data1);
+
         const amountsList = response.data.data.amounts;
+
         handleSetAmountData(amountsList);
+
         setActive(false);
       } else {
         const data2 = {
           id: id,
-          date: getCurrentDate(),
+          date: date,
           amount: parseInt(waterValue),
           time: currentTime,
         };
