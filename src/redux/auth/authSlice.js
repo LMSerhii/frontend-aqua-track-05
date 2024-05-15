@@ -23,6 +23,7 @@ const authInitialState = {
     dailyWater: null,
   },
   token: null,
+  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -31,6 +32,16 @@ const authInitialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: authInitialState,
+  reducers: {
+    setDateFromGoogle(state, action) {
+      state.user = action.payload.user;
+
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+
+      state.isLoggedIn = true;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.pending, state => {
@@ -110,6 +121,8 @@ const authPersistConfig = {
   storage,
   whitelist: ['token'],
 };
+
+export const { setDateFromGoogle } = authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
