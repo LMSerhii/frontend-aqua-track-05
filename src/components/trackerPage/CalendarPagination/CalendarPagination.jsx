@@ -19,7 +19,6 @@ export const CalendarPagination = ({
       1
     );
     setSelectedDate(prevoiusMonth);
-    // updateNumberOfDays(prevoiusMonth);
   };
   const { t } = useTranslation();
   const goToNextMonth = () => {
@@ -29,52 +28,17 @@ export const CalendarPagination = ({
       1
     );
     setSelectedDate(nextMonth);
-    // updateNumberOfDays(nextMonth);
   };
-  // це якщо б <Calendar /> рендерився тут***
-  //   const updateNumberOfDays = date => {
-  //     const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  //     const daysInMonth = lastDayOfMonth.getDate();
-  //     setNumberOfDaysInMonth(daysInMonth);
-  //   };
+
   const translatedMonth = t(`months.${selectedDate.getMonth()}`);
-  const formattedDate = selectedDate
-    .toLocaleString('en-GB', {
-      month: 'long',
-      year: 'numeric',
-    })
-    .replace(/(\w+) (\d+)/, '$1, $2');
 
-  //   useEffect(() => {
-  // formattedDate.toLocaleDateString()
-  // console.log(formattedDate);
-  //     dispatch(setFilterDate(formattedDate));
-  //   }, [selectedDate, dispatch]);
-  // *************
-
-  // ********* варіант з двома useEffect() ******
-  // useEffect(() => {
-  //   const monthYear = selectedDate.toLocaleString('en-GB', {
+  // const formattedDate = selectedDate
+  //   .toLocaleString('en-GB', {
   //     month: 'long',
   //     year: 'numeric',
-  //   });
-  //   setFormattedDate(monthYear);
-  //   const dateString = selectedDate
-  //     .toLocaleString('en-GB', {
-  //       day: '2-digit',
-  //       month: '2-digit',
-  //       year: 'numeric',
-  //     })
-  //     .split('/')
-  //     .join('-');
-  //   setFormattedDateString(dateString);
-  // }, [selectedDate]);
-
-  // useEffect(() => {
-  //   dispatch(setDate(formattedDateString));
-  // }, [formattedDateString, dispatch]);
-  // *********
-  // console.log(formattedDateString);
+  //   })
+  //   .replace(/(\w+) (\d+)/, '$1, $2');
+  // console.log(formattedDate);
 
   return (
     <div className={css.wrapper}>
@@ -93,3 +57,34 @@ export const CalendarPagination = ({
     </div>
   );
 };
+
+// *******
+//   useEffect(() => {
+// formattedDate.toLocaleDateString()
+// console.log(formattedDate);
+//     dispatch(setFilterDate(formattedDate));
+//   }, [selectedDate, dispatch]);
+// *************
+// ********* варіант з двома useEffect() ******
+// useEffect(() => {
+//   const monthYear = selectedDate.toLocaleString('en-GB', {
+//     month: 'long',
+//     year: 'numeric',
+//   });
+//   setFormattedDate(monthYear);
+//   const dateString = selectedDate
+//     .toLocaleString('en-GB', {
+//       day: '2-digit',
+//       month: '2-digit',
+//       year: 'numeric',
+//     })
+//     .split('/')
+//     .join('-');
+//   setFormattedDateString(dateString);
+// }, [selectedDate]);
+
+// useEffect(() => {
+//   dispatch(setDate(formattedDateString));
+// }, [formattedDateString, dispatch]);
+// *********
+// console.log(formattedDateString);
