@@ -7,7 +7,6 @@
   padding: 7px 10px;
   border-radius: 15px;
   background-color: white;
-
   opacity: 0;
   transition: opacity 7s var(--animation-time-function);
 }
@@ -57,4 +56,9 @@
 .logoutBtn:hover,
 .logoutBtn:focus {
   background-color: var(--calendarItemColor);
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 100%;
+  }
 }
