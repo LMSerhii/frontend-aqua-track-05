@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { useAuth } from '../../../hooks';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { UserBar } from '../UserBar/UserBar';
-import s from './UserPanel.module.css';
+import css from './UserPanel.module.css';
 import { UserSettingsModal } from '../../modals/UserSettingsModal/UserSettingsModal';
-
+import { useTranslation } from 'react-i18next';
 export const UserPanel = () => {
   const { user } = useAuth();
   const [isActiveSettings, setIsActiveSettings] = useState(false);
   const [isActiveLogout, setIsActiveLogout] = useState(false);
+  const { t } = useTranslation();
 
   const croppName = str => {
     if (str.length > 8) {
@@ -18,9 +19,10 @@ export const UserPanel = () => {
   };
 
   return (
-    <div className={s.userPanel}>
-      <p className={s.text}>
-        Hello, <strong>{user ? croppName(user.name) : 'Anonymous'}!</strong>
+    <div className={css.userPanel}>
+      <p className={css.text}>
+        {t('UserPanel.helloText')}
+        <strong>{user ? croppName(user.name) : 'Anonymous'}!</strong>
       </p>
       <UserBar
         setIsActiveSettings={setIsActiveSettings}
@@ -33,7 +35,7 @@ export const UserPanel = () => {
       />
 
       <Modal active={isActiveLogout} setActive={setIsActiveLogout}>
-        <p>LOGOUT</p>
+        <p>{t('UserPanel.logout')}</p>
       </Modal>
     </div>
   );

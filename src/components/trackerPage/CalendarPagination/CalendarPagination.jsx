@@ -3,7 +3,8 @@ import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
 
-import s from './CalendarPagination.module.css';
+import css from './CalendarPagination.module.css';
+import { useTranslation } from 'react-i18next';
 
 export const CalendarPagination = ({
   selectedDate,
@@ -20,7 +21,7 @@ export const CalendarPagination = ({
     setSelectedDate(prevoiusMonth);
     // updateNumberOfDays(prevoiusMonth);
   };
-
+  const { t } = useTranslation();
   const goToNextMonth = () => {
     const nextMonth = new Date(
       selectedDate.getFullYear(),
@@ -36,13 +37,14 @@ export const CalendarPagination = ({
   //     const daysInMonth = lastDayOfMonth.getDate();
   //     setNumberOfDaysInMonth(daysInMonth);
   //   };
-  // *************
-  const formattedDate = selectedDate.toLocaleString('en-GB', {
-    month: 'long',
-    year: 'numeric',
-  });
-  //     .replace(/(\w+) (\d+)/, '$1, $2');
-  //   console.log(formattedDate);
+  const translatedMonth = t(`months.${selectedDate.getMonth()}`);
+  const formattedDate = selectedDate
+    .toLocaleString('en-GB', {
+      month: 'long',
+      year: 'numeric',
+    })
+    .replace(/(\w+) (\d+)/, '$1, $2');
+
   //   useEffect(() => {
   // formattedDate.toLocaleDateString()
   // console.log(formattedDate);
@@ -75,16 +77,16 @@ export const CalendarPagination = ({
   // console.log(formattedDateString);
 
   return (
-    <div className={s.wrapper}>
-      <Button onClick={goToPrevoiusMonth} className={s.btn}>
-        <BsChevronLeft size="12" className={s.arrow} />
+    <div className={css.wrapper}>
+      <Button onClick={goToPrevoiusMonth} className={css.btn}>
+        <BsChevronLeft size="12" className={css.arrow} />
       </Button>
-      <span className={s.span}>{formattedDate}</span>
-      <Button onClick={goToNextMonth} className={s.btn}>
-        <BsChevronRight size="12" className={s.arrow} />
+      <span className={css.span}>{translatedMonth}</span>
+      <Button onClick={goToNextMonth} className={css.btn}>
+        <BsChevronRight size="12" className={css.arrow} />
       </Button>
-      <Button className={s.pieChart} onClick={() => setIsActive(!isActive)}>
-        <svg width="20" height="20" className={s.pieIcon}>
+      <Button className={css.pieChart} onClick={() => setIsActive(!isActive)}>
+        <svg width="20" height="20" className={css.pieIcon}>
           <use xlinkHref={`${sprite}#pie_chart`}></use>
         </svg>
       </Button>

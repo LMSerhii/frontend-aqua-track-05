@@ -6,9 +6,3 @@ export const currentTime = new Date().toLocaleTimeString([], {
 
 export const getCurrentDate = () =>
   new Date().toLocaleDateString().split('.').join('-');
-
-export const data = {
-  date: '1-05-2024',
-  amount: parseInt('200'),
-  time: '7:00',
-};

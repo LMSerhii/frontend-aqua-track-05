@@ -4,7 +4,7 @@ import { WaterForm } from '../WaterForm/WaterForm';
 import { useRef, useState } from 'react';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import Counter from '../Counter/Counter';
-
+import { useTranslation } from 'react-i18next';
 export const WaterModal = ({
   title,
   subTitle,
@@ -17,7 +17,7 @@ export const WaterModal = ({
   const [waterValue, setWaterValue] = useState(count.toString());
 
   const modalRef = useRef();
-
+  const { t } = useTranslation();
   const handleCloseModal = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setActive(false);
@@ -83,7 +83,7 @@ export const WaterModal = ({
 
         <p className={s.choose}>{subTitle}</p>
 
-        <p className={s.amount}>Amount of water:</p>
+        <p className={s.amount}>{t('waterModal.AmountWater')}</p>
 
         <Counter
           count={count}

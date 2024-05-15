@@ -11,8 +11,10 @@ import Section from '../../../shared/components/Section/Section';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
+import { useTranslation } from 'react-i18next';
 
 export const UserSettingsForm = () => {
+  const { t } = useTranslation();
   const userData = useSelector(selectUser);
   console.log(userData);
 
@@ -138,12 +140,15 @@ export const UserSettingsForm = () => {
               <svg className={s.uploud} width="18" height="18">
                 <use xlinkHref={`${sprite}#upload`}></use>
               </svg>
-              Upload a photo
+              {t('UserSettingsForm.uploadPhotoBtn')}
             </button>
           </label>
         </div>
 
-        <label className={s.labelImportanGender}>Your gender identity</label>
+        <label className={s.labelImportanGender}>
+          {' '}
+          {t('UserSettingsForm.yourGenderLabel')}
+        </label>
         <div className={s.genderWrap}>
           <div className={s.gender}>
             <input
@@ -157,7 +162,7 @@ export const UserSettingsForm = () => {
               className={`${s.labelGender} ${s.materialRadio}`}
               htmlFor="woman"
             >
-              Woman
+              {t('UserSettingsForm.femaleGenderLabel')}
             </label>
           </div>
           <div className={s.gender}>
@@ -172,14 +177,14 @@ export const UserSettingsForm = () => {
               className={`${s.labelGender} ${s.materialRadio}`}
               htmlFor="man"
             >
-              Man
+              {t('UserSettingsForm.femaleGenderMale')}
             </label>
           </div>
         </div>
 
         <div className={s.WrapNameEmail}>
           <label htmlFor="Your_name" className={s.labelImportan}>
-            Your name
+            {t('UserSettingsForm.yourNameLabel')}
           </label>
 
           <input
@@ -187,11 +192,11 @@ export const UserSettingsForm = () => {
             id="Your_name"
             value={userData.name}
             onChange={e => setData({ ...data, name: e.target.value })}
-            placeholder="Name"
+            placeholder={t('UserSettingsForm.placeYourName')}
           />
           <p>{errors.Your_name?.message}</p>
           <label htmlFor="Email" className={s.labelImportan}>
-            Email
+            {t('UserSettingsForm.labelEmail')}
           </label>
 
           <input
@@ -199,24 +204,24 @@ export const UserSettingsForm = () => {
             id="Email"
             value={userData.email}
             onChange={e => setData({ ...data, email: e.target.value })}
-            placeholder="Email"
+            placeholder={t('UserSettingsForm.placeEmail')}
           />
           {/* <p>{errors.Email?.message}</p> */}
         </div>
 
         <div className={s.dailyNormaWrap}>
-          <h3 className={s.labelDailyNorma}>My daily norma</h3>
-          <p>For woman:</p>
+          <h3 className={s.labelDailyNorma}>
+            {t('UserSettingsForm.dailyNormah3')}
+          </h3>
+          <p>{t('UserSettingsForm.forWomanP')}</p>
           <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
-          <p>For man:</p>
+          <p>{t('UserSettingsForm.forManP')}</p>
           <p className={s.formula}>V=(M*0,04) + (T*0,6)</p>
 
           <div className={s.Wrapdesc}>
             <p className={s.description}>
-              <span className={s.star}>*</span> V is the volume of the water
-              norm in liters per day, M is your body weight, T is the time of
-              active sports, or another type of activity commensurate in terms
-              of loads (in the absence of these, you must set 0)
+              <span className={s.star}>*</span>
+              {t('UserSettingsForm.starText')}
             </p>
           </div>
 
@@ -224,12 +229,12 @@ export const UserSettingsForm = () => {
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#attention`}></use>
             </svg>
-            <p>Active time in hours</p>
+            <p>{t('UserSettingsForm.activeText')}</p>
           </div>
         </div>
 
         <div className={s.infoUser}>
-          <label htmlFor="Your_weight">Your weight in kilograms:</label>
+          <label htmlFor="Your_weight">{t('UserSettingsForm.infoUser')}</label>
 
           <input
             type="number"
@@ -240,7 +245,7 @@ export const UserSettingsForm = () => {
           />
 
           <label htmlFor="Your_sports">
-            The time of active participation in sports:
+            {t('UserSettingsForm.TheTimeSportsLabel')}
           </label>
 
           <input
@@ -253,13 +258,13 @@ export const UserSettingsForm = () => {
         </div>
 
         <div className={s.requiredWater}>
-          <p>The required amount of water in liters per day:</p>
+          <p>{t('UserSettingsForm.requiredWater')}</p>
           <p className={s.formula}>{userData.dailyWater}</p>
         </div>
 
         <div className={s.waterUser}>
           <label htmlFor="Your_water" className={s.labelImportan}>
-            Write down how much water you will drink:
+            {t('UserSettingsForm.writeDownLabel')}
           </label>
 
           <input
@@ -276,7 +281,7 @@ export const UserSettingsForm = () => {
           type="button"
           onClick={handleSubmitSetting}
         >
-          Save
+          {t('UserSettingsForm.saveBtn')}
         </Button>
       </form>
     </Section>

@@ -1,7 +1,7 @@
 import Button from '../../../shared/components/Button/Button';
 import css from './UserBarPopover.module.css';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
-
+import { useTranslation } from 'react-i18next';
 export const UserBarPopover = ({
   isActive,
   setIsActive,
@@ -12,7 +12,7 @@ export const UserBarPopover = ({
     setIsActiveSettings(true);
     setIsActive(false);
   };
-
+  const { t } = useTranslation();
   const handleLogout = () => {
     setIsActiveLogout(true);
     setIsActive(false);
@@ -27,7 +27,7 @@ export const UserBarPopover = ({
           className={css.icon}
           svgId="settings"
         />
-        Setting
+        {t('UserBarPopover.settingsBtn')}
       </Button>
 
       <Button onClick={handleLogout} className={css.logoutBtn}>
@@ -37,7 +37,7 @@ export const UserBarPopover = ({
           className={css.icon}
           svgId="log_out"
         />
-        Log out
+        {t('UserBarPopover.logOutBtn')}
       </Button>
     </div>
   );

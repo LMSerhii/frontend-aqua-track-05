@@ -3,8 +3,10 @@ import Logo from '../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export default function SuccessVerify({ children }) {
+  const { t } = useTranslation();
   useEffect(() => {
     const firstToastTimerId = setTimeout(() => {
       toast.success('You will be redirected to the login page after 7s');
@@ -44,9 +46,10 @@ export default function SuccessVerify({ children }) {
         />
         <h3 className={css.text}>{children}</h3>
         <p className={css.textLink}>
-          Go to
+          {t('SuccessVerify.goTo')}
+
           <NavLink to="/signin" className={css.link}>
-            Sign In
+            {t('SuccessVerify.signIn')}
           </NavLink>
         </p>
       </div>

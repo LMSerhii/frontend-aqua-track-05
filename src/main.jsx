@@ -8,6 +8,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { persistor, store } from './redux/store';
 import './shared/styles/index.css';
 import 'modern-normalize';
+import './i18next/config.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
