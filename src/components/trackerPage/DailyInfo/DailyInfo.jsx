@@ -39,7 +39,9 @@ const DailyInfo = () => {
         )}
 
         {!isError && isLoading && <Loader />}
-        {!isError && !isLoading && <WaterList array={amountData} />}
+        {!isError && !isLoading && (
+          <WaterList array={amountData} setAmountData={setAmountData} />
+        )}
       </div>
     </div>
   );
