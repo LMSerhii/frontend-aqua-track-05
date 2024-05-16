@@ -7,7 +7,7 @@ import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useState, useRef } from 'react';
 import Section from '../../../shared/components/Section/Section';
-// import axios from 'axios';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
@@ -35,28 +35,26 @@ export const UserSettingsForm = () => {
 
   const handleUpload = async event => {
     try {
-      const getToken = JSON.parse(localStorage.getItem('persist:auth'));
-      const token = getToken.token;
-      console.log(token);
       const file = event.target.files[0];
       console.log(file);
       const imageURL = URL.createObjectURL(file);
       console.log('imageURL', imageURL);
       setSelectedFile(imageURL);
-      setUploaded(file);
+      // setUploaded(file);
 
-      //     const formData = new FormData();
-      //     formData.append('file', file);
+      const formData = new FormData();
+      formData.append('file', file);
 
-      //     formData.append('upload_preset', 'ylx3q541');
+      formData.append('upload_preset', 'ylx3q541');
 
-      //     const response = await axios.post(
-      //       'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
-      //       formData,
-      //     ).then((response)=>console.log('URL загруженного изображения:', response.secure_url))
-      //     setUploaded(response.data.secure_url);
-
-      //
+      await fetch('https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload', {
+        method: 'post',
+        body: formData,
+      })
+        .then(response => response.json())
+        .then(res => {
+          setUploaded(res.secure_url);
+        });
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
@@ -65,9 +63,9 @@ export const UserSettingsForm = () => {
   const handleSubmitSetting = () => {
     try {
       const formData = new FormData();
-      // formData.append('data', JSON.stringify(data));
+
       const dataUser = {
-        avatar: selectedFile,
+        avatar: uploaded,
         name: userData.name,
         email: userData.email,
         gender: userData.gender,
