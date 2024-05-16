@@ -7,7 +7,6 @@
   padding: 7px 10px;
   border-radius: 15px;
   background-color: white;
-
   opacity: 0;
   transition: opacity 7s var(--animation-time-function);
 }
@@ -25,6 +24,7 @@
   font-weight: bold;
   padding: 7px 10px;
   border-radius: 30px;
+  padding-right: 40px; /*для однакового розиіру Popover з батьківським dropdown */
 
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
@@ -46,7 +46,6 @@
   cursor: pointer;
   font-weight: bold;
   opacity: 0.5;
-
   padding: 7px 10px;
   border-radius: 30px;
 
@@ -57,4 +56,10 @@
 .logoutBtn:hover,
 .logoutBtn:focus {
   background-color: var(--calendarItemColor);
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 100%;
+    top: 90%;
+  }
 }

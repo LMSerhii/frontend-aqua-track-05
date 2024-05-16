@@ -89,6 +89,7 @@
   },
   "WaterItem": {
     "woterMl": "ml",
+    "woterL": "L",
     "correctData": "Correct entered data:",
     "editTheEntered": "Edit the entered amount of water"
   },

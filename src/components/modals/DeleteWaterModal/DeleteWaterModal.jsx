@@ -3,15 +3,25 @@ import Button from '../../../shared/components/Button/Button';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
 import s from './DeleteWaterModal.module.css';
+import { useDeleteEntryMutation } from '../../../redux/tracker/trackerApi';
 
-export const DeleteWaterModal = ({ setActive, id }) => {
+export const DeleteWaterModal = ({ setActive, entry }) => {
   const modalRef = useRef();
+  const [deleteEntry] = useDeleteEntryMutation();
 
   const handleCloseModal = event => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       setActive(false);
     }
   };
+
+  const handleClick = async () => {
+    const response = await deleteEntry(entry);
+    const newEntry = response.data.data.amounts;
+
+    console.log('newEntry', newEntry);
+  };
+
   return (
     <div className={s.content} onClick={handleCloseModal}>
       <div ref={modalRef} className={s.modal}>
@@ -28,7 +38,7 @@ export const DeleteWaterModal = ({ setActive, id }) => {
           Are you sure you want to delete the entry?
         </p>
         <div className={s.wrapBtn}>
-          <Button classname={s.btnDelete} id={id}>
+          <Button classname={s.btnDelete} onClick={handleClick}>
             Delete
           </Button>
 

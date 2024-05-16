@@ -11,10 +11,19 @@ export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
   const { user } = useAuth();
   const [isActive, setIsActive] = useState(false);
 
+  const croppName = str => {
+    if (str.length > 8) {
+      str = str.slice(0, 8) + '...';
+    }
+    return str;
+  };
+
   return (
     <div className={css.dropdown}>
       <div className={css.button} onClick={() => setIsActive(!isActive)}>
-        <span className={css.userName}>{user ? user.name : 'Anonymous'}</span>
+        <span className={css.userName}>
+          {user ? croppName(user.name) : 'Anonymous'}
+        </span>
 
         <UserPanelAvatar user={user} />
 

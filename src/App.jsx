@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from './redux/auth/operations';
+import { refreshToken, refreshUser } from './redux/auth/operations';
 import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 import Loader from './shared/components/Loader/Loader';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -35,9 +35,9 @@ export default function App() {
     name = name ? name : email && email.split('@')[0];
 
     const token = searchParams.get('token');
-    const refreshToken = searchParams.get('refreshToken');
+    const refreshedToken = searchParams.get('refreshToken');
 
-    if (token && refreshToken) {
+    if (token && refreshedToken) {
       dispatch(
         setDateFromGoogle({
           user: {
@@ -46,12 +46,16 @@ export default function App() {
             avatar: defaultAvatar,
           },
           token,
-          refreshToken,
+          refreshedToken,
         })
       );
     }
 
-    dispatch(refreshUser());
+    const fetchData = async () => {
+      await dispatch(refreshToken());
+      dispatch(refreshUser());
+    };
+    fetchData();
   }, [location.search, dispatch]);
 
   return isRefreshing ? (

@@ -4,7 +4,7 @@
   column-gap: 18px;
   row-gap: 20px;
 
-  padding: 24px 0 24px 0;
+  padding-top: 24px;
 }
 .item {
   display: flex;
@@ -22,4 +22,22 @@
   line-height: 1;
   text-align: center;
   color: var(--grey-text);
+}
+@media screen and (min-width: 768px) {
+  .list {
+    column-gap: 48px;
+    row-gap: 15px;
+  }
+  .item {
+    width: calc((100% - 7 * 48px) / 8);
+  }
+}
+@media screen and (min-width: 1440px) {
+  .list {
+    column-gap: 43px;
+  }
+
+  .item {
+    width: calc((100% - 7 * 43px) / 8);
+  }
 }

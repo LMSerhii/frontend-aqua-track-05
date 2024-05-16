@@ -8,7 +8,6 @@ import { currentTime } from '../../../shared/helpers/dateServices';
 import {
   useCreateEntryMutation,
   useUpdateEntryMutation,
-  // useUpdateEntryMutation,
 } from '../../../redux/tracker/trackerApi';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -20,7 +19,7 @@ export const WaterForm = ({
   operation,
   setActive,
   id,
-  handleSetAmountData,
+  setAmountData,
 }) => {
   const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
@@ -45,10 +44,6 @@ export const WaterForm = ({
     resolver: yupResolver(schema),
   });
 
-  const handleTimeChange = event => {
-    setTime(event.target.value);
-  };
-
   // Вывод объекта с данными о кол-ве воды
   const onSubmit = async () => {
     try {
@@ -58,11 +53,13 @@ export const WaterForm = ({
           amount: parseInt(waterValue),
           time: currentTime,
         };
-        const response = await createEntry(data1);
 
+        const response = await createEntry(data1);
         const amountsList = response.data.data.amounts;
 
-        handleSetAmountData(amountsList);
+        console.log('setAmountData', setAmountData);
+
+        setAmountData(amountsList);
 
         setActive(false);
       } else {
@@ -73,7 +70,15 @@ export const WaterForm = ({
           time: currentTime,
         };
 
-        console.log(data2);
+        const response = await updateEntry(data2);
+
+        const amountsList = response.data.data.amounts;
+
+        console.log('amountsList', amountsList);
+        console.log('setAmountData', setAmountData);
+
+        // setAmountData(amountsList);
+
         setActive(false);
       }
     } catch (error) {
@@ -93,7 +98,7 @@ export const WaterForm = ({
         <input
           className={s.timeInput}
           value={time}
-          onChange={handleTimeChange}
+          onChange={e => setTime(e.target.value)}
           type="time"
           id="time"
           name="time"

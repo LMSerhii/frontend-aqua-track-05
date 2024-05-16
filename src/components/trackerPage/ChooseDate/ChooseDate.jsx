@@ -18,6 +18,8 @@ const ChooseDate = () => {
     if (date === today) setIsToday(true);
   }, [date]);
 
+  const { formattedDate } = formatDate(date);
+
   const [day, month, year] = date.split('-');
 
   const months = [
@@ -34,8 +36,6 @@ const ChooseDate = () => {
     t('ChooseDate.november'),
     t('ChooseDate.december'),
   ];
-
-  const { formattedDate } = formatDate(date);
 
   return (
     <p className={s.date}>{isToday ? t('ChooseDate.today') : formattedDate}</p>

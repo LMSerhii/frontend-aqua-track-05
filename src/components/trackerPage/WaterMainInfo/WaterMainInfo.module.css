@@ -171,6 +171,7 @@
   .bottle_page_wrapper {
     width: 100%;
     min-height: 736px;
+    margin-top: 0;
   }
   .bottle_page_img {
     min-height: 604px;

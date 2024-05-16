@@ -35,8 +35,8 @@ export const trackerApi = createApi({
     }),
 
     updateEntry: builder.mutation({
-      query: ({ id, ...entry }) => ({
-        url: `/water/edit/${id}`,
+      query: entry => ({
+        url: `/water/edit`,
         method: 'PUT',
         body: entry,
       }),
@@ -44,9 +44,10 @@ export const trackerApi = createApi({
     }),
 
     deleteEntry: builder.mutation({
-      query: id => ({
-        url: `/water/${id}`,
-        method: 'DELETE',
+      query: entry => ({
+        url: `/water/delete`,
+        method: 'PUT',
+        body: entry,
       }),
       invalidatesTags: ['Trackers'],
     }),

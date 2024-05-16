@@ -1,6 +1,7 @@
 import WaterItem from '../WaterItem/WaterItem';
 import s from './WaterList.module.css';
 import { useTranslation } from 'react-i18next';
+
 const WaterList = ({ array }) => {
   const { t } = useTranslation();
   return (
