@@ -4,21 +4,37 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
+import { currentTime } from '../../../shared/helpers/dateServices';
 import {
-  currentTime,
-  getCurrentDate,
-} from '../../../shared/helpers/dateServices';
+  useCreateEntryMutation,
+  useUpdateEntryMutation,
+} from '../../../redux/tracker/trackerApi';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { selectDate } from '../../../redux/date/dateSlice';
 
-const schema = yup.object().shape({
-  water: yup
-    .number()
-    .required('Water value is required')
-    .positive('Water value must be a positive number')
-    .integer('Water value must be an integer'),
-});
-
-export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
+export const WaterForm = ({
+  handleWaterChange,
+  waterValue,
+  operation,
+  setActive,
+  id,
+  setAmountData,
+}) => {
+  const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
+  const { t } = useTranslation();
+
+  const schema = yup.object().shape({
+    water: yup
+      .number()
+      .required(t('waterModal.WaterForm.waterRequired'))
+      .positive(t('waterModal.WaterForm.waterPositive'))
+      .integer(t('waterModal.WaterForm.waterInteger')),
+  });
+
+  const [createEntry] = useCreateEntryMutation();
+  const [updateEntry] = useUpdateEntryMutation();
 
   const {
     register,
@@ -28,28 +44,46 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
     resolver: yupResolver(schema),
   });
 
-  const handleTimeChange = event => {
-    setTime(event.target.value);
-  };
-
   // Вывод объекта с данными о кол-ве воды
-  const onSubmit = () => {
-    if (operation === 'add') {
-      const data1 = {
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
+  const onSubmit = async () => {
+    try {
+      if (operation === 'add') {
+        const data1 = {
+          date: date,
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
 
-      console.log(data1);
-    } else {
-      const data2 = {
-        id: id,
-        date: getCurrentDate(),
-        amount: parseInt(waterValue),
-        time: currentTime,
-      };
-      console.log(data2);
+        const response = await createEntry(data1);
+        const amountsList = response.data.data.amounts;
+
+        console.log('setAmountData', setAmountData);
+
+        setAmountData(amountsList);
+
+        setActive(false);
+      } else {
+        const data2 = {
+          id: id,
+          date: date,
+          amount: parseInt(waterValue),
+          time: currentTime,
+        };
+
+        const response = await updateEntry(data2);
+
+        const amountsList = response.data.data.amounts;
+
+        console.log('amountsList', amountsList);
+        console.log('setAmountData', setAmountData);
+
+        // setAmountData(amountsList);
+
+        setActive(false);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      // Обработка ошибки (если нужно)
     }
   };
 
@@ -58,13 +92,13 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
         {/* поле ввода времени */}
         <label className={s.timeLable} htmlFor="time">
-          Recording time:
+          {t('waterModal.timeRecording')}
         </label>
         <br />
         <input
           className={s.timeInput}
           value={time}
-          onChange={handleTimeChange}
+          onChange={e => setTime(e.target.value)}
           type="time"
           id="time"
           name="time"
@@ -73,7 +107,7 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
 
         {/* поле ввода для воды */}
         <label className={s.waterLable} htmlFor="water">
-          Enter the value of the water used:
+          {t('waterModal.waterValue')}
         </label>
         <br />
         {errors.water && <p className={s.error}>{errors.water.message}</p>}
@@ -88,7 +122,7 @@ export const WaterForm = ({ handleWaterChange, waterValue, operation, id }) => {
         />
         <br />
         <Button className={s.btnSubmit} type="submit">
-          Save
+          {t('waterModal.btnSubmit')}
         </Button>
       </form>
     </>

@@ -2,8 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
 
-const { USERS, SIGNUP, SIGNIN, LOGOUT, CURRENT, VERIFY, FORGOT_REQUEST, RESET_REQUEST } =
-  routes;
+const {
+  USERS,
+  SIGNUP,
+  SIGNIN,
+  LOGOUT,
+  CURRENT,
+  VERIFY,
+  FORGOT_REQUEST,
+  RESET_REQUEST,
+} = routes;
 
 axios.defaults.baseURL = `${BASE_URL}`;
 
@@ -12,7 +20,7 @@ const setAuthHeader = token => {
 };
 
 const clearAuthHeader = () => {
-  axios.defaults.common.Authorization = '';
+  axios.defaults.headers.common.Authorization = '';
 };
 
 export const register = createAsyncThunk(
@@ -66,11 +74,9 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get(`${USERS}${CURRENT}`);
@@ -81,27 +87,14 @@ export const refreshUser = createAsyncThunk(
   }
 );
 
-export const uploadPhoto = createAsyncThunk(
-  'uploadPhoto',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload'
-      );
-      return response.data.secure_url;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const updateUser = createAsyncThunk(
-  'updateUser',
-  async ({ body: formData }, thunkAPI) => {
+  'auth/updateUser',
+  async (formData, thunkAPI) => {
     try {
-      const response = await axios.patch(`${USERS}${CURRENT}`, {
-        body: formData,
-      });
+      const response = await axios.put(
+        'http://localhost:3001/api/v1/users/update',
+        formData
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -131,6 +124,29 @@ export const resetPassword = createAsyncThunk(
       return response.data;
     } catch (error) {
       throw error.response.data;
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'auth/refreshToken',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const refreshTokens = state.auth.refreshToken;
+
+    if (refreshTokens === null) {
+      return thunkAPI.rejectWithValue('Unable to refresh token');
+    }
+
+    try {
+      const response = await axios.post(`${USERS}/refresh`, {
+        refreshToken: refreshTokens,
+      });
+
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

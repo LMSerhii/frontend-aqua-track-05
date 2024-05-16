@@ -29,10 +29,42 @@
   margin-left: 0;
   margin-right: 0;
 }
+@media screen and (min-width: 768px) {
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+}
 
+.wrapUpload {
+}
+@media screen and (min-width: 768px) {
+  .wrapUpload {
+    width: 150px;
+  }
+}
 .uploudBtn {
   display: flex;
   gap: 8px;
+}
+@media screen and (min-width: 768px) {
+  .uploudBtn {
+    width: 150px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+}
+
+.uploud {
+  width: 18px;
+  height: 18px;
+  stroke: #2f2f2f;
+}
+@media screen and (min-width: 768px) {
+  .uploud {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .labelImportanGender {
@@ -42,6 +74,12 @@
   letter-spacing: -0.01em;
   text-align: center;
   display: flex;
+}
+
+@media screen and (min-width: 768px) {
+  .labelImportanGender {
+    font-size: 18px;
+  }
 }
 
 .gender {
@@ -58,6 +96,11 @@
   letter-spacing: -0.01em;
   /* text-align: center; */
   display: flex;
+}
+@media screen and (min-width: 768px) {
+  .labelImportan {
+    font-size: 18px;
+  }
 }
 
 .WrapNameEmail {
@@ -79,7 +122,11 @@
   display: flex;
   margin-bottom: 14px;
 }
-
+@media screen and (min-width: 768px) {
+  .labelDailyNorma {
+    font-size: 18px;
+  }
+}
 .formula {
   font-weight: 700;
   line-height: 18px;
@@ -203,4 +250,25 @@ input[type='radio'] {
 /* Показати маленьке коло при виборі */
 .gender input[type='radio']:checked + label:after {
   display: block;
+}
+.uploud {
+  fill: none;
+  stroke: var(--dark-blue);
+}
+
+.wrapUserData {
+}
+@media screen and (min-width: 1440px) {
+  .wrapUserData {
+    display: flex;
+    gap: 40px;
+  }
+}
+
+.wrapCurrentUser {
+}
+@media screen and (min-width: 1440px) {
+  .wrapCurrentUser {
+    width: 400px;
+  }
 }

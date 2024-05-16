@@ -1,0 +1,203 @@
+{
+  "welcomeSection": {
+    "logo": "AQUATRACK",
+    "title": "Water consumption tracker",
+    "recordPparag": "Record daily water intake and track",
+    "tryTrackerBtn": "Try tracker",
+    "signIn": "Sign In"
+  },
+
+  "advantagesSection": {
+    "ourParag": "Our",
+    "happySpan": "happy",
+    "customersParag": "customers",
+    "textHabit": "Habit drive",
+    "textView": "View statistics",
+    "textPersonal": "Personal rate setting"
+  },
+
+  "singInForm": {
+    "signIn": "Sing In",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "enterPassword": "Enter your password",
+    "sigIn": "Sign In",
+    "textDont": "Don’t have an account?",
+    "sigUn": "Sign Up",
+    "emailVelid": "Pls valid email",
+    "emailRequired": "Required email",
+    "passwordMin": "Too short",
+    "passwordMax": "Too long",
+    "resendEmailBtn": "Resend email",
+    "forgotPassword": "Forgot password?",
+
+    "googleButton": {
+      "googleBtn": "Sign in with Google"
+    }
+  },
+
+  "singUnForm": {
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "repeatPassword": "Repeat Password",
+    "sigmUp": "Sign up",
+    "textAlready": "Already have account?",
+    "signIn": "Sign In",
+    "emailVelid": "Please enter valid email",
+    "emailRequired": "Required email",
+    "passwordMin": "Too short",
+    "passwordMax": "Too long",
+    "passwordMatches": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    "passwordRequired": "Required password9999",
+    "repeatPasswordOneOf": "Passwords must match",
+    "repeatPasswordRequired": "Required password",
+    "emailPlace": "Enter your email",
+    "passwordPlace": "Enter your password",
+    "passwordRepeatPlace": "Repeat password"
+  },
+
+  "waterModal": {
+    "ml": "ml",
+    "WaterForm": {
+      "waterRequired": "Water value is required",
+      "waterPositive": "Water value must be a positive number",
+      "waterInteger": "Water value must be an integer"
+    },
+    "timeRecording": "Recording time:",
+    "waterValue": "Enter the value of the water used:",
+    "btnSubmit": "Save",
+    "addWaterBtn": "Add water",
+    "addWaterTitle": "Add water",
+    "addWaterSubTitle": "Choose a value",
+    "AmountWater": "Amount of water:"
+  },
+
+  "WaterProgressBar": {
+    "today": "Today",
+    "it": "It'st",
+    "norma": "of daily norma"
+  },
+
+  "WaterMainInfo": {
+    "normaDaily": "My Daily Norma",
+    "addWater": "Add Water",
+    "liters": "L",
+    "subTitle": "Choose a value",
+    "title": "Add water"
+  },
+  "WaterItem": {
+    "woterMl": "ml",
+    "woterL": "L",
+    "correctData": "Correct entered data:",
+    "editTheEntered": "Edit the entered amount of water"
+  },
+  "UserPanel": {
+    "helloText": "Hello, ",
+    "logout": "logout"
+  },
+
+  "UserBarPopover": {
+    "settingsBtn": "Setting",
+    "logOutBtn": "Log out"
+  },
+
+  "MonthInfo": {
+    "month": "Month"
+  },
+
+  "DailyInfo": {
+    "startTrackingText": "Start tracking your water intake by clicking the Add water button."
+  },
+
+  "ChooseDate": {
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December",
+    "today": "Today",
+    "en": "uk-UA"
+  },
+
+  "UserSettingsForm": {
+    "uploadPhotoBtn": "Upload a photo",
+    "yourGenderLabel": "Your gender identity",
+    "femaleGenderLabel": "Female",
+    "femaleGenderMale": "Male",
+    "yourNameLabel": "Your name",
+    "placeYourName": "Name",
+    "labelEmail": "Email",
+    "placeEmail": "Email",
+    "dailyNormah3": "My daily norma",
+    "forWomanP": "For woman:",
+    "forManP": "For man:",
+    "starText": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
+    "activeText": "Active time in hours",
+    "infoUser": "Your weight in kilograms:",
+    "TheTimeSportsLabel": "The time of active participation in sports:",
+    "requiredWater": "The required amount of water in liters per day:",
+    "writeDownLabel": "Write down how much water you will drink:",
+    "saveBtn": "Save"
+  },
+
+  "UserSettingsModal": {
+    "setting": "Setting"
+  },
+
+  "ForgotPasswordForm": {
+    "recoverYourPassword": "Recover your password",
+    "email": "Email",
+    "enterPlace": "Enter your email",
+    "sendLinkBtn": "Send link",
+    "rememberPasswordText": "Remember your password?",
+    "signIn": "Sign In",
+    "emailVelid": "Pls valid email",
+    "emailRequired": "Required email"
+  },
+
+  "months": {
+    "11": "December",
+    "0": "January",
+    "1": "February",
+    "2": "March",
+    "3": "April",
+    "4": "May",
+    "5": "June",
+    "6": "July",
+    "7": "August",
+    "8": "September",
+    "9": "October",
+    "10": "November"
+  },
+
+  "ResetForm": {
+    "minTooShort": "Too short",
+    "maxTooLong": "Too long",
+    "matchesPassword": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+    "requiredPassword": "Required password",
+    "oneOfPassword": "Passwords must match",
+    "requiredPasswordrepeat": "Required password",
+    "makeTexth2": "Make a new password",
+    "newPasswordLabel": " New password",
+    "enterPlace": "Enter your new password",
+    "repeatPassword": "Repeat Password",
+    "confirmBtn": "Confirm"
+  },
+  "SuccessVerify": {
+    "goTo": "Go to",
+    "signIn": "Sign In"
+  },
+
+  "WaterList": {
+    "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
+  }
+}

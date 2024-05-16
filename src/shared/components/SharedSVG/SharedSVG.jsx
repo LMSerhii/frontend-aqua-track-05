@@ -4,7 +4,7 @@ const SharedSVG = ({ svgId, ...props }) => {
   return (
     <>
       <svg {...props}>
-        <use xlinkHref={`${sprite}#${svgId}`}></use>
+        <use href={`${sprite}#${svgId}`}></use>
       </svg>
     </>
   );

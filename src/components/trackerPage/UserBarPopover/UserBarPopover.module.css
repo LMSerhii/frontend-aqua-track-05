@@ -1,17 +1,18 @@
 .wrapper {
   position: absolute;
-  top: 54px;
-  right: 120px;
-  width: 137px;
-  margin-top: 4px;
+  top: 110%;
+  left: 0%;
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  gap: 8px;
+  padding: 7px 10px;
   border-radius: 15px;
   background-color: white;
+  opacity: 0;
+  transition: opacity 7s var(--animation-time-function);
+}
+
+.wrapper.active {
+  opacity: 1;
 }
 
 .settingBtn {
@@ -21,7 +22,18 @@
   color: var(--dark-blue);
   cursor: pointer;
   font-weight: bold;
+  padding: 7px 10px;
+  border-radius: 30px;
+  padding-right: 40px; /*для однакового розиіру Popover з батьківським dropdown */
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
 }
+.settingBtn:hover,
+.settingBtn:focus {
+  background-color: var(--calendarItemColor);
+}
+
 .icon {
   fill: none;
   stroke: var(--dark-blue);
@@ -34,4 +46,20 @@
   cursor: pointer;
   font-weight: bold;
   opacity: 0.5;
+  padding: 7px 10px;
+  border-radius: 30px;
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus {
+  background-color: var(--calendarItemColor);
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 100%;
+    top: 90%;
+  }
 }

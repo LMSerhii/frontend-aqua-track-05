@@ -7,9 +7,9 @@ import {
   register,
   resendEmail,
   updateUser,
-  uploadPhoto,
   forgotPassword,
   resetPassword,
+  refreshToken,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -24,6 +24,7 @@ const authInitialState = {
     dailyWater: null,
   },
   token: null,
+  refreshToken: null,
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
@@ -32,6 +33,16 @@ const authInitialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState: authInitialState,
+  reducers: {
+    setDateFromGoogle(state, action) {
+      state.user = action.payload.user;
+
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+
+      state.isLoggedIn = true;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(register.pending, state => {
@@ -46,6 +57,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        state.refreshToken = action.payload.refreshToken;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
@@ -74,29 +86,20 @@ const authSlice = createSlice({
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       })
-      .addCase(uploadPhoto.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(uploadPhoto.fulfilled, (state, action) => {
-        state.user.push(action.payload);
+      .addCase(refreshToken.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(uploadPhoto.rejected, state => {
-        state.isRefreshing = false;
       })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(updateUser.fulfilled, (state, action) => {
-        // const index = state.user.findIndex(
-        //   item => item.id === action.payload.id
-        // );
-        state.user(...action.payload);
+        state.user = action.payload;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
       .addCase(updateUser.rejected, state => {
-        state.isRefreshing = false;
         state.isRefreshing = false;
       })
       .addCase(forgotPassword.pending, state => {
@@ -123,12 +126,15 @@ const authSlice = createSlice({
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'refreshToken'],
 };
+
+export const { setDateFromGoogle } = authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
+export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
 

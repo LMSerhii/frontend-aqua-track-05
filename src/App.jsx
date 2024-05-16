@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import { routes } from './routes';
-import { useAuth } from './hooks';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshUser } from './redux/auth/operations';
-import { Route, Routes } from 'react-router-dom';
+import { refreshToken, refreshUser } from './redux/auth/operations';
+import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 import Loader from './shared/components/Loader/Loader';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
-import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 import {
   HomePage,
   NotFoundPage,
@@ -16,56 +14,116 @@ import {
   TrackerPage,
   ForgotPasswordPage,
   ResetPasswordPage,
+  SuccessVerifyPage,
 } from './pages';
+import { setDateFromGoogle } from './redux/auth/authSlice';
+import defaultAvatar from './shared/images/homePage/Rectangle22x-min.png';
+import { routes } from './routes';
+import { useAuth } from './hooks';
 
 export default function App() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  const { HOME, TRACKER, SIGNUP, SIGNIN, FORGOT, RESET } = routes;
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    const searchParams = new URLSearchParams(location.search);
+
+    const email = searchParams.get('email');
+
+    let name = searchParams.get('email');
+    name = name ? name : email && email.split('@')[0];
+
+    const token = searchParams.get('token');
+    const refreshedToken = searchParams.get('refreshToken');
+
+    if (token && refreshedToken) {
+      dispatch(
+        setDateFromGoogle({
+          user: {
+            name,
+            email,
+            avatar: defaultAvatar,
+          },
+          token,
+          refreshedToken,
+        })
+      );
+    }
+
+    const fetchData = async () => {
+      await dispatch(refreshToken());
+      dispatch(refreshUser());
+    };
+    fetchData();
+  }, [location.search, dispatch]);
 
   return isRefreshing ? (
     <Loader />
   ) : (
     <Routes>
-      <Route path={HOME} element={<SharedLayout />}>
+      <Route path={routes.HOME} element={<SharedLayout />}>
         <Route
           index
           element={
-            <RestrictedRoute redirectTo={TRACKER} component={<HomePage />} />
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<HomePage />}
+            />
           }
         />
         <Route
-          path={SIGNUP}
+          path={routes.SIGNUP}
           element={
-            <RestrictedRoute redirectTo={TRACKER} component={<SignUpPage />} />
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<SignUpPage />}
+            />
           }
         />
         <Route
-          path={SIGNIN}
+          path={routes.SIGNIN}
           element={
-            <RestrictedRoute redirectTo={TRACKER} component={<SignInPage />} />
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<SignInPage />}
+            />
           }
         />
         <Route
-          path={TRACKER}
+          path={routes.TRACKER}
           element={
-            <PrivateRoute redirectTo={SIGNIN} component={<TrackerPage />} />
+            <PrivateRoute
+              redirectTo={routes.SIGNIN}
+              component={<TrackerPage />}
+            />
           }
         />
         <Route
-          path={FORGOT}
+          path={routes.FORGOT}
           element={
-            <RestrictedRoute redirectTo={TRACKER} component={<ForgotPasswordPage />} />
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<ForgotPasswordPage />}
+            />
           }
         />
         <Route
-          path={RESET}
+          path={routes.RESET}
           element={
-            <RestrictedRoute redirectTo={TRACKER} component={<ResetPasswordPage />} />
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<ResetPasswordPage />}
+            />
+          }
+        />
+        <Route
+          path={routes.SUCCESS_VERIFY_NOTIFY}
+          element={
+            <RestrictedRoute
+              redirectTo={routes.TRACKER}
+              component={<SuccessVerifyPage />}
+            />
           }
         />
       </Route>

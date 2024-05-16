@@ -6,7 +6,7 @@
   }
 
   .icon {
-    stroke: var(--white)
+    stroke: var(--white);
   }
 
   /*EDIT BUTTON*/
@@ -77,7 +77,7 @@
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
-    row-gap: 6px;
+    row-gap: 2px;
     position: absolute;
     background-color: var(--white);
     border-radius: 15px;
@@ -171,6 +171,7 @@
   .bottle_page_wrapper {
     width: 100%;
     min-height: 736px;
+    margin-top: 0;
   }
   .bottle_page_img {
     min-height: 604px;

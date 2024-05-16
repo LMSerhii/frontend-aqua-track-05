@@ -10,22 +10,29 @@ import toast from 'react-hot-toast';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
+import { useTranslation } from 'react-i18next';
 
-const CheckSchema = Yup.object().shape({
-  email: Yup.string().email('Pls valid email').required('Required email'),
-  password: Yup.string().min(6, 'Too short').max(50, 'Too long'),
-});
 const initialValues = {
   email: '',
   password: '',
 };
 
 export default function SignInForm() {
+  const { t } = useTranslation();
   const idEmail = useId();
   const idPassword = useId();
   const dispatch = useDispatch();
   const [verify, setVerify] = useState(false);
   const [email, setEmail] = useState('');
+
+  const CheckSchema = Yup.object().shape({
+    email: Yup.string()
+      .email(t('singInForm.emailVelid'))
+      .required(t('singInForm.emailRequired')),
+    password: Yup.string()
+      .min(6, t('singInForm.passwordMin'))
+      .max(50, t('singInForm.passwordMax')),
+  });
 
   const handleSubmit = (values, actions) => {
     const user = {
@@ -71,7 +78,7 @@ export default function SignInForm() {
           <Logo />
         </div>
         <div className={css.div}>
-          <h2 className={css.h2}>Sign in</h2>
+          <h2 className={css.h2}>{t('singInForm.signIn')}</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={CheckSchema}
@@ -80,14 +87,14 @@ export default function SignInForm() {
             <Form className={css.form}>
               <div className={css.field}>
                 <label htmlFor={idEmail} className={css.label}>
-                  Email
+                  {t('singInForm.email')}
                 </label>
                 <Field
                   type="text"
                   name="email"
                   id={idEmail}
                   className={css.input}
-                  placeholder="Enter your email"
+                  placeholder={t('singInForm.emailPlaceholder')}
                 />
                 <ErrorMessage
                   name="email"
@@ -100,44 +107,48 @@ export default function SignInForm() {
                     onClick={handleResendEmail}
                     className={css.btn}
                   >
-                    Resend email
+                    {t('singInForm.resendEmailBtn')}
                   </button>
                 )}
               </div>
               <div className={css.field3}>
                 <label htmlFor={idPassword} className={css.label}>
-                  Password
+                  {t('singInForm.password')}
                 </label>
                 <Field
                   type="password"
                   name="password"
                   id={idPassword}
                   className={css.input}
-                  placeholder="Enter your password"
+                  placeholder={t('singInForm.enterPassword')}
                 />
                 <ErrorMessage
                   name="password"
                   component="span"
                   className={css.error}
                 />
-                
-                <ShareIconPassword name={idPassword} iconId="FirstIconPassword" css={css} />
+
+                <ShareIconPassword
+                  name={idPassword}
+                  iconId="FirstIconPassword"
+                  css={css}
+                />
               </div>
               <button type="submit" className={css.button}>
-                Sign in
+                {t('singInForm.sigIn')}
               </button>
             </Form>
           </Formik>
         </div>
         <p className={css.text}>
-          Don’t have an account?
+          {t('singInForm.textDont')}
           <NavLink to="/signup" className={css.link}>
-            Sign Up
+            {t('singInForm.sigUn')}
           </NavLink>
         </p>
-          <NavLink to="/forgot-password-form" className={css.forgotLink}>
-            Forgot password?
-          </NavLink>
+        <NavLink to="/forgot-password-form" className={css.forgotLink}>
+          {t('singInForm.forgotPassword')}
+        </NavLink>
         <GoogleButton />
       </div>
     </div>
