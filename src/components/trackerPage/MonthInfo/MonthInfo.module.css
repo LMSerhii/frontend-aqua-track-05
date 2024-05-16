@@ -1,5 +1,4 @@
 .wrapper {
-  padding-top: 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,7 +8,7 @@
 }
 @media screen and (min-width: 768px) {
   .wrapper {
-    padding: 24px 32px;
+    padding-bottom: 24px;
   }
   .month {
     font-size: 28px;

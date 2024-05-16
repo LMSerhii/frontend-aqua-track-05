@@ -4,7 +4,7 @@
   column-gap: 18px;
   row-gap: 20px;
 
-  padding: 24px 0 24px 0;
+  padding-top: 24px;
 }
 .item {
   display: flex;
@@ -27,7 +27,6 @@
   .list {
     column-gap: 48px;
     row-gap: 15px;
-    padding: 0 32px;
   }
   .item {
     width: calc((100% - 7 * 48px) / 8);

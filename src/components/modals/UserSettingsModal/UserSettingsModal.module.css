@@ -92,3 +92,18 @@
 .icon {
   stroke: black;
 }
+
+.modalContent::-webkit-scrollbar {
+  height: 283px;
+  width: 8px;
+}
+
+.modalContent::-webkit-scrollbar-track {
+  border-radius: 30px;
+  background: var(--white);
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--light-gray);
+}
