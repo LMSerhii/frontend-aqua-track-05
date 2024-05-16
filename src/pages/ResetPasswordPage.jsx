@@ -21,7 +21,7 @@ export default function ResetPasswordPage() {
       <Section>
         {!isVerified && <ResetForm onVerification={handleVerification} />}
         {isVerified && (
-          <SuccessVerify>Password successfully set!</SuccessVerify>
+          <SuccessVerify>Password successfully update!</SuccessVerify>
         )}
         <MediaQuery minWidth={1440}>
           <AdvantagesSection />
