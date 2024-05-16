@@ -24,7 +24,16 @@ export const trackerApi = createApi({
       }),
       invalidatesTags: ['Trackers'],
     }),
-
+    /*катя створює для water/month ***************/
+    getAllEntriesByMonth: builder.query({
+      query: body => ({
+        url: `/water/month`,
+        method: 'GET',
+        body,
+      }),
+      invalidatesTags: ['Trackers'],
+    }),
+    /*********************/
     createEntry: builder.mutation({
       query: body => ({
         url: `/water/add`,
@@ -56,6 +65,7 @@ export const trackerApi = createApi({
 
 export const {
   useGetAllEntyiesByDayMutation,
+  useGetAllEntriesByMonthQuery,
   useCreateEntryMutation,
   useUpdateEntryMutation,
   useDeleteEntryMutation,

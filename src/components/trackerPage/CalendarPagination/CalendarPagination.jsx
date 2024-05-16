@@ -5,8 +5,6 @@ import { sprite } from '../../../shared/icons/index';
 
 import css from './CalendarPagination.module.css';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { setDate } from '../../../redux/date/dateSlice';
 
 export const CalendarPagination = ({
   selectedDate,
@@ -14,7 +12,7 @@ export const CalendarPagination = ({
   setIsActive,
   isActive,
 }) => {
-  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
@@ -24,10 +22,9 @@ export const CalendarPagination = ({
     );
 
     setSelectedDate(prevoiusMonth);
-    // console.log(prevoiusMonth);
-    // dispatch(setDate('01-04-2024'));
+    console.log(selectedDate);
+    /** треба прикручувати на клік запит на бекенд useGetAllEntriesByMonthQuery */
   };
-  const { t } = useTranslation();
 
   const goToNextMonth = () => {
     const nextMonth = new Date(
@@ -36,8 +33,6 @@ export const CalendarPagination = ({
       1
     );
     setSelectedDate(nextMonth);
-
-    // dispatch(setDate('01-06-2024'));
   };
 
   const translatedMonth = t(`months.${selectedDate.getMonth()}`);

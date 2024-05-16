@@ -36,7 +36,8 @@ export const Calendar = ({ selectedDate }) => {
     selectedDate.getMonth() + 1,
     0
   ).getDate();
-  console.log(daysInMonth);
+  console.log(selectedDate); /* треба буде при кліку ще робити гет-запит
+  на бекенд за водичкою за місяць по selectedDate */
 
   const daysArray = Array.from(
     { length: daysInMonth },

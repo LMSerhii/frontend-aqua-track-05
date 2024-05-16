@@ -11,6 +11,7 @@ export const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [isActive, setIsActive] = useState(false);
   const { t } = useTranslation();
+
   return (
     <div>
       <div className={css.wrapper}>
