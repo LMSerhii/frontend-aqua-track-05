@@ -33,3 +33,8 @@
     height: 24px;
   }
 }
+@media screen and (min-width: 1440px) {
+  /* .wrapper {
+    position: relative;
+  } */
+}
