@@ -12,9 +12,9 @@ export const UserSettingsModal = ({ active, setActive }) => {
   return (
     <ModalSetting active={active} setActive={setActive}>
       <button onClick={() => setIsOpen()} className={s.btnClose}>
-        <svg className={s.icon} width="24" height="24">
+        {/* <svg className={s.icon} width="24" height="24">
           <use xlinkHref={`${sprite}#close`}></use>
-        </svg>
+        </svg> */}
       </button>
       <h2 className={s.settingCaption}>{t('UserSettingsModal.setting')}</h2>
       <UserSettingsForm />

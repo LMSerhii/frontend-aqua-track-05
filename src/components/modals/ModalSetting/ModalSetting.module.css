@@ -24,14 +24,12 @@
 
 .modalContent {
   position: relative;
+  margin: 0 16px;
   padding: 20px;
   border-radius: 12px;
   background-color: white;
-  min-width: 270px;
-  /* width: 50vw; */
   max-height: 80vh; /* Встановлюємо максимальну висоту */
   overflow-y: auto; /* Додаємо смужки прокрутки по вертикалі */
-  margin-right: -16px;
   transform: scale(0.5);
   transition: 0.4s all;
   /* z-index: 999; */

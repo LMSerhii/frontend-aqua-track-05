@@ -36,10 +36,11 @@ export const UserSettingsForm = () => {
     try {
       const file = event.target.files[0];
       console.log(file);
+
       const imageURL = URL.createObjectURL(file);
       console.log('imageURL', imageURL);
+
       setSelectedFile(imageURL);
-      // setUploaded(file);
 
       const formData = new FormData();
       formData.append('file', file);
