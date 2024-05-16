@@ -24,7 +24,8 @@ export const CalendarPagination = ({
     );
 
     setSelectedDate(prevoiusMonth);
-    dispatch(setDate('01-04-2024'));
+    // console.log(prevoiusMonth);
+    // dispatch(setDate('01-04-2024'));
   };
   const { t } = useTranslation();
 
@@ -35,7 +36,8 @@ export const CalendarPagination = ({
       1
     );
     setSelectedDate(nextMonth);
-    dispatch(setDate('01-06-2024'));
+
+    // dispatch(setDate('01-06-2024'));
   };
 
   const translatedMonth = t(`months.${selectedDate.getMonth()}`);
