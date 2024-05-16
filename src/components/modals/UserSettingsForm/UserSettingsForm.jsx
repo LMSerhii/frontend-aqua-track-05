@@ -48,21 +48,15 @@ export const UserSettingsForm = () => {
       //     const formData = new FormData();
       //     formData.append('file', file);
 
-      //     formData.append('upload_preset', 'ml_default');
+      //     formData.append('upload_preset', 'ylx3q541');
 
       //     const response = await axios.post(
       //       'https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload',
       //       formData,
-      //       {
-      //         headers: {
-      //           Authorization: `Bearer ${token}`, // Пересилаємо заголовок Authorization
-      //           'Content-Type': 'multipart/form-data', // Встановлюємо правильний Content-Type
-      //         },
-      //       }
-      //     );
+      //     ).then((response)=>console.log('URL загруженного изображения:', response.secure_url))
       //     setUploaded(response.data.secure_url);
 
-      //     console.log('URL загруженного изображения:', response.secure_url);
+      //
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
