@@ -1,6 +1,6 @@
 import WaterItem from '../WaterItem/WaterItem';
-import s from './WaterList.module.css';
 import { useTranslation } from 'react-i18next';
+import s from './WaterList.module.css';
 
 const WaterList = ({ array }) => {
   const { t } = useTranslation();
@@ -13,10 +13,12 @@ const WaterList = ({ array }) => {
           ))}
         </ul>
       ) : (
-        <div className={s.emptyListWaterTextWrap}>
-          <p className={s.emptyListWaterText}>
-            {t('WaterList.statrTrackingText')}
-          </p>
+        <div className={s.emptyListWaterBlock}>
+          <div className={s.emptyListWaterTextWrap}>
+            <p className={s.emptyListWaterText}>
+              {t('WaterList.statrTrackingText')}
+            </p>
+          </div>
         </div>
       )}
     </>
