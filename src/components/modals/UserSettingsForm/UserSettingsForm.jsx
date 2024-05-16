@@ -6,7 +6,6 @@ import { sprite } from '../../../shared/icons/index';
 import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
 import { useState, useRef } from 'react';
-import Section from '../../../shared/components/Section/Section';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
@@ -105,182 +104,180 @@ export const UserSettingsForm = () => {
   const onSubmit = data => console.log(data);
 
   return (
-    <Section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={s.avatarWrap}>
-          <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
-            <input
-              className={s.hidden}
-              type="file"
-              ref={filePicker}
-              id="avatar"
-              accept="image/*,.png,.jpg,.gif,.web"
-              onChange={handleUpload}
-            />
-            {uploaded ? (
-              <img src={selectedFile} className={s.avatar} alt="preview" />
-            ) : (
-              <img src={userData.avatar} className={s.avatar} alt="preview" />
-            )}
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className={s.avatarWrap}>
+        <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
+          <input
+            className={s.hidden}
+            type="file"
+            ref={filePicker}
+            id="avatar"
+            accept="image/*,.png,.jpg,.gif,.web"
+            onChange={handleUpload}
+          />
+          {uploaded ? (
+            <img src={selectedFile} className={s.avatar} alt="preview" />
+          ) : (
+            <img src={userData.avatar} className={s.avatar} alt="preview" />
+          )}
 
-            {/* <div className={s.wrapUpload}> */}
-            <button className={s.uploudBtn}>
-              <svg className={s.uploud} width="18" height="18">
-                <use xlinkHref={`${sprite}#upload`}></use>
-              </svg>
-              {t('UserSettingsForm.uploadPhotoBtn')}
-            </button>
-            {/* </div> */}
+          {/* <div className={s.wrapUpload}> */}
+          <button className={s.uploudBtn}>
+            <svg className={s.uploud} width="18" height="18">
+              <use xlinkHref={`${sprite}#upload`}></use>
+            </svg>
+            {t('UserSettingsForm.uploadPhotoBtn')}
+          </button>
+          {/* </div> */}
+        </label>
+      </div>
+
+      <div className={s.wrapUserData}>
+        <div className={s.wrapCurrentUser}>
+          <label className={s.labelImportanGender}>
+            {' '}
+            {t('UserSettingsForm.yourGenderLabel')}
           </label>
-        </div>
+          <div className={s.genderWrap}>
+            <div className={s.gender}>
+              <input
+                type="radio"
+                id="woman"
+                name="gender"
+                value="woman"
+                onChange={handleGenderChange}
+              />
+              <label
+                className={`${s.labelGender} ${s.materialRadio}`}
+                htmlFor="woman"
+              >
+                {t('UserSettingsForm.femaleGenderLabel')}
+              </label>
+            </div>
+            <div className={s.gender}>
+              <input
+                type="radio"
+                id="man"
+                name="gender"
+                value="man"
+                onChange={handleGenderChange}
+              />
+              <label
+                className={`${s.labelGender} ${s.materialRadio}`}
+                htmlFor="man"
+              >
+                {t('UserSettingsForm.femaleGenderMale')}
+              </label>
+            </div>
+          </div>
 
-        <div className={s.wrapUserData}>
-          <div className={s.wrapCurrentUser}>
-            <label className={s.labelImportanGender}>
-              {' '}
-              {t('UserSettingsForm.yourGenderLabel')}
+          <div className={s.WrapNameEmail}>
+            <label htmlFor="Your_name" className={s.labelImportan}>
+              {t('UserSettingsForm.yourNameLabel')}
             </label>
-            <div className={s.genderWrap}>
-              <div className={s.gender}>
-                <input
-                  type="radio"
-                  id="woman"
-                  name="gender"
-                  value="woman"
-                  onChange={handleGenderChange}
-                />
-                <label
-                  className={`${s.labelGender} ${s.materialRadio}`}
-                  htmlFor="woman"
-                >
-                  {t('UserSettingsForm.femaleGenderLabel')}
-                </label>
-              </div>
-              <div className={s.gender}>
-                <input
-                  type="radio"
-                  id="man"
-                  name="gender"
-                  value="man"
-                  onChange={handleGenderChange}
-                />
-                <label
-                  className={`${s.labelGender} ${s.materialRadio}`}
-                  htmlFor="man"
-                >
-                  {t('UserSettingsForm.femaleGenderMale')}
-                </label>
-              </div>
-            </div>
 
-            <div className={s.WrapNameEmail}>
-              <label htmlFor="Your_name" className={s.labelImportan}>
-                {t('UserSettingsForm.yourNameLabel')}
-              </label>
+            <input
+              type="text"
+              id="Your_name"
+              value={userData.name}
+              onChange={e => setData({ ...data, name: e.target.value })}
+              placeholder={t('UserSettingsForm.placeYourName')}
+            />
+            <p>{errors.Your_name?.message}</p>
+            <label htmlFor="Email" className={s.labelImportan}>
+              {t('UserSettingsForm.labelEmail')}
+            </label>
 
-              <input
-                type="text"
-                id="Your_name"
-                value={userData.name}
-                onChange={e => setData({ ...data, name: e.target.value })}
-                placeholder={t('UserSettingsForm.placeYourName')}
-              />
-              <p>{errors.Your_name?.message}</p>
-              <label htmlFor="Email" className={s.labelImportan}>
-                {t('UserSettingsForm.labelEmail')}
-              </label>
-
-              <input
-                type="text"
-                id="Email"
-                value={userData.email}
-                onChange={e => setData({ ...data, email: e.target.value })}
-                placeholder={t('UserSettingsForm.placeEmail')}
-              />
-              {/* <p>{errors.Email?.message}</p> */}
-            </div>
-
-            <div className={s.dailyNormaWrap}>
-              <h3 className={s.labelDailyNorma}>
-                {t('UserSettingsForm.dailyNormah3')}
-              </h3>
-              <p>{t('UserSettingsForm.forWomanP')}</p>
-              <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
-              <p>{t('UserSettingsForm.forManP')}</p>
-              <p className={s.formula}>V=(M*0,04) + (T*0,6)</p>
-
-              <div className={s.Wrapdesc}>
-                <p className={s.description}>
-                  <span className={s.star}>*</span>
-                  {t('UserSettingsForm.starText')}
-                </p>
-              </div>
-
-              <div className={s.attention}>
-                <svg className={s.uploud} width="18" height="18">
-                  <use xlinkHref={`${sprite}#attention`}></use>
-                </svg>
-                <p>{t('UserSettingsForm.activeText')}</p>
-              </div>
-            </div>
+            <input
+              type="text"
+              id="Email"
+              value={userData.email}
+              onChange={e => setData({ ...data, email: e.target.value })}
+              placeholder={t('UserSettingsForm.placeEmail')}
+            />
+            {/* <p>{errors.Email?.message}</p> */}
           </div>
 
-          <div className={s.wrapUserInfo}>
-            <div className={s.infoUser}>
-              <label htmlFor="Your_weight">
-                {t('UserSettingsForm.infoUser')}
-              </label>
+          <div className={s.dailyNormaWrap}>
+            <h3 className={s.labelDailyNorma}>
+              {t('UserSettingsForm.dailyNormah3')}
+            </h3>
+            <p>{t('UserSettingsForm.forWomanP')}</p>
+            <p className={s.formula}> V=(M*0,03) + (T*0,4)</p>
+            <p>{t('UserSettingsForm.forManP')}</p>
+            <p className={s.formula}>V=(M*0,04) + (T*0,6)</p>
 
-              <input
-                type="number"
-                id="Your_weight"
-                value={userData.weight || ''}
-                onChange={e => setData({ ...data, weight: e.target.value })}
-                placeholder="0.1"
-              />
-
-              <label htmlFor="Your_sports">
-                {t('UserSettingsForm.TheTimeSportsLabel')}
-              </label>
-
-              <input
-                type="number"
-                id="Your_sports"
-                value={userData.timeSport || ''}
-                onChange={e => setData({ ...data, timeSport: e.target.value })}
-                placeholder="0.1"
-              />
+            <div className={s.Wrapdesc}>
+              <p className={s.description}>
+                <span className={s.star}>*</span>
+                {t('UserSettingsForm.starText')}
+              </p>
             </div>
 
-            <div className={s.requiredWater}>
-              <p>{t('UserSettingsForm.requiredWater')}</p>
-              <p className={s.formula}>{userData.dailyWater}</p>
-            </div>
-
-            <div className={s.waterUser}>
-              <label htmlFor="Your_water" className={s.labelImportan}>
-                {t('UserSettingsForm.writeDownLabel')}
-              </label>
-
-              <input
-                type="number"
-                id="Your_water"
-                value={userData.dailyWater || ''}
-                onChange={e => setData({ ...data, dailyWater: e.target.value })}
-                placeholder="0.1"
-              />
+            <div className={s.attention}>
+              <svg className={s.uploud} width="18" height="18">
+                <use xlinkHref={`${sprite}#attention`}></use>
+              </svg>
+              <p>{t('UserSettingsForm.activeText')}</p>
             </div>
           </div>
         </div>
 
-        <Button
-          classname={s.btnSetting}
-          type="button"
-          onClick={handleSubmitSetting}
-        >
-          {t('UserSettingsForm.saveBtn')}
-        </Button>
-      </form>
-    </Section>
+        <div className={s.wrapUserInfo}>
+          <div className={s.infoUser}>
+            <label htmlFor="Your_weight">
+              {t('UserSettingsForm.infoUser')}
+            </label>
+
+            <input
+              type="number"
+              id="Your_weight"
+              value={userData.weight || ''}
+              onChange={e => setData({ ...data, weight: e.target.value })}
+              placeholder="0.1"
+            />
+
+            <label htmlFor="Your_sports">
+              {t('UserSettingsForm.TheTimeSportsLabel')}
+            </label>
+
+            <input
+              type="number"
+              id="Your_sports"
+              value={userData.timeSport || ''}
+              onChange={e => setData({ ...data, timeSport: e.target.value })}
+              placeholder="0.1"
+            />
+          </div>
+
+          <div className={s.requiredWater}>
+            <p>{t('UserSettingsForm.requiredWater')}</p>
+            <p className={s.formula}>{userData.dailyWater}</p>
+          </div>
+
+          <div className={s.waterUser}>
+            <label htmlFor="Your_water" className={s.labelImportan}>
+              {t('UserSettingsForm.writeDownLabel')}
+            </label>
+
+            <input
+              type="number"
+              id="Your_water"
+              value={userData.dailyWater || ''}
+              onChange={e => setData({ ...data, dailyWater: e.target.value })}
+              placeholder="0.1"
+            />
+          </div>
+        </div>
+      </div>
+
+      <Button
+        classname={s.btnSetting}
+        type="button"
+        onClick={handleSubmitSetting}
+      >
+        {t('UserSettingsForm.saveBtn')}
+      </Button>
+    </form>
   );
 };
