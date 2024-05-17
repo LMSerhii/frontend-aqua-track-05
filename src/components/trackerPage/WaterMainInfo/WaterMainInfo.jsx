@@ -8,77 +8,66 @@ import Button from '../../../shared/components/Button/Button.jsx';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
 import { WaterModal } from '../../modals/WaterModal/WaterModal.jsx';
 import { Modal } from '../../../shared/components/Modal/Modal.jsx';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectDailyWater } from '../../../redux/auth/authSlice.js';
-import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi.js';
-import { selectDate } from '../../../redux/date/dateSlice.js';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectDailyWater, selectIsRefreshing } from '../../../redux/auth/authSlice.js';
 
-export const WaterMainInfo = ({amountData, setAmountData}) => {
+export const WaterMainInfo = ({ amountData, setAmountData, isLoading, isError }) => {
+
   const [activeAdd, setActiveAdd] = useState(false);
-  // const [amountData, setAmountData] = useState([]);
-  // const dayOfWeek = useSelector(selectDate);
+  const getDailyWater = useSelector(selectDailyWater);
+
   const { t } = useTranslation();
 
-  // const [getAllEntyiesByDay, { data }] =
-  //   useGetAllEntyiesByDayMutation(dayOfWeek);
-  //
-  // useEffect(() => {
-  //   getAllEntyiesByDay(dayOfWeek);
-  // }, [getAllEntyiesByDay, dayOfWeek]);
-  //
-  // useEffect(() => {
-  //   if (data) setAmountData(data.data);
-  // }, [data]);
-
-  const water = amountData
-
-  let drinkedWater = 0;
-
-  water?.forEach(item => (drinkedWater += item.amount));
-
   const width = window.innerWidth;
-  const getDailyWater = useSelector(selectDailyWater);
-  const dailyWater =
-    getDailyWater === null ? '1.5L' : `${getDailyWater / 1000}`;
 
-  const dailyWaterMl = dailyWater.split('L')[0] * 1000;
 
-  const percentage = (drinkedWater / dailyWaterMl) * 100;
+  const getConsumedWater = isLoading && isNaN(amountData) || amountData
+
+  let consumedWater = 0;
+  getConsumedWater?.forEach(item => consumedWater += item.amount)
+
+  console.log(consumedWater);
+
+
+
+  const dailyWaterValue = getDailyWater ? getDailyWater / 1000 : 1.5;
+  const percentage = (consumedWater / getDailyWater ) * 100;
+
+  const displayedDailyWater = isLoading || isNaN(dailyWaterValue) ? 0 : dailyWaterValue.toFixed(2);
+  const displayedPercentage = isLoading || isNaN(percentage) ? 0 : percentage.toFixed(1);
+
+
 
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
-        {/*dekstop*/}
+        {/* dekstop */}
         <source
           media="(min-width: 1280px)"
           srcSet={`${bottle1x}, ${bottle2x} 2x, ${bottle3x} 3x`}
           type="image/png"
         />
-        {/*tablet*/}
+        {/* tablet */}
         <source
           media="(min-width: 768px)"
           srcSet={`${bottle1x}, ${bottle2x} 2x, ${bottle3x} 3x`}
           type="image/png"
         />
-        {/*mobile*/}
+        {/* mobile */}
         <source
           media="(min-width: 320px)"
           srcSet={`${bottle1x}, ${bottle2x} 2x, ${bottle3x} 3x`}
           type="image/png"
         />
-        {/*default*/}
-        <img
-          className="bottle_page_img"
-          src={bottle1x}
-          alt="bottle with water"
-        />
+        {/* default */}
+        <img className="bottle_page_img" src={bottle1x} alt="bottle with water" />
       </picture>
 
       <div className={css.bottle_page_norm_wrapper}>
         <span className={css.bottle_page_norm_wrapper_value}>
-          {Number(dailyWater).toFixed(2)} {t('WaterMainInfo.liters')}
+          {displayedDailyWater} {t('WaterMainInfo.liters')}
         </span>
         <span className={css.bottle_page_norm_wrapper_text}>
           {t('WaterMainInfo.normaDaily')}
@@ -106,7 +95,7 @@ export const WaterMainInfo = ({amountData, setAmountData}) => {
       <div className={css.bottle_page_slider_wrapper}>
         <WaterProgressBar
           className={css.bottle_page_progress_bar}
-          percentage={percentage.toFixed(1)}
+          percentage={displayedPercentage}
         />
       </div>
 

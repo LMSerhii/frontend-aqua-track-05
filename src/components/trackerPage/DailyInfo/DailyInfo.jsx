@@ -1,7 +1,3 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi';
-import { selectDate } from '../../../redux/date/dateSlice';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';

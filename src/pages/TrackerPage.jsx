@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 import { useGetAllEntyiesByDayMutation } from '../redux/tracker/trackerApi.js';
 
 const TrackerPage = () => {
-
   const date = useSelector(selectDate);
   const [amountData, setAmountData] = useState([]);
 
@@ -16,12 +15,13 @@ const TrackerPage = () => {
     useGetAllEntyiesByDayMutation();
 
   useEffect(() => {
-    getAllEntyiesByDay(date);
+    if(date) getAllEntyiesByDay(date);
   }, [getAllEntyiesByDay, date]);
 
   useEffect(() => {
     if (data) setAmountData(data.data);
   }, [data]);
+
 
   return (
     <>
@@ -29,7 +29,7 @@ const TrackerPage = () => {
         <title>Tracker Page</title>
       </Helmet>
       <Section>
-        <WaterMainInfo amountData={amountData} setAmountData={setAmountData} />
+        <WaterMainInfo amountData={amountData} setAmountData={setAmountData} isLoading={isLoading}/>
         <WaterDetailedInfo amountData={amountData} setAmountData={setAmountData} isLoading={isLoading} isError={isError}/>
       </Section>
     </>
