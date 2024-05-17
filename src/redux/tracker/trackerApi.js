@@ -21,15 +21,6 @@ export const trackerApi = createApi({
       providesTags: ['Trackers'],
     }),
 
-    getAllEntyiesByDay: builder.mutation({
-      query: body => ({
-        url: `/water/daily_count`,
-        method: 'POST',
-        body,
-      }),
-      invalidatesTags: ['Trackers'],
-    }),
-
     createEntry: builder.mutation({
       query: body => ({
         url: `/water/add`,
@@ -61,7 +52,6 @@ export const trackerApi = createApi({
 
 export const {
   useGetDailyTrackQuery,
-  useGetAllEntyiesByDayMutation,
   useCreateEntryMutation,
   useUpdateEntryMutation,
   useDeleteEntryMutation,
