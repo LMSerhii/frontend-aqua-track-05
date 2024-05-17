@@ -9,21 +9,7 @@ import Loader from '../../../shared/components/Loader/Loader';
 import { PiSmileySad } from 'react-icons/pi';
 import s from './DailyInfo.module.css';
 
-const DailyInfo = () => {
-  const date = useSelector(selectDate);
-  const [amountData, setAmountData] = useState([]);
-
-  const [getAllEntyiesByDay, { data, isLoading, isError }] =
-    useGetAllEntyiesByDayMutation();
-
-  useEffect(() => {
-    getAllEntyiesByDay(date);
-  }, [getAllEntyiesByDay, date]);
-
-  useEffect(() => {
-    if (data) setAmountData(data.data);
-  }, [data]);
-
+const DailyInfo = ({ amountData, setAmountData, isLoading, isError }) => {
   return (
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>

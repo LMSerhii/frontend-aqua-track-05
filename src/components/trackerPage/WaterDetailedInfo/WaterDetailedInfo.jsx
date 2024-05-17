@@ -3,11 +3,21 @@ import { MonthInfo } from '../MonthInfo/MonthInfo';
 import { UserPanel } from '../UserPanel/UserPanel';
 import s from './WaterDetailedInfo.module.css';
 
-const WaterDetailedInfo = () => {
+const WaterDetailedInfo = ({
+  amountData,
+  setAmountData,
+  isLoading,
+  isError,
+}) => {
   return (
     <div className={s.waterDetailedInfo}>
       <UserPanel />
-      <DailyInfo />
+      <DailyInfo
+        amountData={amountData}
+        setAmountData={setAmountData}
+        isLoading={isLoading}
+        isError={isError}
+      />
       <MonthInfo />
     </div>
   );
