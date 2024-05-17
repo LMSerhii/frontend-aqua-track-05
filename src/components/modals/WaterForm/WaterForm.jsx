@@ -18,7 +18,7 @@ export const WaterForm = ({
   waterValue,
   operation,
   setActive,
-  id,
+  entry,
   setAmountData,
 }) => {
   const date = useSelector(selectDate);
@@ -64,7 +64,7 @@ export const WaterForm = ({
         setActive(false);
       } else {
         const data2 = {
-          id: id,
+          id: entry.id,
           date: date,
           amount: parseInt(waterValue),
           time: currentTime,
@@ -77,7 +77,7 @@ export const WaterForm = ({
         console.log('amountsList', amountsList);
         console.log('setAmountData', setAmountData);
 
-        // setAmountData(amountsList);
+        setAmountData(amountsList);
 
         setActive(false);
       }
