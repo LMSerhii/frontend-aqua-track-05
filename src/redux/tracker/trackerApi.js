@@ -22,12 +22,8 @@ export const trackerApi = createApi({
     }),
     /* створюю для water/month ***************/
     getAllEntriesByMonth: builder.query({
-      query: body => ({
-        url: `water/month`,
-        method: 'POST',
-        body,
-      }),
-      invalidatesTags: ['Trackers'],
+      query: month => `/water/month?month=${month}`,
+      // providesTags: ['Trackers'],
     }),
     /*********************/
     createEntry: builder.mutation({
