@@ -9,6 +9,7 @@ import { persistor, store } from './redux/store';
 import './shared/styles/index.css';
 import 'modern-normalize';
 import './i18next/config.js';
+import { AmountProvider } from './shared/context/AmountContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <HelmetProvider>
-            <App />
+            <AmountProvider>
+              <App />
+            </AmountProvider>
           </HelmetProvider>
         </BrowserRouter>
       </PersistGate>

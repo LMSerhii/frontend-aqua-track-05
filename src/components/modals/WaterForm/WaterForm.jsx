@@ -12,15 +12,15 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { selectDate } from '../../../redux/date/dateSlice';
-
+import { useAmount } from '../../../shared/context/AmountContext';
 export const WaterForm = ({
   handleWaterChange,
   waterValue,
   operation,
   setActive,
   id,
-  setAmountData,
 }) => {
+  const { setAmountData } = useAmount();
   const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
   const { t } = useTranslation();
@@ -57,8 +57,6 @@ export const WaterForm = ({
         const response = await createEntry(data1);
         const amountsList = response.data.data.amounts;
 
-        console.log('setAmountData', setAmountData);
-
         setAmountData(amountsList);
 
         setActive(false);
@@ -71,13 +69,9 @@ export const WaterForm = ({
         };
 
         const response = await updateEntry(data2);
-
         const amountsList = response.data.data.amounts;
 
-        console.log('amountsList', amountsList);
-        console.log('setAmountData', setAmountData);
-
-        // setAmountData(amountsList);
+        setAmountData(amountsList);
 
         setActive(false);
       }

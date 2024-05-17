@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi';
 import { selectDate } from '../../../redux/date/dateSlice';
@@ -8,10 +8,11 @@ import WaterList from '../WaterList/WaterList';
 import Loader from '../../../shared/components/Loader/Loader';
 import { PiSmileySad } from 'react-icons/pi';
 import s from './DailyInfo.module.css';
+import { useAmount } from '../../../shared/context/AmountContext';
 
 const DailyInfo = () => {
   const date = useSelector(selectDate);
-  const [amountData, setAmountData] = useState([]);
+  const { amountData, setAmountData } = useAmount();
 
   const [getAllEntyiesByDay, { data, isLoading, isError }] =
     useGetAllEntyiesByDayMutation();
@@ -22,13 +23,13 @@ const DailyInfo = () => {
 
   useEffect(() => {
     if (data) setAmountData(data.data);
-  }, [data]);
+  }, [data, setAmountData]);
 
   return (
     <div className={s.waterListBlock}>
       <div className={s.waterListBlockHead}>
         <ChooseDate />
-        <AddWaterBtn setAmountData={setAmountData} />
+        <AddWaterBtn />
       </div>
       <div className={s.wrapper}>
         {isError && (
