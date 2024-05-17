@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import css from '../signInPage/SignInForm/SingInForm.module.css';
+import css from '../signUpPage/SignUpForm/SignUpForm.module.css';
 import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../shared/components/Logo/Logo';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { ShareIconPassword } from '../../shared/components/ShareIconPassword/ShareIconPassword';
 
 const initialValues = {
   password: '',
@@ -52,7 +53,7 @@ export default function ResetForm({ onVerification }) {
 
         setTimeout(() => {
           window.location.href = '/signin';
-        }, 8000);
+        }, 5000);
       })
       .catch(error => {
         toast.error('Something is wrong, please try again...');
@@ -79,7 +80,7 @@ export default function ResetForm({ onVerification }) {
                   {t('ResetForm.newPasswordLabel')}
                 </label>
                 <Field
-                  type="text"
+                  type="password"
                   name="password"
                   id={idPassword}
                   className={css.input}
@@ -90,13 +91,18 @@ export default function ResetForm({ onVerification }) {
                   component="span"
                   className={css.error}
                 />
+                <ShareIconPassword
+                  name={idPassword}
+                  iconId="FirstIconPassword"
+                  css={css}
+                />
               </div>
               <div className={css.field}>
                 <label htmlFor={idPassword} className={css.label}>
                   {t('ResetForm.repeatPassword')}
                 </label>
                 <Field
-                  type="text"
+                  type="password"
                   name="repeatPassword"
                   id={idRepeatPassword}
                   className={css.input}
@@ -106,6 +112,11 @@ export default function ResetForm({ onVerification }) {
                   name="repeatPassword"
                   component="span"
                   className={css.error}
+                />
+                <ShareIconPassword
+                  name={idRepeatPassword}
+                  iconId="SecondIconPassword"
+                  css={css}
                 />
               </div>
               <button type="submit" className={css.button}>

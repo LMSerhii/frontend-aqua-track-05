@@ -14,6 +14,13 @@
   color: var(--dark-blue);
 }
 
+@media screen and (min-width: 768px) {
+  .dayBtn {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 .fullColor {
   background-color: var(--white);
 }
