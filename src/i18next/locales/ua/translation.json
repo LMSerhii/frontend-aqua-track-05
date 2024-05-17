@@ -9,7 +9,10 @@
   "advantagesSection": {
     "ourParag": "наші",
     "happySpan": "щасливі",
-    "customersParag": "клієнти"
+    "customersParag": "клієнти",
+    "textHabit": "Звичка",
+    "textView": "Дивись статистику",
+    "textPersonal": "Персональні налаштування"
   },
   "singInForm": {
     "signIn": "Увійти",

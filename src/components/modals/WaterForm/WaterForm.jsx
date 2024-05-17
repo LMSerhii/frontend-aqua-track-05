@@ -19,7 +19,6 @@ export const WaterForm = ({
   operation,
   setActive,
   entry,
-  setAmountData,
 }) => {
   const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
@@ -54,30 +53,18 @@ export const WaterForm = ({
           time: currentTime,
         };
 
-        const response = await createEntry(data1);
-        const amountsList = response.data.data.amounts;
-
-        console.log('setAmountData', setAmountData);
-
-        setAmountData(amountsList);
+        createEntry(data1);
 
         setActive(false);
       } else {
         const data2 = {
-          id: entry.id,
           date: date,
+          id: entry.id,
           amount: parseInt(waterValue),
           time: currentTime,
         };
 
-        const response = await updateEntry(data2);
-
-        const amountsList = response.data.data.amounts;
-
-        console.log('amountsList', amountsList);
-        console.log('setAmountData', setAmountData);
-
-        setAmountData(amountsList);
+        updateEntry(data2);
 
         setActive(false);
       }

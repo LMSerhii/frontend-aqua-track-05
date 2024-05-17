@@ -8,10 +8,10 @@ import Button from '../../../shared/components/Button/Button.jsx';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
 import { WaterModal } from '../../modals/WaterModal/WaterModal.jsx';
 import { Modal } from '../../../shared/components/Modal/Modal.jsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../../redux/auth/authSlice.js';
-import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi.js';
+import { useGetDailyTrackQuery } from '../../../redux/tracker/trackerApi.js';
 import { selectDate } from '../../../redux/date/dateSlice.js';
 import { useTranslation } from 'react-i18next';
 
@@ -20,14 +20,9 @@ export const WaterMainInfo = () => {
   const dayOfWeek = useSelector(selectDate);
   const { t } = useTranslation();
 
-  const [getAllEntyiesByDay, { data }] =
-    useGetAllEntyiesByDayMutation(dayOfWeek);
+  const { data } = useGetDailyTrackQuery(dayOfWeek);
 
-  useEffect(() => {
-    getAllEntyiesByDay(dayOfWeek);
-  }, [getAllEntyiesByDay, dayOfWeek]);
-
-  const water = data && data.data;
+  const water = data && data;
 
   let drinkedWater = 0;
 
@@ -35,6 +30,7 @@ export const WaterMainInfo = () => {
 
   const width = window.innerWidth;
   const getDailyWater = useSelector(selectDailyWater);
+  console.log('getDailyWater', getDailyWater);
   const dailyWater =
     getDailyWater === null ? '1.5L' : `${getDailyWater / 1000}`;
 
@@ -73,7 +69,7 @@ export const WaterMainInfo = () => {
 
       <div className={css.bottle_page_norm_wrapper}>
         <span className={css.bottle_page_norm_wrapper_value}>
-          {Number(dailyWater).toFixed(2)} {t('WaterMainInfo.liters')}
+          {Number(dailyWater).toFixed(1)} {t('WaterMainInfo.liters')}
         </span>
         <span className={css.bottle_page_norm_wrapper_text}>
           {t('WaterMainInfo.normaDaily')}
@@ -91,7 +87,7 @@ export const WaterMainInfo = () => {
             width={width < 768 ? '14' : '21'}
             height={width < 768 ? '14' : '21'}
             svgId={'plus'}
-          />{' '}
+          />
           {t('WaterMainInfo.addWater')}
         </Button>
       </div>
