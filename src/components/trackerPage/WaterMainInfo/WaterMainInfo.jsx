@@ -15,19 +15,24 @@ import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi
 import { selectDate } from '../../../redux/date/dateSlice.js';
 import { useTranslation } from 'react-i18next';
 
-export const WaterMainInfo = () => {
+export const WaterMainInfo = ({amountData, setAmountData}) => {
   const [activeAdd, setActiveAdd] = useState(false);
-  const dayOfWeek = useSelector(selectDate);
+  // const [amountData, setAmountData] = useState([]);
+  // const dayOfWeek = useSelector(selectDate);
   const { t } = useTranslation();
 
-  const [getAllEntyiesByDay, { data }] =
-    useGetAllEntyiesByDayMutation(dayOfWeek);
+  // const [getAllEntyiesByDay, { data }] =
+  //   useGetAllEntyiesByDayMutation(dayOfWeek);
+  //
+  // useEffect(() => {
+  //   getAllEntyiesByDay(dayOfWeek);
+  // }, [getAllEntyiesByDay, dayOfWeek]);
+  //
+  // useEffect(() => {
+  //   if (data) setAmountData(data.data);
+  // }, [data]);
 
-  useEffect(() => {
-    getAllEntyiesByDay(dayOfWeek);
-  }, [getAllEntyiesByDay, dayOfWeek]);
-
-  const water = data && data.data;
+  const water = amountData
 
   let drinkedWater = 0;
 
@@ -111,6 +116,7 @@ export const WaterMainInfo = () => {
           title={t('WaterMainInfo.title')}
           subTitle={t('WaterMainInfo.subTitle')}
           setActive={setActiveAdd}
+          setAmountData={setAmountData}
         />
       </Modal>
     </div>
