@@ -19,25 +19,16 @@ export const WaterMainInfo = () => {
   const [activeAdd, setActiveAdd] = useState(false);
   const dayOfWeek = useSelector(selectDate);
   const { t } = useTranslation();
-
+  const width = window.innerWidth;
   const { data } = useGetDailyTrackQuery(dayOfWeek);
-
-  const water = data && data;
+  const getDailyWater = useSelector(selectDailyWater);
 
   let drinkedWater = 0;
 
-  water?.forEach(item => (drinkedWater += item.amount));
+  data?.forEach(item => (drinkedWater += item.amount));
 
-  const width = window.innerWidth;
-  const getDailyWater = useSelector(selectDailyWater);
-  console.log('getDailyWater', getDailyWater);
-  const dailyWater =
-    getDailyWater === null ? '1.5L' : `${getDailyWater / 1000}`;
-
-  const dailyWaterMl = dailyWater.split('L')[0] * 1000;
-
-  const percentage = (drinkedWater / dailyWaterMl) * 100;
-
+  const percentage = (drinkedWater / getDailyWater) * 100;
+  
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
@@ -69,7 +60,7 @@ export const WaterMainInfo = () => {
 
       <div className={css.bottle_page_norm_wrapper}>
         <span className={css.bottle_page_norm_wrapper_value}>
-          {Number(dailyWater).toFixed(1)} {t('WaterMainInfo.liters')}
+          {getDailyWater} {t('WaterMainInfo.liters')}
         </span>
         <span className={css.bottle_page_norm_wrapper_text}>
           {t('WaterMainInfo.normaDaily')}
