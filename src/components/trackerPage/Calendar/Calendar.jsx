@@ -1,9 +1,12 @@
 import { CalendarItem } from '../CalendarItem/CalendarItem';
 import { useAuth } from '../../../hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { selectTracker } from '../../../redux/tracker/trackerSlice';
+
 import css from './Calendar.module.css';
 
+/**тимчасово створений файл */
 import monthData from './waterAmountPerMonth';
-
 console.log(monthData.data);
 
 const byOneDayRecords = monthData.data.map(({ date, amounts }) => {
@@ -30,6 +33,8 @@ console.log(dateAndTotalWater);
 
 export const Calendar = ({ selectedDate }) => {
   const { user } = useAuth();
+  const allRecordsByMonth = useSelector(selectTracker);
+  console.log(allRecordsByMonth);
 
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
@@ -55,9 +60,9 @@ export const Calendar = ({ selectedDate }) => {
     { totalAmount: 2500 },
   ];
   // тут потрібен ще dailyWater з документа Юзера
-  //   const ArrayOfWaterInPercent = data.map(item =>
-  //     Math.round((item.totalAmount * 100) / user.dailyWater)
-  //     );
+  // const ArrayOfWaterInPercent = data.map(item =>
+  //   Math.round((item.totalAmount * 100) / user.dailyWater)
+  // );
   const inPercentArray = dateAndTotalWater.map(item =>
     Math.round((item.totalWaterByDay * 100) / 2000)
   );

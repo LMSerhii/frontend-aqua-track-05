@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 
 import s from './CalendarPagination.module.css';
+import { useDispatch } from 'react-redux';
+import { setAllRecordsByMonth } from '../../../redux/tracker/trackerSlice';
 
 export const CalendarPagination = ({
   selectedDate,
@@ -19,16 +21,25 @@ export const CalendarPagination = ({
   const { t } = useTranslation();
   const formatDate = date => format(date, 'MM-yyyy');
   const [formattedDate, setFormattedDate] = useState(formatDate(selectedDate));
+  const dispatch = useDispatch();
 
-  /** useEffect, щоб відправляти запит
-   *  на бекенд одразу  після рендеру сторінки */
+  /**  відправка запиту на бекенд одразу  після рендеру сторінки */
   useEffect(() => {
     setFormattedDate(formatDate(selectedDate));
   }, [selectedDate]);
 
   const { data, isLoading, isError } =
     useGetAllEntriesByMonthQuery(formattedDate);
-  console.log(data);
+  // console.log(data);
+
+  // /** зберігаємо дані у глобальному стані після відповіді бека */
+  useEffect(() => {
+    if (data && data.data) {
+      dispatch(setAllRecordsByMonth(data.data));
+    }
+  }, [data, dispatch]);
+
+  // const allRecordsByMonth = data.data;
 
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
