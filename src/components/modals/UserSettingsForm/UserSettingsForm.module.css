@@ -272,3 +272,8 @@ input[type='radio'] {
     width: 400px;
   }
 }
+
+.errorYup {
+  font-size: 14px;
+  color: red;
+}

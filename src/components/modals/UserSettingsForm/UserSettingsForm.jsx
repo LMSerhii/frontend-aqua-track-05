@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
 import { useTranslation } from 'react-i18next';
+import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
 
 export const UserSettingsForm = () => {
   const { t } = useTranslation();
@@ -32,18 +33,16 @@ export const UserSettingsForm = () => {
   const dispatch = useDispatch();
   const filePicker = useRef(null);
 
-  // setUploaded(file);
-
   const handleUpload = async event => {
     try {
       const file = event.target.files[0];
       const imageURL = URL.createObjectURL(file);
       setSelectedFile(imageURL);
 
-      // if (!setUploaded) {
-      //   alert('Please select a file!');
-      //   return;
-      // }
+      if (!file) {
+        alert('Please select a file!');
+        return;
+      }
 
       const formData = new FormData();
       formData.append('file', file);
@@ -67,9 +66,13 @@ export const UserSettingsForm = () => {
     try {
       const formData = new FormData();
 
+      const photo = uploaded ? uploaded : defaultAvatar;
+      console.log('photo', photo);
+      console.log('uploaded', uploaded);
+
       const dataUser = {
         ...data,
-        avatar: uploaded,
+        avatar: photo,
       };
 
       formData.append('dataUser', JSON.stringify(dataUser));
@@ -90,20 +93,26 @@ export const UserSettingsForm = () => {
 
   const schema = yup
     .object({
-      Your_name: yup.string().required(),
-      Email: yup.string().required(),
+      nameUser: yup
+        .string()
+        .min(2, 'Must be at least 2 letters long')
+        .required('Please, fill in the field!'),
+      Email: yup.string().min(2, 'Must be at least 2 letters long').required(),
+      Your_weight: yup.number().positive().required(),
+      Your_sports: yup.number().positive().required(),
+      Your_water: yup.number().positive().required(),
     })
     .required();
 
   const {
-    // register,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const onSubmit = newData => console.log(newData);
+  // const onSubmit = newData => console.log(newData);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit()}>
       <div className={s.avatarWrap}>
         <label htmlFor="avatar" className={s.imgWrap}>
           <input
@@ -169,29 +178,37 @@ export const UserSettingsForm = () => {
           </div>
 
           <div className={s.WrapNameEmail}>
-            <label htmlFor="Your_name" className={s.labelImportan}>
+            <label htmlFor="nameUser" className={s.labelImportan}>
               {t('UserSettingsForm.yourNameLabel')}
             </label>
 
+            {/* {errors.nameUser && (
+              <p className={s.errorYup}>{errors.nameUser.message}</p>
+            )} */}
+
             <input
+              {...register('nameUser')}
               type="text"
-              id="Your_name"
+              id="nameUser"
               value={data.name}
               onChange={e => setData({ ...data, name: e.target.value })}
               placeholder={t('UserSettingsForm.placeYourName')}
             />
-            <p>{errors.Your_name?.message}</p>
+            <p className={s.errorYup}>{errors.nameUser?.message}</p>
+
             <label htmlFor="Email" className={s.labelImportan}>
               {t('UserSettingsForm.labelEmail')}
             </label>
 
             <input
+              {...register('Email')}
               type="text"
               id="Email"
               value={data.email}
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
             />
+            <p className={s.errorYup}>{errors.Email?.message}</p>
             {/* <p>{errors.Email?.message}</p> */}
           </div>
 
@@ -227,24 +244,28 @@ export const UserSettingsForm = () => {
             </label>
 
             <input
+              {...register('Your_weight')}
               type="number"
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
               placeholder="0.1"
             />
+            <p className={s.errorYup}>{errors.Your_weight?.message}</p>
 
             <label htmlFor="Your_sports">
               {t('UserSettingsForm.TheTimeSportsLabel')}
             </label>
 
             <input
+              {...register('Your_sports')}
               type="number"
               id="Your_sports"
               value={data.timeSport || ''}
               onChange={e => setData({ ...data, timeSport: e.target.value })}
               placeholder="0.1"
             />
+            <p className={s.errorYup}>{errors.Your_sports?.message}</p>
           </div>
 
           <div className={s.requiredWater}>
@@ -258,19 +279,21 @@ export const UserSettingsForm = () => {
             </label>
 
             <input
+              {...register('Your_water')}
               type="number"
               id="Your_water"
               value={data.dailyWater || ''}
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
               placeholder="0.1"
             />
+            <p className={s.errorYup}>{errors.Your_water?.message}</p>
           </div>
         </div>
       </div>
 
       <Button
         classname={s.btnSetting}
-        type="button"
+        type="submit"
         onClick={handleSubmitSetting}
       >
         {t('UserSettingsForm.saveBtn')}
