@@ -28,9 +28,7 @@ export const WaterMainInfo = () => {
   data?.forEach(item => (drinkedWater += item.amount));
 
   const percentage = (drinkedWater / getDailyWater) * 100;
-
-  console.log(drinkedWater);
-
+  
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
