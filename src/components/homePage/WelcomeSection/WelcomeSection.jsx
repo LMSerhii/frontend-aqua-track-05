@@ -14,12 +14,18 @@ export default function WelcomeSection() {
         <div className={css.div}>
           <p className={css.parag}>{t('welcomeSection.recordPparag')}</p>
           <h1 className={css.h1}>{t('welcomeSection.title')}</h1>
-          <NavLink to="/signup" className={css.signup}>
-            {t('welcomeSection.tryTrackerBtn')}
-          </NavLink>
-          <NavLink to="/signin" className={css.login}>
-            {t('welcomeSection.signIn')}
-          </NavLink>
+          <button className={css.button}>
+            <NavLink to="/signup" className={css.signup}>
+              {t('welcomeSection.tryTrackerBtn')}
+            </NavLink>
+          </button>
+          <button className={css.login}>
+       
+            <NavLink to="/signin" >
+              {t('welcomeSection.signIn')}
+            </NavLink>
+          </button>
+         
         </div>
       </div>
     </div>
