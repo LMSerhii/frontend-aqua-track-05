@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { sprite } from '../../../shared/icons/index';
 import { UserSettingsForm } from '../UserSettingsForm/UserSettingsForm';
 import s from './UserSettingsModal.module.css';
 import { useTranslation } from 'react-i18next';
 import { ModalSetting } from '../ModalSetting/ModalSetting';
+import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
 export const UserSettingsModal = ({ active, setActive }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,10 +11,8 @@ export const UserSettingsModal = ({ active, setActive }) => {
   const { t } = useTranslation();
   return (
     <ModalSetting active={active} setActive={setActive}>
-      <button onClick={() => setIsOpen()} className={s.btnClose}>
-        <svg className={s.icon} width="24" height="24">
-          <use xlinkHref={`${sprite}#close`}></use>
-        </svg>
+      <button onClick={() => setActive(false)} className={s.btnClose}>
+        <SharedSVG svgId="close" width={24} height={24} className={s.icon} />
       </button>
       <h2 className={s.settingCaption}>{t('UserSettingsModal.setting')}</h2>
       <UserSettingsForm />
