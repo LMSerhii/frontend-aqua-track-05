@@ -65,13 +65,8 @@ export const UserSettingsForm = () => {
       const formData = new FormData();
 
       const dataUser = {
+        ...data,
         avatar: uploaded,
-        name: userData.name,
-        email: userData.email,
-        gender: userData.gender,
-        weight: userData.weight,
-        timeSport: userData.timeSport,
-        waterUser: userData.waterUser,
       };
 
       formData.append('dataUser', JSON.stringify(dataUser));
@@ -102,7 +97,7 @@ export const UserSettingsForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const onSubmit = data => console.log(data);
+  const onSubmit = newData => console.log(newData);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -119,17 +114,15 @@ export const UserSettingsForm = () => {
           {uploaded ? (
             <img src={selectedFile} className={s.avatar} alt="preview" />
           ) : (
-            <img src={userData.avatar} className={s.avatar} alt="preview" />
+            <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          {/* <div className={s.wrapUpload}> */}
           <button className={s.uploudBtn}>
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
             {t('UserSettingsForm.uploadPhotoBtn')}
           </button>
-          {/* </div> */}
         </label>
       </div>
 
@@ -180,7 +173,7 @@ export const UserSettingsForm = () => {
             <input
               type="text"
               id="Your_name"
-              value={userData.name}
+              value={data.name}
               onChange={e => setData({ ...data, name: e.target.value })}
               placeholder={t('UserSettingsForm.placeYourName')}
             />
@@ -192,7 +185,7 @@ export const UserSettingsForm = () => {
             <input
               type="text"
               id="Email"
-              value={userData.email}
+              value={data.email}
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
             />
@@ -233,7 +226,7 @@ export const UserSettingsForm = () => {
             <input
               type="number"
               id="Your_weight"
-              value={userData.weight || ''}
+              value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
               placeholder="0.1"
             />
@@ -245,7 +238,7 @@ export const UserSettingsForm = () => {
             <input
               type="number"
               id="Your_sports"
-              value={userData.timeSport || ''}
+              value={data.timeSport || ''}
               onChange={e => setData({ ...data, timeSport: e.target.value })}
               placeholder="0.1"
             />
@@ -264,7 +257,7 @@ export const UserSettingsForm = () => {
             <input
               type="number"
               id="Your_water"
-              value={userData.dailyWater || ''}
+              value={data.dailyWater || ''}
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
               placeholder="0.1"
             />
