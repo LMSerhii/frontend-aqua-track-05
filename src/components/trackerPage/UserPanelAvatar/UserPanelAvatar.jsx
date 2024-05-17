@@ -6,7 +6,6 @@ const UserPanelAvatar = ({ user }) => {
     <div className={s.thumb}>
       <img
         src={user ? user.avatar : defaultAvatar}
-        // src={defaultAvatar}
         alt="User avatar"
         className={s.img}
       />
