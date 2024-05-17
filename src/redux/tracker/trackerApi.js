@@ -24,11 +24,11 @@ export const trackerApi = createApi({
       }),
       invalidatesTags: ['Trackers'],
     }),
-    /*катя створює для water/month ***************/
+    /* створюю для water/month ***************/
     getAllEntriesByMonth: builder.query({
       query: body => ({
-        url: `/water/month`,
-        method: 'GET',
+        url: `water/month`,
+        method: 'POST',
         body,
       }),
       invalidatesTags: ['Trackers'],

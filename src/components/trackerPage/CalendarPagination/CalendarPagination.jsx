@@ -1,10 +1,14 @@
 // CalendarPagination.jsx
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
+import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi';
 
-import css from './CalendarPagination.module.css';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import { format } from 'date-fns';
+
+import s from './CalendarPagination.module.css';
 
 export const CalendarPagination = ({
   selectedDate,
@@ -13,6 +17,18 @@ export const CalendarPagination = ({
   isActive,
 }) => {
   const { t } = useTranslation();
+  const formatDate = date => format(date, 'MM-yyyy');
+  const [formattedDate, setFormattedDate] = useState(formatDate(selectedDate));
+
+  /** useEffect, щоб відправляти запит
+   *  на бекенд одразу  після рендеру сторінки */
+  useEffect(() => {
+    setFormattedDate(formatDate(selectedDate));
+  }, [selectedDate]);
+
+  const { data, isLoading, isError } =
+    useGetAllEntriesByMonthQuery(formattedDate);
+  console.log(data);
 
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
@@ -22,8 +38,6 @@ export const CalendarPagination = ({
     );
 
     setSelectedDate(prevoiusMonth);
-    console.log(selectedDate);
-    /** треба прикручувати на клік запит на бекенд useGetAllEntriesByMonthQuery */
   };
 
   const goToNextMonth = () => {
@@ -38,21 +52,33 @@ export const CalendarPagination = ({
   const translatedMonth = t(`months.${selectedDate.getMonth()}`);
 
   return (
-    <div className={css.wrapper}>
-      <Button onClick={goToPrevoiusMonth} className={css.btn}>
-        <BsChevronLeft size="12" className={css.arrow} />
+    <div className={s.wrapper}>
+      <Button onClick={goToPrevoiusMonth} className={s.btn}>
+        <BsChevronLeft size="12" className={s.arrow} />
       </Button>
-      <span className={css.span}>
+      <span className={s.span}>
         {translatedMonth}, {selectedDate.getFullYear()}
       </span>
-      <Button onClick={goToNextMonth} className={css.btn}>
-        <BsChevronRight size="12" className={css.arrow} />
+      <Button onClick={goToNextMonth} className={s.btn}>
+        <BsChevronRight size="12" className={s.arrow} />
       </Button>
-      <Button className={css.pieChart} onClick={() => setIsActive(!isActive)}>
-        <svg width="20" height="20" className={css.pieIcon}>
+      <Button className={s.pieChart} onClick={() => setIsActive(!isActive)}>
+        <svg width="20" height="20" className={s.pieIcon}>
           <use xlinkHref={`${sprite}#pie_chart`}></use>
         </svg>
       </Button>
     </div>
   );
 };
+
+/**другий useEffect для запиту на бекенд після зміни місяця */
+// useEffect(() => {
+//   setFormattedDate(formatDate(selectedDate));
+// }, [selectedDate]);
+
+// const [getAllEntriesByMonth, { data, isLoading, isError }] =
+//   useGetAllEntriesByMonthQuery();
+
+// useEffect(() => {
+//   getAllEntriesByMonth(formatDate(selectedDate));
+// }, [getAllEntriesByMonth, selectedDate]);
