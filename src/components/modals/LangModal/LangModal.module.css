@@ -1,0 +1,98 @@
+.langModal_wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 10px;
+}
+
+@media screen and (min-width: 1440px) {
+  .langModal_wrap {
+    padding: 50px 0;
+    gap: 30px;
+  }
+}
+
+.langModal_title {
+  font-size: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .langModal_title {
+    font-size: 30px;
+  }
+}
+
+.selectWrapper {
+  width: 100%;
+}
+
+.langModal_input {
+  height: 45px;
+}
+
+@media screen and (min-width: 768px) {
+  .langModal_input {
+    height: 60px;
+  }
+}
+
+.optionContent {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.langModal_text {
+  font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .langModal_text {
+    font-size: 22px;
+  }
+}
+
+.langModal_closeBtn {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -5px;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: transparent;
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
+
+  &:hover,
+  &:focus {
+    background-color: var(--light-gray);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .langModal_closeBtn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+.langModal_closeIcon {
+  line-height: 0;
+  stroke: black;
+}
+
+@media screen and (min-width: 768px) {
+  .langModal_closeIcon,
+  .iconFlag {
+    width: 25px;
+    height: 25px;
+  }
+}
