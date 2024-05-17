@@ -14,6 +14,7 @@ import Logo from '../../../shared/components/Logo/Logo';
 import { register } from '../../../redux/auth/operations';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import { useTranslation } from 'react-i18next';
+import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
 
 const initialValues = {
   email: '',
@@ -51,7 +52,9 @@ export default function SignUpForm() {
     dispatch(register(user))
       .unwrap()
       .then(() => {
-        toast.success(`massage to verify email was send to ${user.email} !`, { duration: 5000 });
+        toast.success(`massage to verify email was send to ${user.email} !`, {
+          duration: 5000,
+        });
         navigate('/signin');
       })
       .catch(error => {
@@ -150,6 +153,7 @@ export default function SignUpForm() {
             {t('singUnForm.signIn')}
           </NavLink>
         </p>
+        <GoogleButton />
       </div>
     </div>
   );
