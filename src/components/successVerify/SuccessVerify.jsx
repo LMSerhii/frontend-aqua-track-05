@@ -9,24 +9,19 @@ export default function SuccessVerify({ children }) {
   const { t } = useTranslation();
   useEffect(() => {
     const firstToastTimerId = setTimeout(() => {
-      toast.success('You will be redirected to the login page after 7s');
-    }, 1500);
-
-    const secondToastTimerId = setTimeout(() => {
-      toast.success('You will be redirected to the login page after 3s');
-    }, 4000);
+      toast.success('You will be redirected to the login page after 5s');
+    }, 1000);
 
     const thirdToastTimerId = setTimeout(() => {
       toast.success('Redirecting...');
-    }, 6500);
+    }, 4000);
 
     const redirectTimerId = setTimeout(() => {
       window.location.href = '/signin';
-    }, 8000);
+    }, 5000);
 
     return () => {
       clearTimeout(firstToastTimerId);
-      clearTimeout(secondToastTimerId);
       clearTimeout(thirdToastTimerId);
       clearTimeout(redirectTimerId);
     };

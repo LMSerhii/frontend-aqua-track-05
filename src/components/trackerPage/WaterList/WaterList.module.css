@@ -32,3 +32,49 @@
   border-radius: 10px;
   background: var(--dark-blue);
 }
+
+.emptyListWaterBlock {
+  height: 98px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .emptyListWaterBlock {
+    height: 118px;
+  }
+}
+
+.emptyListWaterTextWrap {
+  display: flex;
+  width: 80%;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .emptyListWaterTextWrap {
+    width: fit-content;
+  }
+}
+
+.emptyListWaterText {
+  font-size: 16px;
+  line-height: 1.3em;
+  color: var(--dark-blue);
+}
+
+@media screen and (min-width: 768px) {
+  .emptyListWaterText {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .emptyListWaterText {
+    font-size: 20px;
+  }
+}
