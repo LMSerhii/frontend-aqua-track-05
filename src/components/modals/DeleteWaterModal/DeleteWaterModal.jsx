@@ -5,7 +5,7 @@ import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import s from './DeleteWaterModal.module.css';
 import { useDeleteEntryMutation } from '../../../redux/tracker/trackerApi';
 
-export const DeleteWaterModal = ({ setActive, entry, setAmountData }) => {
+export const DeleteWaterModal = ({ setActive, entry }) => {
   const modalRef = useRef();
   const [deleteEntry] = useDeleteEntryMutation();
 
@@ -16,12 +16,7 @@ export const DeleteWaterModal = ({ setActive, entry, setAmountData }) => {
   };
 
   const handleClick = async () => {
-    const response = await deleteEntry(entry);
-    const newEntry = response.data.data.amounts;
-
-    setAmountData(newEntry);
-
-    console.log('newEntry', newEntry);
+    deleteEntry(entry);
   };
 
   return (

@@ -16,6 +16,11 @@ export const trackerApi = createApi({
 
   tagTypes: ['Trackers'],
   endpoints: builder => ({
+    getDailyTrack: builder.query({
+      query: date => `/water/daily_track?date=${date}`,
+      providesTags: ['Trackers'],
+    }),
+
     getAllEntyiesByDay: builder.mutation({
       query: body => ({
         url: `/water/daily_count`,
@@ -35,8 +40,8 @@ export const trackerApi = createApi({
     }),
 
     updateEntry: builder.mutation({
-      query: entry => ({
-        url: `/water/edit`,
+      query: ({ date, ...entry }) => ({
+        url: `/water/edit?date=${date}`,
         method: 'PUT',
         body: entry,
       }),
@@ -44,8 +49,8 @@ export const trackerApi = createApi({
     }),
 
     deleteEntry: builder.mutation({
-      query: entry => ({
-        url: `/water/delete`,
+      query: ({ date, ...entry }) => ({
+        url: `/water/delete?date=${date}`,
         method: 'PUT',
         body: entry,
       }),
@@ -55,6 +60,7 @@ export const trackerApi = createApi({
 });
 
 export const {
+  useGetDailyTrackQuery,
   useGetAllEntyiesByDayMutation,
   useCreateEntryMutation,
   useUpdateEntryMutation,

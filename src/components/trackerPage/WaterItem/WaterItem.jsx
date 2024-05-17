@@ -8,7 +8,7 @@ import { DeleteWaterModal } from '../../modals/DeleteWaterModal/DeleteWaterModal
 import { useSelector } from 'react-redux';
 import { selectDate } from '../../../redux/date/dateSlice';
 
-const WaterItem = ({ item: { _id: id, amount, time }, setAmountData }) => {
+const WaterItem = ({ item: { _id: id, amount, time } }) => {
   const [activeEdit, setActiveEdit] = useState(false);
   const [activeDelete, setActiveDelete] = useState(false);
   const { t } = useTranslation();
@@ -57,16 +57,11 @@ const WaterItem = ({ item: { _id: id, amount, time }, setAmountData }) => {
           subTitle="Correct entered data:"
           entry={{ id, amount }}
           setActive={setActiveEdit}
-          setAmountData={setAmountData}
         />
       </Modal>
 
       <Modal active={activeDelete} setActive={setActiveDelete}>
-        <DeleteWaterModal
-          setActive={setActiveDelete}
-          entry={{ id, amount, date }}
-          setAmountData={setAmountData}
-        />
+        <DeleteWaterModal setActive={setActiveDelete} entry={{ id, date }} />
       </Modal>
     </>
   );
