@@ -32,15 +32,18 @@ export const UserSettingsForm = () => {
   const dispatch = useDispatch();
   const filePicker = useRef(null);
 
+  // setUploaded(file);
+
   const handleUpload = async event => {
     try {
       const file = event.target.files[0];
-      console.log(file);
-
       const imageURL = URL.createObjectURL(file);
-      console.log('imageURL', imageURL);
-
       setSelectedFile(imageURL);
+
+      // if (!setUploaded) {
+      //   alert('Please select a file!');
+      //   return;
+      // }
 
       const formData = new FormData();
       formData.append('file', file);
@@ -102,7 +105,7 @@ export const UserSettingsForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={s.avatarWrap}>
-        <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
+        <label htmlFor="avatar" className={s.imgWrap}>
           <input
             className={s.hidden}
             type="file"
@@ -111,13 +114,13 @@ export const UserSettingsForm = () => {
             accept="image/*,.png,.jpg,.gif,.web"
             onChange={handleUpload}
           />
-          {uploaded ? (
+          {selectedFile ? (
             <img src={selectedFile} className={s.avatar} alt="preview" />
           ) : (
             <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          <button className={s.uploudBtn}>
+          <button className={s.uploudBtn} onClick={handlePick}>
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
