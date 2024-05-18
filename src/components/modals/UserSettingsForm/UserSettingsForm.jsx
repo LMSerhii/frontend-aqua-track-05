@@ -1,20 +1,23 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { sprite } from '../../../shared/icons/index';
-import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
-import { useState, useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
-import { useTranslation } from 'react-i18next';
 import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
+import { uploadCloudinary } from '../../../shared/helpers/handleUpload';
+import { validationSchema } from '../../../shared/helpers/validationSchema';
+
+import s from './UserSettingsForm.module.css';
 
 export const UserSettingsForm = () => {
   const { t } = useTranslation();
+
   const userData = useSelector(selectUser);
 
   const [selectedFile, setSelectedFile] = useState(null);
@@ -31,6 +34,7 @@ export const UserSettingsForm = () => {
   });
 
   const dispatch = useDispatch();
+
   const filePicker = useRef(null);
 
   const handleUpload = async event => {
@@ -44,19 +48,10 @@ export const UserSettingsForm = () => {
         return;
       }
 
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFile = await uploadCloudinary(file);
+      // console.log('uploadFile', uploadFile);
 
-      formData.append('upload_preset', 'ylx3q541');
-
-      await fetch('https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload', {
-        method: 'post',
-        body: formData,
-      })
-        .then(response => response.json())
-        .then(res => {
-          setUploaded(res.secure_url);
-        });
+      setUploaded(uploadFile);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
@@ -67,8 +62,6 @@ export const UserSettingsForm = () => {
       const formData = new FormData();
 
       const photo = uploaded ? uploaded : defaultAvatar;
-      console.log('photo', photo);
-      console.log('uploaded', uploaded);
 
       const dataUser = {
         ...data,
@@ -83,48 +76,15 @@ export const UserSettingsForm = () => {
     }
   };
 
-  // const handleGenderChange = event => {
-  //   setData({ ...userData, gender: event.target.value });
-  // };
-
   const handlePick = () => {
     filePicker.current.click();
   };
-
-  const schema = yup
-    .object()
-    .shape({
-      file: yup
-        .mixed()
-        .test('fileSize', 'File size is too large', value => {
-          return !value || (value && value[0].size <= 1024 * 1024); // Розмір файлу менше або рівно 1МБ, якщо файл вказаний
-        })
-        .test('fileType', 'Invalid file type', value => {
-          return (
-            !value ||
-            (value && ['image/jpeg', 'image/png'].includes(value[0].type))
-          ); // Тільки файли типу jpeg або png, якщо файл вказаний
-        }),
-      gender: yup.string().required('Please select your gender'),
-      nameUser: yup
-        .string()
-        .min(2, 'Must be at least 2 letters long')
-        .required('Name is required'),
-      Email: yup
-        .string()
-        .min(6, 'Must be at least 2 letters long')
-        .required('Email is required'),
-      Your_weight: yup.number().required().positive().integer(),
-      Your_sports: yup.number().required().positive().integer(),
-      Your_water: yup.number().required().positive().integer(),
-    })
-    .required();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(validationSchema) });
 
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
@@ -136,7 +96,6 @@ export const UserSettingsForm = () => {
             type="file"
             ref={filePicker}
             id="avatar"
-            // accept="image/*,.png,.jpg,.gif,.web"
             onChange={handleUpload}
           />
 
@@ -154,6 +113,7 @@ export const UserSettingsForm = () => {
           </button>
         </label>
       </div>
+
       <p className={s.errorYup}>{errors.file?.message}</p>
 
       <div className={s.wrapUserData}>
@@ -213,7 +173,6 @@ export const UserSettingsForm = () => {
             {errors.nameUser && (
               <p className={s.errorYup}>{errors.nameUser.message}</p>
             )}
-            {/* <p className={s.errorYup}>{errors.nameUser?.message}</p> */}
 
             <label htmlFor="Email" className={s.labelImportan}>
               {t('UserSettingsForm.labelEmail')}
@@ -227,8 +186,10 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
             />
-            <p className={s.errorYup}>{errors.Email?.message}</p>
-            <p>{errors.Email?.message}</p>
+
+            {errors.Email && (
+              <p className={s.errorYup}>{errors.Email.message}</p>
+            )}
           </div>
 
           <div className={s.dailyNormaWrap}>
@@ -270,7 +231,9 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, weight: e.target.value })}
               placeholder="1"
             />
-            <p className={s.errorYup}>{errors.Your_weight?.message}</p>
+            {errors.Your_weight && (
+              <p className={s.errorYup}>{errors.Your_weight.message}</p>
+            )}
 
             <label htmlFor="Your_sports">
               {t('UserSettingsForm.TheTimeSportsLabel')}
@@ -284,7 +247,9 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, sportTime: e.target.value })}
               placeholder="1"
             />
-            <p className={s.errorYup}>{errors.Your_sports?.message}</p>
+            {errors.sportTime && (
+              <p className={s.errorYup}>{errors.sportTime.message}</p>
+            )}
           </div>
 
           <div className={s.requiredWater}>
@@ -296,7 +261,6 @@ export const UserSettingsForm = () => {
             <label htmlFor="Your_water" className={s.labelImportan}>
               {t('UserSettingsForm.writeDownLabel')}
             </label>
-
             <input
               {...register('Your_water')}
               type="number"
@@ -305,16 +269,14 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
               placeholder="1"
             />
-            <p className={s.errorYup}>{errors.Your_water?.message}</p>
+            {errors.Your_water && (
+              <p className={s.errorYup}>{errors.Your_water.message}</p>
+            )}
           </div>
         </div>
       </div>
 
-      <Button
-        classname={s.btnSetting}
-        type="submit"
-        // onClick={handleSubmitSetting}
-      >
+      <Button classname={s.btnSetting} type="submit">
         {t('UserSettingsForm.saveBtn')}
       </Button>
     </form>
