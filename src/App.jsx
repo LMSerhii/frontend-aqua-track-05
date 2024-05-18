@@ -55,7 +55,7 @@ export default function App() {
       await dispatch(refreshToken());
       dispatch(refreshUser());
     };
-    fetchData();
+    fetchData(); 
   }, [location.search, dispatch]);
 
   return isRefreshing ? (

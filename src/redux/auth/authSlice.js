@@ -10,6 +10,7 @@ import {
   forgotPassword,
   resetPassword,
   refreshToken,
+  fetchCurrentUser,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -91,6 +92,18 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.refreshToken = action.payload.refreshToken;
         state.isLoggedIn = true;
+      })
+      .addCase(fetchCurrentUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
       .addCase(updateUser.pending, state => {
         state.isRefreshing = true;
