@@ -105,7 +105,7 @@ export const UserSettingsForm = () => {
             <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          <button className={s.uploudBtn}>
+          <button className={s.uploudBtn} type="button">
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
