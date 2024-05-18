@@ -14,7 +14,7 @@ export const validationSchema = yup
           (value && ['image/jpeg', 'image/png'].includes(value[0].type))
         ); // Тільки файли типу jpeg або png, якщо файл вказаний
       }),
-    gender: yup.string().required('Please select your gender'),
+    gender: yup.boolean(),
     nameUser: yup
       .string()
       .min(2, 'Must be at least 2 letters long')

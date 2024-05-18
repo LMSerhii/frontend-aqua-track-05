@@ -36,7 +36,7 @@ export const UserSettingsForm = () => {
     dailyWater: userData.dailyWater,
   });
 
-  console.log(data.gender);
+  // console.log(data.gender);
 
   const dispatch = useDispatch();
 
@@ -67,14 +67,14 @@ export const UserSettingsForm = () => {
     setEdit(true);
   };
 
-  const handleSubmitSetting = () => {
+  const handleSubmitSetting = value => {
     try {
-      const gender = true;
+      // const gender = true;
       const currentDailyWater = edit
         ? data.dailyWater
-        : gender
-        ? Math.round((data.weight * 0.03 + data.sportTime * 0.6) * 1000)
-        : Math.round((data.weight * 0.04 + data.sportTime * 0.4) * 1000);
+        : value.gender
+        ? Math.round((data.weight * 0.03 + data.sportTime * 0.4) * 1000)
+        : Math.round((data.weight * 0.04 + data.sportTime * 0.6) * 1000);
 
       const formData = new FormData();
 
@@ -84,6 +84,7 @@ export const UserSettingsForm = () => {
         ...data,
         avatar: photo,
         dailyWater: currentDailyWater,
+        gender: value.gender,
       };
 
       formData.append('dataUser', JSON.stringify(dataUser));
@@ -149,8 +150,9 @@ export const UserSettingsForm = () => {
                 type="radio"
                 id="woman"
                 name="gender"
-                value="female"
-                {...register('gender')}
+                value="true"
+                // {...register('gender')}
+                {...register('gender', { required: true })}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -164,7 +166,7 @@ export const UserSettingsForm = () => {
                 type="radio"
                 id="man"
                 name="gender"
-                value="male"
+                value="false"
                 {...register('gender')}
               />
               <label
