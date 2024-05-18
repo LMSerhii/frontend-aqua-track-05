@@ -1,7 +1,17 @@
 import { CalendarItem } from '../CalendarItem/CalendarItem';
-import css from './Calendar.module.css';
+import { useAuth } from '../../../hooks/useAuth';
+import { useSelector } from 'react-redux';
+import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi';
+import { setMonth } from '../../../redux/date/dateSlice';
+
+import s from './Calendar.module.css';
 
 export const Calendar = ({ selectedDate }) => {
+  const month = useSelector(setMonth);
+  const { user } = useAuth();
+  // const { data, isLoading, isError } = useGetAllEntriesByMonthQuery(month);
+  // console.log(data);
+
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
     selectedDate.getMonth() + 1,
@@ -12,43 +22,23 @@ export const Calendar = ({ selectedDate }) => {
     { length: daysInMonth },
     (_, index) => index + 1
   );
-  //   console.log(daysArray);
-
-  //   const { data, isLoading, isError } = useGetAllEntyiesByMonthQuery;
-  // якщо data це масив - отакий список випитої totalAmount протягом місяця?
-  const data = [
-    { totalAmount: 1200 },
-    { totalAmount: 1500 },
-    { totalAmount: 1200 },
-    { totalAmount: 1000 },
-    { totalAmount: 2500 },
-  ];
   // тут потрібен ще dailyWater з документа Юзера
-  //   const { user } = useAuth();
-  //   console.log(user);
-  //   console.log(user.dailyNorma);
-  //   const ArrayOfWaterInPercent = data.map(item =>
-  //     Math.round((item.totalAmount * 100) / user.dailyNorma)
-  //     );
-  const ArrayOfWaterInPercent = data.map(item =>
-    Math.round((item.totalAmount * 100) / 1500)
-  );
+  // const ArrayOfWaterInPercent = data.map(item =>
+  //   Math.round((item.totalAmount * 100) / user.dailyWater)
+  // );
 
   return (
     <>
-      {/* {isLoading && <Loader />}
-      {isError && (<span>Ooops, smth went wrong</span>)} */}
-      <ul className={css.list}>
-        {daysArray.map((day, index) => (
-          <li key={day} className={css.item}>
-            <CalendarItem day={day} amount={ArrayOfWaterInPercent[index]} />
-            <div className={css.percentage}>
-              {ArrayOfWaterInPercent[index] !== undefined
-                ? `${ArrayOfWaterInPercent[index]}%`
-                : '0%'}
-            </div>
-          </li>
-        ))}
+      <ul className={s.list}>
+        {daysArray.map(day => {
+          return (
+            <li key={day} className={s.item}>
+              <CalendarItem day={day} amount={100} />
+
+              <div className={s.percentage}></div>
+            </li>
+          );
+        })}
       </ul>
     </>
   );
