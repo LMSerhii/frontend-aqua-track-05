@@ -8,7 +8,7 @@ import { formatDate } from '../../../shared/helpers/formatDate';
 
 const ChooseDate = () => {
   const date = useSelector(selectDate);
-  // const date = '05-05-2024';
+
   const [isToday, setIsToday] = useState(false);
   const { t } = useTranslation();
 
