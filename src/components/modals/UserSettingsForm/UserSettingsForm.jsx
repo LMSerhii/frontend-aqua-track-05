@@ -23,6 +23,9 @@ export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
 
+  const [userWaterWoman, setUserWaterWoman] = useState(null);
+  const [userWaterMan, setUserWaterMan] = useState(null);
+
   const [data, setData] = useState({
     avatar: userData.avatar,
     name: userData.name,
@@ -32,6 +35,18 @@ export const UserSettingsForm = () => {
     sportTime: userData.sportTime,
     dailyWater: userData.dailyWater,
   });
+
+  const dailyWaterUserEdit = () => {
+    if (data.gender === data.gender['women']) {
+      // V = (M * 0, 04) + (T * 0, 6);
+      const dailyWaterman = data.weight * 0.03 + data.sportTime * 0.6;
+      console.log(dailyWaterman);
+      // setUserWaterWoman(dailyWaterman);
+    }
+    // V =(M * 0, 03) + (T * 0, 4);
+    const dailyWaterwoman = data.weight * 0.04 + data.sportTime * 0.4;
+    setUserWaterMan(dailyWaterwoman);
+  };
 
   const dispatch = useDispatch();
 
@@ -258,7 +273,13 @@ export const UserSettingsForm = () => {
 
           <div className={s.requiredWater}>
             <p>{t('UserSettingsForm.requiredWater')}</p>
-            <p className={s.formula}>{userData.dailyWater}</p>
+            {data.gender === data.gender['women'] ? (
+              <p className={s.formula}>
+                {userWaterWoman || userData.dailyWater}
+              </p>
+            ) : (
+              <p className={s.formula}>{userWaterMan || userData.dailyWater}</p>
+            )}
           </div>
 
           <div className={s.waterUser}>
