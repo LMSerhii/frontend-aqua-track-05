@@ -103,6 +103,18 @@
   }
 }
 
+.labelNotImportan {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.01em;
+  display: flex;
+}
+@media screen and (min-width: 768px) {
+  .labelNotImportan {
+    font-size: 18px;
+  }
+}
+
 .WrapNameEmail {
   display: flex;
   flex-direction: column;
@@ -278,4 +290,7 @@ input[type='radio'] {
   color: red;
   padding: 0;
   margin: 0;
+}
+.redLabel {
+  color: red; /* Змініть це на потрібний вам колір */
 }
