@@ -15,7 +15,6 @@ export const Calendar = ({ selectedDate }) => {
   const byOneDayRecords = DataArray.map(({ date, amounts }) => {
     return { date, amounts };
   });
-  console.log(byOneDayRecords);
 
   const dateAndTotalWater = byOneDayRecords.map(oneDay => {
     const totalWaterByDay = oneDay.amounts.reduce(
@@ -24,7 +23,6 @@ export const Calendar = ({ selectedDate }) => {
     );
     return { date: oneDay.date, totalWaterByDay };
   });
-  console.log(dateAndTotalWater);
 
   const daysInMonth = new Date(
     selectedDate.getFullYear(),
@@ -40,7 +38,7 @@ export const Calendar = ({ selectedDate }) => {
   return (
     <>
       <ul className={s.list}>
-        {daysArray.map((day, index) => {
+        {daysArray.map(day => {
           const dayOfMonth = day < 10 ? `0${day}` : `${day}`;
           const matchedItem = dateAndTotalWater.find(
             item => item.date.substring(0, 2) === dayOfMonth
@@ -48,12 +46,10 @@ export const Calendar = ({ selectedDate }) => {
           const matchedAmount = matchedItem
             ? Math.round((matchedItem.totalWaterByDay * 100) / user.dailyWater)
             : 0;
-          {
-            console.log(matchedAmount);
-          }
+
           return (
             <li key={day} className={s.item}>
-              <CalendarItem day={day} amount={index} />
+              <CalendarItem day={day} amount={matchedAmount} />
 
               <div className={s.percentage}>
                 {matchedAmount !== undefined ? `${matchedAmount}%` : '0%'}
