@@ -169,6 +169,7 @@ export const UserSettingsForm = () => {
               value={data.name}
               onChange={e => setData({ ...data, name: e.target.value })}
               placeholder={t('UserSettingsForm.placeYourName')}
+              style={{ borderColor: errors.nameUser ? 'red' : 'initial' }}
             />
             {errors.nameUser && (
               <p className={s.errorYup}>{errors.nameUser.message}</p>
@@ -185,6 +186,7 @@ export const UserSettingsForm = () => {
               value={data.email}
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
+              style={{ borderColor: errors.Email ? 'red' : 'initial' }}
             />
 
             {errors.Email && (
@@ -219,7 +221,7 @@ export const UserSettingsForm = () => {
 
         <div className={s.wrapUserInfo}>
           <div className={s.infoUser}>
-            <label htmlFor="Your_weight">
+            <label htmlFor="Your_weight" className={s.labelNotImportan}>
               {t('UserSettingsForm.infoUser')}
             </label>
 
@@ -230,12 +232,13 @@ export const UserSettingsForm = () => {
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
               placeholder="1"
+              style={{ borderColor: errors.Your_weight ? 'red' : 'initial' }}
             />
             {errors.Your_weight && (
               <p className={s.errorYup}>{errors.Your_weight.message}</p>
             )}
 
-            <label htmlFor="Your_sports">
+            <label htmlFor="Your_sports" className={s.labelNotImportan}>
               {t('UserSettingsForm.TheTimeSportsLabel')}
             </label>
 
@@ -246,6 +249,7 @@ export const UserSettingsForm = () => {
               value={data.sportTime || ''}
               onChange={e => setData({ ...data, sportTime: e.target.value })}
               placeholder="1"
+              style={{ borderColor: errors.Your_sports ? 'red' : 'initial' }}
             />
             {errors.sportTime && (
               <p className={s.errorYup}>{errors.sportTime.message}</p>
@@ -268,6 +272,7 @@ export const UserSettingsForm = () => {
               value={data.dailyWater || ''}
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
               placeholder="1"
+              style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
             {errors.Your_water && (
               <p className={s.errorYup}>{errors.Your_water.message}</p>
