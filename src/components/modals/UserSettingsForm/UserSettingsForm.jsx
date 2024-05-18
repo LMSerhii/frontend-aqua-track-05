@@ -92,7 +92,8 @@ export const UserSettingsForm = () => {
   };
 
   const schema = yup
-    .object({
+    .object()
+    .shape({
       file: yup
         .mixed()
         .test('fileSize', 'File size is too large', value => {
@@ -105,11 +106,17 @@ export const UserSettingsForm = () => {
           ); // Тільки файли типу jpeg або png, якщо файл вказаний
         }),
       gender: yup.string().required('Please select your gender'),
-      nameUser: yup.string().min(2, 'Must be at least 2 letters long'),
-      Email: yup.string().min(6, 'Must be at least 2 letters long'),
-      Your_weight: yup.number().positive(),
-      Your_sports: yup.number().positive(),
-      Your_water: yup.number().positive(),
+      nameUser: yup
+        .string()
+        .min(2, 'Must be at least 2 letters long')
+        .required('Name is required'),
+      Email: yup
+        .string()
+        .min(6, 'Must be at least 2 letters long')
+        .required('Email is required'),
+      Your_weight: yup.number().required().positive().integer(),
+      Your_sports: yup.number().required().positive().integer(),
+      Your_water: yup.number().required().positive().integer(),
     })
     .required();
 
@@ -122,7 +129,7 @@ export const UserSettingsForm = () => {
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
-        <label htmlFor="avatar" className={s.imgWrap}>
+        <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
           <input
             {...register('file')}
             className={s.hidden}
@@ -139,7 +146,7 @@ export const UserSettingsForm = () => {
             <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          <button className={s.uploudBtn} onClick={handlePick}>
+          <button className={s.uploudBtn}>
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
@@ -203,7 +210,10 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, name: e.target.value })}
               placeholder={t('UserSettingsForm.placeYourName')}
             />
-            <p className={s.errorYup}>{errors.nameUser?.message}</p>
+            {errors.nameUser && (
+              <p className={s.errorYup}>{errors.nameUser.message}</p>
+            )}
+            {/* <p className={s.errorYup}>{errors.nameUser?.message}</p> */}
 
             <label htmlFor="Email" className={s.labelImportan}>
               {t('UserSettingsForm.labelEmail')}
