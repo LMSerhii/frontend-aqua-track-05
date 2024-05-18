@@ -10,25 +10,19 @@ export const Calendar = ({ selectedDate }) => {
   const month = useSelector(selectMonth);
   const { user } = useAuth();
   const { data, isLoading, isError } = useGetAllEntriesByMonthQuery(month);
-  console.log(data);
-  console.log(data.data);
-  const DataArray = data.data;
-  console.log(DataArray);
+  const DataArray = data?.data || [];
 
   const byOneDayRecords = DataArray.map(({ date, amounts }) => {
-    const dateOfRecord = date;
-    const allAmountsPerDay = amounts;
-    return { date: dateOfRecord, amounts: allAmountsPerDay };
+    return { date, amounts };
   });
-  console.log('всі записи поденно', byOneDayRecords);
+  console.log(byOneDayRecords);
 
   const dateAndTotalWater = byOneDayRecords.map(oneDay => {
-    const date = oneDay.date;
     const totalWaterByDay = oneDay.amounts.reduce(
       (acc, curr) => acc + curr.amount,
       0
     );
-    return { date: date, totalWaterByDay: totalWaterByDay };
+    return { date: oneDay.date, totalWaterByDay };
   });
   console.log(dateAndTotalWater);
 
@@ -42,12 +36,6 @@ export const Calendar = ({ selectedDate }) => {
     { length: daysInMonth },
     (_, index) => index + 1
   );
-  // console.log(user.dailyWater);
-  // тут потрібен ще dailyWater з документа Юзера
-  // const inPercentArray = dateAndTotalWater.map(item =>
-  //   Math.round((item.totalWaterByDay * 100) / 2000)
-  // );
-  // console.log(inPercentArray);
 
   return (
     <>
@@ -58,13 +46,14 @@ export const Calendar = ({ selectedDate }) => {
             item => item.date.substring(0, 2) === dayOfMonth
           );
           const matchedAmount = matchedItem
-            ? Math.round((matchedItem.totalWaterByDay * 100) / 2000)
+            ? Math.round((matchedItem.totalWaterByDay * 100) / user.dailyWater)
             : 0;
-
+          {
+            console.log(matchedAmount);
+          }
           return (
             <li key={day} className={s.item}>
               <CalendarItem day={day} amount={index} />
-              {console.log(matchedAmount)}
 
               <div className={s.percentage}>
                 {matchedAmount !== undefined ? `${matchedAmount}%` : '0%'}
