@@ -1,4 +1,3 @@
-// CalendarPagination.jsx
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
@@ -12,12 +11,9 @@ import s from './CalendarPagination.module.css';
 export const CalendarPagination = ({ setIsActive, isActive }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
   const date = useSelector(selectMonth);
-  console.log(date);
 
   const parsedDate = parse(date, 'MM-yyyy', new Date());
-  console.log(parsedDate);
 
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
