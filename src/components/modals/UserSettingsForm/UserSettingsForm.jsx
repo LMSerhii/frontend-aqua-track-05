@@ -26,7 +26,7 @@ export const UserSettingsForm = () => {
     email: userData.email,
     gender: userData.gender,
     weight: userData.weight,
-    timeSport: userData.timeSport,
+    sportTime: userData.sportTime,
     dailyWater: userData.dailyWater,
   });
 
@@ -112,7 +112,7 @@ export const UserSettingsForm = () => {
   // const onSubmit = newData => console.log(newData);
 
   return (
-    <form onSubmit={handleSubmit()}>
+    <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
         <label htmlFor="avatar" className={s.imgWrap}>
           <input
@@ -249,7 +249,7 @@ export const UserSettingsForm = () => {
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
-              placeholder="0.1"
+              placeholder="1kl"
             />
             <p className={s.errorYup}>{errors.Your_weight?.message}</p>
 
@@ -261,9 +261,9 @@ export const UserSettingsForm = () => {
               {...register('Your_sports')}
               type="number"
               id="Your_sports"
-              value={data.timeSport || ''}
-              onChange={e => setData({ ...data, timeSport: e.target.value })}
-              placeholder="0.1"
+              value={data.sportTime || ''}
+              onChange={e => setData({ ...data, sportTime: e.target.value })}
+              placeholder="1min"
             />
             <p className={s.errorYup}>{errors.Your_sports?.message}</p>
           </div>
@@ -284,7 +284,7 @@ export const UserSettingsForm = () => {
               id="Your_water"
               value={data.dailyWater || ''}
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
-              placeholder="0.1"
+              placeholder="1l"
             />
             <p className={s.errorYup}>{errors.Your_water?.message}</p>
           </div>
@@ -294,7 +294,7 @@ export const UserSettingsForm = () => {
       <Button
         classname={s.btnSetting}
         type="submit"
-        onClick={handleSubmitSetting}
+        // onClick={handleSubmitSetting}
       >
         {t('UserSettingsForm.saveBtn')}
       </Button>
