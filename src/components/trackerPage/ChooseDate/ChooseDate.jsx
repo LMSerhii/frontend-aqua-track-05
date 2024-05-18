@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import s from './ChooseDate.module.css';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -8,15 +7,9 @@ import { formatDate } from '../../../shared/helpers/formatDate';
 
 const ChooseDate = () => {
   const date = useSelector(selectDate);
+  const today = getCurrentDate();
 
-  const [isToday, setIsToday] = useState(false);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const today = getCurrentDate();
-
-    if (date === today) setIsToday(true);
-  }, [date]);
 
   const { formattedDate } = formatDate(date);
 
@@ -38,7 +31,9 @@ const ChooseDate = () => {
   ];
 
   return (
-    <p className={s.date}>{isToday ? t('ChooseDate.today') : formattedDate}</p>
+    <p className={s.date}>
+      {date === today ? t('ChooseDate.today') : formattedDate}
+    </p>
   );
 };
 
