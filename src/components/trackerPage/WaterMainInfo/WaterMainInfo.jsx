@@ -28,7 +28,7 @@ export const WaterMainInfo = () => {
   data?.forEach(item => (drinkedWater += item.amount));
 
   const percentage = (drinkedWater / getDailyWater) * 100;
-  
+
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
@@ -60,7 +60,7 @@ export const WaterMainInfo = () => {
 
       <div className={css.bottle_page_norm_wrapper}>
         <span className={css.bottle_page_norm_wrapper_value}>
-          {getDailyWater} {t('WaterMainInfo.liters')}
+          {getDailyWater / 1000} {t('WaterMainInfo.liters')}
         </span>
         <span className={css.bottle_page_norm_wrapper_text}>
           {t('WaterMainInfo.normaDaily')}

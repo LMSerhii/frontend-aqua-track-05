@@ -52,7 +52,7 @@ export default function App() {
     }
 
     const fetchData = async () => {
-      await dispatch(refreshToken());
+      // dispatch(refreshToken());
       dispatch(refreshUser());
     };
     fetchData();

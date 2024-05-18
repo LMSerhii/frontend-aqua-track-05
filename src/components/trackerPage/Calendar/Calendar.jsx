@@ -37,27 +37,33 @@ export const Calendar = ({ selectedDate }) => {
 
   return (
     <>
-      <ul className={s.list}>
-        {daysArray.map(day => {
-          const dayOfMonth = day < 10 ? `0${day}` : `${day}`;
-          const matchedItem = dateAndTotalWater.find(
-            item => item.date.substring(0, 2) === dayOfMonth
-          );
-          const matchedAmount = matchedItem
-            ? Math.round((matchedItem.totalWaterByDay * 100) / user.dailyWater)
-            : 0;
+      {isError && <p>Error ... </p>}
+      {!isError && isLoading && <p>Loading...</p>}
+      {!isLoading && !isError && (
+        <ul className={s.list}>
+          {daysArray.map(day => {
+            const dayOfMonth = day < 10 ? `0${day}` : `${day}`;
+            const matchedItem = dateAndTotalWater.find(
+              item => item.date.substring(0, 2) === dayOfMonth
+            );
+            const matchedAmount = matchedItem
+              ? Math.round(
+                  (matchedItem.totalWaterByDay * 100) / user.dailyWater
+                )
+              : 0;
 
-          return (
-            <li key={day} className={s.item}>
-              <CalendarItem day={day} amount={matchedAmount} />
+            return (
+              <li key={day} className={s.item}>
+                <CalendarItem day={day} amount={matchedAmount} />
 
-              <div className={s.percentage}>
-                {matchedAmount !== undefined ? `${matchedAmount}%` : '0%'}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                <div className={s.percentage}>
+                  {matchedAmount !== undefined ? `${matchedAmount}%` : '0%'}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
 };

@@ -13,22 +13,22 @@ const ChooseDate = () => {
 
   const { formattedDate } = formatDate(date);
 
-  const [day, month, year] = date.split('-');
+  // const [day, month, year] = date.split('-');
 
-  const months = [
-    t('ChooseDate.january'),
-    t('ChooseDate.february'),
-    t('ChooseDate.march'),
-    t('ChooseDate.april'),
-    t('ChooseDate.may'),
-    t('ChooseDate.june'),
-    t('ChooseDate.july'),
-    t('ChooseDate.august'),
-    t('ChooseDate.september'),
-    t('ChooseDate.october'),
-    t('ChooseDate.november'),
-    t('ChooseDate.december'),
-  ];
+  // const months = [
+  //   t('ChooseDate.january'),
+  //   t('ChooseDate.february'),
+  //   t('ChooseDate.march'),
+  //   t('ChooseDate.april'),
+  //   t('ChooseDate.may'),
+  //   t('ChooseDate.june'),
+  //   t('ChooseDate.july'),
+  //   t('ChooseDate.august'),
+  //   t('ChooseDate.september'),
+  //   t('ChooseDate.october'),
+  //   t('ChooseDate.november'),
+  //   t('ChooseDate.december'),
+  // ];
 
   return (
     <p className={s.date}>
