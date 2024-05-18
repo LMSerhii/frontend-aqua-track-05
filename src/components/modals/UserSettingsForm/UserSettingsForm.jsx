@@ -83,9 +83,9 @@ export const UserSettingsForm = () => {
     }
   };
 
-  const handleGenderChange = event => {
-    setData({ ...userData, gender: event.target.value });
-  };
+  // const handleGenderChange = event => {
+  //   setData({ ...userData, gender: event.target.value });
+  // };
 
   const handlePick = () => {
     filePicker.current.click();
@@ -93,14 +93,23 @@ export const UserSettingsForm = () => {
 
   const schema = yup
     .object({
-      nameUser: yup
-        .string()
-        .min(2, 'Must be at least 2 letters long')
-        .required('Please, fill in the field!'),
-      Email: yup.string().min(2, 'Must be at least 2 letters long').required(),
-      Your_weight: yup.number().positive().required(),
-      Your_sports: yup.number().positive().required(),
-      Your_water: yup.number().positive().required(),
+      file: yup
+        .mixed()
+        .test('fileSize', 'File size is too large', value => {
+          return !value || (value && value[0].size <= 1024 * 1024); // Розмір файлу менше або рівно 1МБ, якщо файл вказаний
+        })
+        .test('fileType', 'Invalid file type', value => {
+          return (
+            !value ||
+            (value && ['image/jpeg', 'image/png'].includes(value[0].type))
+          ); // Тільки файли типу jpeg або png, якщо файл вказаний
+        }),
+      gender: yup.string().required('Please select your gender'),
+      nameUser: yup.string().min(2, 'Must be at least 2 letters long'),
+      Email: yup.string().min(6, 'Must be at least 2 letters long'),
+      Your_weight: yup.number().positive(),
+      Your_sports: yup.number().positive(),
+      Your_water: yup.number().positive(),
     })
     .required();
 
@@ -109,20 +118,21 @@ export const UserSettingsForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  // const onSubmit = newData => console.log(newData);
 
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
         <label htmlFor="avatar" className={s.imgWrap}>
           <input
+            {...register('file')}
             className={s.hidden}
             type="file"
             ref={filePicker}
             id="avatar"
-            accept="image/*,.png,.jpg,.gif,.web"
+            // accept="image/*,.png,.jpg,.gif,.web"
             onChange={handleUpload}
           />
+
           {selectedFile ? (
             <img src={selectedFile} className={s.avatar} alt="preview" />
           ) : (
@@ -137,21 +147,24 @@ export const UserSettingsForm = () => {
           </button>
         </label>
       </div>
+      <p className={s.errorYup}>{errors.file?.message}</p>
 
       <div className={s.wrapUserData}>
         <div className={s.wrapCurrentUser}>
           <label className={s.labelImportanGender}>
-            {' '}
             {t('UserSettingsForm.yourGenderLabel')}
           </label>
+
+          <p className={s.errorYup}>{errors.gender?.message}</p>
+
           <div className={s.genderWrap}>
             <div className={s.gender}>
               <input
                 type="radio"
                 id="woman"
                 name="gender"
-                value="woman"
-                onChange={handleGenderChange}
+                value="female"
+                {...register('gender')}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -165,8 +178,8 @@ export const UserSettingsForm = () => {
                 type="radio"
                 id="man"
                 name="gender"
-                value="man"
-                onChange={handleGenderChange}
+                value="male"
+                {...register('gender')}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -181,10 +194,6 @@ export const UserSettingsForm = () => {
             <label htmlFor="nameUser" className={s.labelImportan}>
               {t('UserSettingsForm.yourNameLabel')}
             </label>
-
-            {/* {errors.nameUser && (
-              <p className={s.errorYup}>{errors.nameUser.message}</p>
-            )} */}
 
             <input
               {...register('nameUser')}
@@ -209,7 +218,7 @@ export const UserSettingsForm = () => {
               placeholder={t('UserSettingsForm.placeEmail')}
             />
             <p className={s.errorYup}>{errors.Email?.message}</p>
-            {/* <p>{errors.Email?.message}</p> */}
+            <p>{errors.Email?.message}</p>
           </div>
 
           <div className={s.dailyNormaWrap}>
@@ -249,7 +258,7 @@ export const UserSettingsForm = () => {
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
-              placeholder="1kl"
+              placeholder="1"
             />
             <p className={s.errorYup}>{errors.Your_weight?.message}</p>
 
@@ -263,7 +272,7 @@ export const UserSettingsForm = () => {
               id="Your_sports"
               value={data.sportTime || ''}
               onChange={e => setData({ ...data, sportTime: e.target.value })}
-              placeholder="1min"
+              placeholder="1"
             />
             <p className={s.errorYup}>{errors.Your_sports?.message}</p>
           </div>
@@ -284,7 +293,7 @@ export const UserSettingsForm = () => {
               id="Your_water"
               value={data.dailyWater || ''}
               onChange={e => setData({ ...data, dailyWater: e.target.value })}
-              placeholder="1l"
+              placeholder="1"
             />
             <p className={s.errorYup}>{errors.Your_water?.message}</p>
           </div>
