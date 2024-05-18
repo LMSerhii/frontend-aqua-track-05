@@ -8,10 +8,10 @@ import Button from '../../../shared/components/Button/Button.jsx';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG.jsx';
 import { WaterModal } from '../../modals/WaterModal/WaterModal.jsx';
 import { Modal } from '../../../shared/components/Modal/Modal.jsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../../redux/auth/authSlice.js';
-import { useGetAllEntyiesByDayMutation } from '../../../redux/tracker/trackerApi.js';
+import { useGetDailyTrackQuery } from '../../../redux/tracker/trackerApi.js';
 import { selectDate } from '../../../redux/date/dateSlice.js';
 import { useTranslation } from 'react-i18next';
 
@@ -19,29 +19,16 @@ export const WaterMainInfo = () => {
   const [activeAdd, setActiveAdd] = useState(false);
   const dayOfWeek = useSelector(selectDate);
   const { t } = useTranslation();
-
-  const [getAllEntyiesByDay, { data }] =
-    useGetAllEntyiesByDayMutation(dayOfWeek);
-
-  useEffect(() => {
-    getAllEntyiesByDay(dayOfWeek);
-  }, [getAllEntyiesByDay, dayOfWeek]);
-
-  const water = data && data.data;
+  const width = window.innerWidth;
+  const { data } = useGetDailyTrackQuery(dayOfWeek);
+  const getDailyWater = useSelector(selectDailyWater);
 
   let drinkedWater = 0;
 
-  water?.forEach(item => (drinkedWater += item.amount));
+  data?.forEach(item => (drinkedWater += item.amount));
 
-  const width = window.innerWidth;
-  const getDailyWater = useSelector(selectDailyWater);
-  const dailyWater =
-    getDailyWater === null ? '1.5L' : `${getDailyWater / 1000}`;
-
-  const dailyWaterMl = dailyWater.split('L')[0] * 1000;
-
-  const percentage = (drinkedWater / dailyWaterMl) * 100;
-
+  const percentage = (drinkedWater / getDailyWater) * 100;
+  
   return (
     <div className={css.bottle_page_wrapper}>
       <picture className={css.bottle_page_img}>
@@ -73,7 +60,7 @@ export const WaterMainInfo = () => {
 
       <div className={css.bottle_page_norm_wrapper}>
         <span className={css.bottle_page_norm_wrapper_value}>
-          {Number(dailyWater).toFixed(2)} {t('WaterMainInfo.liters')}
+          {getDailyWater} {t('WaterMainInfo.liters')}
         </span>
         <span className={css.bottle_page_norm_wrapper_text}>
           {t('WaterMainInfo.normaDaily')}
@@ -91,7 +78,7 @@ export const WaterMainInfo = () => {
             width={width < 768 ? '14' : '21'}
             height={width < 768 ? '14' : '21'}
             svgId={'plus'}
-          />{' '}
+          />
           {t('WaterMainInfo.addWater')}
         </Button>
       </div>

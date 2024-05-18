@@ -16,10 +16,7 @@ export const DeleteWaterModal = ({ setActive, entry }) => {
   };
 
   const handleClick = async () => {
-    const response = await deleteEntry(entry);
-    const newEntry = response.data.data.amounts;
-
-    console.log('newEntry', newEntry);
+    deleteEntry(entry);
   };
 
   return (

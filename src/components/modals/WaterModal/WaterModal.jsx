@@ -10,8 +10,7 @@ export const WaterModal = ({
   subTitle,
   setActive,
   operation,
-  id,
-  setAmountData,
+  entry,
 }) => {
   const [count, setCount] = useState(50);
   const [waterValue, setWaterValue] = useState(count.toString());
@@ -93,11 +92,10 @@ export const WaterModal = ({
 
         <WaterForm
           operation={operation}
-          id={id}
+          entry={entry}
           handleWaterChange={handleWaterChange}
           waterValue={waterValue}
           setActive={setActive}
-          setAmountData={setAmountData}
         />
       </div>
     </div>

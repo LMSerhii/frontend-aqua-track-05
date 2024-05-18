@@ -1,58 +1,59 @@
 // CalendarPagination.jsx
-import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
-
-import css from './CalendarPagination.module.css';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { setDate } from '../../../redux/date/dateSlice';
+import { format, parse } from 'date-fns';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectMonth, setMonth } from '../../../redux/date/dateSlice';
 
-export const CalendarPagination = ({
-  selectedDate,
-  setSelectedDate,
-  setIsActive,
-  isActive,
-}) => {
+import s from './CalendarPagination.module.css';
+
+export const CalendarPagination = ({ setIsActive, isActive }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+
+  const date = useSelector(selectMonth);
+  console.log(date);
+
+  const parsedDate = parse(date, 'MM-yyyy', new Date());
+  console.log(parsedDate);
 
   const goToPrevoiusMonth = () => {
     const prevoiusMonth = new Date(
-      selectedDate.getFullYear(),
-      selectedDate.getMonth() - 1,
+      parsedDate.getFullYear(),
+      parsedDate.getMonth() - 1,
       1
     );
-
-    setSelectedDate(prevoiusMonth);
-    dispatch(setDate('01-04-2024'));
+    const month = format(prevoiusMonth, 'MM-yyyy');
+    dispatch(setMonth(month));
   };
-  const { t } = useTranslation();
 
   const goToNextMonth = () => {
     const nextMonth = new Date(
-      selectedDate.getFullYear(),
-      selectedDate.getMonth() + 1,
+      parsedDate.getFullYear(),
+      parsedDate.getMonth() + 1,
       1
     );
-    setSelectedDate(nextMonth);
-    dispatch(setDate('01-06-2024'));
+    const month = format(nextMonth, 'MM-yyyy');
+    dispatch(setMonth(month));
   };
 
-  const translatedMonth = t(`months.${selectedDate.getMonth()}`);
+  const translatedMonth = t(`months.${parsedDate.getMonth()}`);
 
   return (
-    <div className={css.wrapper}>
-      <Button onClick={goToPrevoiusMonth} className={css.btn}>
-        <BsChevronLeft size="12" className={css.arrow} />
+    <div className={s.wrapper}>
+      <Button onClick={goToPrevoiusMonth} className={s.btn}>
+        <BsChevronLeft size="12" className={s.arrow} />
       </Button>
-      <span className={css.span}>
-        {translatedMonth}, {selectedDate.getFullYear()}
+      <span className={s.span}>
+        {translatedMonth}, {parsedDate.getFullYear()}
       </span>
-      <Button onClick={goToNextMonth} className={css.btn}>
-        <BsChevronRight size="12" className={css.arrow} />
+      <Button onClick={goToNextMonth} className={s.btn}>
+        <BsChevronRight size="12" className={s.arrow} />
       </Button>
-      <Button className={css.pieChart} onClick={() => setIsActive(!isActive)}>
-        <svg width="20" height="20" className={css.pieIcon}>
+      <Button className={s.pieChart} onClick={() => setIsActive(!isActive)}>
+        <svg width="20" height="20" className={s.pieIcon}>
           <use xlinkHref={`${sprite}#pie_chart`}></use>
         </svg>
       </Button>

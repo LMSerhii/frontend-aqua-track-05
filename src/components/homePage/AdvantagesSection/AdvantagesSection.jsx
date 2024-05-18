@@ -7,12 +7,19 @@ import RectangleImage2x from '../../../shared/images/homePage/Rectangle2x-min.pn
 import RectangleImage22x from '../../../shared/images/homePage/Rectangle22x-min.png';
 import RectangleImage32x from '../../../shared/images/homePage/Rectangle32x-min.png';
 
-import male from '../../../shared/images/homePage/Male Memojis-min.png';
-import male2 from '../../../shared/images/homePage/Male2 Memojis-min.png';
-import male3 from '../../../shared/images/homePage/Male3Memojis-min.png';
-import male2x from '../../../shared/images/homePage/Male2x-min.png';
-import male22x from '../../../shared/images/homePage/Male22x-min.png';
-import male32x from '../../../shared/images/homePage/Male32x-min.png';
+// import male from '../../../shared/images/homePage/Male Memojis-min.png';
+// import male2 from '../../../shared/images/homePage/Male2 Memojis-min.png';
+// import male3 from '../../../shared/images/homePage/Male3Memojis-min.png';
+// import male2x from '../../../shared/images/homePage/Male2x-min.png';
+// import male22x from '../../../shared/images/homePage/Male22x-min.png';
+// import male32x from '../../../shared/images/homePage/Male32x-min.png';
+
+import male1 from '../../../shared/images/homepage2/male1.png';
+import male2x from '../../../shared/images/homepage2/male1@2x.png';
+import male2 from '../../../shared/images/homepage2/male2.png';
+import male22x from '../../../shared/images/homepage2/male2@2x.png';
+import male3 from '../../../shared/images/homepage2/male3.png';
+import male32x from '../../../shared/images/homepage2/male3@2x.png';
 
 import { useTranslation } from 'react-i18next';
 
@@ -33,9 +40,9 @@ export default function AdvantagesSection() {
         <ul className={css.photo_list}>
           <li className={css.list_items}>
             <Picture
-              mob={male}
-              tab={male}
-              desc={male}
+              mob={male1}
+              tab={male1}
+              desc={male1}
               mob2x={male2x}
               tab2x={male2x}
               desc2x={male2x}
@@ -77,14 +84,14 @@ export default function AdvantagesSection() {
           <li className={css.item_trk}>
             <div className={css.flex}>
               <div className={css.cycle}></div>
-              <p className={css.text}>{t('advantagesSection.ourParag')}</p>
+              <p className={css.text}>{t('advantagesSection.textHabit')}</p>
             </div>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.happySpan')}</p>
+            <p className={css.text2}>{t('advantagesSection.textView')}</p>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.customersParag')}</p>
+            <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
           </li>
         </ul>
       </div>
