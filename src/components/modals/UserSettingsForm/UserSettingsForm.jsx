@@ -23,8 +23,8 @@ export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
 
-  const [userWaterWoman, setUserWaterWoman] = useState(null);
-  const [userWaterMan, setUserWaterMan] = useState(null);
+  // const [userWaterWoman, setUserWaterWoman] = useState(null);
+  const [edit, setEdit] = useState(false);
 
   const [data, setData] = useState({
     avatar: userData.avatar,
@@ -36,17 +36,7 @@ export const UserSettingsForm = () => {
     dailyWater: userData.dailyWater,
   });
 
-  const dailyWaterUserEdit = () => {
-    if (data.gender === data.gender['women']) {
-      // V = (M * 0, 04) + (T * 0, 6);
-      const dailyWaterman = data.weight * 0.03 + data.sportTime * 0.6;
-      console.log(dailyWaterman);
-      // setUserWaterWoman(dailyWaterman);
-    }
-    // V =(M * 0, 03) + (T * 0, 4);
-    const dailyWaterwoman = data.weight * 0.04 + data.sportTime * 0.4;
-    setUserWaterMan(dailyWaterwoman);
-  };
+  console.log(data.gender);
 
   const dispatch = useDispatch();
 
@@ -72,8 +62,20 @@ export const UserSettingsForm = () => {
     }
   };
 
+  const handleEditWater = e => {
+    setData({ ...data, dailyWater: e.target.value });
+    setEdit(true);
+  };
+
   const handleSubmitSetting = () => {
     try {
+      const gender = true;
+      const currentDailyWater = edit
+        ? data.dailyWater
+        : gender
+        ? Math.round((data.weight * 0.03 + data.sportTime * 0.6) * 1000)
+        : Math.round((data.weight * 0.04 + data.sportTime * 0.4) * 1000);
+
       const formData = new FormData();
 
       const photo = uploaded ? uploaded : defaultAvatar;
@@ -81,11 +83,13 @@ export const UserSettingsForm = () => {
       const dataUser = {
         ...data,
         avatar: photo,
+        dailyWater: currentDailyWater,
       };
 
       formData.append('dataUser', JSON.stringify(dataUser));
+
       dispatch(updateUser(dataUser));
-      console.log(formData);
+      // console.log(formData);
     } catch (error) {
       console.error('Error dowload:', error);
     }
@@ -273,13 +277,8 @@ export const UserSettingsForm = () => {
 
           <div className={s.requiredWater}>
             <p>{t('UserSettingsForm.requiredWater')}</p>
-            {data.gender === data.gender['women'] ? (
-              <p className={s.formula}>
-                {userWaterWoman || userData.dailyWater}
-              </p>
-            ) : (
-              <p className={s.formula}>{userWaterMan || userData.dailyWater}</p>
-            )}
+
+            <p className={s.formula}>{`${userData.dailyWater / 1000} L`}</p>
           </div>
 
           <div className={s.waterUser}>
@@ -290,8 +289,9 @@ export const UserSettingsForm = () => {
               {...register('Your_water')}
               type="number"
               id="Your_water"
-              value={data.dailyWater || ''}
-              onChange={e => setData({ ...data, dailyWater: e.target.value })}
+              value={data.dailyWater}
+              // onChange={e => setData({ ...data, dailyWater: e.target.value })}
+              onChange={handleEditWater}
               placeholder="1"
               style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
