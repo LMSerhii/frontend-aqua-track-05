@@ -152,3 +152,25 @@ export const refreshToken = createAsyncThunk(
     }
   }
 );
+
+export const getAllUsers = createAsyncThunk(
+  'auth/getUsers',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAuthHeader(persistedToken);
+
+      const response = await axios.get(`${USERS}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

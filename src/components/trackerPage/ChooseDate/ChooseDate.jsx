@@ -15,24 +15,26 @@ const ChooseDate = () => {
 
   const [day, month] = formattedDate.split(',');
 
-  const months = [
-    t('ChooseDate.january'),
-    t('ChooseDate.february'),
-    t('ChooseDate.march'),
-    t('ChooseDate.april'),
-    t('ChooseDate.may'),
-    t('ChooseDate.june'),
-    t('ChooseDate.july'),
-    t('ChooseDate.august'),
-    t('ChooseDate.september'),
-    t('ChooseDate.october'),
-    t('ChooseDate.november'),
-    t('ChooseDate.december'),
-  ];
+  const monthKey = month.trim().toLowerCase();
+
+  const months = {
+    january: t('ChooseDate.january'),
+    february: t('ChooseDate.february'),
+    march: t('ChooseDate.march'),
+    april: t('ChooseDate.april'),
+    may: t('ChooseDate.may'),
+    june: t('ChooseDate.june'),
+    july: t('ChooseDate.july'),
+    august: t('ChooseDate.august'),
+    september: t('ChooseDate.september'),
+    october: t('ChooseDate.october'),
+    november: t('ChooseDate.november'),
+    december: t('ChooseDate.december'),
+  };
 
   return (
     <p className={s.date}>
-      {date === today ? t('ChooseDate.today') : formattedDate}
+      {date === today ? t('ChooseDate.today') : `${day}, ${months[monthKey]}`}
     </p>
   );
 };
