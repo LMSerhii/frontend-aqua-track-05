@@ -7,11 +7,15 @@ export default function Logo() {
 
   return (
     <div>
-      { 
-        !isLoggedIn ? 
-        <NavLink to='/' className={css.logo}>AQUATRACK</NavLink> : 
-        <NavLink to='tracker' className={css.logo}>AQUATRACK</NavLink>
-      }
+      {!isLoggedIn ? (
+        <NavLink to="/" className={css.logo}>
+          AQUATRACK
+        </NavLink>
+      ) : (
+        <NavLink to="tracker" className={css.logo}>
+          AQUATRACK
+        </NavLink>
+      )}
     </div>
   );
 }
