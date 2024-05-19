@@ -258,11 +258,11 @@ export const UserSettingsForm = () => {
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
-              placeholder="1"
+              placeholder="kl"
               style={{ borderColor: errors.Your_weight ? 'red' : 'initial' }}
             />
             {errors.Your_weight && (
-              <p className={s.errorYup}>{errors.Your_weight.message}</p>
+              <p className={s.errorYup}>Number must be positive and integer</p>
             )}
 
             <label htmlFor="Your_sports" className={s.labelNotImportan}>
@@ -275,11 +275,11 @@ export const UserSettingsForm = () => {
               id="Your_sports"
               value={data.sportTime || ''}
               onChange={e => setData({ ...data, sportTime: e.target.value })}
-              placeholder="1"
+              placeholder="h"
               style={{ borderColor: errors.Your_sports ? 'red' : 'initial' }}
             />
-            {errors.sportTime && (
-              <p className={s.errorYup}>{errors.sportTime.message}</p>
+            {errors.Your_sports && (
+              <p className={s.errorYup}>Number must be positive and integer</p>
             )}
           </div>
 
@@ -300,11 +300,11 @@ export const UserSettingsForm = () => {
               value={data.dailyWater}
               // onChange={e => setData({ ...data, dailyWater: e.target.value })}
               onChange={handleEditWater}
-              placeholder="1"
+              placeholder="ml"
               style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
             {errors.Your_water && (
-              <p className={s.errorYup}>{errors.Your_water.message}</p>
+              <p className={s.errorYup}>Number must be positive and integer</p>
             )}
           </div>
         </div>
