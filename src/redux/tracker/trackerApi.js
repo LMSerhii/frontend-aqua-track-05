@@ -2,18 +2,56 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../../routes';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
+import { updateToken, updateTokenError } from '../auth/authSlice';
 
-export const trackerApi = createApi({
-  reducerPath: 'trackers',
-  baseQuery: fetchBaseQuery({
+const baseQueryWithReauth = async (args, api, extraOptions) => {
+  const { getState, dispatch } = api;
+  let result = await fetchBaseQuery({
     baseUrl: BASE_URL,
     prepareHeaders(headers, { getState }) {
       const token = getState().auth.token;
-
-      if (token) headers.set(`Authorization`, `Bearer ${token}`);
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
     },
-  }),
+  })(args, api, extraOptions);
+  if (
+    result.error &&
+    (result.error.status === 401 || result.error.status === 500)
+  ) {
+    const refreshToken = getState().auth.refreshToken;
+    try {
+      const refreshResult = await fetchBaseQuery({
+        baseUrl: `${BASE_URL}/users/refresh`,
+        method: 'POST',
+        body: { refreshToken },
+      })({}, api, extraOptions);
+      if (refreshResult.data) {
+        dispatch(updateToken(refreshResult.data));
+        result = await fetchBaseQuery({
+          baseUrl: BASE_URL,
+          prepareHeaders(headers, { getState }) {
+            const token = getState().auth.token;
+            if (token) {
+              headers.set('Authorization', `Bearer ${token}`);
+            }
+            return headers;
+          },
+        })(args, api, extraOptions);
+      } else {
+        dispatch(updateTokenError({}));
+      }
+    } catch (refreshError) {
+      dispatch(updateTokenError({}));
+    }
+  }
+  return result;
+};
 
+export const trackerApi = createApi({
+  reducerPath: 'trackers',
+  baseQuery: baseQueryWithReauth,
   tagTypes: ['Trackers'],
   endpoints: builder => ({
     getDailyTrack: builder.query({
