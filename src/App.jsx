@@ -16,7 +16,7 @@ import {
   ResetPasswordPage,
   SuccessVerifyPage,
 } from './pages';
-import { setDateFromGoogle } from './redux/auth/authSlice';
+import { setDateFromGoogle, setToken } from './redux/auth/authSlice';
 import defaultAvatar from './shared/images/homePage/Rectangle22x-min.png';
 import { routes } from './routes';
 import { useAuth } from './hooks';
@@ -30,33 +30,35 @@ export default function App() {
     const searchParams = new URLSearchParams(location.search);
 
     const email = searchParams.get('email');
-
     let name = searchParams.get('email');
     name = name ? name : email && email.split('@')[0];
 
     const token = searchParams.get('token');
-    const refreshedToken = searchParams.get('refreshToken');
+    const refreshToken = searchParams.get('refreshToken');
 
-    if (token && refreshedToken) {
+    if (token && refreshToken) {
       dispatch(
         setDateFromGoogle({
           user: {
             name,
             email,
-            avatar: defaultAvatar,
+            avatarURL: defaultAvatar,
           },
           token,
-          refreshedToken,
+          refreshToken,
         })
       );
-    }
-
-    const fetchData = async () => {
-      await dispatch(refreshToken());
+      try {
+        dispatch(setToken(token));
+        dispatch(refreshUser());
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
       dispatch(refreshUser());
-    };
-    fetchData(); 
+    }
   }, [location.search, dispatch]);
+
 
   return isRefreshing ? (
     <Loader />

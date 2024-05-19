@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL, routes } from '../../routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateToken, updateTokenError } from './authSlice';
 
 const {
   USERS,
@@ -24,24 +26,31 @@ const clearAuthHeader = () => {
 };
 
 axios.interceptors.response.use(
-  response => response,
-  async error => {
-    if (error.response.status === 401) {
-      const refreshToken = localStorage.getItem('refreshToken');
-      console.log('refreshToken', refreshToken);
-      if (refreshToken) {
-        try {
-          const { data } = await axios.post(`${USERS}/refresh`, {
-            refreshToken,
-          });
-          console.log('data', data);
-          setAuthHeader(data.token);
-          localStorage.setItem('refreshToken', data.refreshToken);
+  function (response) {
+    console.log(response);
+    return response;
+  },
+  async function (error) {
+    if (error.response.status === 500 || error.response.status === 401) {
+  
+      const refreshToken = localStorage.getItem('');
 
-          return axios(error.config);
-        } catch (refreshError) {
-          console.error('cant upgrade refreshError ', refreshError);
-        }
+      console.log('refreshToken', refreshToken);
+      try {
+        const res = await axios.post('/users/refresh', {
+          refreshToken: refreshToken,
+        });
+        setAuthHeader(res.data.token);
+
+        const dispatch = useDispatch();
+
+        dispatch(updateToken(res.data));
+
+        return axios(error.config);
+      } catch (error) {
+        const dispatch = useDispatch();
+        dispatch(updateTokenError({}));
+        return Promise.reject(error);
       }
     }
     return Promise.reject(error);
@@ -78,9 +87,9 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post(`${USERS}${SIGNIN}`, credentials);
       setAuthHeader(response.data.token);
-      localStorage.setItem('refreshToken', response.data.refreshToken);
+      // localStorage.setItem('refreshToken', response.data.refreshToken);
+      // console.log('response.data', response.data.refreshToken);
       await thunkAPI.dispatch(fetchCurrentUser());
-
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data.message);
@@ -177,12 +186,10 @@ export const refreshToken = createAsyncThunk(
     if (refreshTokens === null) {
       return thunkAPI.rejectWithValue('Unable to refresh token');
     }
-
     try {
       const response = await axios.post(`${USERS}/refresh`, {
         refreshToken: refreshTokens,
       });
-
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
