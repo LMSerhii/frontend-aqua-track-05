@@ -23,6 +23,31 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
+axios.interceptors.response.use(
+  response => response,
+  async error => {
+    if (error.response.status === 401) {
+      const refreshToken = localStorage.getItem('refreshToken');
+      console.log('refreshToken', refreshToken);
+      if (refreshToken) {
+        try {
+          const { data } = await axios.post(`${USERS}/refresh`, {
+            refreshToken,
+          });
+          console.log('data', data);
+          setAuthHeader(data.token);
+          localStorage.setItem('refreshToken', data.refreshToken);
+
+          return axios(error.config);
+        } catch (refreshError) {
+          console.error('cant upgrade refreshError ', refreshError);
+        }
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
@@ -53,7 +78,7 @@ export const logIn = createAsyncThunk(
     try {
       const response = await axios.post(`${USERS}${SIGNIN}`, credentials);
       setAuthHeader(response.data.token);
-
+      localStorage.setItem('refreshToken', response.data.refreshToken);
       await thunkAPI.dispatch(fetchCurrentUser());
 
       return response.data;
@@ -62,7 +87,6 @@ export const logIn = createAsyncThunk(
     }
   }
 );
-
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
