@@ -10,6 +10,7 @@ import {
   forgotPassword,
   resetPassword,
   refreshToken,
+  fetchCurrentUser,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -36,11 +37,31 @@ const authSlice = createSlice({
   reducers: {
     setDateFromGoogle(state, action) {
       state.user = action.payload.user;
-
       state.token = action.payload.token;
       state.refreshToken = action.payload.refreshedToken;
 
       state.isLoggedIn = true;
+    },
+    setToken(state, action) {
+      state.token = action.payload;
+    },
+    updateToken(state, action) {
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+    },
+    updateTokenError(state, action) {
+      state.user = {
+        name: null,
+        email: null,
+        avatarURL: null,
+        gender: null,
+        weight: null,
+        sportTime: null,
+        dailyWater: null,
+      };
+      state.token = null;
+      state.refreshToken = null;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: builder => {
@@ -153,5 +174,6 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
-
+export const { setToken } = authSlice.actions;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const { updateToken, updateTokenError } = authSlice.actions;

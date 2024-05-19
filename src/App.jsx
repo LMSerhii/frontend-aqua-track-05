@@ -15,7 +15,7 @@ import {
   ResetPasswordPage,
   SuccessVerifyPage,
 } from './pages';
-import { setDateFromGoogle } from './redux/auth/authSlice';
+import { setDateFromGoogle, setToken } from './redux/auth/authSlice';
 import defaultAvatar from './shared/images/homePage/Rectangle22x-min.png';
 import { routes } from './routes';
 import { useAuth } from './hooks';
@@ -31,9 +31,9 @@ export default function App() {
 
     const email = searchParams.get('email');
     const token = searchParams.get('token');
-    const refreshedToken = searchParams.get('refreshToken');
+    const refreshToken = searchParams.get('refreshToken');
 
-    if (email && token && refreshedToken) {
+    if (email && token && refreshToken) {
       const name = searchParams.get('name') || email.split('@')[0];
 
       dispatch(
@@ -41,10 +41,10 @@ export default function App() {
           user: {
             name,
             email,
-            avatar: defaultAvatar,
+            avatarURL: defaultAvatar,
           },
           token,
-          refreshedToken,
+          refreshToken,
         })
       );
     }
