@@ -214,7 +214,6 @@ export const UserSettingsForm = () => {
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
               style={{ borderColor: errors.Email ? 'red' : 'initial' }}
-              disabled
             />
 
             {errors.Email && (
