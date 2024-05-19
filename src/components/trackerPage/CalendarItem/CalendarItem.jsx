@@ -7,6 +7,11 @@ import s from './CalendarItem.module.css';
 
 export const CalendarItem = ({ day, amount }) => {
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(setDate(date));
+  };
+
   const isFull = amount >= 100;
 
   const buildLinkClass = clsx(s.dayBtn, isFull ? s.fullColor : s.notfullColor);
@@ -16,10 +21,7 @@ export const CalendarItem = ({ day, amount }) => {
 
   return (
     <>
-      <Button
-        onClick={() => dispatch(setDate(date))}
-        className={buildLinkClass}
-      >
+      <Button onClick={handleClick} className={buildLinkClass}>
         {day}
       </Button>
     </>

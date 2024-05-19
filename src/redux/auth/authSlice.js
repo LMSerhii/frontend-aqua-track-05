@@ -10,7 +10,6 @@ import {
   forgotPassword,
   resetPassword,
   refreshToken,
-  fetchCurrentUser,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -38,18 +37,21 @@ const authSlice = createSlice({
     setDateFromGoogle(state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.refreshToken = action.payload.refreshedToken;
+      state.refreshToken = action.payload.refreshToken;
 
       state.isLoggedIn = true;
     },
+
     setToken(state, action) {
       state.token = action.payload;
     },
+
     updateToken(state, action) {
       state.token = action.payload.token;
       state.refreshToken = action.payload.refreshToken;
     },
-    updateTokenError(state, action) {
+
+    updateTokenError(state) {
       state.user = {
         name: null,
         email: null,
@@ -166,7 +168,8 @@ const authPersistConfig = {
   whitelist: ['token', 'refreshToken'],
 };
 
-export const { setDateFromGoogle } = authSlice.actions;
+export const { updateToken, updateTokenError, setToken, setDateFromGoogle } =
+  authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
@@ -174,6 +177,4 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
-export const { setToken } = authSlice.actions;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
-export const { updateToken, updateTokenError } = authSlice.actions;

@@ -15,10 +15,6 @@ export const DeleteWaterModal = ({ setActive, entry }) => {
     }
   };
 
-  const handleClick = async () => {
-    deleteEntry(entry);
-  };
-
   return (
     <div className={s.content} onClick={handleCloseModal}>
       <div ref={modalRef} className={s.modal}>
@@ -35,11 +31,13 @@ export const DeleteWaterModal = ({ setActive, entry }) => {
           Are you sure you want to delete the entry?
         </p>
         <div className={s.wrapBtn}>
-          <Button classname={s.btnDelete} onClick={handleClick}>
+          <Button classname={s.btnDelete} onClick={() => deleteEntry(entry)}>
             Delete
           </Button>
 
-          <Button classname={s.btnCancel}>Cancel</Button>
+          <Button classname={s.btnCancel} onClick={() => setActive(false)}>
+            Cancel
+          </Button>
         </div>
       </div>
     </div>
