@@ -96,6 +96,8 @@ export const WaterModal = ({
           handleWaterChange={handleWaterChange}
           waterValue={waterValue}
           setActive={setActive}
+          setCount={setCount}
+          setWaterValue={setWaterValue}
         />
       </div>
     </div>

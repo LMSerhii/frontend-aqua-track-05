@@ -104,7 +104,12 @@ export const UserSettingsForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(validationSchema) });
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      gender: userData.gender,
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
@@ -151,8 +156,8 @@ export const UserSettingsForm = () => {
                 id="woman"
                 name="gender"
                 value="true"
-                // {...register('gender')}
                 {...register('gender', { required: true })}
+                defaultChecked={userData.gender === true}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -167,7 +172,8 @@ export const UserSettingsForm = () => {
                 id="man"
                 name="gender"
                 value="false"
-                {...register('gender')}
+                {...register('gender', { required: true })}
+                defaultChecked={userData.gender === false}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}

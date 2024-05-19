@@ -54,16 +54,16 @@ export const trackerApi = createApi({
   baseQuery: baseQueryWithReauth,
   tagTypes: ['Trackers'],
   endpoints: builder => ({
+
     getDailyTrack: builder.query({
       query: date => `/water/daily_track?date=${date}`,
       providesTags: ['Trackers'],
     }),
-    /* створюю для water/month ***************/
+
     getAllEntriesByMonth: builder.query({
       query: month => `/water/month?month=${month}`,
-      // providesTags: ['Trackers'],
     }),
-    /*********************/
+    
     createEntry: builder.mutation({
       query: body => ({
         url: `/water/add`,
@@ -94,7 +94,6 @@ export const trackerApi = createApi({
 });
 
 export const {
-  useGetAllEntyiesByDayMutation,
   useGetAllEntriesByMonthQuery,
   useGetDailyTrackQuery,
   useCreateEntryMutation,

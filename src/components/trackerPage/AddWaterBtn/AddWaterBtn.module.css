@@ -4,6 +4,8 @@
   gap: 10px;
   background-color: transparent;
   padding: 0;
+  flex-grow: 1;
+  justify-content: flex-end;
 
   &:hover,
   &:focus {
