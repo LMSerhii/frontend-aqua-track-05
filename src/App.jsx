@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { refreshToken, refreshUser } from './redux/auth/operations';
 import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 import Loader from './shared/components/Loader/Loader';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -20,24 +19,23 @@ import { setDateFromGoogle } from './redux/auth/authSlice';
 import defaultAvatar from './shared/images/homePage/Rectangle22x-min.png';
 import { routes } from './routes';
 import { useAuth } from './hooks';
+import { refreshToken, refreshUser } from './redux/auth/operations';
 
 export default function App() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
-  useEffect(() => {
+  const handleGoogleAuth = useCallback(() => {
     const searchParams = new URLSearchParams(location.search);
 
     const email = searchParams.get('email');
-
-    let name = searchParams.get('email');
-    name = name ? name : email && email.split('@')[0];
-
     const token = searchParams.get('token');
     const refreshedToken = searchParams.get('refreshToken');
 
-    if (token && refreshedToken) {
+    if (email && token && refreshedToken) {
+      const name = searchParams.get('name') || email.split('@')[0];
+
       dispatch(
         setDateFromGoogle({
           user: {
@@ -50,13 +48,17 @@ export default function App() {
         })
       );
     }
-
-    const fetchData = async () => {
-      // dispatch(refreshToken());
-      dispatch(refreshUser());
-    };
-    fetchData();
   }, [location.search, dispatch]);
+
+  const fetchData = useCallback(async () => {
+    dispatch(refreshToken());
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  useEffect(() => {
+    handleGoogleAuth();
+    fetchData();
+  }, [handleGoogleAuth, fetchData]);
 
   return isRefreshing ? (
     <Loader />
