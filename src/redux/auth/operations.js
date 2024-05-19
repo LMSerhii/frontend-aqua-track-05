@@ -31,14 +31,15 @@ axios.interceptors.response.use(
     return response;
   },
   async function (error) {
+
     if (error.response.status === 500 || error.response.status === 401) {
   
-      const refreshToken = localStorage.getItem('');
-
-      console.log('refreshToken', refreshToken);
+      const refreshToken = localStorage.getItem('persist:auth');
+      const refreshedToken = JSON.parse(refreshToken).refreshToken;
+      console.log('refreshToken', refreshedToken);
       try {
         const res = await axios.post('/users/refresh', {
-          refreshToken: refreshToken,
+          refreshToken: refreshedToken,
         });
         setAuthHeader(res.data.token);
 
