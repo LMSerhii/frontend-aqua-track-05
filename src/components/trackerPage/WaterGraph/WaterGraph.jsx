@@ -20,6 +20,12 @@ export const WaterGraph = () => {
     { date: '22', Water: 2 },
   ];
 
+  const error = console.error;
+  console.error = (...args) => {
+    if (/defaultProps/.test(args[0])) return;
+    error(...args);
+  };
+
   return (
     <div style={{ paddingTop: wrapperPadding }}>
       <AreaChart width={chartWidth} height={chartHeight} data={data}>
