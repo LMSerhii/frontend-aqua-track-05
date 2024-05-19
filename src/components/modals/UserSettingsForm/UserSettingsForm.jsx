@@ -151,7 +151,6 @@ export const UserSettingsForm = () => {
                 id="woman"
                 name="gender"
                 value="true"
-                // {...register('gender')}
                 {...register('gender', { required: true })}
               />
               <label
