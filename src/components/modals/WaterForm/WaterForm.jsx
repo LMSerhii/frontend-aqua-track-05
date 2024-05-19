@@ -3,7 +3,7 @@ import Button from '../../../shared/components/Button/Button';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { currentTime } from '../../../shared/helpers/dateServices';
 import {
   useCreateEntryMutation,
@@ -19,10 +19,19 @@ export const WaterForm = ({
   operation,
   setActive,
   entry,
+  setCount,
+  setWaterValue,
 }) => {
   const date = useSelector(selectDate);
   const [time, setTime] = useState(currentTime);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (operation === 'edit') {
+      setCount(entry.amount);
+      setWaterValue(entry.amount.toString());
+    }
+  }, [operation, entry, setCount, setWaterValue]);
 
   const schema = yup.object().shape({
     water: yup
@@ -56,6 +65,8 @@ export const WaterForm = ({
         createEntry(data1);
 
         setActive(false);
+        setCount(50);
+        setWaterValue('50');
       } else {
         const data2 = {
           date: date,
