@@ -81,7 +81,7 @@
   "WaterMainInfo": {
     "normaDaily": "Моя щоденна норма",
     "addWater": "Додати воду",
-    "liters": "Л",
+    "liters": "л",
     "subTitle": "Виберіть значення",
     "title": "Додати воду"
   },
@@ -121,7 +121,8 @@
     "september": "Вересень",
     "october": "Жовтень",
     "november": "Листопад",
-    "december": "Грудень"
+    "december": "Грудень",
+    "today": "Сьогодні"
   },
 
   "UserSettingsForm": {

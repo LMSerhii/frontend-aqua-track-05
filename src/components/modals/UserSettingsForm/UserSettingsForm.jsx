@@ -1,24 +1,30 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useState, useRef } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 
 import { sprite } from '../../../shared/icons/index';
-import s from './UserSettingsForm.module.css';
 import Button from '../../../shared/components/Button/Button';
-import { useState, useRef } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSlice';
 import { updateUser } from '../../../redux/auth/operations';
-import { useTranslation } from 'react-i18next';
 import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
+import { uploadCloudinary } from '../../../shared/helpers/handleUpload';
+import { validationSchema } from '../../../shared/helpers/validationSchema';
+
+import s from './UserSettingsForm.module.css';
 
 export const UserSettingsForm = () => {
   const { t } = useTranslation();
+
   const userData = useSelector(selectUser);
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
+
+  // const [userWaterWoman, setUserWaterWoman] = useState(null);
+  const [edit, setEdit] = useState(false);
 
   const [data, setData] = useState({
     avatar: userData.avatar,
@@ -30,7 +36,10 @@ export const UserSettingsForm = () => {
     dailyWater: userData.dailyWater,
   });
 
+  // console.log(data.gender);
+
   const dispatch = useDispatch();
+
   const filePicker = useRef(null);
 
   const handleUpload = async event => {
@@ -44,92 +53,74 @@ export const UserSettingsForm = () => {
         return;
       }
 
-      const formData = new FormData();
-      formData.append('file', file);
+      const uploadFile = await uploadCloudinary(file);
+      // console.log('uploadFile', uploadFile);
 
-      formData.append('upload_preset', 'ylx3q541');
-
-      await fetch('https://api.cloudinary.com/v1_1/dci7ufqsp/image/upload', {
-        method: 'post',
-        body: formData,
-      })
-        .then(response => response.json())
-        .then(res => {
-          setUploaded(res.secure_url);
-        });
+      setUploaded(uploadFile);
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error);
     }
   };
 
-  const handleSubmitSetting = () => {
+  const handleEditWater = e => {
+    setData({ ...data, dailyWater: e.target.value });
+    setEdit(true);
+  };
+
+  const handleSubmitSetting = value => {
     try {
+      // const gender = true;
+      const currentDailyWater = edit
+        ? data.dailyWater
+        : value.gender
+        ? Math.round((data.weight * 0.03 + data.sportTime * 0.4) * 1000)
+        : Math.round((data.weight * 0.04 + data.sportTime * 0.6) * 1000);
+
       const formData = new FormData();
 
       const photo = uploaded ? uploaded : defaultAvatar;
-      console.log('photo', photo);
-      console.log('uploaded', uploaded);
 
       const dataUser = {
         ...data,
         avatar: photo,
+        dailyWater: currentDailyWater,
+        gender: value.gender,
       };
 
       formData.append('dataUser', JSON.stringify(dataUser));
+
       dispatch(updateUser(dataUser));
-      console.log(formData);
+      // console.log(formData);
     } catch (error) {
       console.error('Error dowload:', error);
     }
   };
 
-  // const handleGenderChange = event => {
-  //   setData({ ...userData, gender: event.target.value });
-  // };
-
   const handlePick = () => {
     filePicker.current.click();
   };
-
-  const schema = yup
-    .object({
-      file: yup
-        .mixed()
-        .test('fileSize', 'File size is too large', value => {
-          return !value || (value && value[0].size <= 1024 * 1024); // Розмір файлу менше або рівно 1МБ, якщо файл вказаний
-        })
-        .test('fileType', 'Invalid file type', value => {
-          return (
-            !value ||
-            (value && ['image/jpeg', 'image/png'].includes(value[0].type))
-          ); // Тільки файли типу jpeg або png, якщо файл вказаний
-        }),
-      gender: yup.string().required('Please select your gender'),
-      nameUser: yup.string().min(2, 'Must be at least 2 letters long'),
-      Email: yup.string().min(6, 'Must be at least 2 letters long'),
-      Your_weight: yup.number().positive(),
-      Your_sports: yup.number().positive(),
-      Your_water: yup.number().positive(),
-    })
-    .required();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      gender: userData.gender,
+    },
+  });
 
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
-        <label htmlFor="avatar" className={s.imgWrap}>
+        <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
           <input
             {...register('file')}
             className={s.hidden}
             type="file"
             ref={filePicker}
             id="avatar"
-            // accept="image/*,.png,.jpg,.gif,.web"
             onChange={handleUpload}
           />
 
@@ -139,7 +130,7 @@ export const UserSettingsForm = () => {
             <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          <button className={s.uploudBtn} onClick={handlePick}>
+          <button className={s.uploudBtn} type="button">
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
@@ -147,6 +138,7 @@ export const UserSettingsForm = () => {
           </button>
         </label>
       </div>
+
       <p className={s.errorYup}>{errors.file?.message}</p>
 
       <div className={s.wrapUserData}>
@@ -163,8 +155,9 @@ export const UserSettingsForm = () => {
                 type="radio"
                 id="woman"
                 name="gender"
-                value="female"
-                {...register('gender')}
+                value="true"
+                {...register('gender', { required: true })}
+                defaultChecked={userData.gender === true}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -178,8 +171,9 @@ export const UserSettingsForm = () => {
                 type="radio"
                 id="man"
                 name="gender"
-                value="male"
-                {...register('gender')}
+                value="false"
+                {...register('gender', { required: true })}
+                defaultChecked={userData.gender === false}
               />
               <label
                 className={`${s.labelGender} ${s.materialRadio}`}
@@ -202,8 +196,11 @@ export const UserSettingsForm = () => {
               value={data.name}
               onChange={e => setData({ ...data, name: e.target.value })}
               placeholder={t('UserSettingsForm.placeYourName')}
+              style={{ borderColor: errors.nameUser ? 'red' : 'initial' }}
             />
-            <p className={s.errorYup}>{errors.nameUser?.message}</p>
+            {errors.nameUser && (
+              <p className={s.errorYup}>{errors.nameUser.message}</p>
+            )}
 
             <label htmlFor="Email" className={s.labelImportan}>
               {t('UserSettingsForm.labelEmail')}
@@ -216,9 +213,12 @@ export const UserSettingsForm = () => {
               value={data.email}
               onChange={e => setData({ ...data, email: e.target.value })}
               placeholder={t('UserSettingsForm.placeEmail')}
+              style={{ borderColor: errors.Email ? 'red' : 'initial' }}
             />
-            <p className={s.errorYup}>{errors.Email?.message}</p>
-            <p>{errors.Email?.message}</p>
+
+            {errors.Email && (
+              <p className={s.errorYup}>{errors.Email.message}</p>
+            )}
           </div>
 
           <div className={s.dailyNormaWrap}>
@@ -248,7 +248,7 @@ export const UserSettingsForm = () => {
 
         <div className={s.wrapUserInfo}>
           <div className={s.infoUser}>
-            <label htmlFor="Your_weight">
+            <label htmlFor="Your_weight" className={s.labelNotImportan}>
               {t('UserSettingsForm.infoUser')}
             </label>
 
@@ -259,10 +259,13 @@ export const UserSettingsForm = () => {
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
               placeholder="1"
+              style={{ borderColor: errors.Your_weight ? 'red' : 'initial' }}
             />
-            <p className={s.errorYup}>{errors.Your_weight?.message}</p>
+            {errors.Your_weight && (
+              <p className={s.errorYup}>{errors.Your_weight.message}</p>
+            )}
 
-            <label htmlFor="Your_sports">
+            <label htmlFor="Your_sports" className={s.labelNotImportan}>
               {t('UserSettingsForm.TheTimeSportsLabel')}
             </label>
 
@@ -273,38 +276,41 @@ export const UserSettingsForm = () => {
               value={data.sportTime || ''}
               onChange={e => setData({ ...data, sportTime: e.target.value })}
               placeholder="1"
+              style={{ borderColor: errors.Your_sports ? 'red' : 'initial' }}
             />
-            <p className={s.errorYup}>{errors.Your_sports?.message}</p>
+            {errors.sportTime && (
+              <p className={s.errorYup}>{errors.sportTime.message}</p>
+            )}
           </div>
 
           <div className={s.requiredWater}>
             <p>{t('UserSettingsForm.requiredWater')}</p>
-            <p className={s.formula}>{userData.dailyWater}</p>
+
+            <p className={s.formula}>{`${userData.dailyWater / 1000} L`}</p>
           </div>
 
           <div className={s.waterUser}>
             <label htmlFor="Your_water" className={s.labelImportan}>
               {t('UserSettingsForm.writeDownLabel')}
             </label>
-
             <input
               {...register('Your_water')}
               type="number"
               id="Your_water"
-              value={data.dailyWater || ''}
-              onChange={e => setData({ ...data, dailyWater: e.target.value })}
+              value={data.dailyWater}
+              // onChange={e => setData({ ...data, dailyWater: e.target.value })}
+              onChange={handleEditWater}
               placeholder="1"
+              style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
-            <p className={s.errorYup}>{errors.Your_water?.message}</p>
+            {errors.Your_water && (
+              <p className={s.errorYup}>{errors.Your_water.message}</p>
+            )}
           </div>
         </div>
       </div>
 
-      <Button
-        classname={s.btnSetting}
-        type="submit"
-        // onClick={handleSubmitSetting}
-      >
+      <Button classname={s.btnSetting} type="submit">
         {t('UserSettingsForm.saveBtn')}
       </Button>
     </form>
