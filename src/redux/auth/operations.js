@@ -182,3 +182,15 @@ export const getAllUsers = createAsyncThunk(
     }
   }
 );
+/********** */
+export const getAllUsersDB = createAsyncThunk(
+  'auth/getAllUsersDB',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/users/all`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
