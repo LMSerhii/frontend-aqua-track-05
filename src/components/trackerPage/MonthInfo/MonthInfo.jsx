@@ -14,7 +14,9 @@ export const MonthInfo = () => {
   return (
     <div>
       <div className={s.wrapper}>
-        <h3 className={s.month}>{t('MonthInfo.month')}</h3>
+        <h3 className={s.month}>
+          {isActive ? t('MonthInfo.stat') : t('MonthInfo.month')}
+        </h3>
         <CalendarPagination isActive={isActive} setIsActive={setIsActive} />
       </div>
       {isActive ? <WaterGraph /> : <Calendar selectedDate={selectedDate} />}

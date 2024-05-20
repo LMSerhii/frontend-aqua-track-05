@@ -104,7 +104,8 @@
   },
 
   "MonthInfo": {
-    "month": "Month"
+    "month": "Month",
+    "stat": "Statistics"
   },
 
   "DailyInfo": {
