@@ -23,7 +23,6 @@ export const UserSettingsForm = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploaded, setUploaded] = useState(null);
 
-  // const [userWaterWoman, setUserWaterWoman] = useState(null);
   const [edit, setEdit] = useState(false);
 
   const [data, setData] = useState({
@@ -35,8 +34,6 @@ export const UserSettingsForm = () => {
     sportTime: userData.sportTime,
     dailyWater: userData.dailyWater,
   });
-
-  // console.log(data.gender);
 
   const dispatch = useDispatch();
 
@@ -54,7 +51,6 @@ export const UserSettingsForm = () => {
       }
 
       const uploadFile = await uploadCloudinary(file);
-      // console.log('uploadFile', uploadFile);
 
       setUploaded(uploadFile);
     } catch (error) {
@@ -69,7 +65,6 @@ export const UserSettingsForm = () => {
 
   const handleSubmitSetting = value => {
     try {
-      // const gender = true;
       const currentDailyWater = edit
         ? data.dailyWater
         : value.gender
@@ -78,7 +73,11 @@ export const UserSettingsForm = () => {
 
       const formData = new FormData();
 
-      const photo = uploaded ? uploaded : defaultAvatar;
+      const photo = uploaded
+        ? uploaded
+        : userData !== ''
+        ? userData.avatar
+        : defaultAvatar;
 
       const dataUser = {
         ...data,
@@ -90,7 +89,6 @@ export const UserSettingsForm = () => {
       formData.append('dataUser', JSON.stringify(dataUser));
 
       dispatch(updateUser(dataUser));
-      // console.log(formData);
     } catch (error) {
       console.error('Error dowload:', error);
     }

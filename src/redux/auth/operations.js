@@ -93,10 +93,7 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.put(
-        `${USERS}${FORGOT_REQUEST}/update`,
-        formData
-      );
+      const response = await axios.put(`${USERS}/update`, formData);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
