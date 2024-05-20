@@ -102,6 +102,12 @@
     "deleteBtn": "Видалити користувача"
   },
 
+  "DeletePanel": {
+    "deleteText": "Ви впевнені що хочете видалити користувача?",
+    "deleteBtn": "Видалити",
+    "cancelBtn": "Відміна"
+  },
+
   "MonthInfo": {
     "month": "Місяць"
   },

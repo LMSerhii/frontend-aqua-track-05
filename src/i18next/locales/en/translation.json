@@ -104,6 +104,12 @@
     "deleteBtn": "Delete User"
   },
 
+  "DeletePanel": {
+    "deleteText": "Are you sure you want to delete the user?",
+    "deleteBtn": "Delete",
+    "cancelBtn": "Cancel"
+  },
+
   "MonthInfo": {
     "month": "Month"
   },

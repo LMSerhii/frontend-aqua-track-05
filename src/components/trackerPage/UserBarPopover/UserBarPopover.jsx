@@ -49,12 +49,7 @@ export const UserBarPopover = ({
       </Button>
 
       <Button onClick={handleDelete} className={css.deleteBtn}>
-        <SharedSVG
-          width="16"
-          height="16"
-          className={css.icon}
-          svgId="log_out"
-        />
+        <SharedSVG width="16" height="16" className={css.icon} svgId="trash" />
         {t('UserBarPopover.deleteBtn')}
       </Button>
     </div>

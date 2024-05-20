@@ -89,11 +89,6 @@
   gap: 3px;
 }
 
-.flexx {
-  display: flex;
-  align-items: center;
-}
-
 .item_trk {
   display: flex;
   position: absolute;
