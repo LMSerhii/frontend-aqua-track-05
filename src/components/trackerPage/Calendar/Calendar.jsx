@@ -38,6 +38,8 @@ export const Calendar = ({ selectedDate }) => {
     (_, index) => index + 1
   );
 
+  console.log(selectedDate);
+
   return (
     <div className={s.calendarWrap}>
       {isError && (
