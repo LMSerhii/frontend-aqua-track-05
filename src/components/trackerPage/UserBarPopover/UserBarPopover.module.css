@@ -8,6 +8,8 @@
   border-radius: 15px;
   background-color: white;
   opacity: 0;
+  height: 80px;
+  overflow: auto;
   transition: opacity 7s var(--animation-time-function);
 }
 

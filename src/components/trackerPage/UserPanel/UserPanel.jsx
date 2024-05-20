@@ -38,7 +38,6 @@ export const UserPanel = () => {
         active={isActiveSettings}
         setActive={setIsActiveSettings}
       />
-
       <LogOutModal active={isActiveLogout} setActive={setIsActiveLogout} />
       <DeleteUser active={isActiveDelete} setActive={setIsActiveDelete} />
     </>
