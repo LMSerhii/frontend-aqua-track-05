@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '../../routes';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { refreshToken, refreshUser } from '../auth/operations';
+import { refreshToken } from '../auth/operations';
 import { updateTokenError } from '../auth/authSlice';
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {

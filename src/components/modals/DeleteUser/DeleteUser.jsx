@@ -4,13 +4,15 @@ import Button from '../../../shared/components/Button/Button';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
+import { deleteUser } from '../../../redux/auth/operations';
+import { useDispatch } from 'react-redux';
 
 export const DeleteUser = ({ active, setActive }) => {
   const { t } = useTranslation();
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
-    // dispatch()
+    dispatch(deleteUser());
     setActive(false);
   };
 
