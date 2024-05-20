@@ -1,8 +1,7 @@
 import * as yup from 'yup';
 
 export const validationSchema = yup
-  .object()
-  .shape({
+  .object({
     file: yup
       .mixed()
       .test('fileSize', 'File size is too large', value => {
@@ -23,8 +22,8 @@ export const validationSchema = yup
       .string()
       .min(6, 'Must be at least 2 letters long')
       .required('Email is required'),
-    Your_weight: yup.number().required().positive().integer(),
-    Your_sports: yup.number().required().positive().integer(),
-    Your_water: yup.number().required().positive().integer(),
+    Your_weight: yup.string(),
+    Your_sports: yup.string(),
+    Your_water: yup.string(),
   })
   .required();
