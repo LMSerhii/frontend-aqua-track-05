@@ -11,17 +11,18 @@
   left: 15px;
   top: 205px;
   display: flex;
-  min-height: 48px;
-  min-width: 160px;
+}
+.divsecond{ 
+  display: flex;
+  gap: 3px;
   border-radius: 30px;
   padding: 10px 14px;
-  background: var(--white);
+  background: #FFFFFF;
 }
-.list_div {
-}
-
 .photo_list {
   display: flex;
+  width: 68px;
+  height: 26px;
   position: relative;
 }
 
@@ -44,15 +45,14 @@
 
 .list_items:nth-child(3) {
   z-index: 1;
-  left: 40px;
+  right: 0;
 }
 
 .parag {
-  position: absolute;
   font-weight: 700;
   font-size: 12px;
+  width: 80px;
   color: var(--dark-blue);
-  left: 70px;
 }
 
 .span {
@@ -61,7 +61,9 @@
 
 .list_trk {
   display: flex;
-  position: relative;
+  position: absolute;
+  top: 225px;
+  left: 40px;
 }
 
 .text {
@@ -141,21 +143,6 @@
     padding: 10px 20px;
     width: 237px;
     height: 67px;
-  }
-  .list_items {
-    width: 47px;
-    height: 47px;
-  }
-  .list_items:nth-child(2) {
-    left: 30px;
-  }
-  .list_items:nth-child(3) {
-    left: 60px;
-  }
-  .parag {
-    font-size: 15px;
-    line-height: 1.49333;
-    left: 120px;
   }
   .item_trk:nth-child(1) {
     top: 45px;

@@ -37,7 +37,7 @@ export default function AdvantagesSection() {
         className={css.section}
       />
       <div className={css.div}>
-        <div className={css.list_div}>
+        <div className={css.divsecond}>
           <ul className={css.photo_list}>
             <li className={css.list_items}>
               <Picture
@@ -75,31 +75,28 @@ export default function AdvantagesSection() {
                 height="47px"
               />
             </li>
-            <p className={css.parag}>
-              {t('advantagesSection.ourParag')}{' '}
-              <span className={css.span}>
-                {t('advantagesSection.happySpan')}
-              </span>{' '}
-              {t('advantagesSection.customersParag')}
-            </p>
           </ul>
+          <p className={css.parag}>
+            {t('advantagesSection.ourParag')}{' '}
+            <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
+            {t('advantagesSection.customersParag')}
+          </p>
         </div>
-
-        <ul className={css.list_trk}>
-          <li className={css.item_trk}>
-            <div className={css.flex}>
-              <div className={css.cycle}></div>
-              <p className={css.text}>{t('advantagesSection.textHabit')}</p>
-            </div>
-          </li>
-          <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.textView')}</p>
-          </li>
-          <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
-          </li>
-        </ul>
       </div>
+      <ul className={css.list_trk}>
+        <li className={css.item_trk}>
+          <div className={css.flex}>
+            <div className={css.cycle}></div>
+            <p className={css.text}>{t('advantagesSection.textHabit')}</p>
+          </div>
+        </li>
+        <li className={css.item_trk}>
+          <p className={css.text2}>{t('advantagesSection.textView')}</p>
+        </li>
+        <li className={css.item_trk}>
+          <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
+        </li>
+      </ul>
     </div>
   );
 }
