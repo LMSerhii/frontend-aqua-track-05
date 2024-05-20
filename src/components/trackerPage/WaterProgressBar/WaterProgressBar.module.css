@@ -1,32 +1,28 @@
-
-@media screen and (min-width: 320px) {
-    .today_text {
-        font-family: var(--main-font-family);
-        font-size: 14px;
-        font-weight: 600;
-    }
-
-    .percent_wrap {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .percent{
-        color: var(--secondary-text);
-        font-size: 10px;
-        font-family: var(--main-font-family);
-    }
+.today_text {
+  font-family: var(--main-font-family);
+  font-size: 14px;
+  font-weight: 600;
 }
 
+.percent_wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.percent {
+  color: var(--secondary-text);
+  font-size: 10px;
+  font-family: var(--main-font-family);
+}
 
 @media screen and (min-width: 768px) {
-    .today_text {
-        font-size: 15px;
-        margin-bottom: 6px;
-    }
+  .today_text {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
 
-    .percent {
-        margin-top: 6px;
-        font-size: 12px;
-    }
+  .percent {
+    margin-top: 6px;
+    font-size: 12px;
+  }
 }

@@ -1,0 +1,14 @@
+.graph_error {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--lettuce-secondary);
+    font-family: var(--main-font-family);
+    font-size: 35px;
+}
+
+
+@media screen and (min-width: 1280px) {
+    .graph_error {
+        margin-top: 25%;
+    }
+}
