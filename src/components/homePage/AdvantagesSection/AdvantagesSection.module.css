@@ -18,6 +18,7 @@
   padding: 10px 14px;
   background: #ffffff;
 }
+
 .photo_list {
   display: flex;
   width: 68px;
@@ -91,6 +92,7 @@
   display: flex;
   gap: 3px;
 }
+
 .item_trk {
   display: flex;
   position: absolute;

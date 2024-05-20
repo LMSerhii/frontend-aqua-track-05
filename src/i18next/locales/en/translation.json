@@ -100,7 +100,14 @@
 
   "UserBarPopover": {
     "settingsBtn": "Setting",
-    "logOutBtn": "Log out"
+    "logOutBtn": "Log out",
+    "deleteBtn": "Delete User"
+  },
+
+  "DeletePanel": {
+    "deleteText": "Are you sure you want to delete the user?",
+    "deleteBtn": "Delete",
+    "cancelBtn": "Cancel"
   },
 
   "MonthInfo": {
