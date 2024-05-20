@@ -294,3 +294,29 @@ input[type='radio'] {
 .redLabel {
   color: red; /* Змініть це на потрібний вам колір */
 }
+
+.deleteUser {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  border: 1px solid coral;
+  background-color: coral;
+  border-radius: 30px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.28571;
+  letter-spacing: -0.01em;
+  color: var(--dark);
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
+
+  &:hover,
+  &:focus {
+    background-color: lightcoral;
+  }
+}
