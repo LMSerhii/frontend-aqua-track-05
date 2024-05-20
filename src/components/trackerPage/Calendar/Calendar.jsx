@@ -1,12 +1,15 @@
 import { CalendarItem } from '../CalendarItem/CalendarItem';
+import { useTranslation } from 'react-i18next';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSelector } from 'react-redux';
 import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi';
 import { selectMonth } from '../../../redux/date/dateSlice';
+import Loader from '../../../shared/components/Loader/Loader';
 
 import s from './Calendar.module.css';
 
 export const Calendar = ({ selectedDate }) => {
+  const { t } = useTranslation();
   const month = useSelector(selectMonth);
   const { user } = useAuth();
   const { data, isLoading, isError } = useGetAllEntriesByMonthQuery(month);
@@ -36,9 +39,11 @@ export const Calendar = ({ selectedDate }) => {
   );
 
   return (
-    <>
-      {isError && <p>Error ... </p>}
-      {!isError && isLoading && <p>Loading...</p>}
+    <div className={s.calendarWrap}>
+      {isError && (
+        <p className={s.errorMessage}> {t('DailyInfo.errorMessage')}</p>
+      )}
+      {!isError && isLoading && <Loader />}
       {!isLoading && !isError && (
         <ul className={s.list}>
           {daysArray.map(day => {
@@ -64,6 +69,6 @@ export const Calendar = ({ selectedDate }) => {
           })}
         </ul>
       )}
-    </>
+    </div>
   );
 };

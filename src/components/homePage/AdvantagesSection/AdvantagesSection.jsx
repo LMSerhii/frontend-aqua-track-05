@@ -22,9 +22,21 @@ import male3 from '../../../shared/images/homepage2/male3.png';
 import male32x from '../../../shared/images/homepage2/male3@2x.png';
 
 import { useTranslation } from 'react-i18next';
+import { Badge } from 'antd';
+import { getAllUsersDB } from '../../../redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { selectAllUsers } from '../../../redux/auth/authSlice';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const allUsers = useSelector(selectAllUsers);
+
+  useEffect(() => {
+    dispatch(getAllUsersDB());
+  }, [dispatch]);
+
   return (
     <div className={css.section}>
       <Picture
@@ -36,8 +48,21 @@ export default function AdvantagesSection() {
         desc2x={RectangleImage32x}
         className={css.section}
       />
+
       <div className={css.div}>
         <div className={css.divsecond}>
+          <Badge
+            count={allUsers ? allUsers.allUsers : '...'}
+            overflowCount={15}
+            className={css.badge}
+            style={{
+              backgroundColor: 'var(--lettuce)',
+              color: 'var(--dark-blue)',
+              fontSize: '10px',
+            }}
+          >
+            <div className={css.badgeContent}></div>
+          </Badge>
           <ul className={css.photo_list}>
             <li className={css.list_items}>
               <Picture

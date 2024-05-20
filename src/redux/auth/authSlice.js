@@ -10,6 +10,7 @@ import {
   forgotPassword,
   resetPassword,
   refreshToken,
+  getAllUsersDB,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -28,6 +29,8 @@ const authInitialState = {
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
+
+  allUsers: null,
 };
 
 const authSlice = createSlice({
@@ -158,6 +161,16 @@ const authSlice = createSlice({
       })
       .addCase(resetPassword.rejected, state => {
         state.error = true;
+      })
+      .addCase(getAllUsersDB.pending, state => {
+        state.error = null;
+      })
+      .addCase(getAllUsersDB.fulfilled, (state, action) => {
+        state.allUsers = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllUsersDB.rejected, state => {
+        state.error = true;
       });
   },
 });
@@ -178,3 +191,4 @@ export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const selectAllUsers = state => state.auth.allUsers;
