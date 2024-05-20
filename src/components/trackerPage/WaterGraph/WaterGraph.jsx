@@ -3,7 +3,6 @@ import useMediaQuery from '../../../hooks/useMediaQuery';
 import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi.js';
 import { useSelector } from 'react-redux';
 import { selectMonth } from '../../../redux/date/dateSlice.js';
-import { findTotalAmount } from '../../../shared/helpers/findTotalAmount.js';
 
 export const WaterGraph = () => {
   const isDesktop = useMediaQuery('(min-width: 1440px)');
@@ -12,17 +11,24 @@ export const WaterGraph = () => {
   const answer = useGetAllEntriesByMonthQuery(month)
   const serverData = answer.data.data
 
-  const formatedDate = {
-    dayOne: serverData[serverData.length - 7]?.date.split("-")[0],
-    dayTwo: serverData[serverData.length - 6]?.date.split("-")[0],
-    dayThree: serverData[serverData.length - 5]?.date.split("-")[0],
-    dayFour: serverData[serverData.length - 4]?.date.split("-")[0],
-    dayFive: serverData[serverData.length - 3]?.date.split("-")[0],
-    daySix: serverData[serverData.length - 2]?.date.split("-")[0],
-    daySeven: serverData[serverData.length - 1]?.date.split("-")[0],
-  }
+  const sortedData = [...serverData].sort((a, b) => {
+    return new Date(b.date.split('-').reverse().join('-')) - new Date(a.date.split('-').reverse().join('-'));
+  });
 
-  const formatedAmount = findTotalAmount(serverData)
+  const aggregatedData = {};
+
+  sortedData.forEach(item => {
+    const date = Number(item.date.split('-')[0]);
+    item.amounts.forEach(amountItem => {
+      if (!aggregatedData[date]) {
+        aggregatedData[date] = 0;
+      }
+      aggregatedData[date] += amountItem.amount;
+    });
+  });
+
+// Преобразуем объект в массив объектов с нужной структурой
+  const result = Object.entries(aggregatedData).map(([date, water]) => ({ date, Water: water }));
 
 
   const paddingGraph = isTablet ? 36 : 10;
@@ -30,15 +36,8 @@ export const WaterGraph = () => {
   const chartHeight = isDesktop || isTablet ? 269 : 257;
   const wrapperPadding = isDesktop || isTablet ? '49px' : '35px';
 
-  const data = [
-    { date: formatedDate.dayOne, Water: formatedAmount.dayOne },
-    { date: formatedDate.dayTwo, Water: formatedAmount.dayTwo },
-    { date: formatedDate.dayThree, Water: formatedAmount.dayThree },
-    { date: formatedDate.dayFour, Water: formatedAmount.dayFour },
-    { date: formatedDate.dayFive, Water: formatedAmount.dayFive },
-    { date: formatedDate.daySix, Water: formatedAmount.daySix },
-    { date: formatedDate.daySeven, Water: formatedAmount.daySeven },
-  ];
+  const data = result;
+
 
   const error = console.error;
   console.error = (...args) => {
@@ -78,11 +77,11 @@ export const WaterGraph = () => {
         />
         <YAxis
           dataKey="Water"
-          unit="L"
+          unit=" ml"
           tick={{
             stroke: 'black',
             strokeWidth: 0.2,
-            style: { transform: 'translateX(-11px)' },
+            style: { transform: 'translateX(-1px)' },
           }}
           axisLine={false}
           tickLine={false}
