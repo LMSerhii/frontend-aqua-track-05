@@ -10,7 +10,6 @@ export const Calendar = ({ selectedDate }) => {
   const month = useSelector(selectMonth);
   const { user } = useAuth();
   const { data, isLoading, isError } = useGetAllEntriesByMonthQuery(month);
-  console.log('data', data);
   const DataArray = data?.data || [];
 
   const byOneDayRecords = DataArray.map(({ date, amounts }) => {

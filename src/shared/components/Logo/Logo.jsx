@@ -12,7 +12,7 @@ export default function Logo() {
           AQUATRACK
         </NavLink>
       ) : (
-        <NavLink to="tracker" className={css.logo}>
+        <NavLink to="/tracker" className={css.logo}>
           AQUATRACK
         </NavLink>
       )}

@@ -82,6 +82,7 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get(`${USERS}${CURRENT}`);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -93,11 +94,20 @@ export const updateUser = createAsyncThunk(
   'auth/updateUser',
   async (formData, thunkAPI) => {
     try {
-      const response = await axios.put(
-        'http://localhost:3001/api/v1/users/update',
-        formData
-      );
+      const response = await axios.put(`${USERS}/update`, formData);
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  'auth/deleteUser',
+  async (_, thunkAPI) => {
+    try {
+      await axios.delete(`${USERS}/delete`);
+      clearAuthHeader();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -106,26 +116,26 @@ export const updateUser = createAsyncThunk(
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
-  async email => {
+  async (email, thunkAPI) => {
     try {
       const response = await axios.post(`${USERS}${FORGOT_REQUEST}`, { email });
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const resetPassword = createAsyncThunk(
   'auth/reserPassword',
-  async ({ password, otp }) => {
+  async ({ password, otp }, thunkAPI) => {
     try {
       const response = await axios.post(`${USERS}${RESET_REQUEST}/${otp}`, {
         password,
       });
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
