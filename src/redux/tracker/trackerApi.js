@@ -25,7 +25,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
   if (error && (error.status === 401 || error.status === 500)) {
     await dispatch(refreshToken());
-    await dispatch(refreshUser());
 
     try {
       result = await fetchBaseQuery({
