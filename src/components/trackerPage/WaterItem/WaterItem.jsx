@@ -53,8 +53,8 @@ const WaterItem = ({ item: { _id: id, amount, time } }) => {
       <Modal active={activeEdit} setActive={setActiveEdit}>
         <WaterModal
           operation="edit"
-          title="Edit the entered amount of water"
-          subTitle="Correct entered data:"
+          title={t('waterModal.editTitle')}
+          subTitle={t('waterModal.editSubtitle')}
           entry={{ id, amount }}
           setActive={setActiveEdit}
         />

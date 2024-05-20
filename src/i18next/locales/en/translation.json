@@ -71,7 +71,9 @@
     "addWaterBtn": "Add water",
     "addWaterTitle": "Add water",
     "addWaterSubTitle": "Choose a value",
-    "AmountWater": "Amount of water:"
+    "AmountWater": "Amount of water:",
+    "editTitle": "Edit the entered amount of water",
+    "editSubtitle": "Correct entered data:"
   },
 
   "WaterProgressBar": {
@@ -208,5 +210,17 @@
 
   "WaterList": {
     "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
+  },
+
+  "DeleteModal": {
+    "deleteTitle": "Delete entry",
+    "deleteSubtitle": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "LogOutModal": {
+    "logOut": "Log out",
+    "logOutSubtitle": "Do you really want to leave?"
   }
 }
