@@ -8,11 +8,14 @@ export const WaterGraph = () => {
   const isDesktop = useMediaQuery('(min-width: 1440px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1439px)');
   const month = useSelector(selectMonth);
-  const answer = useGetAllEntriesByMonthQuery(month)
-  const serverData = answer.data.data
+  const answer = useGetAllEntriesByMonthQuery(month);
+  const serverData = answer.data.data;
 
   const sortedData = [...serverData].sort((a, b) => {
-    return new Date(b.date.split('-').reverse().join('-')) - new Date(a.date.split('-').reverse().join('-'));
+    return (
+      new Date(b.date.split('-').reverse().join('-')) -
+      new Date(a.date.split('-').reverse().join('-'))
+    );
   });
 
   const aggregatedData = {};
@@ -27,9 +30,10 @@ export const WaterGraph = () => {
     });
   });
 
-// Преобразуем объект в массив объектов с нужной структурой
-  const result = Object.entries(aggregatedData).map(([date, water]) => ({ date, Water: water }));
-
+  const result = Object.entries(aggregatedData).map(([date, water]) => ({
+    date,
+    Water: water,
+  }));
 
   const paddingGraph = isTablet ? 36 : 10;
   const chartWidth = isDesktop ? 608 : isTablet ? 640 : 303;
@@ -37,7 +41,6 @@ export const WaterGraph = () => {
   const wrapperPadding = isDesktop || isTablet ? '49px' : '35px';
 
   const data = result;
-
 
   const error = console.error;
   console.error = (...args) => {
@@ -77,7 +80,8 @@ export const WaterGraph = () => {
         />
         <YAxis
           dataKey="Water"
-          unit=" ml"
+          unit=" L"
+          tickFormatter={tick => tick / 1000}
           tick={{
             stroke: 'black',
             strokeWidth: 0.2,
