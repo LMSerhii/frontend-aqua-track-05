@@ -258,7 +258,7 @@ export const UserSettingsForm = () => {
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
-              placeholder="kl"
+              placeholder="kg"
               style={{ borderColor: errors.Your_weight ? 'red' : 'initial' }}
             />
             {errors.Your_weight && (

@@ -22,8 +22,8 @@ export const validationSchema = yup
       .string()
       .min(6, 'Must be at least 2 letters long')
       .required('Email is required'),
-    Your_weight: yup.string(),
-    Your_sports: yup.string(),
-    Your_water: yup.string(),
+    Your_weight: yup.number().min(0),
+    Your_sports: yup.number().min(0),
+    Your_water: yup.number().min(0),
   })
   .required();
