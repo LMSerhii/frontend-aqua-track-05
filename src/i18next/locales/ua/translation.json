@@ -70,7 +70,9 @@
     "addWaterBtn": "Додати воду",
     "addWaterTitle": "Додати воду",
     "addWaterSubTitle": "Виберіть значення",
-    "AmountWater": "Кількість води:"
+    "AmountWater": "Кількість води:",
+    "editTitle": "Відредагуйте введену кількість води",
+    "editSubtitle": "Виправте введені дані:"
   },
   "WaterProgressBar": {
     "today": "Сьогодні",
@@ -198,5 +200,17 @@
 
   "WaterList": {
     "statrTrackingText": "Почніть відстежувати споживання води, натиснувши кнопку «Додати воду»."
+  },
+
+  "DeleteModal": {
+    "deleteTitle": "Видалити запис",
+    "deleteSubtitle": "Ви впевнені, що хочете видалити запис?",
+    "delete": "Видалити",
+    "cancel": "Скасувати"
+  },
+
+  "LogOutModal": {
+    "logOut": "Вийти",
+    "logOutSubtitle": "Ви дійсно хочете піти?"
   }
 }
