@@ -52,7 +52,7 @@ export default function SignUpForm() {
     dispatch(register(user))
       .unwrap()
       .then(() => {
-        toast.success(`massage to verify email was send to ${user.email} !`, {
+        toast.success(`Message to verify email was send to ${user.email} !`, {
           duration: 5000,
         });
         navigate('/signin');

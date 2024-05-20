@@ -50,7 +50,7 @@
     "passwordMin": "Too short",
     "passwordMax": "Too long",
     "passwordMatches": "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
-    "passwordRequired": "Required password9999",
+    "passwordRequired": "Required password",
     "repeatPasswordOneOf": "Passwords must match",
     "repeatPasswordRequired": "Required password",
     "emailPlace": "Enter your email",
