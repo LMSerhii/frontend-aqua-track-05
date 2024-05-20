@@ -94,7 +94,7 @@ export const updateUser = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await axios.put(
-        'http://localhost:3001/api/v1/users/update',
+        `${USERS}${FORGOT_REQUEST}/update`,
         formData
       );
       return response.data;
@@ -106,26 +106,26 @@ export const updateUser = createAsyncThunk(
 
 export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
-  async email => {
+  async (email, thunkAPI) => {
     try {
       const response = await axios.post(`${USERS}${FORGOT_REQUEST}`, { email });
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const resetPassword = createAsyncThunk(
   'auth/reserPassword',
-  async ({ password, otp }) => {
+  async ({ password, otp }, thunkAPI) => {
     try {
       const response = await axios.post(`${USERS}${RESET_REQUEST}/${otp}`, {
         password,
       });
       return response.data;
     } catch (error) {
-      throw error.response.data;
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
