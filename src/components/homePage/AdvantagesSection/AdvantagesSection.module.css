@@ -135,9 +135,6 @@
     left: 90px;
     background: var(--white);
   }
-  .badge {
-    right: 20px;
-  }
 }
 @media screen and (min-width: 768px) {
   .section {
@@ -149,8 +146,12 @@
     width: 237px;
     height: 67px;
   }
+  .divsecond {
+    padding: 10px 20px;
+    align-items: center;
+  }
   .parag {
-    font-size: 15px;
+    font-size: 14px;
   }
   .item_trk:nth-child(1) {
     top: 130px;
@@ -185,6 +186,9 @@
   .list_items:nth-child(2) {
     z-index: 2;
     left: 28px;
+  }
+  .badge {
+    right: 5px;
   }
 }
 @media screen and (min-width: 1440px) {
