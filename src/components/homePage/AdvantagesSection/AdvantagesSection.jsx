@@ -122,6 +122,20 @@ export default function AdvantagesSection() {
           </li>
         </ul>
       </div>
+      <ul className={css.list_trk}>
+        <li className={css.item_trk}>
+          <div className={css.flex}>
+            <div className={css.cycle}></div>
+            <p className={css.text}>{t('advantagesSection.textHabit')}</p>
+          </div>
+        </li>
+        <li className={css.item_trk}>
+          <p className={css.text2}>{t('advantagesSection.textView')}</p>
+        </li>
+        <li className={css.item_trk}>
+          <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
+        </li>
+      </ul>
     </div>
   );
 }
