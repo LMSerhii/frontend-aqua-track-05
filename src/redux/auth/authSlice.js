@@ -11,6 +11,7 @@ import {
   resetPassword,
   refreshToken,
   getAllUsersDB,
+  deleteUser,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -92,7 +93,7 @@ const authSlice = createSlice({
       })
 
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: '', email: '' };
+        state.user = authInitialState.user;
         state.token = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
@@ -142,6 +143,13 @@ const authSlice = createSlice({
 
       .addCase(updateUser.rejected, state => {
         state.isRefreshing = false;
+      })
+
+      .addCase(deleteUser.fulfilled, state => {
+        state.user = authInitialState.user;
+        state.token = null;
+        state.refreshToken = null;
+        state.isLoggedIn = false;
       })
 
       .addCase(forgotPassword.pending, state => {

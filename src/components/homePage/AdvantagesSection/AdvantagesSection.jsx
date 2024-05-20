@@ -7,13 +7,6 @@ import RectangleImage2x from '../../../shared/images/homePage/Rectangle2x-min.pn
 import RectangleImage22x from '../../../shared/images/homePage/Rectangle22x-min.png';
 import RectangleImage32x from '../../../shared/images/homePage/Rectangle32x-min.png';
 
-// import male from '../../../shared/images/homePage/Male Memojis-min.png';
-// import male2 from '../../../shared/images/homePage/Male2 Memojis-min.png';
-// import male3 from '../../../shared/images/homePage/Male3Memojis-min.png';
-// import male2x from '../../../shared/images/homePage/Male2x-min.png';
-// import male22x from '../../../shared/images/homePage/Male22x-min.png';
-// import male32x from '../../../shared/images/homePage/Male32x-min.png';
-
 import male1 from '../../../shared/images/homepage2/male1.png';
 import male2x from '../../../shared/images/homepage2/male1@2x.png';
 import male2 from '../../../shared/images/homepage2/male2.png';
@@ -53,7 +46,7 @@ export default function AdvantagesSection() {
         <div className={css.divsecond}>
           <Badge
             count={allUsers ? allUsers.allUsers : '...'}
-            overflowCount={15}
+            overflowCount={20}
             className={css.badge}
             style={{
               backgroundColor: 'var(--lettuce)',
