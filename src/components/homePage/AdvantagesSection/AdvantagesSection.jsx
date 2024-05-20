@@ -50,61 +50,63 @@ export default function AdvantagesSection() {
       />
 
       <div className={css.div}>
-        <Badge
-          count={allUsers ? allUsers.allUsers : '...'}
-          overflowCount={15}
-          className={css.badge}
-          style={{
-            backgroundColor: 'var(--lettuce)',
-            color: 'var(--dark-blue)',
-            fontSize: '10px',
-          }}
-        >
-          <div className={css.badgeContent}></div>
-        </Badge>
-        <ul className={css.photo_list}>
-          <li className={css.list_items}>
-            <Picture
-              mob={male1}
-              tab={male1}
-              desc={male1}
-              mob2x={male2x}
-              tab2x={male2x}
-              desc2x={male2x}
-              width="47px"
-              height="47px"
-            />
-          </li>
-          <li className={css.list_items}>
-            <Picture
-              mob={male2}
-              tab={male2}
-              desc={male2}
-              mob2x={male22x}
-              tab2x={male22x}
-              desc2x={male22x}
-              width="47px"
-              height="47px"
-            />
-          </li>
-          <li className={css.list_items}>
-            <Picture
-              mob={male3}
-              tab={male3}
-              desc={male3}
-              mob2x={male32x}
-              tab2x={male32x}
-              desc2x={male32x}
-              width="47px"
-              height="47px"
-            />
-          </li>
-        </ul>
-        <p className={css.parag}>
-          {t('advantagesSection.ourParag')}{' '}
-          <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
-          {t('advantagesSection.customersParag')}
-        </p>
+        <div className={css.divsecond}>
+          <Badge
+            count={allUsers ? allUsers.allUsers : '...'}
+            overflowCount={15}
+            className={css.badge}
+            style={{
+              backgroundColor: 'var(--lettuce)',
+              color: 'var(--dark-blue)',
+              fontSize: '10px',
+            }}
+          >
+            <div className={css.badgeContent}></div>
+          </Badge>
+          <ul className={css.photo_list}>
+            <li className={css.list_items}>
+              <Picture
+                mob={male1}
+                tab={male1}
+                desc={male1}
+                mob2x={male2x}
+                tab2x={male2x}
+                desc2x={male2x}
+                width="47px"
+                height="47px"
+              />
+            </li>
+            <li className={css.list_items}>
+              <Picture
+                mob={male2}
+                tab={male2}
+                desc={male2}
+                mob2x={male22x}
+                tab2x={male22x}
+                desc2x={male22x}
+                width="47px"
+                height="47px"
+              />
+            </li>
+            <li className={css.list_items}>
+              <Picture
+                mob={male3}
+                tab={male3}
+                desc={male3}
+                mob2x={male32x}
+                tab2x={male32x}
+                desc2x={male32x}
+                width="47px"
+                height="47px"
+              />
+            </li>
+          </ul>
+          <p className={css.parag}>
+            {t('advantagesSection.ourParag')}{' '}
+            <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
+            {t('advantagesSection.customersParag')}
+          </p>
+        </div>
       </div>
       <ul className={css.list_trk}>
         <li className={css.item_trk}>
