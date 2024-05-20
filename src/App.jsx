@@ -18,7 +18,7 @@ import {
 import { setDateFromGoogle } from './redux/auth/authSlice';
 import { routes } from './routes';
 import { useAuth } from './hooks';
-import { refreshUser } from './redux/auth/operations';
+import { refreshToken, refreshUser } from './redux/auth/operations';
 
 export default function App() {
   const location = useLocation();
@@ -30,8 +30,6 @@ export default function App() {
 
     const token = searchParams.get('token');
     const refreshToken = searchParams.get('refreshToken');
-
-    console.log('refreshToken', refreshToken);
 
     const userData = JSON.parse(searchParams.get('userData'));
 
@@ -47,6 +45,7 @@ export default function App() {
   }, [location.search, dispatch]);
 
   const fetchData = useCallback(async () => {
+    dispatch(refreshToken());
     dispatch(refreshUser());
   }, [dispatch]);
 
