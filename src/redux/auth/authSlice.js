@@ -36,11 +36,34 @@ const authSlice = createSlice({
   reducers: {
     setDateFromGoogle(state, action) {
       state.user = action.payload.user;
-
       state.token = action.payload.token;
-      state.refreshToken = action.payload.refreshedToken;
+      state.refreshToken = action.payload.refreshToken;
 
       state.isLoggedIn = true;
+    },
+
+    setToken(state, action) {
+      state.token = action.payload;
+    },
+
+    updateToken(state, action) {
+      state.token = action.payload.token;
+      state.refreshToken = action.payload.refreshToken;
+    },
+
+    updateTokenError(state) {
+      state.user = {
+        name: null,
+        email: null,
+        avatarURL: null,
+        gender: null,
+        weight: null,
+        sportTime: null,
+        dailyWater: null,
+      };
+      state.token = null;
+      state.refreshToken = null;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: builder => {
@@ -145,7 +168,8 @@ const authPersistConfig = {
   whitelist: ['token', 'refreshToken'],
 };
 
-export const { setDateFromGoogle } = authSlice.actions;
+export const { updateToken, updateTokenError, setToken, setDateFromGoogle } =
+  authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
@@ -153,5 +177,4 @@ export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
-
 export const selectIsRefreshing = state => state.auth.isRefreshing;

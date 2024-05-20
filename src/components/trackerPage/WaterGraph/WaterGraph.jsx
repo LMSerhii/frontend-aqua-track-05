@@ -1,9 +1,29 @@
 import { AreaChart, Area, XAxis, Tooltip, YAxis } from 'recharts';
 import useMediaQuery from '../../../hooks/useMediaQuery';
+import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi.js';
+import { useSelector } from 'react-redux';
+import { selectMonth } from '../../../redux/date/dateSlice.js';
+import { findTotalAmount } from '../../../shared/helpers/findTotalAmount.js';
 
 export const WaterGraph = () => {
   const isDesktop = useMediaQuery('(min-width: 1440px)');
   const isTablet = useMediaQuery('(min-width: 768px) and (max-width: 1439px)');
+  const month = useSelector(selectMonth);
+  const answer = useGetAllEntriesByMonthQuery(month)
+  const serverData = answer.data.data
+
+  const formatedDate = {
+    dayOne: serverData[serverData.length - 7]?.date.split("-")[0],
+    dayTwo: serverData[serverData.length - 6]?.date.split("-")[0],
+    dayThree: serverData[serverData.length - 5]?.date.split("-")[0],
+    dayFour: serverData[serverData.length - 4]?.date.split("-")[0],
+    dayFive: serverData[serverData.length - 3]?.date.split("-")[0],
+    daySix: serverData[serverData.length - 2]?.date.split("-")[0],
+    daySeven: serverData[serverData.length - 1]?.date.split("-")[0],
+  }
+
+  const formatedAmount = findTotalAmount(serverData)
+
 
   const paddingGraph = isTablet ? 36 : 10;
   const chartWidth = isDesktop ? 608 : isTablet ? 640 : 303;
@@ -11,13 +31,13 @@ export const WaterGraph = () => {
   const wrapperPadding = isDesktop || isTablet ? '49px' : '35px';
 
   const data = [
-    { date: '16', Water: 1.5 },
-    { date: '17', Water: 2 },
-    { date: '18', Water: 3.334 },
-    { date: '19', Water: 1.28 },
-    { date: '20', Water: 1.33 },
-    { date: '21', Water: 2.1 },
-    { date: '22', Water: 2 },
+    { date: formatedDate.dayOne, Water: formatedAmount.dayOne },
+    { date: formatedDate.dayTwo, Water: formatedAmount.dayTwo },
+    { date: formatedDate.dayThree, Water: formatedAmount.dayThree },
+    { date: formatedDate.dayFour, Water: formatedAmount.dayFour },
+    { date: formatedDate.dayFive, Water: formatedAmount.dayFive },
+    { date: formatedDate.daySix, Water: formatedAmount.daySix },
+    { date: formatedDate.daySeven, Water: formatedAmount.daySeven },
   ];
 
   const error = console.error;

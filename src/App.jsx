@@ -16,10 +16,9 @@ import {
   SuccessVerifyPage,
 } from './pages';
 import { setDateFromGoogle } from './redux/auth/authSlice';
-import defaultAvatar from './shared/images/homePage/Rectangle22x-min.png';
 import { routes } from './routes';
 import { useAuth } from './hooks';
-import { refreshToken, refreshUser } from './redux/auth/operations';
+import { refreshUser } from './redux/auth/operations';
 
 export default function App() {
   const location = useLocation();
@@ -29,29 +28,25 @@ export default function App() {
   const handleGoogleAuth = useCallback(() => {
     const searchParams = new URLSearchParams(location.search);
 
-    const email = searchParams.get('email');
     const token = searchParams.get('token');
-    const refreshedToken = searchParams.get('refreshToken');
+    const refreshToken = searchParams.get('refreshToken');
 
-    if (email && token && refreshedToken) {
-      const name = searchParams.get('name') || email.split('@')[0];
+    console.log('refreshToken', refreshToken);
 
+    const userData = JSON.parse(searchParams.get('userData'));
+
+    if (token && refreshToken) {
       dispatch(
         setDateFromGoogle({
-          user: {
-            name,
-            email,
-            avatar: defaultAvatar,
-          },
+          user: userData,
           token,
-          refreshedToken,
+          refreshToken,
         })
       );
     }
   }, [location.search, dispatch]);
 
   const fetchData = useCallback(async () => {
-    dispatch(refreshToken());
     dispatch(refreshUser());
   }, [dispatch]);
 
