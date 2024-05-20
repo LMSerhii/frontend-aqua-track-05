@@ -1,11 +1,12 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Button from '../../../shared/components/Button/Button';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
-
-import s from './DeleteWaterModal.module.css';
 import { useDeleteEntryMutation } from '../../../redux/tracker/trackerApi';
+import s from './DeleteWaterModal.module.css';
 
 export const DeleteWaterModal = ({ setActive, entry }) => {
+  const { t } = useTranslation();
   const modalRef = useRef();
   const [deleteEntry] = useDeleteEntryMutation();
 
@@ -26,17 +27,15 @@ export const DeleteWaterModal = ({ setActive, entry }) => {
             svgId={'close'}
           />
         </Button>
-        <h2 className={s.title}>Delete entry</h2>
-        <p className={s.subscription}>
-          Are you sure you want to delete the entry?
-        </p>
+        <h2 className={s.title}>{t('DeleteModal.deleteTitle')}</h2>
+        <p className={s.subscription}>{t('DeleteModal.deleteSubtitle')}</p>
         <div className={s.wrapBtn}>
           <Button classname={s.btnDelete} onClick={() => deleteEntry(entry)}>
-            Delete
+            {t('DeleteModal.delete')}
           </Button>
 
           <Button classname={s.btnCancel} onClick={() => setActive(false)}>
-            Cancel
+            {t('DeleteModal.cancel')}
           </Button>
         </div>
       </div>
