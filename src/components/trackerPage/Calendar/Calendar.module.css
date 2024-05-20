@@ -1,4 +1,9 @@
+.calendarWrap {
+  position: relative;
+}
+
 .list {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   column-gap: 18px;
@@ -39,5 +44,16 @@
 
   .item {
     width: calc((100% - 7 * 43px) / 8);
+  }
+}
+
+.errorMessage {
+  padding-top: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .errorMessage {
+    font-size: 18px;
   }
 }

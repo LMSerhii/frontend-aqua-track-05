@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { useGetDailyTrackQuery } from '../../../redux/tracker/trackerApi';
 import { selectDate } from '../../../redux/date/dateSlice';
 import ChooseDate from '../ChooseDate/ChooseDate';
@@ -11,6 +12,7 @@ import s from './DailyInfo.module.css';
 const DailyInfo = () => {
   const date = useSelector(selectDate);
   const { data, isError, isLoading } = useGetDailyTrackQuery(date);
+  const { t } = useTranslation();
 
   return (
     <div className={s.waterListBlock}>
@@ -21,7 +23,7 @@ const DailyInfo = () => {
       <div className={s.wrapper}>
         {isError && (
           <p className={s.waterListError}>
-            Oops! Something went wrong. Please, reload the page!
+            {t('DailyInfo.errorMessage')}
             <PiSmileySad className={s.errorIcon} />
           </p>
         )}

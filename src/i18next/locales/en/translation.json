@@ -108,7 +108,8 @@
   },
 
   "DailyInfo": {
-    "startTrackingText": "Start tracking your water intake by clicking the Add water button."
+    "startTrackingText": "Start tracking your water intake by clicking the Add water button.",
+    "errorMessage": "Oops! Something went wrong. Please, reload the page!"
   },
 
   "ChooseDate": {
