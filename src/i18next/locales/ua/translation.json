@@ -98,7 +98,8 @@
 
   "UserBarPopover": {
     "settingsBtn": "Налаштування",
-    "logOutBtn": "Вийти"
+    "logOutBtn": "Вийти",
+    "deleteBtn": "Видалити користувача"
   },
 
   "MonthInfo": {

@@ -100,7 +100,8 @@
 
   "UserBarPopover": {
     "settingsBtn": "Setting",
-    "logOutBtn": "Log out"
+    "logOutBtn": "Log out",
+    "deleteBtn": "Delete User"
   },
 
   "MonthInfo": {
