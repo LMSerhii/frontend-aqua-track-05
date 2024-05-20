@@ -166,6 +166,18 @@
   .text2 {
     font-size: 12px;
   }
+  .list_items{ 
+    width: 47px;
+    height: 47px;
+  }
+  .photo_list{
+     width: 105px;
+     height: 47px;
+  }
+  .list_items:nth-child(2) {
+    z-index: 2;
+    left: 28px;
+  }
 }
 @media screen and (min-width: 1440px) {
   .section {
