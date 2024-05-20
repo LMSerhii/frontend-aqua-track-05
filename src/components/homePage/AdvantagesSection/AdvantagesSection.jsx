@@ -89,11 +89,15 @@ export default function AdvantagesSection() {
           </li>
           <li className={css.item_trk}>
             <div className={css.flex}>
-              <p className={css.text2}>{t('advantagesSection.textView')}</p>
+              <div className={css.flexx}>
+                <p className={css.text2}>{t('advantagesSection.textView')}</p>
+              </div>
             </div>
           </li>
           <li className={css.item_trk}>
-            <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
+            <div className={css.flexx}>
+              <p className={css.text2}>{t('advantagesSection.textPersonal')}</p>
+            </div>
           </li>
         </ul>
       </div>
