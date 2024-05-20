@@ -6,25 +6,24 @@
   position: relative;
 }
 
-
 .div {
   position: absolute;
   left: 15px;
   top: 205px;
   display: flex;
+  min-height: 48px;
+  min-width: 160px;
   border-radius: 30px;
   padding: 10px 14px;
-  width: 160px;
-  height: 48px;
   background: var(--white);
 }
-
+.list_div {
+}
 
 .photo_list {
   display: flex;
   position: relative;
 }
-
 
 .list_items {
   position: absolute;
@@ -34,32 +33,27 @@
   border-radius: 50%;
 }
 
-
 .list_items:nth-child(1) {
   z-index: 3;
 }
-
 
 .list_items:nth-child(2) {
   z-index: 2;
   left: 20px;
 }
 
-
 .list_items:nth-child(3) {
   z-index: 1;
   left: 40px;
 }
 
-
 .parag {
+  position: absolute;
   font-weight: 700;
   font-size: 12px;
   color: var(--dark-blue);
-  position: absolute;
-  left: 82px;
+  left: 70px;
 }
-
 
 .span {
   color: var(--lettuce);
@@ -77,6 +71,7 @@
   letter-spacing: -0.01em;
   color: var(--white);
   text-align: center;
+  white-space: nowrap;
 }
 .text2 {
   font-weight: 700;
@@ -85,6 +80,7 @@
   letter-spacing: -0.01em;
   color: var(--dark-blue);
   text-align: center;
+  white-space: nowrap;
 }
 .cycle {
   width: 8px;
@@ -101,8 +97,6 @@
   position: absolute;
   border-radius: 30px;
   padding: 9px 12px;
-  width: 81px;
-  height: 26px;
 }
 .item_trk:nth-child(1) {
   top: 45px;
@@ -110,13 +104,11 @@
   background: var(--dark-blue);
 }
 .item_trk:nth-child(2) {
-  width: 83px;
   top: 45px;
   left: 185px;
   background: var(--lettuce);
 }
 .item_trk:nth-child(3) {
-  width: 108px;
   top: 75px;
   left: 100px;
   background: var(--white);
@@ -129,13 +121,11 @@
     background: var(--dark-blue);
   }
   .item_trk:nth-child(2) {
-    width: 83px;
     top: 45px;
     left: 175px;
     background: var(--lettuce);
   }
   .item_trk:nth-child(3) {
-    width: 108px;
     top: 75px;
     left: 90px;
     background: var(--white);
@@ -165,30 +155,23 @@
   .parag {
     font-size: 15px;
     line-height: 1.49333;
-    left: 130px;
+    left: 120px;
   }
   .item_trk:nth-child(1) {
     top: 45px;
-    left: 370px;
+    left: 350px;
     padding: 11px 16px;
-    width: 111px;
     height: 34px;
   }
   .item_trk:nth-child(2) {
-    width: 83px;
     padding: 11px 16px;
-    width: 121px;
-    height: 34px;
     top: 45px;
-    left: 490px;
+    left: 470px;
   }
   .item_trk:nth-child(3) {
-    width: 108px;
     padding: 11px 16px;
-    width: 158px;
-    height: 34px;
     top: 85px;
-    left: 370px;
+    left: 350px;
   }
   .text {
     font-size: 12px;
@@ -212,7 +195,7 @@
   }
   .item_trk:nth-child(2) {
     top: 45px;
-    left: 465px;
+    left: 460px;
   }
   .item_trk:nth-child(3) {
     top: 85px;
