@@ -13,6 +13,7 @@
 
 .wrapper.active {
   opacity: 1;
+  z-index: 999;
 }
 
 .settingBtn {
@@ -65,4 +66,9 @@
     width: 100%;
     top: 90%;
   }
+}
+
+.wrapperBtn {
+  display: flex;
+  gap: 8px;
 }
