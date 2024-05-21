@@ -18,7 +18,7 @@ import {
 import { setDateFromGoogle } from './redux/auth/authSlice';
 import { routes } from './routes';
 import { useAuth } from './hooks';
-import { refreshToken, refreshUser } from './redux/auth/operations';
+import { refreshToken as refreshTokenAction, refreshUser } from './redux/auth/operations';
 
 export default function App() {
   const location = useLocation();
@@ -31,9 +31,14 @@ export default function App() {
     const token = searchParams.get('token');
     const refreshToken = searchParams.get('refreshToken');
 
-    const userData = JSON.parse(searchParams.get('userData'));
+    let userData = null;
+    try {
+      userData = JSON.parse(searchParams.get('userData'));
+    } catch (error) {
+      console.error('Failed to parse userData:', error);
+    }
 
-    if (token && refreshToken) {
+    if (token && refreshToken && userData) {
       dispatch(
         setDateFromGoogle({
           user: userData,
@@ -45,7 +50,7 @@ export default function App() {
   }, [location.search, dispatch]);
 
   const fetchData = useCallback(async () => {
-    dispatch(refreshToken());
+    dispatch(refreshTokenAction());
     dispatch(refreshUser());
   }, [dispatch]);
 
