@@ -1,19 +1,37 @@
 import s from './DeleteUser.module.css';
+import toast from 'react-hot-toast';
+
 import Button from '../../../shared/components/Button/Button';
-// import { useDispatch } from 'react-redux';
 import { Modal } from '../../../shared/components/Modal/Modal';
 import { useTranslation } from 'react-i18next';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
-import { deleteUser } from '../../../redux/auth/operations';
 import { useDispatch } from 'react-redux';
+import { useDeleteUserMutation } from '../../../redux/authApi/authApi';
+import { logOut } from '../../../redux/auth/authSlice';
 
 export const DeleteUser = ({ active, setActive }) => {
+  const [deleteUser] = useDeleteUserMutation();
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(deleteUser());
-    setActive(false);
+  const handleClick = async () => {
+    try {
+      await deleteUser()
+        .unwrap()
+        .then(() => {
+          toast.success('User deleted successfully ');
+          setActive(false);
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Something went wrong');
+          setActive(false);
+        });
+
+      dispatch(logOut());
+    } catch (error) {
+      toast.error('Something went wrong. Please try again later.');
+    }
   };
 
   return (

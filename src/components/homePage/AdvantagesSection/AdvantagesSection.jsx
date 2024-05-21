@@ -2,10 +2,6 @@ import css from './AdvantagesSection.module.css';
 import Picture from '../../../shared/components/Picture/Picture';
 import { useTranslation } from 'react-i18next';
 import { Badge } from 'antd';
-import { getAllUsersDB } from '../../../redux/auth/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { selectAllUsers } from '../../../redux/auth/authSlice';
 import {
   desktop,
   desktop2x,
@@ -20,15 +16,11 @@ import {
   tablet,
   tablet2x,
 } from '../../../shared/images/homepage2';
+import { useGetAllUsersQuery } from '../../../redux/authApi/authApi';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const allUsers = useSelector(selectAllUsers);
-
-  useEffect(() => {
-    dispatch(getAllUsersDB());
-  }, [dispatch]);
+  const { data } = useGetAllUsersQuery();
 
   return (
     <div className={css.section}>
@@ -45,7 +37,7 @@ export default function AdvantagesSection() {
       <div className={css.div}>
         <div className={css.divsecond}>
           <Badge
-            count={allUsers ? allUsers.allUsers : '...'}
+            count={data ? data.allUsers : '...'}
             overflowCount={20}
             className={css.badge}
             style={{

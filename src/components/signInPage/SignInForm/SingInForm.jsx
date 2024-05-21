@@ -5,12 +5,15 @@ import { useId, useState } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
-import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import { useTranslation } from 'react-i18next';
+import {
+  useLoginMutation,
+  useResendEmailMutation,
+} from '../../../redux/authApi/authApi';
+import { setCredentials, setUserData } from '../../../redux/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -18,10 +21,14 @@ const initialValues = {
 };
 
 export default function SignInForm() {
+  const dispatch = useDispatch();
+  const [login] = useLoginMutation();
+  const [resendEmail] = useResendEmailMutation();
+
   const { t } = useTranslation();
+
   const idEmail = useId();
   const idPassword = useId();
-  const dispatch = useDispatch();
   const [verify, setVerify] = useState(false);
   const [email, setEmail] = useState('');
 
@@ -35,14 +42,22 @@ export default function SignInForm() {
   });
 
   const handleSubmit = (values, actions) => {
-    const user = {
+    login({
       email: values.email,
       password: values.password,
-    };
-    dispatch(logIn(user))
+    })
       .unwrap()
-      .then(() => {
+      .then(data => {
+        dispatch(
+          setCredentials({
+            accessToken: data.token,
+            refreshToken: data.refreshToken,
+          })
+        );
+        dispatch(setUserData({ user: data.user }));
+
         toast.success('You have successfully logged in!');
+
         setEmail('');
         setVerify(false);
         actions.resetForm();
@@ -58,8 +73,8 @@ export default function SignInForm() {
       });
   };
 
-  const handleResendEmail = () => {
-    dispatch(resendEmail({ email }))
+  const handleResendEmail = async () => {
+    await resendEmail({ email })
       .unwrap()
       .then(() => {
         toast.success('Email sent successfully');

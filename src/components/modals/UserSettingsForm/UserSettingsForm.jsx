@@ -6,16 +6,20 @@ import { useTranslation } from 'react-i18next';
 
 import { sprite } from '../../../shared/icons/index';
 import Button from '../../../shared/components/Button/Button';
+import toast from 'react-hot-toast';
 
-import { selectUser } from '../../../redux/auth/authSlice';
-import { updateUser } from '../../../redux/auth/operations';
+import { selectUser, setUserData } from '../../../redux/auth/authSlice';
 import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
 import { uploadCloudinary } from '../../../shared/helpers/handleUpload';
 import { validationSchema } from '../../../shared/helpers/validationSchema';
 
 import s from './UserSettingsForm.module.css';
+import { useUpdateUserMutation } from '../../../redux/authApi/authApi';
 
 export const UserSettingsForm = () => {
+  const [updateUser] = useUpdateUserMutation();
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
 
   const userData = useSelector(selectUser);
@@ -34,8 +38,6 @@ export const UserSettingsForm = () => {
     sportTime: userData.sportTime,
     dailyWater: userData.dailyWater,
   });
-
-  const dispatch = useDispatch();
 
   const filePicker = useRef(null);
 
@@ -63,7 +65,7 @@ export const UserSettingsForm = () => {
     setEdit(true);
   };
 
-  const handleSubmitSetting = value => {
+  const handleSubmitSetting = async value => {
     try {
       const currentDailyWater = edit
         ? data.dailyWater
@@ -88,9 +90,21 @@ export const UserSettingsForm = () => {
 
       formData.append('dataUser', JSON.stringify(dataUser));
 
-      dispatch(updateUser(dataUser));
+      const updatedUser = await updateUser()
+        .unwrap()
+        .then(() => {
+          toast.success('User updated successfully ');
+          // setActive(false);
+        })
+        .catch(error => {
+          console.log(error);
+          toast.error('Something went wrong');
+          // setActive(false);
+        });
+
+      dispatch(setUserData(updatedUser));
     } catch (error) {
-      console.error('Error dowload:', error);
+      toast.error('Something went wrong. Please try again later.');
     }
   };
 
