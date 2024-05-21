@@ -124,7 +124,7 @@ export default function App() {
         />
       </Route>
       <Route path="*" element={<SharedLayout />}>
-        <Route index element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
