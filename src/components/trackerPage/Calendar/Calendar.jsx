@@ -1,5 +1,6 @@
 import { CalendarItem } from '../CalendarItem/CalendarItem';
 import { useTranslation } from 'react-i18next';
+import { parse } from 'date-fns';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSelector } from 'react-redux';
 import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi';
@@ -8,11 +9,12 @@ import Loader from '../../../shared/components/Loader/Loader';
 
 import s from './Calendar.module.css';
 
-export const Calendar = ({ selectedDate }) => {
+export const Calendar = () => {
   const { t } = useTranslation();
   const month = useSelector(selectMonth);
   const { user } = useAuth();
   const { data, isLoading, isError } = useGetAllEntriesByMonthQuery(month);
+
   const DataArray = data?.data || [];
 
   const byOneDayRecords = DataArray.map(({ date, amounts }) => {
@@ -27,9 +29,11 @@ export const Calendar = ({ selectedDate }) => {
     return { date: oneDay.date, totalWaterByDay };
   });
 
+  const parsedMonth = parse(month, 'MM-yyyy', new Date());
+
   const daysInMonth = new Date(
-    selectedDate.getFullYear(),
-    selectedDate.getMonth() + 1,
+    parsedMonth.getFullYear(),
+    parsedMonth.getMonth() + 1,
     0
   ).getDate();
 

@@ -2,7 +2,7 @@ import Button from '../../../shared/components/Button/Button';
 import { sprite } from '../../../shared/icons/index';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { useTranslation } from 'react-i18next';
-import { format, parse } from 'date-fns';
+import { format, parse, startOfMonth } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMonth, setMonth } from '../../../redux/date/dateSlice';
 
@@ -16,10 +16,8 @@ export const CalendarPagination = ({ setIsActive, isActive }) => {
   const parsedDate = parse(date, 'MM-yyyy', new Date());
 
   const goToPrevoiusMonth = () => {
-    const prevoiusMonth = new Date(
-      parsedDate.getFullYear(),
-      parsedDate.getMonth() - 1,
-      1
+    const prevoiusMonth = startOfMonth(
+      new Date(parsedDate.getFullYear(), parsedDate.getMonth() - 1, 1)
     );
     const month = format(prevoiusMonth, 'MM-yyyy');
     dispatch(setMonth(month));
