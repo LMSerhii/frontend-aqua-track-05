@@ -171,3 +171,26 @@ Vite - це інструмент для розробки веб-додатків
 backend частини виконаний на Render.
 
 ## Наша дружня команда
+
+###### Team lead [SERHII LEONOV](https://t.me/LeonovSerhii)
+
+###### Scrum master [NATALIIA MUSIIENKO](https://t.me/NatalieMusienko)
+
+###### Developers frontend:
+
+- [KATERYNA MISHCHUK ](https://t.me/Kateryna_Mishchukp)
+- [VOLODYMYR PIDNEBESNYI](https://t.me/blavikensbutcher)
+- [KRYSTYNA ZOLOTAR](https://t.me/kristinaavstriiskaya)
+- [DENYS KOSHEVYI](https://t.me/Il_Denis_lI)
+- [IVAN TROPANETS](https://t.me/Shi9ei)
+
+---
+
+###### Developers backend:
+
+- [DMYTRO CHEREVKO ](https://t.me/Dtimewarp)
+- [KOSTIANTYN BRATKOVSKYI](https://t.me/cefarir0n)
+- [PAVLO BANDRIVSKYI](https://t.me/PavloMal)
+- [ANDRIAN POHREBNIAK](https://t.me/UAThee)
+
+---
