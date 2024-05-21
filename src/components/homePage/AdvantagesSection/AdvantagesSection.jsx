@@ -1,52 +1,70 @@
 import css from './AdvantagesSection.module.css';
 import Picture from '../../../shared/components/Picture/Picture';
-import RectangleImage from '../../../shared/images/homePage/Rectangle-min.png';
-import RectangleImage2 from '../../../shared/images/homePage/Rectangle2-min.png';
-import RectangleImage3 from '../../../shared/images/homePage/Rectangle3-min.png';
-import RectangleImage2x from '../../../shared/images/homePage/Rectangle2x-min.png';
-import RectangleImage22x from '../../../shared/images/homePage/Rectangle22x-min.png';
-import RectangleImage32x from '../../../shared/images/homePage/Rectangle32x-min.png';
-
-// import male from '../../../shared/images/homePage/Male Memojis-min.png';
-// import male2 from '../../../shared/images/homePage/Male2 Memojis-min.png';
-// import male3 from '../../../shared/images/homePage/Male3Memojis-min.png';
-// import male2x from '../../../shared/images/homePage/Male2x-min.png';
-// import male22x from '../../../shared/images/homePage/Male22x-min.png';
-// import male32x from '../../../shared/images/homePage/Male32x-min.png';
-
-import male1 from '../../../shared/images/homepage2/male1.png';
-import male2x from '../../../shared/images/homepage2/male1@2x.png';
-import male2 from '../../../shared/images/homepage2/male2.png';
-import male22x from '../../../shared/images/homepage2/male2@2x.png';
-import male3 from '../../../shared/images/homepage2/male3.png';
-import male32x from '../../../shared/images/homepage2/male3@2x.png';
-
 import { useTranslation } from 'react-i18next';
+import { Badge } from 'antd';
+import { getAllUsersDB } from '../../../redux/auth/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { selectAllUsers } from '../../../redux/auth/authSlice';
+import {
+  desktop,
+  desktop2x,
+  male1,
+  male1_2x,
+  male2,
+  male2_2x,
+  male3,
+  male3_2x,
+  mobile,
+  mobile2x,
+  tablet,
+  tablet2x,
+} from '../../../shared/images/homepage2';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const allUsers = useSelector(selectAllUsers);
+
+  useEffect(() => {
+    dispatch(getAllUsersDB());
+  }, [dispatch]);
+
   return (
     <div className={css.section}>
       <Picture
-        mob={RectangleImage}
-        tab={RectangleImage2}
-        desc={RectangleImage3}
-        mob2x={RectangleImage2x}
-        tab2x={RectangleImage22x}
-        desc2x={RectangleImage32x}
+        mob={mobile}
+        tab={tablet}
+        desc={desktop}
+        mob2x={mobile2x}
+        tab2x={tablet2x}
+        desc2x={desktop2x}
         className={css.section}
       />
+
       <div className={css.div}>
         <div className={css.divsecond}>
+          <Badge
+            count={allUsers ? allUsers.allUsers : '...'}
+            overflowCount={20}
+            className={css.badge}
+            style={{
+              backgroundColor: 'var(--lettuce)',
+              color: 'var(--dark-blue)',
+              fontSize: '10px',
+            }}
+          >
+            <div className={css.badgeContent}></div>
+          </Badge>
           <ul className={css.photo_list}>
             <li className={css.list_items}>
               <Picture
                 mob={male1}
                 tab={male1}
                 desc={male1}
-                mob2x={male2x}
-                tab2x={male2x}
-                desc2x={male2x}
+                mob2x={male1_2x}
+                tab2x={male1_2x}
+                desc2x={male1_2x}
                 width="47px"
                 height="47px"
               />
@@ -56,9 +74,9 @@ export default function AdvantagesSection() {
                 mob={male2}
                 tab={male2}
                 desc={male2}
-                mob2x={male22x}
-                tab2x={male22x}
-                desc2x={male22x}
+                mob2x={male2_2x}
+                tab2x={male2_2x}
+                desc2x={male2_2x}
                 width="47px"
                 height="47px"
               />
@@ -68,9 +86,9 @@ export default function AdvantagesSection() {
                 mob={male3}
                 tab={male3}
                 desc={male3}
-                mob2x={male32x}
-                tab2x={male32x}
-                desc2x={male32x}
+                mob2x={male3_2x}
+                tab2x={male3_2x}
+                desc2x={male3_2x}
                 width="47px"
                 height="47px"
               />

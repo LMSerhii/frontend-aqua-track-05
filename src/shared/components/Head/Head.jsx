@@ -1,10 +1,10 @@
-import UsserAuth from '../UserAuth/UsserAuth';
+import ChangeLang from '../ChangeLang/ChangeLang';
 
 const Head = () => {
   return (
     <header>
       <nav>
-        <UsserAuth />
+        <ChangeLang />
       </nav>
     </header>
   );

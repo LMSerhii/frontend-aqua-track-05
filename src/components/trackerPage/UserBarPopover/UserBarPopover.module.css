@@ -8,11 +8,14 @@
   border-radius: 15px;
   background-color: white;
   opacity: 0;
+  height: 80px;
+  overflow: auto;
   transition: opacity 7s var(--animation-time-function);
 }
 
 .wrapper.active {
   opacity: 1;
+  z-index: 999;
 }
 
 .settingBtn {
@@ -38,7 +41,8 @@
   fill: none;
   stroke: var(--dark-blue);
 }
-.logoutBtn {
+.logoutBtn,
+.deleteBtn {
   border: none;
   display: flex;
   gap: 8px;
@@ -54,7 +58,9 @@
 }
 
 .logoutBtn:hover,
-.logoutBtn:focus {
+.logoutBtn:focus,
+.deleteBtn:hover,
+.deleteBtn:focus {
   background-color: var(--calendarItemColor);
 }
 @media screen and (min-width: 768px) {
@@ -62,4 +68,10 @@
     width: 100%;
     top: 90%;
   }
+}
+
+.wrapperBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

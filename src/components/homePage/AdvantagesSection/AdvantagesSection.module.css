@@ -5,7 +5,6 @@
   background-size: cover;
   position: relative;
 }
-
 .div {
   position: absolute;
   left: 15px;
@@ -19,13 +18,13 @@
   padding: 10px 14px;
   background: #ffffff;
 }
+
 .photo_list {
   display: flex;
   width: 68px;
   height: 26px;
   position: relative;
 }
-
 .list_items {
   position: absolute;
   width: 26px;
@@ -47,7 +46,6 @@
   z-index: 1;
   right: 0;
 }
-
 .parag {
   font-weight: 700;
   font-size: 12px;
@@ -94,6 +92,7 @@
   display: flex;
   gap: 3px;
 }
+
 .item_trk {
   display: flex;
   position: absolute;
@@ -115,7 +114,11 @@
   left: 55px;
   background: var(--white);
 }
-
+.badge {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+}
 @media screen and (min-width: 375px) {
   .item_trk:nth-child(1) {
     top: 45px;
@@ -143,8 +146,12 @@
     width: 237px;
     height: 67px;
   }
+  .divsecond {
+    padding: 10px 20px;
+    align-items: center;
+  }
   .parag {
-    font-size: 15px;
+    font-size: 14px;
   }
   .item_trk:nth-child(1) {
     top: 130px;
@@ -179,6 +186,9 @@
   .list_items:nth-child(2) {
     z-index: 2;
     left: 28px;
+  }
+  .badge {
+    right: 5px;
   }
 }
 @media screen and (min-width: 1440px) {

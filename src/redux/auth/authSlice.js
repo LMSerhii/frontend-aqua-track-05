@@ -10,6 +10,8 @@ import {
   forgotPassword,
   resetPassword,
   refreshToken,
+  getAllUsersDB,
+  deleteUser,
 } from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
@@ -28,6 +30,8 @@ const authInitialState = {
   isLoggedIn: false,
   isRefreshing: false,
   error: null,
+
+  allUsers: null,
 };
 
 const authSlice = createSlice({
@@ -89,7 +93,7 @@ const authSlice = createSlice({
       })
 
       .addCase(logOut.fulfilled, state => {
-        state.user = { name: '', email: '' };
+        state.user = authInitialState.user;
         state.token = null;
         state.refreshToken = null;
         state.isLoggedIn = false;
@@ -141,6 +145,13 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
 
+      .addCase(deleteUser.fulfilled, state => {
+        state.user = authInitialState.user;
+        state.token = null;
+        state.refreshToken = null;
+        state.isLoggedIn = false;
+      })
+
       .addCase(forgotPassword.pending, state => {
         state.error = null;
       })
@@ -157,6 +168,16 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(resetPassword.rejected, state => {
+        state.error = true;
+      })
+      .addCase(getAllUsersDB.pending, state => {
+        state.error = null;
+      })
+      .addCase(getAllUsersDB.fulfilled, (state, action) => {
+        state.allUsers = action.payload;
+        state.error = null;
+      })
+      .addCase(getAllUsersDB.rejected, state => {
         state.error = true;
       });
   },
@@ -178,3 +199,4 @@ export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const selectAllUsers = state => state.auth.allUsers;

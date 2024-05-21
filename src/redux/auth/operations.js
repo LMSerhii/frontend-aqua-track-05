@@ -82,6 +82,7 @@ export const refreshUser = createAsyncThunk(
     try {
       setAuthHeader(persistedToken);
       const response = await axios.get(`${USERS}${CURRENT}`);
+
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -95,6 +96,18 @@ export const updateUser = createAsyncThunk(
     try {
       const response = await axios.put(`${USERS}/update`, formData);
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteUser = createAsyncThunk(
+  'auth/deleteUser',
+  async (_, thunkAPI) => {
+    try {
+      await axios.delete(`${USERS}/delete`);
+      clearAuthHeader();
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -163,6 +176,18 @@ export const getAllUsers = createAsyncThunk(
 
       const response = await axios.get(`${USERS}`);
       console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getAllUsersDB = createAsyncThunk(
+  'auth/getAllUsersDB',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/users/all`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

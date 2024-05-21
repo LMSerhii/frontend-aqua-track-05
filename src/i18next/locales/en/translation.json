@@ -71,7 +71,9 @@
     "addWaterBtn": "Add water",
     "addWaterTitle": "Add water",
     "addWaterSubTitle": "Choose a value",
-    "AmountWater": "Amount of water:"
+    "AmountWater": "Amount of water:",
+    "editTitle": "Edit the entered amount of water",
+    "editSubtitle": "Correct entered data:"
   },
 
   "WaterProgressBar": {
@@ -100,15 +102,24 @@
 
   "UserBarPopover": {
     "settingsBtn": "Setting",
-    "logOutBtn": "Log out"
+    "logOutBtn": "Log out",
+    "deleteBtn": "Delete User"
+  },
+
+  "DeletePanel": {
+    "deleteText": "Are you sure you want to delete the user?",
+    "deleteBtn": "Delete",
+    "cancelBtn": "Cancel"
   },
 
   "MonthInfo": {
-    "month": "Month"
+    "month": "Month",
+    "stat": "Statistics"
   },
 
   "DailyInfo": {
-    "startTrackingText": "Start tracking your water intake by clicking the Add water button."
+    "startTrackingText": "Start tracking your water intake by clicking the Add water button.",
+    "errorMessage": "Oops! Something went wrong. Please, reload the page!"
   },
 
   "ChooseDate": {
@@ -201,9 +212,20 @@
     "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
   },
 
+  "DeleteModal": {
+    "deleteTitle": "Delete entry",
+    "deleteSubtitle": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "LogOutModal": {
+    "logOut": "Log out",
+    "logOutSubtitle": "Do you really want to leave?"
+  },
+  
   "NotFound": {
     "notFoundTitle": "Looks like you got lost :(",
     "notFoundParagraph": "Sorry, the page you visited does not exist.",
     "notFoundBtn": "Back Home"
-  }
 }
