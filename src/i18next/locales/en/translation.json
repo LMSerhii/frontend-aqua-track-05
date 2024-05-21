@@ -199,5 +199,11 @@
 
   "WaterList": {
     "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
+  },
+
+  "NotFound": {
+    "notFoundTitle": "Looks like you got lost :(",
+    "notFoundParagraph": "Sorry, the page you visited does not exist.",
+    "notFoundBtn": "Back Home"
   }
 }
