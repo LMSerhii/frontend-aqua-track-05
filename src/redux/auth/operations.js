@@ -182,7 +182,7 @@ export const getAllUsers = createAsyncThunk(
     }
   }
 );
-/********** */
+
 export const getAllUsersDB = createAsyncThunk(
   'auth/getAllUsersDB',
   async (_, thunkAPI) => {
