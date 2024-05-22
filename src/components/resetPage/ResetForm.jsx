@@ -24,7 +24,7 @@ export default function ResetForm({ onVerification }) {
   const { t } = useTranslation();
 
   const otp = location.pathname.split('/').pop();
-
+  console.log('otp start', otp);
   const CheckSchema = Yup.object().shape({
     password: Yup.string()
       .min(6, t('ResetForm.minTooShort'))
@@ -41,7 +41,7 @@ export default function ResetForm({ onVerification }) {
   });
 
   const handleSubmit = (values, actions) => {
-    console.log('otp', otp);
+    console.log('otp submit', otp);
     resetPassword({ password: values.password, otp })
       .unwrap()
       .then(() => {
