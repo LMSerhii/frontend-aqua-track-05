@@ -40,6 +40,7 @@ export default function AdvantagesSection() {
         tab2x={tablet2x}
         desc2x={desktop2x}
         className={css.section}
+        alt={'Girl drinking water'}
       />
 
       <div className={css.div}>
@@ -65,6 +66,7 @@ export default function AdvantagesSection() {
                 mob2x={male1_2x}
                 tab2x={male1_2x}
                 desc2x={male1_2x}
+                alt={'Costumer`s photo'}
                 width="47px"
                 height="47px"
               />
@@ -77,6 +79,7 @@ export default function AdvantagesSection() {
                 mob2x={male2_2x}
                 tab2x={male2_2x}
                 desc2x={male2_2x}
+                alt={'Costumer`s photo'}
                 width="47px"
                 height="47px"
               />
@@ -89,6 +92,7 @@ export default function AdvantagesSection() {
                 mob2x={male3_2x}
                 tab2x={male3_2x}
                 desc2x={male3_2x}
+                alt={'Costumer`s photo'}
                 width="47px"
                 height="47px"
               />
