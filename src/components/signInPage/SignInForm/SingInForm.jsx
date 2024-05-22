@@ -29,7 +29,9 @@ export default function SignInForm() {
 
   const idEmail = useId();
   const idPassword = useId();
+
   const [verify, setVerify] = useState(false);
+
   const [email, setEmail] = useState('');
 
   const CheckSchema = Yup.object().shape({
@@ -62,14 +64,17 @@ export default function SignInForm() {
         setVerify(false);
         actions.resetForm();
       })
-      .catch(error => {
-        if (error === 'Account is not verified') {
-          toast.error(error);
+      .catch(err => {
+        if (err.data.message === 'Account is not verified') {
+          toast.error(err.data.message);
+
           setEmail(values.email);
+
           setVerify(true);
           return;
         }
-        toast.error(error);
+
+        toast.error(err.data.message);
       });
   };
 
@@ -81,8 +86,8 @@ export default function SignInForm() {
         setEmail('');
         setVerify(false);
       })
-      .catch(error => {
-        toast.error(error);
+      .catch(err => {
+        toast.error(err.data.message);
       });
   };
 
@@ -116,6 +121,7 @@ export default function SignInForm() {
                   component="span"
                   className={css.error}
                 />
+                {console.log(verify)}
                 {verify && (
                   <button
                     type="button"
