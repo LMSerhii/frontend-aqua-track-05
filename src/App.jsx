@@ -1,4 +1,6 @@
 import { useCallback, useEffect } from 'react';
+import toast from 'react-hot-toast';
+
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import SharedLayout from './shared/components/SharedLayout/SharedLayout';
@@ -32,6 +34,7 @@ export default function App() {
   const { isRefreshing } = useAuth();
 
   const [refreshToken] = useRefreshTokenMutation();
+
   const refreshTokenValue = useSelector(state => state.auth.refreshToken);
 
   const handleGoogleAuth = useCallback(() => {
@@ -49,7 +52,6 @@ export default function App() {
           refreshToken,
         })
       );
-
       dispatch(setUserData(userData));
     }
   }, [location.search, dispatch]);
@@ -57,12 +59,13 @@ export default function App() {
   const fetchData = useCallback(async () => {
     if (refreshTokenValue) {
       dispatch(startRefreshing());
-      try {
-        const newToken = await refreshToken(refreshTokenValue).unwrap();
-        dispatch(setAccessToken(newToken.token));
-      } catch (error) {
-        console.error('Failed to refresh token:', error);
-      }
+
+      refreshToken(refreshTokenValue)
+        .unwrap()
+        .then(data => {
+          dispatch(setAccessToken(data.token));
+        })
+        .catch(() => toast.success('You have successfully logged in!'));
     }
   }, [refreshTokenValue, dispatch, refreshToken]);
 

@@ -23,8 +23,6 @@ const authSlice = createSlice({
   initialState: authInitialState,
   reducers: {
     setCredentials: (state, action) => {
-      console.log('action.payload.accessToken', action.payload.accessToken);
-      console.log('action.payload.refreshToken', action.payload.refreshToken);
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
 
@@ -36,7 +34,6 @@ const authSlice = createSlice({
     },
 
     setAccessToken: (state, action) => {
-      console.log('action', action);
       state.accessToken = action.payload;
 
       state.isRefreshing = false;
@@ -49,6 +46,7 @@ const authSlice = createSlice({
       state.user = authInitialState.user;
       state.accessToken = null;
       state.refreshToken = null;
+      state.isRefreshing = false;
     },
   },
 });
@@ -56,7 +54,7 @@ const authSlice = createSlice({
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['accessToken', 'refreshToken'],
+  whitelist: ['accessToken', 'refreshToken', 'user'],
 };
 
 export const {

@@ -17,7 +17,6 @@ export const store = configureStore({
   reducer: {
     auth: authReducer,
     date: dateReducer,
-
     [authApi.reducerPath]: authApi.reducer,
     [trackerApi.reducerPath]: trackerApi.reducer,
   },

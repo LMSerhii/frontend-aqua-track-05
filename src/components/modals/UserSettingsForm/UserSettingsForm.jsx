@@ -90,9 +90,12 @@ export const UserSettingsForm = () => {
 
       formData.append('dataUser', JSON.stringify(dataUser));
 
-      const updatedUser = await updateUser()
+      updateUser(dataUser)
         .unwrap()
-        .then(() => {
+        .then(data => {
+          console.log('data', data);
+          dispatch(setUserData({ user: data }));
+
           toast.success('User updated successfully ');
           // setActive(false);
         })
@@ -101,10 +104,8 @@ export const UserSettingsForm = () => {
           toast.error('Something went wrong');
           // setActive(false);
         });
-
-      dispatch(setUserData(updatedUser));
     } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
+      console.log(error);
     }
   };
 
