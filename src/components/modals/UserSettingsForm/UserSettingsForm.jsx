@@ -93,14 +93,12 @@ export const UserSettingsForm = () => {
       updateUser(dataUser)
         .unwrap()
         .then(data => {
-          console.log('data', data);
           dispatch(setUserData({ user: data }));
 
           toast.success('User updated successfully ');
           // setActive(false);
         })
-        .catch(error => {
-          console.log(error);
+        .catch(() => {
           toast.error('Something went wrong');
           // setActive(false);
         });
