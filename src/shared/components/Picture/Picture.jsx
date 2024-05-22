@@ -8,6 +8,7 @@ const Picture = ({
   className,
   width,
   height,
+  alt,
 }) => {
   return (
     <picture>
@@ -18,6 +19,7 @@ const Picture = ({
         className={className}
         width={width}
         height={height}
+        alt={alt}
       />
     </picture>
   );
