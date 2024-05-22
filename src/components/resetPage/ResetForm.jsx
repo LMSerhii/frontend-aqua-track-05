@@ -41,6 +41,7 @@ export default function ResetForm({ onVerification }) {
   });
 
   const handleSubmit = (values, actions) => {
+    console.log('otp', otp);
     resetPassword({ password: values.password, otp })
       .unwrap()
       .then(() => {
