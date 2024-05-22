@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { ShareIconPassword } from '../../shared/components/ShareIconPassword/ShareIconPassword';
 import { useResetPasswordMutation } from '../../redux/authApi/authApi';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const initialValues = {
   password: '',
@@ -14,11 +15,15 @@ const initialValues = {
 };
 
 export default function ResetForm({ onVerification }) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [resetPassword] = useResetPasswordMutation();
   const idPassword = useId();
   const idRepeatPassword = useId();
 
   const { t } = useTranslation();
+
+  const otp = location.pathname.split('/').pop();
 
   const CheckSchema = Yup.object().shape({
     password: Yup.string()
@@ -35,29 +40,22 @@ export default function ResetForm({ onVerification }) {
       .required(t('ResetForm.requiredPasswordrepeat')),
   });
 
-  const handleSubmit = async (values, actions) => {
-    const pathSegments = window.location.pathname.split('/');
-    const otp = pathSegments[pathSegments.length - 1];
+  const handleSubmit = (values, actions) => {
+    resetPassword({ password: values.password, otp })
+      .unwrap()
+      .then(() => {
+        onVerification();
+        actions.resetForm();
 
-    try {
-      await resetPassword({ password: values.password, otp })
-        .unwrap()
-        .then(() => {
-          onVerification();
-          actions.resetForm();
+        toast.success('The password has been successfully changed!');
 
-          toast.success('The password has been successfully changed!');
-
-          setTimeout(() => {
-            window.location.href = '/signin';
-          }, 5000);
-        })
-        .catch(() => {
-          toast.error('Something is wrong, please try again...');
-        });
-    } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
-    }
+        setTimeout(() => {
+          navigate('/signin');
+        }, 5000);
+      })
+      .catch(() => {
+        toast.error('Something is wrong, please try again...');
+      });
   };
 
   return (
