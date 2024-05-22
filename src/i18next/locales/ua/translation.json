@@ -208,7 +208,7 @@
   "WaterList": {
     "statrTrackingText": "Почніть відстежувати споживання води, натиснувши кнопку «Додати воду»."
   },
-  
+
   "DeleteModal": {
     "deleteTitle": "Видалити запис",
     "deleteSubtitle": "Ви впевнені, що хочете видалити запис?",
@@ -218,10 +218,12 @@
 
   "LogOutModal": {
     "logOut": "Вийти",
-    "logOutSubtitle": "Ви дійсно хочете піти?",
-    
+    "logOutSubtitle": "Ви дійсно хочете піти?"
+  },
+
   "NotFound": {
     "notFoundTitle": "Схоже що ви заблукали :(",
     "notFoundParagraph": "Вибачте, але такої сторінки не існує",
     "notFoundBtn": "Повернутись на головну"
+  }
 }

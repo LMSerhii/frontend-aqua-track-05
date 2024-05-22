@@ -17,6 +17,7 @@ import {
   tablet2x,
 } from '../../../shared/images/homepage2';
 import { useGetAllUsersQuery } from '../../../redux/authApi/authApi';
+import { Hearts } from 'react-loader-spinner';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
@@ -38,7 +39,21 @@ export default function AdvantagesSection() {
       <div className={css.div}>
         <div className={css.divsecond}>
           <Badge
-            count={data ? data.allUsers : '...'}
+            count={
+              data ? (
+                data.allUsers
+              ) : (
+                <Hearts
+                  height="20"
+                  width="20"
+                  color="#4fa94d"
+                  ariaLabel="hearts-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              )
+            }
             overflowCount={20}
             className={css.badge}
             style={{

@@ -16,6 +16,8 @@ const authInitialState = {
   refreshToken: null,
 
   isRefreshing: false,
+
+  isDailyRefreshing: false,
 };
 
 const authSlice = createSlice({
@@ -42,6 +44,14 @@ const authSlice = createSlice({
       state.isRefreshing = true;
     },
 
+    startDailyRefreshing: state => {
+      state.isDailyRefreshing = true;
+    },
+
+    stopDailyRefreshing: state => {
+      state.isDailyRefreshing = false;
+    },
+
     logOut: state => {
       state.user = authInitialState.user;
       state.accessToken = null;
@@ -63,6 +73,8 @@ export const {
   setAccessToken,
   logOut,
   startRefreshing,
+  startDailyRefreshing,
+  stopDailyRefreshing,
 } = authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
@@ -74,4 +86,4 @@ export const selectUser = state => state.auth.user;
 export const selectIsLoggedIn = state => !!state.auth.accessToken;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
 
-// export const selectAllUsers = state => state.auth.allUsers;
+export const selectIsDailyRefreshing = state => state.auth.isDailyRefreshing;

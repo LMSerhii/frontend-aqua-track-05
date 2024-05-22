@@ -1,6 +1,11 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query';
 import { BASE_URL } from '../../routes.js';
-import { logOut, setAccessToken, startRefreshing } from './authSlice';
+import {
+  logOut,
+  setAccessToken,
+  startDailyRefreshing,
+  stopDailyRefreshing,
+} from './authSlice';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -24,7 +29,8 @@ export const baseQueryWithReAuth = async (args, api, extraOptions) => {
     const refreshToken = api.getState().auth.refreshToken;
 
     if (refreshToken) {
-      api.dispatch(startRefreshing());
+      // api.dispatch(startRefreshing());
+      api.dispatch(startDailyRefreshing());
 
       const refreshResult = await baseQuery(
         {
@@ -44,6 +50,8 @@ export const baseQueryWithReAuth = async (args, api, extraOptions) => {
 
         // retry the original query with the new access token
         result = await baseQuery(args, api, extraOptions);
+
+        api.dispatch(stopDailyRefreshing());
       } else {
         api.dispatch(logOut());
       }

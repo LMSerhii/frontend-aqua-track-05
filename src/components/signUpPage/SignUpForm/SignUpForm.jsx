@@ -46,30 +46,26 @@ export default function SignUpForm() {
   const idRepeatPassword = useId();
 
   // eslint-disable-next-line no-unused-vars
-  const handleSubmit = async (values, _) => {
+  const handleSubmit = (values, _) => {
     const name = values.email.split('@')[0];
 
     const user = { name, email: values.email, password: values.password };
 
-    try {
-      await register(user)
-        .unwrap()
-        .then(() => {
-          toast.success(`Message to verify email was send to ${user.email} !`, {
-            duration: 5000,
-          });
-          navigate('/signin');
-        })
-        .catch(error => {
-          if (error === 'Email already in use') {
-            toast.error(error);
-            return;
-          }
-          toast.error('Something went wrong. Please try again later.');
+    register(user)
+      .unwrap()
+      .then(() => {
+        toast.success(`Message to verify email was send to ${user.email} !`, {
+          duration: 5000,
         });
-    } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
-    }
+        navigate('/signin');
+      })
+      .catch(error => {
+        if (error.data.message === 'Email already in use') {
+          toast.error(error.data.message);
+          return;
+        }
+        toast.error('Something went wrong. Please try again later.');
+      });
   };
 
   return (

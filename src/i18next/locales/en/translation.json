@@ -223,9 +223,10 @@
     "logOut": "Log out",
     "logOutSubtitle": "Do you really want to leave?"
   },
-  
+
   "NotFound": {
     "notFoundTitle": "Looks like you got lost :(",
     "notFoundParagraph": "Sorry, the page you visited does not exist.",
     "notFoundBtn": "Back Home"
+  }
 }
