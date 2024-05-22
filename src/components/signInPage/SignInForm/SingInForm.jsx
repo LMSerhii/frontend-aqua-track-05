@@ -121,7 +121,6 @@ export default function SignInForm() {
                   component="span"
                   className={css.error}
                 />
-                {console.log(verify)}
                 {verify && (
                   <button
                     type="button"
