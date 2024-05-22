@@ -53,8 +53,17 @@
   color: var(--dark-blue);
 }
 
+.paragSpan {
+  margin-right: 3px;
+}
+
+.paragSpanLast {
+  display: inline-block;
+}
+
 .span {
   color: var(--lettuce);
+  margin-right: 3px;
 }
 
 .list_trk {
@@ -90,6 +99,8 @@
 }
 .flex {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 3px;
 }
 

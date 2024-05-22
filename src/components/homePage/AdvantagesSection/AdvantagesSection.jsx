@@ -87,9 +87,13 @@ export default function AdvantagesSection() {
             </li>
           </ul>
           <p className={css.parag}>
-            {t('advantagesSection.ourParag')}{' '}
-            <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
-            {t('advantagesSection.customersParag')}
+            <span className={css.paragSpan}>
+              {t('advantagesSection.ourParag')}
+            </span>
+            <span className={css.span}>{t('advantagesSection.happySpan')}</span>
+            <span className={css.paragSpanLast}>
+              {t('advantagesSection.customersParag')}
+            </span>
           </p>
         </div>
       </div>
