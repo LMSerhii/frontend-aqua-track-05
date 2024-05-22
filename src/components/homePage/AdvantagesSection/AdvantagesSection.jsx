@@ -25,10 +25,11 @@ export default function AdvantagesSection() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const allUsers = useSelector(selectAllUsers);
+  console.log(allUsers);
 
   useEffect(() => {
-    dispatch(getAllUsersDB());
-  }, [dispatch]);
+    getAllUsersDB();
+  }, []);
 
   return (
     <div className={css.section}>

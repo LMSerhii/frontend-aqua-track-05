@@ -91,6 +91,7 @@
 .flex {
   display: flex;
   gap: 3px;
+  align-items: center;
 }
 
 .item_trk {
