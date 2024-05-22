@@ -2,9 +2,9 @@ import css from './AdvantagesSection.module.css';
 import Picture from '../../../shared/components/Picture/Picture';
 import { useTranslation } from 'react-i18next';
 import { Badge } from 'antd';
-import { getAllUsersDB } from '../../../redux/auth/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
+
 import { selectAllUsers } from '../../../redux/auth/authSlice';
 import {
   desktop,
@@ -23,12 +23,8 @@ import {
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const allUsers = useSelector(selectAllUsers);
 
-  useEffect(() => {
-    dispatch(getAllUsersDB());
-  }, [dispatch]);
+  const allUsers = useSelector(selectAllUsers);
 
   return (
     <div className={css.section}>

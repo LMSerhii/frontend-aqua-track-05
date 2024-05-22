@@ -25,16 +25,13 @@
   color: var(--dark-blue);
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
   padding: 7px 10px;
   border-radius: 30px;
-  padding-right: 40px; /*для однакового розиіру Popover з батьківським dropdown */
+  /* padding-right: 30px;  для однакового розиіру Popover з батьківським dropdown */
 
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
-}
-.settingBtn:hover,
-.settingBtn:focus {
-  background-color: var(--calendarItemColor);
 }
 
 .icon {
@@ -49,6 +46,7 @@
   color: var(--light-grey);
   cursor: pointer;
   font-weight: bold;
+  font-size: 14px;
   opacity: 0.5;
   padding: 7px 10px;
   border-radius: 30px;
@@ -57,6 +55,8 @@
     var(--animation-time-function);
 }
 
+.settingBtn:hover,
+.settingBtn:focus,
 .logoutBtn:hover,
 .logoutBtn:focus,
 .deleteBtn:hover,
@@ -67,6 +67,11 @@
   .wrapper {
     width: 100%;
     top: 90%;
+  }
+  .settingBtn,
+  .logoutBtn,
+  .deleteBtn {
+    font-size: 15px;
   }
 }
 
