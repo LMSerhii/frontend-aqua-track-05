@@ -14,45 +14,41 @@ export const DeleteUser = ({ active, setActive }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const handleClick = async () => {
-    try {
-      await deleteUser()
-        .unwrap()
-        .then(() => {
-          toast.success('User deleted successfully ');
-          setActive(false);
-        })
-        .catch(error => {
-          console.log(error);
-          toast.error('Something went wrong');
-          setActive(false);
-        });
-
-      dispatch(logOut());
-    } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
-    }
+  const handleClick = () => {
+    deleteUser()
+      .unwrap()
+      .then(() => {
+        toast.success(t('Errors.delete'));
+        dispatch(logOut());
+        setActive(false);
+      })
+      .catch(() => {
+        toast.error(t('Errors.wrong'));
+        setActive(false);
+      });
   };
 
   return (
     <>
       <Modal active={active} setActive={setActive}>
-        <Button className={s.close} onClick={() => setActive(false)}>
-          <SharedSVG
-            className={s.icon}
-            width="28"
-            height="28"
-            svgId={'close'}
-          />
-        </Button>
-        <p className={s.caption}>{t('DeletePanel.deleteText')}</p>
-        <div className={s.wrapBtn}>
-          <Button classname={s.btnDelete} onClick={handleClick}>
-            {t('DeletePanel.deleteBtn')}
+        <div className={s.modalWrapper}>
+          <Button className={s.close} onClick={() => setActive(false)}>
+            <SharedSVG
+              className={s.icon}
+              width="28"
+              height="28"
+              svgId={'close'}
+            />
           </Button>
-          <Button classname={s.btnCancel} onClick={() => setActive(false)}>
-            {t('DeletePanel.cancelBtn')}
-          </Button>
+          <p className={s.caption}>{t('DeletePanel.deleteText')}</p>
+          <div className={s.wrapBtn}>
+            <Button classname={s.btnDelete} onClick={handleClick}>
+              {t('DeletePanel.deleteBtn')}
+            </Button>
+            <Button classname={s.btnCancel} onClick={() => setActive(false)}>
+              {t('DeletePanel.cancelBtn')}
+            </Button>
+          </div>
         </div>
       </Modal>
     </>

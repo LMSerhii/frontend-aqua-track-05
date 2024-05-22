@@ -6,6 +6,10 @@
   fill: transparent;
 }
 
+.modalWrapper {
+  padding: 20px;
+}
+
 .caption {
   font-size: 14px;
   line-height: 1.25;
@@ -23,39 +27,24 @@
 
 .btnDelete {
   margin-bottom: 10px;
-  min-width: 270px;
+  width: 100%;
   background-color: coral;
   color: #f0eff4;
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
 }
-@media screen and (min-width: 375px) {
-  .btnDelete {
-    min-width: 300px;
-  }
-}
+
 @media screen and (min-width: 768px) {
   .btnDelete {
     margin-bottom: 0px;
-    min-width: 170px;
   }
 }
 
 .btnCancel {
-  min-width: 270px;
+  width: 100%;
   background-color: #f0eff4;
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
-}
-@media screen and (min-width: 375px) {
-  .btnCancel {
-    min-width: 300px;
-  }
-}
-@media screen and (min-width: 768px) {
-  .btnCancel {
-    min-width: 170px;
-  }
 }
 
 .btnDelete:hover,
@@ -68,8 +57,6 @@
   background-color: gray;
 }
 
-.wrapBtn {
-}
 @media screen and (min-width: 768px) {
   .wrapBtn {
     display: flex;

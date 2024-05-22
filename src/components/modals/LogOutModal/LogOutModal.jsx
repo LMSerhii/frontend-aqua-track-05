@@ -11,24 +11,19 @@ export const LogOutModal = ({ active, setActive }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const onClickLogout = async () => {
-    try {
-      await logout()
-        .unwrap()
-        .then(() => {
-          toast.success('You have successfully logged out');
-          setActive(false);
-        })
-        .catch(error => {
-          console.log(error);
-          toast.error('Something went wrong');
-          setActive(false);
-        });
+  const onClickLogout = () => {
+    logout()
+      .unwrap()
+      .then(() => {
+        toast.success(t('Errors.logout'));
+        setActive(false);
+      })
+      .catch(() => {
+        toast.error(t('Errors.wrong'));
+        setActive(false);
+      });
 
-      dispatch(logOut());
-    } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
-    }
+    dispatch(logOut());
   };
   return (
     <div

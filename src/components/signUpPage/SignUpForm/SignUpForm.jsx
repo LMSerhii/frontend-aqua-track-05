@@ -19,6 +19,7 @@ const initialValues = {
   password: '',
   repeatPassword: '',
 };
+
 export default function SignUpForm() {
   const [register] = useRegisterMutation();
   const { t } = useTranslation();
@@ -54,17 +55,17 @@ export default function SignUpForm() {
     register(user)
       .unwrap()
       .then(() => {
-        toast.success(`Message to verify email was send to ${user.email} !`, {
+        toast.success(`${t('Errors.sendEmail')} ${user.email} !`, {
           duration: 5000,
         });
         navigate('/signin');
       })
       .catch(error => {
         if (error.data.message === 'Email already in use') {
-          toast.error(error.data.message);
+          toast.error(t('Errors.useEmail'));
           return;
         }
-        toast.error('Something went wrong. Please try again later.');
+        toast.error(t('Errors.wrong'));
       });
   };
 

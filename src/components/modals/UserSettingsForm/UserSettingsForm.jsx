@@ -16,7 +16,7 @@ import { validationSchema } from '../../../shared/helpers/validationSchema';
 import s from './UserSettingsForm.module.css';
 import { useUpdateUserMutation } from '../../../redux/authApi/authApi';
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = ({ setActive }) => {
   const [updateUser] = useUpdateUserMutation();
   const dispatch = useDispatch();
 
@@ -48,7 +48,7 @@ export const UserSettingsForm = () => {
       setSelectedFile(imageURL);
 
       if (!file) {
-        alert('Please select a file!');
+        toast.error(t('Errors.file'));
         return;
       }
 
@@ -56,7 +56,7 @@ export const UserSettingsForm = () => {
 
       setUploaded(uploadFile);
     } catch (error) {
-      console.error('Ошибка загрузки изображения:', error);
+      toast.error(t('Errors.wrong'));
     }
   };
 
@@ -95,15 +95,15 @@ export const UserSettingsForm = () => {
         .then(data => {
           dispatch(setUserData({ user: data }));
 
-          toast.success('User updated successfully ');
-          // setActive(false);
+          toast.success(t('Errors.update'));
+          setActive(false);
         })
         .catch(() => {
-          toast.error('Something went wrong');
-          // setActive(false);
+          toast.error(t('Errors.wrong'));
+          setActive(false);
         });
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 
@@ -315,7 +315,7 @@ export const UserSettingsForm = () => {
               style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
             {errors.Your_water && (
-              <p className={s.errorYup}>Number must be positive and integer</p>
+              <p className={s.errorYup}>Number must be positivet</p>
             )}
           </div>
         </div>

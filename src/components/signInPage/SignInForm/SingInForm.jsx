@@ -58,7 +58,7 @@ export default function SignInForm() {
         );
         dispatch(setUserData({ user: data.user }));
 
-        toast.success('You have successfully logged in!');
+        toast.success(t('Errors.login'));
 
         setEmail('');
         setVerify(false);
@@ -66,7 +66,7 @@ export default function SignInForm() {
       })
       .catch(err => {
         if (err.data.message === 'Account is not verified') {
-          toast.error(err.data.message);
+          toast.error(t('Errors.notVerified'));
 
           setEmail(values.email);
 
@@ -82,7 +82,7 @@ export default function SignInForm() {
     await resendEmail({ email })
       .unwrap()
       .then(() => {
-        toast.success('Email sent successfully');
+        toast.success(t('Errors.sentEmail'));
         setEmail('');
         setVerify(false);
       })
