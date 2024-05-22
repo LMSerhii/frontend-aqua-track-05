@@ -1,12 +1,19 @@
 import { Button, Result } from 'antd';
 import { NavLink } from 'react-router-dom';
-export const NotFoundPage = () => (
-  <Result
-    status="404"
-    title="Looks like you got lost :("
-    subTitle="Sorry, the page you visited does not exist."
-    extra={<Button type="primary"><NavLink to="/" >
-      Back Home
-    </NavLink></Button>}
-  />
-);
+import { useTranslation } from 'react-i18next';
+export const NotFoundPage = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Result
+      status="404"
+      title={t('NotFound.notFoundTitle')}
+      subTitle={t('NotFound.notFoundParagraph')}
+      extra={
+        <Button type="primary">
+          <NavLink to="/">{t('NotFound.notFoundBtn')}</NavLink>
+        </Button>
+      }
+    />
+  );
+};
