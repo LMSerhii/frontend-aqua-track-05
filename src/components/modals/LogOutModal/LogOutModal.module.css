@@ -108,6 +108,7 @@
   background-color: var(--light-gray);
 
   transition: 0.3s;
+
   &:hover {
     opacity: 1;
   }
@@ -140,7 +141,7 @@
     font-size: 28px;
     line-height: 114%;
   }
-  .icon{ 
+  .icon {
     width: 28px;
     height: 28px;
   }
@@ -152,9 +153,7 @@
     height: 244px;
   }
   .btnLog,
-  .btnCancel{ 
+  .btnCancel {
     width: 173px;
   }
-  
 }
-

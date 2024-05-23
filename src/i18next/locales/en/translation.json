@@ -8,7 +8,7 @@
   },
 
   "advantagesSection": {
-    "ourParag": "Our ",
+    "ourParag": "Our",
     "happySpan": "happy",
     "customersParag": "customers",
     "textHabit": "Habit drive",
@@ -71,12 +71,14 @@
     "addWaterBtn": "Add water",
     "addWaterTitle": "Add water",
     "addWaterSubTitle": "Choose a value",
-    "AmountWater": "Amount of water:"
+    "AmountWater": "Amount of water:",
+    "editTitle": "Edit the entered amount of water",
+    "editSubtitle": "Correct entered data:"
   },
 
   "WaterProgressBar": {
     "today": "Today",
-    "it": "It'st",
+    "it": "It's",
     "norma": "of daily norma"
   },
 
@@ -111,11 +113,13 @@
   },
 
   "MonthInfo": {
-    "month": "Month"
+    "month": "Month",
+    "stat": "Statistics"
   },
 
   "DailyInfo": {
-    "startTrackingText": "Start tracking your water intake by clicking the Add water button."
+    "startTrackingText": "Start tracking your water intake by clicking the Add water button.",
+    "errorMessage": "Oops! Something went wrong. Please, reload the page!"
   },
 
   "ChooseDate": {
@@ -206,5 +210,35 @@
 
   "WaterList": {
     "statrTrackingText": "Start tracking your water intake by clicking the Add water button."
+  },
+
+  "DeleteModal": {
+    "deleteTitle": "Delete entry",
+    "deleteSubtitle": "Are you sure you want to delete the entry?",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+
+  "LogOutModal": {
+    "logOut": "Log out",
+    "logOutSubtitle": "Do you really want to leave?"
+  },
+
+  "NotFound": {
+    "notFoundTitle": "Looks like you got lost :(",
+    "notFoundParagraph": "Sorry, the page you visited does not exist.",
+    "notFoundBtn": "Back Home"
+  },
+  "Errors": {
+    "wrong": "Something went wrong. Please try again later.",
+    "delete": "User deleted successfully",
+    "update": "User updated successfully",
+    "logout": "You have successfully logged out",
+    "login": "You have successfully logged out",
+    "file": "Please select a file!",
+    "sendEmail": "Message to verify email was send to",
+    "useEmail": "Email already in use",
+    "notVerified": "Account is not verified",
+    "sentEmail": "Email sent successfully"
   }
 }

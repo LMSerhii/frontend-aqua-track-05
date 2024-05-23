@@ -5,7 +5,6 @@
   background-size: cover;
   position: relative;
 }
-
 .div {
   position: absolute;
   left: 15px;
@@ -26,7 +25,6 @@
   height: 26px;
   position: relative;
 }
-
 .list_items {
   position: absolute;
   width: 26px;
@@ -48,7 +46,6 @@
   z-index: 1;
   right: 0;
 }
-
 .parag {
   font-weight: 700;
   font-size: 12px;
@@ -56,8 +53,17 @@
   color: var(--dark-blue);
 }
 
+.paragSpan {
+  margin-right: 3px;
+}
+
+.paragSpanLast {
+  display: inline-block;
+}
+
 .span {
   color: var(--lettuce);
+  margin-right: 3px;
 }
 
 .list_trk {
@@ -93,6 +99,8 @@
 }
 .flex {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 3px;
 }
 
@@ -117,7 +125,11 @@
   left: 55px;
   background: var(--white);
 }
-
+.badge {
+  position: absolute;
+  top: 10px;
+  right: -5px;
+}
 @media screen and (min-width: 375px) {
   .item_trk:nth-child(1) {
     top: 45px;
@@ -145,8 +157,12 @@
     width: 237px;
     height: 67px;
   }
+  .divsecond {
+    padding: 10px 20px;
+    align-items: center;
+  }
   .parag {
-    font-size: 15px;
+    font-size: 14px;
   }
   .item_trk:nth-child(1) {
     top: 130px;
@@ -181,6 +197,9 @@
   .list_items:nth-child(2) {
     z-index: 2;
     left: 28px;
+  }
+  .badge {
+    right: 5px;
   }
 }
 @media screen and (min-width: 1440px) {

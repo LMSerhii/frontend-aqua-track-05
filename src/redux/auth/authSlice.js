@@ -1,16 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import {
-  logIn,
-  logOut,
-  refreshUser,
-  register,
-  resendEmail,
-  updateUser,
-  forgotPassword,
-  resetPassword,
-  refreshToken,
-} from './operations';
 import persistReducer from 'redux-persist/es/persistReducer';
 
 const authInitialState = {
@@ -23,158 +12,78 @@ const authInitialState = {
     sportTime: null,
     dailyWater: null,
   },
-  token: null,
+  accessToken: null,
   refreshToken: null,
-  isLoggedIn: false,
+
   isRefreshing: false,
-  error: null,
+
+  isDailyRefreshing: false,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: authInitialState,
   reducers: {
-    setDateFromGoogle(state, action) {
+    setCredentials: (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+
+      state.isRefreshing = false;
+    },
+
+    setUserData: (state, action) => {
       state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.refreshToken = action.payload.refreshToken;
-
-      state.isLoggedIn = true;
     },
 
-    setToken(state, action) {
-      state.token = action.payload;
+    setAccessToken: (state, action) => {
+      state.accessToken = action.payload;
+
+      state.isRefreshing = false;
+    },
+    startRefreshing: state => {
+      state.isRefreshing = true;
     },
 
-    updateToken(state, action) {
-      state.token = action.payload.token;
-      state.refreshToken = action.payload.refreshToken;
+    startDailyRefreshing: state => {
+      state.isDailyRefreshing = true;
     },
 
-    updateTokenError(state) {
-      state.user = {
-        name: null,
-        email: null,
-        avatarURL: null,
-        gender: null,
-        weight: null,
-        sportTime: null,
-        dailyWater: null,
-      };
-      state.token = null;
+    stopDailyRefreshing: state => {
+      state.isDailyRefreshing = false;
+    },
+
+    logOut: state => {
+      state.user = authInitialState.user;
+      state.accessToken = null;
       state.refreshToken = null;
-      state.isLoggedIn = false;
+      state.isRefreshing = false;
     },
-  },
-  extraReducers: builder => {
-    builder
-      .addCase(register.pending, state => {
-        state.error = null;
-      })
-
-      .addCase(register.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.error = null;
-      })
-
-      .addCase(register.rejected, state => {
-        state.error = true;
-      })
-
-      .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.refreshToken = action.payload.refreshToken;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      })
-
-      .addCase(logOut.fulfilled, state => {
-        state.user = { name: '', email: '' };
-        state.token = null;
-        state.refreshToken = null;
-        state.isLoggedIn = false;
-      })
-
-      .addCase(resendEmail.pending, state => {
-        state.error = null;
-      })
-
-      .addCase(resendEmail.fulfilled, state => {
-        state.error = null;
-      })
-
-      .addCase(resendEmail.rejected, state => {
-        state.error = true;
-      })
-
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      })
-
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-
-      .addCase(refreshUser.rejected, state => {
-        state.isRefreshing = false;
-      })
-
-      .addCase(refreshToken.fulfilled, (state, action) => {
-        state.token = action.payload.token;
-        state.refreshToken = action.payload.refreshToken;
-        state.isLoggedIn = true;
-      })
-
-      .addCase(updateUser.pending, state => {
-        state.isRefreshing = true;
-      })
-
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-
-      .addCase(updateUser.rejected, state => {
-        state.isRefreshing = false;
-      })
-
-      .addCase(forgotPassword.pending, state => {
-        state.error = null;
-      })
-      .addCase(forgotPassword.fulfilled, state => {
-        state.error = null;
-      })
-      .addCase(forgotPassword.rejected, state => {
-        state.error = true;
-      })
-      .addCase(resetPassword.pending, state => {
-        state.error = null;
-      })
-      .addCase(resetPassword.fulfilled, state => {
-        state.error = null;
-      })
-      .addCase(resetPassword.rejected, state => {
-        state.error = true;
-      });
   },
 });
 
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'refreshToken'],
+  whitelist: ['accessToken', 'refreshToken', 'user'],
 };
 
-export const { updateToken, updateTokenError, setToken, setDateFromGoogle } =
-  authSlice.actions;
+export const {
+  setUserData,
+  setCredentials,
+  setAccessToken,
+  logOut,
+  startRefreshing,
+  startDailyRefreshing,
+  stopDailyRefreshing,
+} = authSlice.actions;
 
 export const authReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
-export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectDailyWater = state => state.auth.user.dailyWater;
 
 export const selectUser = state => state.auth.user;
+
+export const selectIsLoggedIn = state => !!state.auth.accessToken;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+
+export const selectIsDailyRefreshing = state => state.auth.isDailyRefreshing;

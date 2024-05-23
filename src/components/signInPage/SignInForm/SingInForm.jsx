@@ -5,12 +5,15 @@ import { useId, useState } from 'react';
 import Logo from '../../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logIn, resendEmail } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
-import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import { useTranslation } from 'react-i18next';
+import {
+  useLoginMutation,
+  useResendEmailMutation,
+} from '../../../redux/authApi/authApi';
+import { setCredentials, setUserData } from '../../../redux/auth/authSlice';
 
 const initialValues = {
   email: '',
@@ -18,11 +21,17 @@ const initialValues = {
 };
 
 export default function SignInForm() {
+  const dispatch = useDispatch();
+  const [login] = useLoginMutation();
+  const [resendEmail] = useResendEmailMutation();
+
   const { t } = useTranslation();
+
   const idEmail = useId();
   const idPassword = useId();
-  const dispatch = useDispatch();
+
   const [verify, setVerify] = useState(false);
+
   const [email, setEmail] = useState('');
 
   const CheckSchema = Yup.object().shape({
@@ -35,39 +44,50 @@ export default function SignInForm() {
   });
 
   const handleSubmit = (values, actions) => {
-    const user = {
+    login({
       email: values.email,
       password: values.password,
-    };
-    dispatch(logIn(user))
+    })
       .unwrap()
-      .then(() => {
-        toast.success('You have successfully logged in!');
+      .then(data => {
+        dispatch(
+          setCredentials({
+            accessToken: data.token,
+            refreshToken: data.refreshToken,
+          })
+        );
+        dispatch(setUserData({ user: data.user }));
+
+        toast.success(t('Errors.login'));
+
         setEmail('');
         setVerify(false);
         actions.resetForm();
       })
-      .catch(error => {
-        if (error === 'Account is not verified') {
-          toast.error(error);
+      .catch(err => {
+        if (err.data.message === 'Account is not verified') {
+          toast.error(t('Errors.notVerified'));
+
           setEmail(values.email);
+
           setVerify(true);
           return;
         }
-        toast.error(error);
+
+        toast.error(err.data.message);
       });
   };
 
-  const handleResendEmail = () => {
-    dispatch(resendEmail({ email }))
+  const handleResendEmail = async () => {
+    await resendEmail({ email })
       .unwrap()
       .then(() => {
-        toast.success('Email sent successfully');
+        toast.success(t('Errors.sentEmail'));
         setEmail('');
         setVerify(false);
       })
-      .catch(error => {
-        toast.error(error);
+      .catch(err => {
+        toast.error(err.data.message);
       });
   };
 

@@ -3,11 +3,11 @@ import css from '../signUpPage/SignUpForm/SignUpForm.module.css';
 import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../shared/components/Logo/Logo';
-import { useDispatch } from 'react-redux';
-import { resetPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { ShareIconPassword } from '../../shared/components/ShareIconPassword/ShareIconPassword';
+import { useResetPasswordMutation } from '../../redux/authApi/authApi';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const initialValues = {
   password: '',
@@ -15,7 +15,16 @@ const initialValues = {
 };
 
 export default function ResetForm({ onVerification }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [resetPassword] = useResetPasswordMutation();
+  const idPassword = useId();
+  const idRepeatPassword = useId();
+
   const { t } = useTranslation();
+
+  const otp = location.pathname.split('/').pop();
+
   const CheckSchema = Yup.object().shape({
     password: Yup.string()
       .min(6, t('ResetForm.minTooShort'))
@@ -31,33 +40,21 @@ export default function ResetForm({ onVerification }) {
       .required(t('ResetForm.requiredPasswordrepeat')),
   });
 
-  const idPassword = useId();
-  const idRepeatPassword = useId();
-  const dispatch = useDispatch();
-
   const handleSubmit = (values, actions) => {
-    const user = {
-      password: values.password,
-    };
-
-    const pathSegments = window.location.pathname.split('/');
-    const otp = pathSegments[pathSegments.length - 1];
-
-    dispatch(resetPassword({ password: user.password, otp }))
+    resetPassword({ password: values.password, otp })
       .unwrap()
       .then(() => {
         onVerification();
         actions.resetForm();
-        console.log('The password has been successfully changed!');
+
         toast.success('The password has been successfully changed!');
 
         setTimeout(() => {
-          window.location.href = '/signin';
+          navigate('/signin');
         }, 5000);
       })
-      .catch(error => {
+      .catch(() => {
         toast.error('Something is wrong, please try again...');
-        console.log(error);
       });
   };
 

@@ -1,4 +1,5 @@
 import { AreaChart, Area, XAxis, Tooltip, YAxis } from 'recharts';
+import css from './WaterGraph.module.css';
 import useMediaQuery from '../../../hooks/useMediaQuery';
 import { useGetAllEntriesByMonthQuery } from '../../../redux/tracker/trackerApi.js';
 import { useSelector } from 'react-redux';
@@ -48,7 +49,7 @@ export const WaterGraph = () => {
     error(...args);
   };
 
-  return (
+  return answer.data.data.length > 0 ? (
     <div style={{ paddingTop: wrapperPadding }}>
       <AreaChart width={chartWidth} height={chartHeight} data={data}>
         <defs>
@@ -103,5 +104,7 @@ export const WaterGraph = () => {
         />
       </AreaChart>
     </div>
+  ) : (
+    <p className={css.graph_error}>You haven't written anything yet :(</p>
   );
 };

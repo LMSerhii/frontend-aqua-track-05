@@ -1,0 +1,12 @@
+export { default as mobile } from './mobile.png';
+export { default as mobile2x } from './mobile@2x.png';
+export { default as tablet } from './tablet.png';
+export { default as tablet2x } from './tablet@2x.png';
+export { default as desktop } from './desktop.png';
+export { default as desktop2x } from './desktop@2x.png';
+export { default as male1 } from './male1.png';
+export { default as male1_2x } from './male1@2x.png';
+export { default as male2 } from './male2.png';
+export { default as male2_2x } from './male2@2x.png';
+export { default as male3 } from './male3.png';
+export { default as male3_2x } from './male3@2x.png';

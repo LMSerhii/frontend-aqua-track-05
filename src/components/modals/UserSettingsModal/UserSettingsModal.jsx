@@ -16,7 +16,7 @@ export const UserSettingsModal = ({ active, setActive }) => {
         </button>
         <h2 className={s.settingCaption}>{t('UserSettingsModal.setting')}</h2>
 
-        <UserSettingsForm />
+        <UserSettingsForm setActive={setActive} />
       </ModalSetting>
     </>
   );

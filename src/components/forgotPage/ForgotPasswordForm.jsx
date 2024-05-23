@@ -4,41 +4,42 @@ import * as Yup from 'yup';
 import { useId } from 'react';
 import Logo from '../../shared/components/Logo/Logo';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { forgotPassword } from '../../redux/auth/operations';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { useForgotPasswordMutation } from '../../redux/authApi/authApi';
 
 const initialValues = {
   email: '',
 };
 
 export default function ForgotForm() {
+  const [forgotPassword] = useForgotPasswordMutation();
+  const idEmail = useId();
+
   const { t } = useTranslation();
+
   const CheckSchema = Yup.object().shape({
     email: Yup.string()
       .email(t('ForgotPasswordForm.emailVelid'))
       .required(t('ForgotPasswordForm.emailRequired')),
   });
 
-  const idEmail = useId();
-  const dispatch = useDispatch();
+  const handleSubmit = async (values, actions) => {
+    try {
+      await forgotPassword({ email: values.email })
+        .unwrap()
+        .then(() => {
+          actions.resetForm();
 
-  const handleSubmit = (values, actions) => {
-    const user = {
-      email: values.email,
-    };
-    dispatch(forgotPassword(user.email))
-      .unwrap()
-      .then(() => {
-        actions.resetForm();
-        console.log('Recover link had been sent');
-        toast.success('Recover link had been sent to your email!');
-      })
-      .catch(error => {
-        toast.error('Something is wrong, please try again...');
-        console.log(error);
-      });
+          toast.success('Recover link had been sent to your email!');
+        })
+        .catch(error => {
+          toast.error('Something is wrong, please try again...');
+          console.log(error);
+        });
+    } catch (error) {
+      toast.error('Something went wrong. Please try again later.');
+    }
   };
 
   return (
