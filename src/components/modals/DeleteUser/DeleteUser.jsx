@@ -40,11 +40,9 @@ export const DeleteUser = ({ active, setActive }) => {
               svgId={'close'}
             />
           </Button>
-          <p className={s.caption}>{t('DeletePanel.deleteText')}</p>
+          <p className={s.caption}></p>
           <div className={s.wrapBtn}>
-            <Button classname={s.btnDelete} onClick={handleClick}>
-              {t('DeletePanel.deleteBtn')}
-            </Button>
+            <Button classname={s.btnDelete} onClick={handleClick}></Button>
             <Button classname={s.btnCancel} onClick={() => setActive(false)}>
               {t('DeletePanel.cancelBtn')}
             </Button>

@@ -106,7 +106,7 @@
   },
 
   "DeletePanel": {
-    "deleteText": "Ви впевнені що хочете видалити користувача?",
+    "deleteText": "Ви впевнені?",
     "deleteBtn": "Видалити",
     "cancelBtn": "Відміна"
   },

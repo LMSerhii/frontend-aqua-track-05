@@ -36,20 +36,12 @@
   }
 }
 
-.wrapUpload {
-}
-@media screen and (min-width: 768px) {
-  .wrapUpload {
-    width: 150px;
-  }
-}
 .uploudBtn {
   display: flex;
   gap: 8px;
 }
 @media screen and (min-width: 768px) {
   .uploudBtn {
-    width: 150px;
     font-size: 16px;
     white-space: nowrap;
   }
@@ -295,13 +287,12 @@ input[type='radio'] {
   color: red; /* Змініть це на потрібний вам колір */
 }
 
-.deleteUser {
-  margin-top: 20px;
+.deleteBtn {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 10px;
+  padding: 18px 10px;
   border: 1px solid coral;
   background-color: coral;
   border-radius: 30px;
@@ -310,7 +301,7 @@ input[type='radio'] {
   font-size: 16px;
   line-height: 1.28571;
   letter-spacing: -0.01em;
-  color: var(--dark);
+  color: white;
 
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
@@ -318,5 +309,55 @@ input[type='radio'] {
   &:hover,
   &:focus {
     background-color: lightcoral;
+  }
+}
+
+.deleteBtnR {
+  border: 1px solid coral;
+  display: flex;
+  gap: 8px;
+  color: coral;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  opacity: 0.5;
+  padding: 7px 10px;
+  border-radius: 30px;
+
+  transition: background-color var(--animation-duration)
+    var(--animation-time-function);
+}
+
+.deleteBtn:hover,
+.deleteBtn:focus {
+  background-color: lightcoral;
+}
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 100%;
+    top: 90%;
+  }
+
+  .deleteBtn {
+    font-size: 15px;
+  }
+}
+
+.boxText {
+  margin-top: 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapperBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .boxText {
+    gap: 14px;
   }
 }

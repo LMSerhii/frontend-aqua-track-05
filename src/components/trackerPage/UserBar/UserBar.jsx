@@ -7,11 +7,7 @@ import css from './UserBar.module.css';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 
-export const UserBar = ({
-  setIsActiveSettings,
-  setIsActiveLogout,
-  setIsActiveDelete,
-}) => {
+export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
   const { user } = useAuth();
   const [isActive, setIsActive] = useState(false);
 
@@ -54,7 +50,6 @@ export const UserBar = ({
           setIsActive={setIsActive}
           setIsActiveSettings={setIsActiveSettings}
           setIsActiveLogout={setIsActiveLogout}
-          setIsActiveDelete={setIsActiveDelete}
         />
       )}
     </div>
