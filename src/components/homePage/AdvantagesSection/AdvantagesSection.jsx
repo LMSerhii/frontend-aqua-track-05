@@ -44,8 +44,8 @@ export default function AdvantagesSection() {
                 data.allUsers
               ) : (
                 <Hearts
-                  height="10"
-                  width="10"
+                  height="30"
+                  width="30"
                   color="#4fa94d"
                   ariaLabel="hearts-loading"
                   wrapperStyle={{}}
