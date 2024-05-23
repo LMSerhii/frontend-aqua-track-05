@@ -18,14 +18,8 @@ import {
   useDeleteUserMutation,
   useUpdateUserMutation,
 } from '../../../redux/authApi/authApi';
-import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
-import { DeleteUser } from '../DeleteUser/DeleteUser';
 
-export const UserSettingsForm = ({
-  setActive,
-  // setIsActiveDelete,
-  setIsActive,
-}) => {
+export const UserSettingsForm = ({ setActive }) => {
   const [updateUser] = useUpdateUserMutation();
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
