@@ -14,7 +14,7 @@ export const WaterProgressBar = ({ percentage }) => {
 
   const { t } = useTranslation();
 
-  const pBarWidth = windowWidth < 767 ? '100%' : '100%';
+  const pBarWidth = '100%';
   const pBarHeight = windowWidth < 767 ? 6 : 8;
 
   const { formattedDate } = formatDate(date);

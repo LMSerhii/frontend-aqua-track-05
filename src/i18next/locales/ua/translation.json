@@ -77,7 +77,7 @@
   "WaterProgressBar": {
     "today": "Сьогодні",
     "it": "Це",
-    "norma": "добова норма"
+    "norma": "добової норми"
   },
 
   "WaterMainInfo": {
@@ -222,7 +222,7 @@
   },
 
   "NotFound": {
-    "notFoundTitle": "Схоже що ви заблукали :(",
+    "notFoundTitle": "Схоже, що ви заблукали :(",
     "notFoundParagraph": "Вибачте, але такої сторінки не існує",
     "notFoundBtn": "Повернутись на головну"
   },
