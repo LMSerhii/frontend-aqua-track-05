@@ -1,6 +1,7 @@
 import css from './AdvantagesSection.module.css';
 import Picture from '../../../shared/components/Picture/Picture';
 import { useTranslation } from 'react-i18next';
+import Loader from '../../../shared/components/Loader/Loader';
 import { Badge } from 'antd';
 import {
   desktop,
@@ -17,7 +18,6 @@ import {
   tablet2x,
 } from '../../../shared/images/homepage2';
 import { useGetAllUsersQuery } from '../../../redux/authApi/authApi';
-import { Hearts } from 'react-loader-spinner';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
@@ -38,30 +38,18 @@ export default function AdvantagesSection() {
 
       <div className={css.div}>
         <div className={css.divsecond}>
-          {data ? (
-            <Badge
-              count={data.allUsers}
-              overflowCount={20}
-              className={css.badge}
-              style={{
-                backgroundColor: 'var(--lettuce)',
-                color: 'var(--dark-blue)',
-                fontSize: '10px',
-              }}
-            >
-              <div className={css.badgeContent}></div>
-            </Badge>
-          ) : (
-            <Hearts
-              height="30"
-              width="30"
-              color="#4fa94d"
-              ariaLabel="hearts-loading"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-            />
-          )}
+          <Badge
+            count={data ? data.allUsers : <Loader width={20} height={20} />}
+            overflowCount={20}
+            className={css.badge}
+            style={{
+              backgroundColor: 'var(--lettuce)',
+              color: 'var(--dark-blue)',
+              fontSize: '10px',
+            }}
+          >
+            <div className={css.badgeContent}></div>
+          </Badge>
 
           <ul className={css.photo_list}>
             <li className={css.list_items}>
