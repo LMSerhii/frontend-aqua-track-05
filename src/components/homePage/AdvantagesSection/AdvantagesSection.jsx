@@ -38,32 +38,31 @@ export default function AdvantagesSection() {
 
       <div className={css.div}>
         <div className={css.divsecond}>
-          <Badge
-            count={
-              data ? (
-                data.allUsers
-              ) : (
-                <Hearts
-                  height="30"
-                  width="30"
-                  color="#4fa94d"
-                  ariaLabel="hearts-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
-                  visible={true}
-                />
-              )
-            }
-            overflowCount={20}
-            className={css.badge}
-            style={{
-              backgroundColor: 'var(--lettuce)',
-              color: 'var(--dark-blue)',
-              fontSize: '10px',
-            }}
-          >
-            <div className={css.badgeContent}></div>
-          </Badge>
+          {data ? (
+            <Badge
+              count={data.allUsers}
+              overflowCount={20}
+              className={css.badge}
+              style={{
+                backgroundColor: 'var(--lettuce)',
+                color: 'var(--dark-blue)',
+                fontSize: '10px',
+              }}
+            >
+              <div className={css.badgeContent}></div>
+            </Badge>
+          ) : (
+            <Hearts
+              height="30"
+              width="30"
+              color="#4fa94d"
+              ariaLabel="hearts-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          )}
+
           <ul className={css.photo_list}>
             <li className={css.list_items}>
               <Picture
