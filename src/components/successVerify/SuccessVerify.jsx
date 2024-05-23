@@ -1,12 +1,15 @@
 import css from './SuccessVerify.module.css';
 import Logo from '../../shared/components/Logo/Logo';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 export default function SuccessVerify({ children }) {
+  const navigate = useNavigate();
+
   const { t } = useTranslation();
+
   useEffect(() => {
     const firstToastTimerId = setTimeout(() => {
       toast.success('You will be redirected to the login page after 5s');
@@ -17,7 +20,7 @@ export default function SuccessVerify({ children }) {
     }, 4000);
 
     const redirectTimerId = setTimeout(() => {
-      window.location.href = '/signin';
+      navigate('/signin');
     }, 5000);
 
     return () => {

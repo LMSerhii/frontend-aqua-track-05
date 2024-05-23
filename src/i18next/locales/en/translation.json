@@ -8,7 +8,7 @@
   },
 
   "advantagesSection": {
-    "ourParag": "Our ",
+    "ourParag": "Our",
     "happySpan": "happy",
     "customersParag": "customers",
     "textHabit": "Habit drive",
@@ -223,9 +223,22 @@
     "logOut": "Log out",
     "logOutSubtitle": "Do you really want to leave?"
   },
-  
+
   "NotFound": {
     "notFoundTitle": "Looks like you got lost :(",
     "notFoundParagraph": "Sorry, the page you visited does not exist.",
     "notFoundBtn": "Back Home"
+  },
+  "Errors": {
+    "wrong": "Something went wrong. Please try again later.",
+    "delete": "User deleted successfully",
+    "update": "User updated successfully",
+    "logout": "You have successfully logged out",
+    "login": "You have successfully logged out",
+    "file": "Please select a file!",
+    "sendEmail": "Message to verify email was send to",
+    "useEmail": "Email already in use",
+    "notVerified": "Account is not verified",
+    "sentEmail": "Email sent successfully"
+  }
 }

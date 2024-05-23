@@ -1,6 +1,8 @@
 import { useCallback, useEffect } from 'react';
+import toast from 'react-hot-toast';
+
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 import Loader from './shared/components/Loader/Loader';
 import { RestrictedRoute } from './RestrictedRoute';
@@ -15,15 +17,25 @@ import {
   ResetPasswordPage,
   SuccessVerifyPage,
 } from './pages';
-import { setDateFromGoogle } from './redux/auth/authSlice';
+import {
+  setAccessToken,
+  setCredentials,
+  setUserData,
+  startRefreshing,
+} from './redux/auth/authSlice';
 import { routes } from './routes';
 import { useAuth } from './hooks';
-import { refreshToken, refreshUser } from './redux/auth/operations';
+import { useRefreshTokenMutation } from './redux/authApi/authApi';
 
 export default function App() {
   const location = useLocation();
   const dispatch = useDispatch();
+
   const { isRefreshing } = useAuth();
+
+  const [refreshToken] = useRefreshTokenMutation();
+
+  const refreshTokenValue = useSelector(state => state.auth.refreshToken);
 
   const handleGoogleAuth = useCallback(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -35,19 +47,27 @@ export default function App() {
 
     if (token && refreshToken) {
       dispatch(
-        setDateFromGoogle({
-          user: userData,
-          token,
+        setCredentials({
+          accessToken: token,
           refreshToken,
         })
       );
+      dispatch(setUserData(userData));
     }
   }, [location.search, dispatch]);
 
   const fetchData = useCallback(async () => {
-    dispatch(refreshToken());
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (refreshTokenValue) {
+      dispatch(startRefreshing());
+
+      refreshToken(refreshTokenValue)
+        .unwrap()
+        .then(data => {
+          dispatch(setAccessToken(data.token));
+        })
+        .catch(() => toast.success('You have successfully logged in!'));
+    }
+  }, [refreshTokenValue, dispatch, refreshToken]);
 
   useEffect(() => {
     handleGoogleAuth();

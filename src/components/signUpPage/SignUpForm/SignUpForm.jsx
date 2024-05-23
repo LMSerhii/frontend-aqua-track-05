@@ -4,26 +4,26 @@ import * as Yup from 'yup';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import css from './SignUpForm.module.css';
-import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import toast from 'react-hot-toast';
 
-import { useDispatch } from 'react-redux';
 import { useId } from 'react';
 
 import Logo from '../../../shared/components/Logo/Logo';
-import { register } from '../../../redux/auth/operations';
 import { ShareIconPassword } from '../../../shared/components/ShareIconPassword/ShareIconPassword';
 import { useTranslation } from 'react-i18next';
 import GoogleButton from '../../../shared/components/GoogleButton/GoogleButton';
+import { useRegisterMutation } from '../../../redux/authApi/authApi';
 
 const initialValues = {
   email: '',
   password: '',
   repeatPassword: '',
 };
+
 export default function SignUpForm() {
+  const [register] = useRegisterMutation();
   const { t } = useTranslation();
-  //перенес для const { t } = useTranslation();
+
   const CheckSchema = Yup.object().shape({
     email: Yup.string()
       .email(t('singUnForm.emailVelid'))
@@ -40,29 +40,32 @@ export default function SignUpForm() {
       .oneOf([Yup.ref('password')], t('singUnForm.repeatPasswordOneOf'))
       .required(t('singUnForm.repeatPasswordRequired')),
   });
+
   const navigate = useNavigate();
   const idEmail = useId();
   const idPassword = useId();
   const idRepeatPassword = useId();
-  const dispatch = useDispatch();
 
+  // eslint-disable-next-line no-unused-vars
   const handleSubmit = (values, _) => {
     const name = values.email.split('@')[0];
+
     const user = { name, email: values.email, password: values.password };
-    dispatch(register(user))
+
+    register(user)
       .unwrap()
       .then(() => {
-        toast.success(`Message to verify email was send to ${user.email} !`, {
+        toast.success(`${t('Errors.sendEmail')} ${user.email} !`, {
           duration: 5000,
         });
         navigate('/signin');
       })
       .catch(error => {
-        if (error === 'Email already in use') {
-          toast.error(error);
+        if (error.data.message === 'Email already in use') {
+          toast.error(t('Errors.useEmail'));
           return;
         }
-        toast.error('Something went wrong. Please try again later.');
+        toast.error(t('Errors.wrong'));
       });
   };
 

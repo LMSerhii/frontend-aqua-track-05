@@ -2,25 +2,28 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
 import s from './LogOutModal.module.css';
-import { logOut } from '../../../redux/auth/operations';
 import toast from 'react-hot-toast';
+import { useLogoutMutation } from '../../../redux/authApi/authApi';
+import { logOut } from '../../../redux/auth/authSlice';
 
 export const LogOutModal = ({ active, setActive }) => {
+  const [logout] = useLogoutMutation();
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const onClickLogout = () => {
-    dispatch(logOut())
+    logout()
       .unwrap()
       .then(() => {
-        toast.success('You have successfully logged out');
+        toast.success(t('Errors.logout'));
         setActive(false);
       })
-      .catch(error => {
-        console.log(error);
-        toast.error('Something went wrong');
+      .catch(() => {
+        toast.error(t('Errors.wrong'));
         setActive(false);
       });
+
+    dispatch(logOut());
   };
   return (
     <div

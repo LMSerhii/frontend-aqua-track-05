@@ -2,10 +2,6 @@ import css from './AdvantagesSection.module.css';
 import Picture from '../../../shared/components/Picture/Picture';
 import { useTranslation } from 'react-i18next';
 import { Badge } from 'antd';
-
-import { useSelector } from 'react-redux';
-
-import { selectAllUsers } from '../../../redux/auth/authSlice';
 import {
   desktop,
   desktop2x,
@@ -20,11 +16,12 @@ import {
   tablet,
   tablet2x,
 } from '../../../shared/images/homepage2';
+import { useGetAllUsersQuery } from '../../../redux/authApi/authApi';
+import { Hearts } from 'react-loader-spinner';
 
 export default function AdvantagesSection() {
   const { t } = useTranslation();
-
-  const allUsers = useSelector(selectAllUsers);
+  const { data } = useGetAllUsersQuery();
 
   return (
     <div className={css.section}>
@@ -42,7 +39,21 @@ export default function AdvantagesSection() {
       <div className={css.div}>
         <div className={css.divsecond}>
           <Badge
-            count={allUsers ? allUsers.allUsers : '...'}
+            count={
+              data ? (
+                data.allUsers
+              ) : (
+                <Hearts
+                  height="10"
+                  width="10"
+                  color="#4fa94d"
+                  ariaLabel="hearts-loading"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                />
+              )
+            }
             overflowCount={20}
             className={css.badge}
             style={{
@@ -95,9 +106,13 @@ export default function AdvantagesSection() {
             </li>
           </ul>
           <p className={css.parag}>
-            {t('advantagesSection.ourParag')}{' '}
-            <span className={css.span}>{t('advantagesSection.happySpan')}</span>{' '}
-            {t('advantagesSection.customersParag')}
+            <span className={css.paragSpan}>
+              {t('advantagesSection.ourParag')}
+            </span>
+            <span className={css.span}>{t('advantagesSection.happySpan')}</span>
+            <span className={css.paragSpanLast}>
+              {t('advantagesSection.customersParag')}
+            </span>
           </p>
         </div>
       </div>

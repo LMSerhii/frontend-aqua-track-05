@@ -6,16 +6,20 @@ import { useTranslation } from 'react-i18next';
 
 import { sprite } from '../../../shared/icons/index';
 import Button from '../../../shared/components/Button/Button';
+import toast from 'react-hot-toast';
 
-import { selectUser } from '../../../redux/auth/authSlice';
-import { updateUser } from '../../../redux/auth/operations';
+import { selectUser, setUserData } from '../../../redux/auth/authSlice';
 import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
 import { uploadCloudinary } from '../../../shared/helpers/handleUpload';
 import { validationSchema } from '../../../shared/helpers/validationSchema';
 
 import s from './UserSettingsForm.module.css';
+import { useUpdateUserMutation } from '../../../redux/authApi/authApi';
 
-export const UserSettingsForm = () => {
+export const UserSettingsForm = ({ setActive }) => {
+  const [updateUser] = useUpdateUserMutation();
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
 
   const userData = useSelector(selectUser);
@@ -35,8 +39,6 @@ export const UserSettingsForm = () => {
     dailyWater: userData.dailyWater,
   });
 
-  const dispatch = useDispatch();
-
   const filePicker = useRef(null);
 
   const handleUpload = async event => {
@@ -46,7 +48,7 @@ export const UserSettingsForm = () => {
       setSelectedFile(imageURL);
 
       if (!file) {
-        alert('Please select a file!');
+        toast.error(t('Errors.file'));
         return;
       }
 
@@ -54,7 +56,7 @@ export const UserSettingsForm = () => {
 
       setUploaded(uploadFile);
     } catch (error) {
-      console.error('Ошибка загрузки изображения:', error);
+      toast.error(t('Errors.wrong'));
     }
   };
 
@@ -63,7 +65,7 @@ export const UserSettingsForm = () => {
     setEdit(true);
   };
 
-  const handleSubmitSetting = value => {
+  const handleSubmitSetting = async value => {
     try {
       const currentDailyWater = edit
         ? data.dailyWater
@@ -88,9 +90,20 @@ export const UserSettingsForm = () => {
 
       formData.append('dataUser', JSON.stringify(dataUser));
 
-      dispatch(updateUser(dataUser));
+      updateUser(dataUser)
+        .unwrap()
+        .then(data => {
+          dispatch(setUserData({ user: data }));
+
+          toast.success(t('Errors.update'));
+          setActive(false);
+        })
+        .catch(() => {
+          toast.error(t('Errors.wrong'));
+          setActive(false);
+        });
     } catch (error) {
-      console.error('Error dowload:', error);
+      toast.error(error);
     }
   };
 
@@ -302,7 +315,7 @@ export const UserSettingsForm = () => {
               style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
             />
             {errors.Your_water && (
-              <p className={s.errorYup}>Number must be positive and integer</p>
+              <p className={s.errorYup}>Number must be positivet</p>
             )}
           </div>
         </div>
