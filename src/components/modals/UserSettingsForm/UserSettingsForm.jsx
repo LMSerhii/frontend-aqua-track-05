@@ -307,7 +307,6 @@ export const UserSettingsForm = () => {
           </div>
         </div>
       </div>
-
       <Button classname={s.btnSetting} type="submit">
         {t('UserSettingsForm.saveBtn')}
       </Button>
