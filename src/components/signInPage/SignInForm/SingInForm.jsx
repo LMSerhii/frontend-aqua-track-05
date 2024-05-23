@@ -45,7 +45,7 @@ export default function SignInForm() {
 
   const handleSubmit = (values, actions) => {
     login({
-      email: values.email,
+      email: values.email.toLowerCase(),
       password: values.password,
     })
       .unwrap()
