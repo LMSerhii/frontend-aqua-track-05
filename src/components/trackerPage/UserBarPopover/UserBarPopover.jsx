@@ -7,7 +7,6 @@ export const UserBarPopover = ({
   setIsActive,
   setIsActiveSettings,
   setIsActiveLogout,
-  setIsActiveDelete,
 }) => {
   const { t } = useTranslation();
 
@@ -18,11 +17,6 @@ export const UserBarPopover = ({
 
   const handleLogout = () => {
     setIsActiveLogout(true);
-    setIsActive(false);
-  };
-
-  const handleDelete = () => {
-    setIsActiveDelete(true);
     setIsActive(false);
   };
 
@@ -46,18 +40,6 @@ export const UserBarPopover = ({
           svgId="log_out"
         />
         {t('UserBarPopover.logOutBtn')}
-      </Button>
-
-      <Button onClick={handleDelete} className={css.deleteBtn}>
-        <div className={css.wrapperBtn}>
-          <SharedSVG
-            width="16"
-            height="16"
-            className={css.icon}
-            svgId="trash"
-          />
-          {t('UserBarPopover.deleteBtn')}
-        </div>
       </Button>
     </div>
   );

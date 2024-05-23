@@ -107,7 +107,7 @@
   },
 
   "DeletePanel": {
-    "deleteText": "Are you sure you want to delete the user?",
+    "deleteText": "Are you sure?",
     "deleteBtn": "Delete",
     "cancelBtn": "Cancel"
   },
