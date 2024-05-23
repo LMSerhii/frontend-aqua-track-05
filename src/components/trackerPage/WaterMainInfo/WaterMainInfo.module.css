@@ -18,7 +18,6 @@
 .add_water_btn {
   background-color: var(--dark-blue) !important;
   color: var(--white) !important;
-  width: 140px;
   height: 46px;
   font-size: 14px !important;
   display: flex;
@@ -61,7 +60,7 @@
   width: 225px;
   height: 73px;
   position: absolute;
-  background-color: #ffffff;
+  background-color: var(--white);
   bottom: 120px;
   border-radius: 15px;
   padding: 12px;
@@ -102,9 +101,7 @@
 
 @media screen and (min-width: 768px) {
   .bottle_page_wrapper {
-    width: 100%;
     min-height: 578px;
-    /* margin-top: 32px; */
     width: 704px;
   }
   .bottle_page_img {
