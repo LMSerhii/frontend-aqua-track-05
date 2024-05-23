@@ -40,7 +40,8 @@ export default function SignInForm() {
       .required(t('singInForm.emailRequired')),
     password: Yup.string()
       .min(6, t('singInForm.passwordMin'))
-      .max(50, t('singInForm.passwordMax')),
+      .max(50, t('singInForm.passwordMax'))
+      .required(t('singInForm.passwordRequired')),
   });
 
   const handleSubmit = (values, actions) => {

@@ -29,6 +29,7 @@
     "passwordMax": "Занадто довгий",
     "resendEmailBtn": "Повторно надіслати електронний лист",
     "forgotPassword": "Забули пароль?",
+    "passwordRequired": "Потрібний пароль",
 
     "googleButton": {
       "googleBtn": "Увійти за допомогою Google"
