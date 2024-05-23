@@ -50,7 +50,11 @@ export default function SignUpForm() {
   const handleSubmit = (values, _) => {
     const name = values.email.split('@')[0];
 
-    const user = { name, email: values.email, password: values.password };
+    const user = {
+      name,
+      email: values.email.toLowerCase(),
+      password: values.password,
+    };
 
     register(user)
       .unwrap()
