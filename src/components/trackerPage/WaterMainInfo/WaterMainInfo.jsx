@@ -30,7 +30,7 @@ export const WaterMainInfo = () => {
   const percentage = (drinkedWater / getDailyWater) * 100;
 
   return (
-    <div className={css.bottle_page_wrapper}>
+    <div className={css.bottle_page_wrapper} data-tour="waterMainInfo">
       <picture className={css.bottle_page_img}>
         {/*dekstop*/}
         <source
@@ -58,7 +58,7 @@ export const WaterMainInfo = () => {
         />
       </picture>
 
-      <div className={css.bottle_page_norm_wrapper}>
+      <div className={css.bottle_page_norm_wrapper} data-tour="normaDaily">
         <span className={css.bottle_page_norm_wrapper_value}>
           {getDailyWater / 1000} {t('WaterMainInfo.liters')}
         </span>
@@ -69,6 +69,7 @@ export const WaterMainInfo = () => {
 
       <div className={css.add_water_btn_wrap}>
         <Button
+          data-tour="addFastWater"
           classname={css.add_water_btn}
           type="submit"
           onClick={() => setActiveAdd(true)}
@@ -85,7 +86,10 @@ export const WaterMainInfo = () => {
       <div className={css.logo}>
         <Logo />
       </div>
-      <div className={css.bottle_page_slider_wrapper}>
+      <div
+        data-tour="WaterProgressBar"
+        className={css.bottle_page_slider_wrapper}
+      >
         <WaterProgressBar
           className={css.bottle_page_progress_bar}
           percentage={percentage.toFixed(1)}
