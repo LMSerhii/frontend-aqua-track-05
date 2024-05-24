@@ -23,29 +23,23 @@ export const WaterModal = ({
     }
   };
 
-  // Функция синхронизации инпута и каунтера
   const handleWaterChange = event => {
     let value = event.target.value;
 
-    // Проверяем, если введенное значение является нулем или пустой строкой, устанавливаем 0
     if (value === '' || parseInt(value, 10) === 0) {
       value = '0';
     }
 
-    // Проверяем, является ли введенное значение числом
     if (!isNaN(value)) {
-      // Если значение является числом, устанавливаем его в состояние воды и в каунтер
       const parsedValue = parseInt(value, 10);
       setWaterValue(parsedValue);
       setCount(parsedValue);
     } else {
-      // Если значение не является числом, устанавливаем 0 в состояние воды и в каунтер
       setWaterValue(0);
       setCount(0);
     }
   };
 
-  // Функция добавления
   const onAddCount = () => {
     const newValue = Math.min(
       parseInt(waterValue, 10) + (50 - (parseInt(waterValue, 10) % 50)),
@@ -55,7 +49,6 @@ export const WaterModal = ({
     setWaterValue(newValue.toString());
   };
 
-  // Функция вычитания
   const onRemoveCount = () => {
     const newValue = Math.max(
       parseInt(waterValue, 10) - (parseInt(waterValue, 10) % 50 || 50),

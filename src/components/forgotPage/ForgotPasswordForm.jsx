@@ -31,14 +31,14 @@ export default function ForgotForm() {
         .then(() => {
           actions.resetForm();
 
-          toast.success('Recover link had been sent to your email!');
+          toast.success(t('Errors.recoverLink'));
         })
         .catch(error => {
-          toast.error('Something is wrong, please try again...');
+          toast.error(t('Errors.smthIsWrong'));
           console.log(error);
         });
     } catch (error) {
-      toast.error('Something went wrong. Please try again later.');
+      toast.error(t('Errors.smthWentWrong'));
     }
   };
 

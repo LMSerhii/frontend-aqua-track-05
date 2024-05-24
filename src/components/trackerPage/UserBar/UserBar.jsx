@@ -1,11 +1,10 @@
 import { useState } from 'react';
-
 import { useAuth } from '../../../hooks/useAuth';
 import { UserBarPopover } from '../UserBarPopover/UserBarPopover';
-
-import css from './UserBar.module.css';
 import UserPanelAvatar from '../UserPanelAvatar/UserPanelAvatar';
 import SharedSVG from '../../../shared/components/SharedSVG/SharedSVG';
+
+import css from './UserBar.module.css';
 
 export const UserBar = ({
   setIsActiveSettings,

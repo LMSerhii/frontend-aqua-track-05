@@ -28,7 +28,6 @@
   font-size: 14px;
   padding: 7px 10px;
   border-radius: 30px;
-  /* padding-right: 30px;  для однакового розиіру Popover з батьківським dropdown */
 
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
@@ -63,6 +62,11 @@
 .deleteBtn:focus {
   background-color: var(--calendarItemColor);
 }
+/* .ukrDiv {
+  display: flex;
+  flex-direction: column;
+  width: 40px;
+} */
 @media screen and (min-width: 768px) {
   .wrapper {
     width: 100%;

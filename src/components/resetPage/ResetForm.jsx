@@ -47,14 +47,14 @@ export default function ResetForm({ onVerification }) {
         onVerification();
         actions.resetForm();
 
-        toast.success('The password has been successfully changed!');
+        toast.success(t('Errors.passwordChanged'));
 
         setTimeout(() => {
           navigate('/signin');
         }, 5000);
       })
       .catch(() => {
-        toast.error('Something is wrong, please try again...');
+        toast.error(t('Errors.smthIsWrong'));
       });
   };
 

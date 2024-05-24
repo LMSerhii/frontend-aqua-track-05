@@ -239,6 +239,12 @@
     "sendEmail": "Message to verify email was send to",
     "useEmail": "Email already in use",
     "notVerified": "Account is not verified",
-    "sentEmail": "Email sent successfully"
+    "sentEmail": "Email sent successfully",
+    "recoverLink": "Recover link had been sent to your email",
+    "smthIsWrong": "Something is wrong, please try again...",
+    "smthWentWrong": "Something went wrong. Please try again later.",
+    "passwordChanged": "The password has been successfully changed!",
+    "redirectedToLogin": "You will be redirected to the login page after 5s",
+    "Redirecting": "Redirecting..."
   }
 }

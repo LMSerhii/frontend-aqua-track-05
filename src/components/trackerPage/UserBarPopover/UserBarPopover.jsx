@@ -56,7 +56,7 @@ export const UserBarPopover = ({
             className={css.icon}
             svgId="trash"
           />
-          {t('UserBarPopover.deleteBtn')}
+          <div className={css.ukrDiv}>{t('UserBarPopover.deleteBtn')}</div>
         </div>
       </Button>
     </div>

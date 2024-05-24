@@ -1,5 +1,4 @@
 .modal {
-  /* position: relative; */
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.4);
@@ -17,7 +16,6 @@
 }
 
 .modal.active {
-  /* z-index: 999; */
   opacity: 10000;
   pointer-events: all;
 }
@@ -28,11 +26,10 @@
   padding: 20px;
   border-radius: 12px;
   background-color: white;
-  max-height: 80vh; /* Встановлюємо максимальну висоту */
-  overflow-y: auto; /* Додаємо смужки прокрутки по вертикалі */
+  max-height: 80vh;
+  overflow-y: auto;
   transform: scale(0.5);
   transition: 0.4s all;
-  /* z-index: 999; */
 }
 @media screen and (min-width: 375px) {
   .modalContent {
@@ -53,7 +50,6 @@
 
 .modalContent.active {
   transform: scale(1);
-  /* z-index: 999; */
 }
 
 .icon {
