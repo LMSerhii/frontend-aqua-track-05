@@ -4,7 +4,8 @@
   left: 0%;
   display: flex;
   flex-direction: column;
-  padding: 7px 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   border-radius: 15px;
   background-color: white;
   opacity: 0;
@@ -18,7 +19,8 @@
   z-index: 999;
 }
 
-.settingBtn {
+.settingBtn,
+.logoutBtn {
   border: none;
   display: flex;
   gap: 8px;
@@ -28,7 +30,6 @@
   font-size: 14px;
   padding: 7px 10px;
   border-radius: 30px;
-
   transition: background-color var(--animation-duration)
     var(--animation-time-function);
 }
@@ -37,44 +38,25 @@
   fill: none;
   stroke: var(--dark-blue);
 }
-.logoutBtn,
-.deleteBtn {
-  border: none;
-  display: flex;
-  gap: 8px;
-  color: var(--light-grey);
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
+.logoutBtn {
   opacity: 0.5;
-  padding: 7px 10px;
-  border-radius: 30px;
-
-  transition: background-color var(--animation-duration)
-    var(--animation-time-function);
+  padding-right: 62px;
 }
 
 .settingBtn:hover,
 .settingBtn:focus,
 .logoutBtn:hover,
-.logoutBtn:focus,
-.deleteBtn:hover,
-.deleteBtn:focus {
+.logoutBtn:focus {
   background-color: var(--calendarItemColor);
 }
-/* .ukrDiv {
-  display: flex;
-  flex-direction: column;
-  width: 40px;
-} */
+
 @media screen and (min-width: 768px) {
   .wrapper {
     width: 100%;
     top: 90%;
   }
   .settingBtn,
-  .logoutBtn,
-  .deleteBtn {
+  .logoutBtn {
     font-size: 15px;
   }
 }
