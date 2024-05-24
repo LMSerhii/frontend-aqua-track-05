@@ -18,17 +18,29 @@
   padding-bottom: 20px;
 }
 .button {
+  display: inline-block;
   padding-top: 20px;
   border-radius: 30px;
   padding: 14px 19px;
-  background: #9be1a0;
+  background-color: var(--lettuce);
   font-weight: 700;
   font-size: 14px;
-  line-height: 1.28571;
+  line-height: 1.29;
   letter-spacing: -0.01em;
   color: var(--dark-blue);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
   margin-right: 10px;
+  cursor: pointer;
+
+  transition: background-color var(--animation-duration)
+      var(--animation-time-function),
+    transform var(--animation-duration) var(--animation-time-function);
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--lettuce-secondary);
+  transform: scale(1.05);
 }
 
 .h1 {
@@ -38,9 +50,11 @@
   letter-spacing: -0.01em;
   color: var(--dark-blue);
   padding-bottom: 35px;
+  max-width: 500px;
 }
 
 .login {
+  display: inline-block;
   border: 1px solid var(--dark-blue);
   border-radius: 30px;
   padding: 14px 28px;
@@ -48,6 +62,19 @@
   font-size: 14px;
   letter-spacing: -0.01em;
   color: var(--dark-blue);
+  cursor: pointer;
+
+  transition: border-color var(--animation-duration)
+      var(--animation-time-function),
+    color var(--animation-duration) var(--animation-time-function),
+    transform var(--animation-duration) var(--animation-time-function);
+}
+
+.login:hover,
+.login:focus {
+  border-color: var(--lettuce-secondary);
+  transform: scale(1.05);
+  color: var(--lettuce-secondary);
 }
 @media (min-width: 768px) {
   .section {
@@ -83,7 +110,7 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .pad{
+  .pad {
     padding: 32px 32px;
   }
   .section {

@@ -11,8 +11,13 @@
   line-height: 1.29;
   letter-spacing: -0.01em;
   color: var(--dark-blue);
+
+  transition: background-color var(--animation-duration)
+      var(--animation-time-function),
+    color var(--animation-duration) var(--animation-time-function);
 }
-.dayBtn:is(:hover, :focus) {
+
+.dayBtn:is(:hover, :focus, :active) {
   background-color: var(--dark-blue);
   color: var(--lettuce);
 }

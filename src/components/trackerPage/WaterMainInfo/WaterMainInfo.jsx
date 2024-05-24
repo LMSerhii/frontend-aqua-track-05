@@ -76,16 +76,18 @@ export const WaterMainInfo = () => {
         >
           <SharedSVG
             className={css.icon}
-            width={width < 768 ? '14' : '21'}
-            height={width < 768 ? '14' : '21'}
+            width={width < 768 ? '16' : '21'}
+            height={width < 768 ? '16' : '21'}
             svgId={'plus'}
           />
           {t('WaterMainInfo.addWater')}
         </Button>
       </div>
+
       <div className={css.logo}>
         <Logo />
       </div>
+
       <div
         data-tour="WaterProgressBar"
         className={css.bottle_page_slider_wrapper}

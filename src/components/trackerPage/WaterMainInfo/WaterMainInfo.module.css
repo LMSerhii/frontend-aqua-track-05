@@ -6,6 +6,8 @@
 
 .icon {
   stroke: var(--white);
+
+  transition: stroke var(--animation-duration) var(--animation-time-function);
 }
 
 /*EDIT BUTTON*/
@@ -13,6 +15,16 @@
   position: absolute;
   bottom: 32px;
   right: 16px;
+}
+
+.add_water_btn_wrap:hover,
+.add_water_btn_wrap:focus {
+  .icon {
+    stroke: var(--lettuce);
+  }
+  .add_water_btn {
+    color: var(--lettuce) !important;
+  }
 }
 
 .add_water_btn {
@@ -25,6 +37,8 @@
   padding: 14px 20px !important;
   column-gap: 10px;
   width: 100%;
+
+  transition: color var(--animation-duration) var(--animation-time-function) !important;
 }
 
 /*END EDIT BUTTON*/

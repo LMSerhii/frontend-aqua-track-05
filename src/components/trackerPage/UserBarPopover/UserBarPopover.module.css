@@ -11,12 +11,13 @@
   opacity: 0;
   height: 80px;
   overflow: auto;
+
   transition: opacity 7s var(--animation-time-function);
 }
 
 .wrapper.active {
   opacity: 1;
-  z-index: 999;
+  z-index: 99;
 }
 
 .settingBtn,
@@ -29,9 +30,8 @@
   font-weight: bold;
   font-size: 14px;
   padding: 7px 10px;
-  border-radius: 30px;
-  transition: background-color var(--animation-duration)
-    var(--animation-time-function);
+
+  transition: opacity var(--animation-duration) var(--animation-time-function);
 }
 
 .icon {
@@ -39,7 +39,6 @@
   stroke: var(--dark-blue);
 }
 .logoutBtn {
-  opacity: 0.5;
   padding-right: 62px;
 }
 
@@ -47,7 +46,7 @@
 .settingBtn:focus,
 .logoutBtn:hover,
 .logoutBtn:focus {
-  background-color: var(--calendarItemColor);
+  opacity: 0.5;
 }
 
 @media screen and (min-width: 768px) {

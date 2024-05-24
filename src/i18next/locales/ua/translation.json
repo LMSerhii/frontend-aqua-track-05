@@ -1,9 +1,9 @@
 {
   "welcomeSection": {
     "logo": "AQUATRACK",
-    "title": "Відстеження споживання води",
-    "recordPparag": "Записуйте щоденне споживання води та відстежуйте",
-    "tryTrackerBtn": "Спробуйте трекер",
+    "title": "Трекер споживання води",
+    "recordPparag": "Записуйте щоденне споживання води",
+    "tryTrackerBtn": "Спробуй трекер",
     "signIn": "Логін"
   },
   "advantagesSection": {

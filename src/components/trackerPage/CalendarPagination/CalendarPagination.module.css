@@ -18,8 +18,16 @@
 }
 .pieIcon {
   stroke-opacity: 0.5;
+
+  transition: stroke-opacity var(--animation-duration)
+    var(--animation-time-function);
 }
 
+.pieIcon:hover,
+.pieIcon:focus,
+.pieIcon:active {
+  stroke-opacity: 1;
+}
 .pieChart {
   background-color: transparent;
   padding: 0;
