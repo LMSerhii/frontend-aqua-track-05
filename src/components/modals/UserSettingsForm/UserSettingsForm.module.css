@@ -36,6 +36,14 @@
   }
 }
 
+<<<<<<< HEAD
+@media screen and (min-width: 768px) {
+  .wrapUpload {
+    width: 150px;
+  }
+}
+=======
+>>>>>>> main
 .uploudBtn {
   display: flex;
   gap: 8px;
@@ -86,7 +94,7 @@
   font-weight: 700;
   line-height: 20px;
   letter-spacing: -0.01em;
-  /* text-align: center; */
+
   display: flex;
 }
 @media screen and (min-width: 768px) {
@@ -200,13 +208,10 @@ input {
   justify-content: space-between;
   margin-bottom: 24px;
 }
-/* Стилізація радіокнопок */
-/* Загальні стилі для радіокнопок */
-input[type='radio'] {
-  display: none; /* Приховати стандартну радіокнопку */
-}
 
-/* Зовнішній вигляд контейнера радіокнопки */
+input[type='radio'] {
+  display: none;
+}
 .gender {
   margin-bottom: 10px;
 }
@@ -228,30 +233,28 @@ input[type='radio'] {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  border: 2px solid #9be1a0; /* Лінія рамки */
-  border-radius: 50%; /* Круглий контур */
+  border: 2px solid #9be1a0;
+  border-radius: 50%;
 }
 
 /* Зміна стилю "псевдо-кнопок" при виборі */
 .gender input[type='radio']:checked + label:before {
-  background-color: white; /* Колір заливки при виборі */
+  background-color: white;
 }
 
-/* Додавання маленького кола всередині радіокнопки */
 .gender label:after {
   content: '';
-  display: none; /* Початково приховати */
+  display: none;
   position: absolute;
   top: 50%;
   left: 4px;
   transform: translateY(-50%);
   width: 8px;
   height: 8px;
-  background-color: #9be1a0; /* Колір кола */
-  border-radius: 50%; /* Круглий контур */
+  background-color: #9be1a0;
+  border-radius: 50%;
 }
 
-/* Показати маленьке коло при виборі */
 .gender input[type='radio']:checked + label:after {
   display: block;
 }
@@ -260,8 +263,6 @@ input[type='radio'] {
   stroke: var(--dark-blue);
 }
 
-.wrapUserData {
-}
 @media screen and (min-width: 1440px) {
   .wrapUserData {
     display: flex;
@@ -269,8 +270,6 @@ input[type='radio'] {
   }
 }
 
-.wrapCurrentUser {
-}
 @media screen and (min-width: 1440px) {
   .wrapCurrentUser {
     width: 400px;
@@ -284,7 +283,7 @@ input[type='radio'] {
   margin: 0;
 }
 .redLabel {
-  color: red; /* Змініть це на потрібний вам колір */
+  color: red;
 }
 
 .deleteBtn {

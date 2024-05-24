@@ -52,7 +52,6 @@ export const WaterForm = ({
     resolver: yupResolver(schema),
   });
 
-  // Вывод объекта с данными о кол-ве воды
   const onSubmit = async () => {
     try {
       if (operation === 'add') {
@@ -81,14 +80,12 @@ export const WaterForm = ({
       }
     } catch (error) {
       console.error('Error:', error);
-      // Обработка ошибки (если нужно)
     }
   };
 
   return (
     <>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)} action="">
-        {/* поле ввода времени */}
         <label className={s.timeLable} htmlFor="time">
           {t('waterModal.timeRecording')}
         </label>
@@ -103,7 +100,6 @@ export const WaterForm = ({
         />
         <br />
 
-        {/* поле ввода для воды */}
         <label className={s.waterLable} htmlFor="water">
           {t('waterModal.waterValue')}
         </label>

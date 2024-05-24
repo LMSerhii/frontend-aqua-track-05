@@ -1,4 +1,3 @@
-// MonthInfo.jsx
 import { Calendar } from '../Calendar/Calendar';
 import { CalendarPagination } from '../CalendarPagination/CalendarPagination';
 import { WaterGraph } from '../WaterGraph/WaterGraph';
@@ -7,7 +6,6 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const MonthInfo = () => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
   const [isActive, setIsActive] = useState(false);
   const { t } = useTranslation();
 
@@ -19,7 +17,7 @@ export const MonthInfo = () => {
         </h3>
         <CalendarPagination isActive={isActive} setIsActive={setIsActive} />
       </div>
-      {isActive ? <WaterGraph /> : <Calendar selectedDate={selectedDate} />}
+      {isActive ? <WaterGraph /> : <Calendar />}
     </div>
   );
 };

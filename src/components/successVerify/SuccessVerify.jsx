@@ -12,11 +12,11 @@ export default function SuccessVerify({ children }) {
 
   useEffect(() => {
     const firstToastTimerId = setTimeout(() => {
-      toast.success('You will be redirected to the login page after 5s');
+      toast.success(t('Errors.redirectedToLogin'));
     }, 1000);
 
     const thirdToastTimerId = setTimeout(() => {
-      toast.success('Redirecting...');
+      toast.success(t('Errors.Redirecting'));
     }, 4000);
 
     const redirectTimerId = setTimeout(() => {

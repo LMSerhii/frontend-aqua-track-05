@@ -1,6 +1,5 @@
 .dropdown {
   position: relative;
-  /* display: flex; */
 }
 
 .button {
@@ -23,6 +22,5 @@
 }
 
 .iconChevron {
-  /* fill: var(--white); */
   stroke: var(--white);
 }
