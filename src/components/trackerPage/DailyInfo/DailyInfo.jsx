@@ -23,7 +23,7 @@ const DailyInfo = () => {
         <ChooseDate />
         <AddWaterBtn />
       </div>
-      <div className={s.wrapper}>
+      <div className={s.wrapper} data-tour="dailyTrack">
         {isRefresh ? (
           <Loader />
         ) : (
