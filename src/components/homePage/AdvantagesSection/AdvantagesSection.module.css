@@ -118,17 +118,26 @@
 .item_trk:nth-child(2) {
   top: 45px;
   left: 140px;
-  background: var(--lettuce);
+  background-color: var(--lettuce);
 }
 .item_trk:nth-child(3) {
   top: 75px;
   left: 55px;
-  background: var(--white);
+  background-color: var(--white);
 }
 .badge {
   position: absolute;
   top: 10px;
   right: -5px;
+}
+
+.hearts {
+  position: absolute;
+  padding: 3px;
+  top: -10px;
+  right: -10px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 @media screen and (min-width: 375px) {
   .item_trk:nth-child(1) {

@@ -8,16 +8,20 @@ import { sprite } from '../../../shared/icons/index';
 import Button from '../../../shared/components/Button/Button';
 import toast from 'react-hot-toast';
 
-import { selectUser, setUserData } from '../../../redux/auth/authSlice';
+import { logOut, selectUser, setUserData } from '../../../redux/auth/authSlice';
 import defaultAvatar from '../../../shared/images/homePage/Rectangle-min.png';
 import { uploadCloudinary } from '../../../shared/helpers/handleUpload';
 import { validationSchema } from '../../../shared/helpers/validationSchema';
 
 import s from './UserSettingsForm.module.css';
-import { useUpdateUserMutation } from '../../../redux/authApi/authApi';
+import {
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+} from '../../../redux/authApi/authApi';
 
 export const UserSettingsForm = ({ setActive }) => {
   const [updateUser] = useUpdateUserMutation();
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
@@ -44,6 +48,7 @@ export const UserSettingsForm = ({ setActive }) => {
   const handleUpload = async event => {
     try {
       const file = event.target.files[0];
+      if (!file) return;
       const imageURL = URL.createObjectURL(file);
       setSelectedFile(imageURL);
 
@@ -122,10 +127,26 @@ export const UserSettingsForm = ({ setActive }) => {
     },
   });
 
+  const [deleteUser] = useDeleteUserMutation();
+
+  const handleDelete = () => {
+    deleteUser()
+      .unwrap()
+      .then(() => {
+        toast.success(t('Errors.delete'));
+        dispatch(logOut());
+        setActive(false);
+      })
+      .catch(() => {
+        toast.error(t.$TFunctionBrand('Errors.wrong'));
+        setActive(false);
+      });
+  };
+
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
-        <label htmlFor="avatar" className={s.imgWrap} onClick={handlePick}>
+        <label htmlFor="avatar" className={s.imgWrap}>
           <input
             {...register('file')}
             className={s.hidden}
@@ -141,7 +162,7 @@ export const UserSettingsForm = ({ setActive }) => {
             <img src={data.avatar} className={s.avatar} alt="preview" />
           )}
 
-          <button className={s.uploudBtn} type="button">
+          <button className={s.uploudBtn} type="button" onClick={handlePick}>
             <svg className={s.uploud} width="18" height="18">
               <use xlinkHref={`${sprite}#upload`}></use>
             </svg>
@@ -149,9 +170,7 @@ export const UserSettingsForm = ({ setActive }) => {
           </button>
         </label>
       </div>
-
       <p className={s.errorYup}>{errors.file?.message}</p>
-
       <div className={s.wrapUserData}>
         <div className={s.wrapCurrentUser}>
           <label className={s.labelImportanGender}>
@@ -266,6 +285,7 @@ export const UserSettingsForm = ({ setActive }) => {
             <input
               {...register('Your_weight')}
               type="number"
+              min={0}
               id="Your_weight"
               value={data.weight || ''}
               onChange={e => setData({ ...data, weight: e.target.value })}
@@ -283,6 +303,7 @@ export const UserSettingsForm = ({ setActive }) => {
             <input
               {...register('Your_sports')}
               type="number"
+              min={0}
               id="Your_sports"
               value={data.sportTime || ''}
               onChange={e => setData({ ...data, sportTime: e.target.value })}
@@ -307,9 +328,9 @@ export const UserSettingsForm = ({ setActive }) => {
             <input
               {...register('Your_water')}
               type="number"
+              min={0}
               id="Your_water"
               value={data.dailyWater}
-              // onChange={e => setData({ ...data, dailyWater: e.target.value })}
               onChange={handleEditWater}
               placeholder="ml"
               style={{ borderColor: errors.Your_water ? 'red' : 'initial' }}
@@ -320,10 +341,30 @@ export const UserSettingsForm = ({ setActive }) => {
           </div>
         </div>
       </div>
-
-      <Button classname={s.btnSetting} type="submit">
-        {t('UserSettingsForm.saveBtn')}
-      </Button>
+      <div className={s.wrapperBtn}>
+        <Button classname={s.btnSetting} type="submit">
+          {t('UserSettingsForm.saveBtn')}
+        </Button>
+        <Button
+          type="button"
+          onClick={() => setShow(!show)}
+          className={s.deleteBtn}
+        >
+          {t('UserBarPopover.deleteBtn')}
+        </Button>
+        {show && (
+          <div className={s.boxText}>
+            <p>{t('DeletePanel.deleteText')}</p>
+            <button
+              type="button"
+              onClick={handleDelete}
+              className={s.deleteBtnR}
+            >
+              {t('DeletePanel.deleteBtn')}
+            </button>
+          </div>
+        )}
+      </div>
     </form>
   );
 };

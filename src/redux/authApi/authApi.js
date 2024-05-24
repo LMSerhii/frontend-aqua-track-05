@@ -91,7 +91,6 @@ export const {
   useLogoutMutation,
   useRefreshTokenMutation,
   useResendEmailMutation,
-  useRefreshUserQuery,
   useUpdateUserMutation,
   useDeleteUserMutation,
   useForgotPasswordMutation,

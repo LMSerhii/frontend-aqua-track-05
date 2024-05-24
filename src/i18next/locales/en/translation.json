@@ -31,6 +31,7 @@
     "passwordMax": "Too long",
     "resendEmailBtn": "Resend email",
     "forgotPassword": "Forgot password?",
+    "passwordRequired": "Required password", 
 
     "googleButton": {
       "googleBtn": "Sign in with Google"
@@ -78,7 +79,7 @@
 
   "WaterProgressBar": {
     "today": "Today",
-    "it": "It'st",
+    "it": "It's",
     "norma": "of daily norma"
   },
 
@@ -107,7 +108,7 @@
   },
 
   "DeletePanel": {
-    "deleteText": "Are you sure you want to delete the user?",
+    "deleteText": "Are you sure?",
     "deleteBtn": "Delete",
     "cancelBtn": "Cancel"
   },
