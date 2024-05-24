@@ -146,7 +146,7 @@ export const UserSettingsForm = ({ setActive }) => {
   return (
     <form onSubmit={handleSubmit(handleSubmitSetting)}>
       <div className={s.avatarWrap}>
-        <label htmlFor="avatar" className={s.imgWrap}>
+        <label htmlFor="avatar">
           <input
             {...register('file')}
             className={s.hidden}
@@ -157,9 +157,13 @@ export const UserSettingsForm = ({ setActive }) => {
           />
 
           {selectedFile ? (
-            <img src={selectedFile} className={s.avatar} alt="preview" />
+            <div className={s.imgWrap}>
+              <img src={selectedFile} className={s.avatar} alt="preview" />
+            </div>
           ) : (
-            <img src={data.avatar} className={s.avatar} alt="preview" />
+            <div className={s.imgWrap}>
+              <img src={data.avatar} className={s.avatar} alt="preview" />
+            </div>
           )}
 
           <button className={s.uploudBtn} type="button" onClick={handlePick}>
