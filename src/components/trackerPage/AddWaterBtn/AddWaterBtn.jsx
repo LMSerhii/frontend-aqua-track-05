@@ -13,7 +13,7 @@ const AddWaterBtn = () => {
   return (
     <>
       <Button classname={s.addWaterBtn} onClick={() => setActiveAdd(true)}>
-        <span className={s.plusIconWrap}>
+        <span className={s.plusIconWrap} data-tour="AddWaterBtn">
           <svg className={s.plusIcon} width="20" height="20">
             <use xlinkHref={`${sprite}#plus`}></use>
           </svg>

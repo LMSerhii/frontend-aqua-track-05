@@ -19,7 +19,11 @@ export const UserBar = ({ setIsActiveSettings, setIsActiveLogout }) => {
 
   return (
     <div className={css.dropdown}>
-      <div className={css.button} onClick={() => setIsActive(!isActive)}>
+      <div
+        data-tour="UserBar"
+        className={css.button}
+        onClick={() => setIsActive(!isActive)}
+      >
         <span className={css.userName}>
           {user ? croppName(user.name) : 'Anonymous'}
         </span>

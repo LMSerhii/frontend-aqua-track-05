@@ -31,7 +31,7 @@
     "passwordMax": "Too long",
     "resendEmailBtn": "Resend email",
     "forgotPassword": "Forgot password?",
-    "passwordRequired": "Required password", 
+    "passwordRequired": "Required password",
 
     "googleButton": {
       "googleBtn": "Sign in with Google"
@@ -240,12 +240,32 @@
     "sendEmail": "Message to verify email was send to",
     "useEmail": "Email already in use",
     "notVerified": "Account is not verified",
-    "sentEmail": "Email sent successfully",
     "recoverLink": "Recover link had been sent to your email",
     "smthIsWrong": "Something is wrong, please try again...",
     "smthWentWrong": "Something went wrong. Please try again later.",
     "passwordChanged": "The password has been successfully changed!",
     "redirectedToLogin": "You will be redirected to the login page after 5s",
-    "Redirecting": "Redirecting..."
+    "Redirecting": "Redirecting...",
+    "sentEmail": "Email sent successfully"
+  },
+
+  "ButtonTour": {
+    "openTour": "Open Tour",
+    "waterInfo": "Here the user can find out about the main indicators.",
+    "normaDaily": "The user can view their daily water intake.",
+    "waterProgressBar": "The user can see the readings as a percentage of the daily value.",
+    "addFastWater": "Quick add water button."
+  },
+
+  "UserBar": {
+    "userBarBtn": "Here the user can add or edit settings for a more accurate calculation of water parameters."
+  },
+
+  "AddWaterBtn": {
+    "addWaterBtnTour": "An additional button with which you can add the required amount of water."
+  },
+
+  "MonthInfoTour": {
+    "monthInfoTourInfo": "The user can view his history of drinking water and open a graph with detailed statistics."
   }
 }

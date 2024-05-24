@@ -1,0 +1,12 @@
+.buttonTour {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #6ab37f6b;
+  color: #000000;
+}

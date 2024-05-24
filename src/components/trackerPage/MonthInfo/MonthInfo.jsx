@@ -10,7 +10,7 @@ export const MonthInfo = () => {
   const { t } = useTranslation();
 
   return (
-    <div>
+    <div data-tour="MonthInfoTour">
       <div className={s.wrapper}>
         <h3 className={s.month}>
           {isActive ? t('MonthInfo.stat') : t('MonthInfo.month')}
