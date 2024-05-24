@@ -36,14 +36,6 @@
   }
 }
 
-<<<<<<< HEAD
-@media screen and (min-width: 768px) {
-  .wrapUpload {
-    width: 150px;
-  }
-}
-=======
->>>>>>> main
 .uploudBtn {
   display: flex;
   gap: 8px;
