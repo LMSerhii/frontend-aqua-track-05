@@ -1,6 +1,7 @@
-import App from './App';
+import App from './App.jsx';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import TourWrapper from './TourWrapper/TourWrapper.jsx';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,7 +10,6 @@ import { persistor, store } from './redux/store';
 import './shared/styles/index.css';
 import 'modern-normalize';
 import './i18next/config.js';
-import TourWrapper from './TourWrapper/TourWrapper.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -17,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
           <HelmetProvider>
-            <TourWrapper />
+            <TourWrapper>
+              <App />
+            </TourWrapper>
           </HelmetProvider>
         </BrowserRouter>
       </PersistGate>
