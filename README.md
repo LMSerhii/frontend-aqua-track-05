@@ -23,6 +23,7 @@
 функціонування організму.
 
 ###### [Жива сторінка](https://main.d32382tvu1v9zw.amplifyapp.com)
+###### [Backend](https://github.com/LMSerhii/backend-aqua-track-05)
 
 ## Технології, які використовувалися для створення додатка
 
@@ -220,6 +221,7 @@ This app serves as a reliable companion in maintaining a healthy lifestyle,
 reminding users of the importance of proper hydration for optimal body function.
 
 ###### [Live page](https://main.d32382tvu1v9zw.amplifyapp.com)
+###### [Backend](https://github.com/LMSerhii/backend-aqua-track-05)
 
 ## Stack of technologies used for the project
 
