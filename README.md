@@ -184,6 +184,7 @@ backend частини виконаний на Render.
 - [DENYS KOSHEVYI](https://t.me/Il_Denis_lI)
 - [IVAN TROPANETS](https://t.me/Shi9ei)
 - [SERHII LEONOV](https://t.me/LeonovSerhii)
+- [NATALIIA MUSIIENKO](https://t.me/NatalieMusienko)
 
 ---
 
@@ -377,6 +378,7 @@ backend is implemented on Render.
 - [DENYS KOSHEVYI](https://t.me/Il_Denis_lI)
 - [IVAN TROPANETS](https://t.me/Shi9ei)
 - [SERHII LEONOV](https://t.me/LeonovSerhii)
+- [NATALIIA MUSIIENKO](https://t.me/NatalieMusienko)
 
 ---
 
