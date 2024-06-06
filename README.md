@@ -183,6 +183,7 @@ backend частини виконаний на Render.
 - [KRYSTYNA ZOLOTAR](https://t.me/kristinaavstriiskaya)
 - [DENYS KOSHEVYI](https://t.me/Il_Denis_lI)
 - [IVAN TROPANETS](https://t.me/Shi9ei)
+- [SERHII LEONOV](https://t.me/LeonovSerhii)
 
 ---
 
@@ -190,8 +191,7 @@ backend частини виконаний на Render.
 
 - [DMYTRO CHEREVKO ](https://t.me/Dtimewarp)
 - [KOSTIANTYN BRATKOVSKYI](https://t.me/cefarir0n)
-- [PAVLO BANDRIVSKYI](https://t.me/PavloMal)
-- [ANDRIAN POHREBNIAK](https://t.me/UAThee)
+- [SERHII LEONOV](https://t.me/LeonovSerhii)
 
 ---
 
@@ -376,6 +376,7 @@ backend is implemented on Render.
 - [KRYSTYNA ZOLOTAR](https://t.me/kristinaavstriiskaya)
 - [DENYS KOSHEVYI](https://t.me/Il_Denis_lI)
 - [IVAN TROPANETS](https://t.me/Shi9ei)
+- [SERHII LEONOV](https://t.me/LeonovSerhii)
 
 ---
 
@@ -383,5 +384,4 @@ backend is implemented on Render.
 
 - [DMYTRO CHEREVKO ](https://t.me/Dtimewarp)
 - [KOSTIANTYN BRATKOVSKYI](https://t.me/cefarir0n)
-- [PAVLO BANDRIVSKYI](https://t.me/PavloMal)
-- [ANDRIAN POHREBNIAK](https://t.me/UAThee)
+- [SERHII LEONOV](https://t.me/LeonovSerhii)
